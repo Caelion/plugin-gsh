@@ -5,7 +5,7 @@
 	"licence" : "AGPL",
 	"author" : "Loïc",
 	"require" : "3.2",
-	"category" : "programming",
+	"category" : "communication",
 	"hasDependency" : false,
 	"hasOwnDeamon" : false,
 	"maxDependancyInstallTime" : 0,

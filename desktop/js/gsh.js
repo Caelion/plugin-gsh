@@ -14,3 +14,42 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
+
+ $('#bt_saveConfiguration').on('click',function(){
+ 	var syncEqLogic = {}
+ 	var syncData =  $('#div_configuration .syncEqLogic').getValues('.syncAttr');
+ 	for(var i in syncData){
+ 		syncEqLogic[syncData[i].id] = syncData[i];
+ 	}
+ 	jeedom.config.save({
+ 		configuration: {syncEqLogic : syncEqLogic},
+ 		plugin : 'gsh',
+ 		error: function (error) {
+ 			$('#div_alert').showAlert({message: error.message, level: 'danger'});
+ 		},
+ 		success: function () {
+
+ 		}
+ 	});
+ });
+
+ function loadData(){
+ 	jeedom.config.load({
+ 		configuration:'syncEqLogic',
+ 		plugin : 'gsh',
+ 		error: function (error) {
+ 			$('#div_alert').showAlert({message: error.message, level: 'danger'});
+ 		},
+ 		success: function (data) {
+ 			for(var i in data){
+ 				var el = $('.syncEqLogic[data-id='+i+']');
+ 				if(!el){
+ 					continue;
+ 				}
+ 				el.setValues(data[i], '.syncAttr');
+ 			}
+ 		}
+ 	});
+ }
+
+ loadData();
