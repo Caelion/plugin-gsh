@@ -39,9 +39,6 @@ class gsh_light {
 		if (!in_array('action.devices.traits.OnOff', $return['traits']) && $_device->getCmdByGenericType(array('LIGHT_ON', 'LIGHT_OFF')) != null) {
 			$return['traits'][] = 'action.devices.traits.OnOff';
 		}
-		if (!in_array('action.devices.traits.ColorTemperature', $return['traits']) && $_device->getCmdByGenericType(array('LIGHT_COLOR_TEMP')) != null) {
-			$return['traits'][] = 'action.devices.traits.ColorTemperature';
-		}
 		if (!in_array('action.devices.traits.Brightness', $return['traits']) && $_device->getCmdByGenericType(array('LIGHT_SLIDER')) != null) {
 			$return['traits'][] = 'action.devices.traits.Brightness';
 		}
