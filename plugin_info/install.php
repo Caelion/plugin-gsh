@@ -19,6 +19,8 @@
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
 function gsh_install() {
+	$sql = file_get_contents(dirname(__FILE__) . '/install.sql');
+	DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 	if (config::byKey('gshs::masterkey', 'gsh') == '') {
 		config::save('gshs::masterkey', config::genKey(30), 'gsh');
 	}

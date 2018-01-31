@@ -18,21 +18,31 @@
 
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
+include_file('core', 'gsh_light', 'class', 'gsh');
 
 class gsh extends eqLogic {
+
 	/*     * *************************Attributs****************************** */
+
+	public static $_supportedType = array(
+		'action.devices.types.LIGHT' => array('class' => 'gsh_light', 'name' => 'Lumière'),
+		'action.devices.types.OUTLET' => array('class' => 'gsh_outlet', 'name' => 'Prise'),
+		'action.devices.types.THERMOSTAT' => array('class' => 'gsh_thermostat', 'name' => 'Thermostat'),
+		'action.devices.types.SWITCH' => array('class' => 'gsh_switch', 'name' => 'Switch'),
+	);
 
 	/*     * ***********************Methode static*************************** */
 
 	public static function generateConfiguration() {
-		$return = array();
-		$return["devPortSmartHome"] = config::byKey('gshs::port', 'gsh');
-		$return["smartHomeProviderGoogleClientId"] = config::byKey('gshs::clientId', 'gsh');
-		$return["smartHomeProvideGoogleClientSecret"] = config::byKey('gshs::clientSecret', 'gsh');
-		$return["smartHomeProviderApiKey"] = config::byKey('gshs::googleapikey', 'gsh');
-		$return["masterkey"] = config::byKey('gshs::masterkey', 'gsh');
-		$return["jeedomTimeout"] = config::byKey('gshs::timeout', 'gsh');
-		$return["url"] = config::byKey('gshs::url', 'gsh');
+		$return = array(
+			"devPortSmartHome" => config::byKey('gshs::port', 'gsh'),
+			"smartHomeProviderGoogleClientId" => config::byKey('gshs::clientId', 'gsh'),
+			"smartHomeProvideGoogleClientSecret" => config::byKey('gshs::clientSecret', 'gsh'),
+			"smartHomeProviderApiKey" => config::byKey('gshs::googleapikey', 'gsh'),
+			"masterkey" => config::byKey('gshs::masterkey', 'gsh'),
+			"jeedomTimeout" => config::byKey('gshs::timeout', 'gsh'),
+			"url" => config::byKey('gshs::url', 'gsh'),
+		);
 		return $return;
 	}
 
@@ -100,16 +110,10 @@ class gsh extends eqLogic {
 
 	public static function sync() {
 		$return = array();
-		$eqLogicSyncs = config::byKey('syncEqLogic', 'gsh');
-		foreach ($eqLogicSyncs as $eqLogicSync) {
-			if ($eqLogicSync['enable'] == 0) {
-				continue;
-			}
-			$eqLogic = eqLogic::byId($eqLogicSync['id']);
-			if (!is_object($eqLogic)) {
-				continue;
-			}
-			$info = self::buildEqlogic($eqLogic, $eqLogicSync);
+		$devices = gsh_devices::all(true);
+
+		foreach ($devices as $device) {
+			$info = $device->buildDevice($link);
 			if (count($info) == 0) {
 				continue;
 			}
@@ -119,112 +123,26 @@ class gsh extends eqLogic {
 	}
 
 	public static function exec($_data) {
+		$return = array();
 		foreach ($_data['data']['commands'] as $command) {
-			return array('status' => self::execCmd($command));
-		}
-	}
-
-	public static function execCmd($_command) {
-		log::add('gsh', 'debug', print_r($_command, true));
-		$eqLogic = eqLogic::byId($_command['devices'][0]['id']);
-		if (!is_object($eqLogic)) {
-			return 'deviceNotFound';
-		}
-		$sync = self::getSync($eqLogic->getId());
-		if (count($sync) == 0) {
-			return 'deviceNotFound';
-		}
-		if ($sync['enable'] == 0) {
-			return 'deviceOffline';
-		}
-		switch ($sync['type']) {
-			case 'action.devices.types.LIGHT':
-				$cmds = $eqLogic->getCmd();
-				foreach ($_command['execution'] as $execution) {
-					switch ($execution['command']) {
-						case 'action.devices.commands.OnOff':
-							if ($execution['params']['on']) {
-								foreach ($cmds as $cmd) {
-									if (in_array($cmd->getDisplay('generic_type'), array('LIGHT_ON'))) {
-										$cmd->execCmd();
-										return 'SUCCESS';
-									}
-								}
-								foreach ($cmds as $cmd) {
-									if (in_array($cmd->getDisplay('generic_type'), array('LIGHT_SLIDER'))) {
-										$cmd->execCmd(array('slider' => 100));
-										return 'SUCCESS';
-									}
-								}
-							} else {
-								foreach ($cmds as $cmd) {
-									if (in_array($cmd->getDisplay('generic_type'), array('LIGHT_OFF'))) {
-										$cmd->execCmd();
-										return 'SUCCESS';
-									}
-								}
-								foreach ($cmds as $cmd) {
-									if (in_array($cmd->getDisplay('generic_type'), array('LIGHT_SLIDER'))) {
-										$cmd->execCmd(array('slider' => 0));
-										return 'SUCCESS';
-									}
-								}
-							}
-							break;
-					}
+			foreach ($command['devices'] as $infos) {
+				$device = gsh_devices::byLinkTypeLinkId('eqLogic', $infos['id']);
+				if (!is_object($device)) {
+					$return[] = 'deviceNotFound';
+					continue;
 				}
-				break;
+				if ($device->getEnable() == 0) {
+					$return[] = 'deviceOffline';
+					continue;
+				}
+				$return[] = $device->exec($command['execution'], $infos);
+			}
 		}
-		return 'notSupported';
-	}
-
-	public static function getSync($_id) {
-		$eqLogicSyncs = config::byKey('syncEqLogic', 'gsh');
-		if (!isset($eqLogicSyncs[$_id])) {
-			return array();
-		}
-		return $eqLogicSyncs[$_id];
-
+		return $return;
 	}
 
 	public static function query() {
 
-	}
-
-	public static function buildEqlogic($_eqLogic, $_sync) {
-		$return = array();
-		$return['id'] = $_eqLogic->getId();
-		$return['type'] = $_sync['type'];
-		$return['name'] = array('name' => $_eqLogic->getName(), 'nicknames' => array($_eqLogic->getHumanName()));
-		switch ($_sync['type']) {
-			case 'action.devices.types.LIGHT':
-				$return['traits'] = array();
-				$return['willReportState'] = false;
-				foreach ($_eqLogic->getCmd() as $cmd) {
-					if (in_array($cmd->getDisplay('generic_type'), array('LIGHT_ON', 'LIGHT_OFF'))) {
-						$return['traits'][] = 'action.devices.traits.OnOff';
-					}
-					if (in_array($cmd->getDisplay('generic_type'), array('LIGHT_COLOR_TEMP'))) {
-						$return['traits'][] = 'action.devices.traits.ColorTemperature';
-					}
-					if (in_array($cmd->getDisplay('generic_type'), array('LIGHT_SLIDER'))) {
-						$return['traits'][] = 'action.devices.traits.Brightness';
-					}
-					if (in_array($cmd->getDisplay('generic_type'), array('LIGHT_SET_COLOR'))) {
-						$return['traits'][] = 'action.devices.traits.ColorSpectrum';
-					}
-					if (in_array($cmd->getDisplay('generic_type'), array('LIGHT_STATE'))) {
-						$return['willReportState'] = true;
-					}
-				}
-				if (count($return['traits']) == 0) {
-					return array();
-				}
-				break;
-			default:
-				return array();
-		}
-		return $return;
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
@@ -240,4 +158,139 @@ class gshCmd extends cmd {
 	/*     * *********************Methode d'instance************************* */
 
 	/*     * **********************Getteur Setteur*************************** */
+}
+
+class gsh_devices {
+	/*     * *************************Attributs****************************** */
+
+	private $id;
+	private $enable;
+	private $link_type;
+	private $link_id;
+	private $type;
+	private $options;
+
+	/*     * ***********************Methode static*************************** */
+
+	public static function all($_onlyEnable = false) {
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM gsh_devices';
+		if ($_onlyEnable) {
+			$sql .= ' WHERE enable=1';
+		}
+		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+
+	public static function byId($_id) {
+		$values = array(
+			'id' => $_id,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM gsh_devices
+		WHERE id=:id';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+	}
+
+	public static function byLinkTypeLinkId($_link_type, $_link_id) {
+		$values = array(
+			'link_type' => $_link_type,
+			'link_id' => $_link_id,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM gsh_devices
+		WHERE link_type=:link_type
+		AND link_id=:link_id';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+	}
+
+	/*     * *********************Methode d'instance************************* */
+
+	public function save() {
+		return DB::save($this);
+	}
+
+	public function remove() {
+		DB::remove($this);
+	}
+
+	public function getLink() {
+		if ($this->getLink_type() == 'eqLogic') {
+			return eqLogic::byId($this->getLink_id());
+		}
+		if ($this->getlink_type() == 'scenario') {
+			return scenario::byId($this->getLink_id());
+		}
+		return null;
+	}
+
+	public function buildDevice($_eqLogic) {
+		if (!isset(gsh::$_supportedType[$this->getType()])) {
+			return array();
+		}
+		$class = gsh::$_supportedType[$this->getType()]['class'];
+		if (!class_exists($class)) {
+			return array();
+		}
+		return $class::buildDevice($this);
+	}
+
+	public function exec($_execution, $_infos) {
+		if (!isset(gsh::$_supportedType[$this->getType()])) {
+			return;
+		}
+		$class = gsh::$_supportedType[$this->getType()]['class'];
+		if (!class_exists($class)) {
+			return array();
+		}
+		return $class::exec($this, $_execution, $_infos);
+	}
+
+	/*     * **********************Getteur Setteur*************************** */
+	public function getId() {
+		return $this->id;
+	}
+
+	public function setId($id) {
+		$this->id = $id;
+	}
+
+	public function getEnable() {
+		return $this->enable;
+	}
+
+	public function setEnable($enable) {
+		$this->enable = $enable;
+	}
+
+	public function getlink_type() {
+		return $this->link_type;
+	}
+
+	public function setLink_type($link_type) {
+		$this->link_type = $link_type;
+	}
+
+	public function getLink_id() {
+		return $this->link_id;
+	}
+
+	public function setLink_id($link_id) {
+		$this->link_id = $link_id;
+	}
+
+	public function getType() {
+		return $this->type;
+	}
+
+	public function setType($type) {
+		$this->type = $type;
+	}
+
+	public function getOptions($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->options, $_key, $_default);
+	}
+
+	public function setOptions($_key, $_value) {
+		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
+	}
 }

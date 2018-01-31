@@ -13,7 +13,7 @@ if (!isConnect('admin')) {
 <div class="tab-content" id="div_configuration" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
   <div role="tabpanel" class="tab-pane active" id="eqlogictab">
     <br/>
-    <table class="table table-bordered">
+    <table class="table table-bordered tablesorter">
       <thead>
         <tr>
           <th>{{Equipement}}</th>
@@ -24,25 +24,20 @@ if (!isConnect('admin')) {
       <tbody>
         <?php
 foreach (eqLogic::all() as $eqLogic) {
-	echo '<tr class="syncEqLogic" data-id="' . $eqLogic->getId() . '">';
+	echo '<tr class="device" data-link_id="' . $eqLogic->getId() . '" data-link_type="eqLogic">';
 	echo '<td>' . $eqLogic->getHumanName() . '</td>';
 	echo '<td>';
-	echo '<input style="display:none;" class="syncAttr" data-l1key="id" value="' . $eqLogic->getId() . '" />';
-	echo '<input type="checkbox" class="syncAttr" data-l1key="enable" />';
+	echo '<input style="display:none;" class="deviceAttr" data-l1key="id" />';
+	echo '<input style="display:none;" class="deviceAttr" data-l1key="link_type" value="eqLogic" />';
+	echo '<input style="display:none;" class="deviceAttr" data-l1key="link_id" value="' . $eqLogic->getId() . '" />';
+	echo '<input type="checkbox" class="deviceAttr" data-l1key="enable" />';
 	echo '</td>';
 	echo '<td>';
-	echo '<select class="syncAttr form-control" data-l1key="type">';
+	echo '<select class="deviceAttr form-control" data-l1key="type">';
 	echo '<option value="">{{Aucun}}</option>';
-	echo '<option value="action.devices.types.CAMERA">{{Camera}}</option>';
-	echo '<option value="action.devices.types.DISHWASHER">{{Dishwasher}}</option>';
-	echo '<option value="action.devices.types.DRYER">{{Dryers}}</option>';
-	echo '<option value="action.devices.types.LIGHT">{{Light}}</option>';
-	echo '<option value="action.devices.types.OUTLET">{{Outlet}}</option>';
-	echo '<option value="action.devices.types.REFRIGERATOR">{{Refrigerator}}</option>';
-	echo '<option value="action.devices.types.THERMOSTAT">{{Thermostat}}</option>';
-	echo '<option value="action.devices.types.VACUUM">{{Vacuum}}</option>';
-	echo '<option value="action.devices.types.WASHER">{{Washer}}</option>';
-	echo '<option value="action.devices.types.SWITCH">{{Switch}}</option>';
+	foreach (gsh::$_supportedType as $key => $value) {
+		echo '<option value="' . $key . '">{{' . $value['name'] . '}}</option>';
+	}
 	echo '<select>';
 	echo '</td>';
 	echo '</tr>';

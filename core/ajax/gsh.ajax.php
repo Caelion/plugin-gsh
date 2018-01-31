@@ -36,6 +36,20 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'saveDevices') {
+		$devices = json_decode(init('devices'), true);
+		foreach ($devices as $device_json) {
+			$device = new gsh_devices();
+			utils::a2o($device, $device_json);
+			$device->save();
+		}
+		ajax::success();
+	}
+
+	if (init('action') == 'allDevices') {
+		ajax::success(utils::o2a(gsh_devices::all()));
+	}
+
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

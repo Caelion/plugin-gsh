@@ -16,32 +16,14 @@
  */
 
  $('#bt_saveConfiguration').on('click',function(){
- 	var syncEqLogic = {}
- 	var syncData =  $('#div_configuration .syncEqLogic').getValues('.syncAttr');
- 	for(var i in syncData){
- 		syncEqLogic[syncData[i].id] = syncData[i];
- 	}
- 	jeedom.config.save({
- 		configuration: {syncEqLogic : syncEqLogic},
- 		plugin : 'gsh',
- 		error: function (error) {
- 			$('#div_alert').showAlert({message: error.message, level: 'danger'});
- 		},
- 		success: function () {
- 			sendDevices();
- 		}
- 	});
- });
-
-
- function sendDevices(){
+ 	var devices = $('#div_configuration .device').getValues('.deviceAttr');
  	$.ajax({
  		type: "POST", 
  		url: "plugins/gsh/core/ajax/gsh.ajax.php", 
  		data: {
- 			action: "sendDevices",
+ 			action: "saveDevices",
+ 			devices : json_encode(devices),
  		},
- 		global:false,
  		dataType: 'json',
  		error: function (request, status, error) {
  			handleAjaxError(request, status, error);
@@ -51,27 +33,56 @@
  				$('#div_alert').showAlert({message: data.result, level: 'danger'});
  				return;
  			}
- 			$('#div_alert').showAlert({message: '{{Synchronisation réussie}}', level: 'success'});
+ 			sendDevices()
+ 		},
+ 	});
+ });
+
+ function sendDevices(){
+ 	$.ajax({
+ 		type: "POST", 
+ 		url: "plugins/gsh/core/ajax/gsh.ajax.php", 
+ 		data: {
+ 			action: "sendDevices",
+ 		},
+ 		dataType: 'json',
+ 		error: function (request, status, error) {
+ 			handleAjaxError(request, status, error);
+ 		},
+ 		success: function (data) { 
+ 			if (data.state != 'ok') {
+ 				$('#div_alert').showAlert({message: data.result, level: 'danger'});
+ 				return;
+ 			}
+ 			$('#div_alert').showAlert({message: '{{Synchronisation réussie, n\'oubliez pas de dire à Google : Synchroniser tous mes appareils}}', level: 'success'});
  		},
  	});
  }
 
  function loadData(){
- 	jeedom.config.load({
- 		configuration:'syncEqLogic',
- 		plugin : 'gsh',
- 		error: function (error) {
- 			$('#div_alert').showAlert({message: error.message, level: 'danger'});
+ 	$.ajax({
+ 		type: "POST", 
+ 		url: "plugins/gsh/core/ajax/gsh.ajax.php", 
+ 		data: {
+ 			action: "allDevices"
  		},
- 		success: function (data) {
- 			for(var i in data){
- 				var el = $('.syncEqLogic[data-id='+i+']');
+ 		dataType: 'json',
+ 		error: function (request, status, error) {
+ 			handleAjaxError(request, status, error);
+ 		},
+ 		success: function (data) { 
+ 			if (data.state != 'ok') {
+ 				$('#div_alert').showAlert({message: data.result, level: 'danger'});
+ 				return;
+ 			}
+ 			for(var i in data.result){
+ 				var el = $('.device[data-link_id='+data.result[i]['link_id']+'][data-link_type=eqLogic]');
  				if(!el){
  					continue;
  				}
- 				el.setValues(data[i], '.syncAttr');
+ 				el.setValues(data.result[i], '.deviceAttr');
  			}
- 		}
+ 		},
  	});
  }
 
