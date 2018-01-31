@@ -24,6 +24,7 @@ if (!isConnect()) {
 ?>
 <form class="form-horizontal">
 	<fieldset>
+		<legend>{{Serveur Google smarthome}}</legend>
 		<div class="form-group">
 			<label class="col-lg-3 control-label">{{J'utilise mon propre serveur}}</label>
 			<div class="col-lg-2">
@@ -36,6 +37,7 @@ if (!isConnect()) {
 				<input class="configKey form-control" data-l1key="gshs::ip" />
 			</div>
 		</div>
+		<legend>{{Configuration général}}</legend>
 		<div class="form-group">
 			<label class="col-lg-3 control-label">{{Clef maitre}}</label>
 			<div class="col-lg-3">
@@ -78,10 +80,29 @@ if (!isConnect()) {
 				<input class="configKey form-control" data-l1key="gshs::url" />
 			</div>
 		</div>
-		<div class="form-group">
+			<div class="form-group">
 			<label class="col-lg-3 control-label">{{Configuration}}</label>
 			<div class="col-lg-3">
 				<a class="btn btn-success" id="bt_viewConf">{{Voir}}</a>
+			</div>
+		</div>
+		<legend>{{Utilisateur}}</legend>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">{{ID utilisateur}}</label>
+			<div class="col-lg-3">
+				<input class="configKey form-control" data-l1key="gshs::userid" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">{{Nom d'utilisateur}}</label>
+			<div class="col-lg-3">
+				<input class="configKey form-control" data-l1key="gshs::username" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">{{Mot de passe}}</label>
+			<div class="col-lg-3">
+				<input class="configKey form-control" data-l1key="gshs::password" />
 			</div>
 		</div>
 	</fieldset>

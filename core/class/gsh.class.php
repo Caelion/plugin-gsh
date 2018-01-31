@@ -36,8 +36,20 @@ class gsh extends eqLogic {
 		return $return;
 	}
 
+	public static function sendSync() {
+		$request_http = new com_http(trim(config::byKey('gshs::url', 'gsh')) . '/jeedom/sync');
+		$post = array(
+			'masterkey' => config::byKey('gshs::masterkey', 'gsh'),
+			'userId' => config::byKey('gshs::userid', 'gsh'),
+			'data' => json_encode(self::sync(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE),
+		);
+		print_r($post);
+		$request_http->setPost(http_build_query($post));
+		$result = $request_http->exec(5, 3);
+	}
+
 	public static function sync() {
-		$result = array();
+		$return = array();
 		$eqLogicSyncs = config::byKey('syncEqLogic', 'gsh');
 		foreach ($eqLogicSyncs as $eqLogicSync) {
 			if ($eqLogicSync['enable'] == 0) {
@@ -51,9 +63,9 @@ class gsh extends eqLogic {
 			if (count($info) == 0) {
 				continue;
 			}
-			$result[] = $info;
+			$return[] = $info;
 		}
-		echo json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+		return $return;
 	}
 
 	public static function exec($_data) {
