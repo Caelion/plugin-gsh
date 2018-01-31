@@ -113,7 +113,7 @@ class gsh extends eqLogic {
 		$devices = gsh_devices::all(true);
 
 		foreach ($devices as $device) {
-			$info = $device->buildDevice($link);
+			$info = $device->buildDevice();
 			if (count($info) == 0) {
 				continue;
 			}
@@ -173,6 +173,8 @@ class gsh_devices {
 	private $link_id;
 	private $type;
 	private $options;
+	private $_link = null;
+	private $_cmds = null;
 
 	/*     * ***********************Methode static*************************** */
 
@@ -218,16 +220,19 @@ class gsh_devices {
 	}
 
 	public function getLink() {
+		if ($this->_link != null) {
+			return $this->_link;
+		}
 		if ($this->getLink_type() == 'eqLogic') {
-			return eqLogic::byId($this->getLink_id());
+			$this->_link = eqLogic::byId($this->getLink_id());
 		}
 		if ($this->getlink_type() == 'scenario') {
-			return scenario::byId($this->getLink_id());
+			$this->_link = scenario::byId($this->getLink_id());
 		}
-		return null;
+		return $this->_link;
 	}
 
-	public function buildDevice($_eqLogic) {
+	public function buildDevice() {
 		if (!isset(gsh::$_supportedType[$this->getType()])) {
 			return array();
 		}
@@ -247,6 +252,31 @@ class gsh_devices {
 			return array();
 		}
 		return $class::exec($this, $_execution, $_infos);
+	}
+
+	public function getCmdByGenericType($_generic_type) {
+		if ($this->getLink_type() != 'eqLogic') {
+			return null;
+		}
+		if ($this->_cmds == null) {
+			$this->_cmds = $this->getLink()->getCmd();
+		}
+		if (!is_array($_generic_type)) {
+			$_generic_type = array($_generic_type);
+		}
+		$return = array();
+		foreach ($this->_cmds as $cmd) {
+			if (in_array($cmd->getDisplay('generic_type'), $_generic_type)) {
+				$return[] = $cmd;
+			}
+		}
+		if (count($return) == 0) {
+			return null;
+		}
+		if (count($return) == 1) {
+			return $return[0];
+		}
+		return $return;
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
