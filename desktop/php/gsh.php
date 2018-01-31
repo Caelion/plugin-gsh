@@ -6,27 +6,12 @@ if (!isConnect('admin')) {
 <br/>
 <a class="btn btn-success pull-right" id="bt_saveConfiguration"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
 <ul class="nav nav-tabs" role="tablist">
- <li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Générale}}</a></li>
- <li role="presentation"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Equipement}}</a></li>
+ <li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Equipement}}</a></li>
  <li role="presentation"><a href="#scenariotab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Scénario}}</a></li>
 </ul>
 
 <div class="tab-content" id="div_configuration" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
-  <div role="tabpanel" class="tab-pane active" id="generaltab">
-    <br/>
-    <form class="form-horizontal">
-      <fieldset>
-        <div class="form-group">
-          <label class="col-sm-2 control-label">{{Clef API}}</label>
-          <div class="col-sm-3">
-            <input disabled type="text" class="eqLogicAttr form-control" value="<?php echo jeedom::getApiKey('gsh') ?>" />
-          </div>
-        </div>
-      </fieldset>
-    </form>
-  </div>
-
-  <div role="tabpanel" class="tab-pane" id="eqlogictab">
+  <div role="tabpanel" class="tab-pane active" id="eqlogictab">
     <br/>
     <table class="table table-bordered">
       <thead>

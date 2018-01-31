@@ -37,80 +37,111 @@ if (!isConnect()) {
 				<input class="configKey form-control" data-l1key="gshs::ip" />
 			</div>
 		</div>
-		<legend>{{Configuration général}}</legend>
-		<div class="form-group">
-			<label class="col-lg-3 control-label">{{Clef maitre}}</label>
-			<div class="col-lg-3">
-				<input class="configKey form-control" data-l1key="gshs::masterkey" />
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-lg-3 control-label">{{Clef API Google}}</label>
-			<div class="col-lg-3">
-				<input class="configKey form-control" data-l1key="gshs::googleapikey" />
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-lg-3 control-label">{{Cient ID}}</label>
-			<div class="col-lg-3">
-				<input class="configKey form-control" data-l1key="gshs::clientId" />
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-lg-3 control-label">{{Cient Secret}}</label>
-			<div class="col-lg-3">
-				<input class="configKey form-control" data-l1key="gshs::clientSecret" />
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-lg-3 control-label">{{Port}}</label>
-			<div class="col-lg-3">
-				<input class="configKey form-control" data-l1key="gshs::port" />
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-lg-3 control-label">{{Timeout}}</label>
-			<div class="col-lg-3">
-				<input class="configKey form-control" data-l1key="gshs::timeout" />
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-lg-3 control-label">{{URL}}</label>
-			<div class="col-lg-3">
-				<input class="configKey form-control" data-l1key="gshs::url" />
-			</div>
-		</div>
-			<div class="form-group">
-			<label class="col-lg-3 control-label">{{Configuration}}</label>
-			<div class="col-lg-3">
-				<a class="btn btn-success" id="bt_viewConf">{{Voir}}</a>
-			</div>
-		</div>
-		<legend>{{Utilisateur}}</legend>
-		<div class="form-group">
-			<label class="col-lg-3 control-label">{{ID utilisateur}}</label>
-			<div class="col-lg-3">
-				<input class="configKey form-control" data-l1key="gshs::userid" />
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-lg-3 control-label">{{Nom d'utilisateur}}</label>
-			<div class="col-lg-3">
-				<input class="configKey form-control" data-l1key="gshs::username" />
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-lg-3 control-label">{{Mot de passe}}</label>
-			<div class="col-lg-3">
-				<input class="configKey form-control" data-l1key="gshs::password" />
-			</div>
-		</div>
 	</fieldset>
 </form>
+<div class='row'>
+	<div class='col-md-6'>
+		<form class="form-horizontal">
+			<fieldset>
+				<legend>{{Configuration général}}</legend>
+				<div class="form-group">
+					<label class="col-lg-6 control-label">{{Clef maitre}}</label>
+					<div class="col-lg-6">
+						<input class="configKey form-control" data-l1key="gshs::masterkey" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-6 control-label">{{Clef API Google}}</label>
+					<div class="col-lg-6">
+						<input class="configKey form-control" data-l1key="gshs::googleapikey" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-6 control-label">{{Cient ID}}</label>
+					<div class="col-lg-6">
+						<input class="configKey form-control" data-l1key="gshs::clientId" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-6 control-label">{{Cient Secret}}</label>
+					<div class="col-lg-6">
+						<input class="configKey form-control" data-l1key="gshs::clientSecret" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-6 control-label">{{Port}}</label>
+					<div class="col-lg-6">
+						<input class="configKey form-control" data-l1key="gshs::port" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-6 control-label">{{Timeout}}</label>
+					<div class="col-lg-6">
+						<input class="configKey form-control" data-l1key="gshs::timeout" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-6 control-label">{{URL}}</label>
+					<div class="col-lg-6">
+						<input class="configKey form-control" data-l1key="gshs::url" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-6 control-label">{{Configuration}}</label>
+					<div class="col-lg-6">
+						<a class="btn btn-success" id="bt_viewConf"><i class="fa fa-eye" aria-hidden="true"></i> {{Voir}}</a>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<div class='col-md-6'>
+		<form class="form-horizontal">
+			<fieldset>
+				<legend>{{Utilisateur}}</legend>
+				<div class="form-group">
+					<label class="col-lg-6 control-label">{{ID utilisateur}}</label>
+					<div class="col-lg-6">
+						<input class="configKey form-control" data-l1key="gshs::userid" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-6 control-label">{{Nom d'utilisateur}}</label>
+					<div class="col-lg-6">
+						<input class="configKey form-control" data-l1key="gshs::username" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-6 control-label">{{Mot de passe}}</label>
+					<div class="col-lg-6">
+						<input class="configKey form-control" data-l1key="gshs::password" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-6 control-label">{{Token}}</label>
+					<div class="col-lg-6">
+						<input class="configKey form-control" data-l1key="gshs::token" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-6 control-label">{{Configuration}}</label>
+					<div class="col-lg-6">
+						<a class="btn btn-success" id="bt_viewUserConf"><i class="fa fa-eye" aria-hidden="true"></i> {{Voir}}</a>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>
 
 <script type="text/javascript">
 	$('#bt_viewConf').on('click',function(){
 		$('#md_modal2').dialog({title: "{{Configuration général}}"});
 		$('#md_modal2').load('index.php?v=d&plugin=gsh&modal=showConf').dialog('open');
+	});
+
+	$('#bt_viewUserConf').on('click',function(){
+		$('#md_modal2').dialog({title: "{{Configuration utilisateur}}"});
+		$('#md_modal2').load('index.php?v=d&plugin=gsh&modal=showUserConf').dialog('open');
 	});
 </script>

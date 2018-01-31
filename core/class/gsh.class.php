@@ -36,6 +36,33 @@ class gsh extends eqLogic {
 		return $return;
 	}
 
+	public static function generateUserConf() {
+		$return = array(
+			"tokens" => array(
+				config::byKey('gshs::token', 'gsh') => array(
+					"uid" => config::byKey('gshs::userid', 'gsh'),
+					"accessToken" => config::byKey('gshs::token', 'gsh'),
+					"refreshToken" => config::byKey('gshs::token', 'gsh'),
+					"userId" => config::byKey('gshs::userid', 'gsh'),
+				),
+			),
+			"users" => array(
+				config::byKey('gshs::userid', 'gsh') => array(
+					"uid" => config::byKey('gshs::userid', 'gsh'),
+					"name" => config::byKey('gshs::username', 'gsh'),
+					"password" => config::byKey('gshs::password', 'gsh'),
+					"tokens" => array(config::byKey('gshs::token', 'gsh')),
+					"url" => network::getNetworkAccess('external'),
+					"apikey" => jeedom::getApiKey('gsh'),
+				),
+			),
+			"usernames" => array(
+				config::byKey('gshs::username', 'gsh') => config::byKey('gshs::userid', 'gsh'),
+			),
+		);
+		return $return;
+	}
+
 	public static function sendSync() {
 		$request_http = new com_http(trim(config::byKey('gshs::url', 'gsh')) . '/jeedom/sync');
 		$post = array(
@@ -43,9 +70,15 @@ class gsh extends eqLogic {
 			'userId' => config::byKey('gshs::userid', 'gsh'),
 			'data' => json_encode(self::sync(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE),
 		);
-		print_r($post);
 		$request_http->setPost(http_build_query($post));
-		$result = $request_http->exec(5, 3);
+		$result = $request_http->exec(60);
+		if (!is_json($result)) {
+			throw new Exception($result);
+		}
+		$result = json_decode($result, true);
+		if (!isset($result['success']) || !$result['success']) {
+			throw new Exception($result);
+		}
 	}
 
 	public static function sync() {

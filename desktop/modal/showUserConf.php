@@ -1,5 +1,4 @@
 <?php
-
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -16,23 +15,11 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-try {
-	require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
-	include_file('core', 'authentification', 'php');
-
-	if (!isConnect('admin')) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__));
-	}
-
-	ajax::init();
-
-	if (init('action') == 'syncDevices') {
-		gsh::sendSync();
-		ajax::success();
-	}
-
-	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
-	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayExeption($e), $e->getCode());
+if (!isConnect('admin')) {
+	throw new Exception('401 Unauthorized');
 }
+echo '<pre>';
+echo json_encode(gsh::generateUserConf(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+echo '</pre>';
+?>
+

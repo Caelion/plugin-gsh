@@ -28,10 +28,33 @@
  			$('#div_alert').showAlert({message: error.message, level: 'danger'});
  		},
  		success: function () {
-
+ 			syncDevices();
  		}
  	});
  });
+
+
+ function syncDevices(){
+ 	$.ajax({
+ 		type: "POST", 
+ 		url: "plugins/gsh/core/ajax/gsh.ajax.php", 
+ 		data: {
+ 			action: "syncDevices",
+ 		},
+ 		global:false,
+ 		dataType: 'json',
+ 		error: function (request, status, error) {
+ 			handleAjaxError(request, status, error);
+ 		},
+ 		success: function (data) { 
+ 			if (data.state != 'ok') {
+ 				$('#div_alert').showAlert({message: data.result, level: 'danger'});
+ 				return;
+ 			}
+ 			$('#div_alert').showAlert({message: '{{Synchronisation réussie}}', level: 'success'});
+ 		},
+ 	});
+ }
 
  function loadData(){
  	jeedom.config.load({
