@@ -126,6 +126,7 @@ if (!isConnect()) {
 				<div class="form-group">
 					<label class="col-lg-6 control-label">{{Configuration}}</label>
 					<div class="col-lg-6">
+						<a class="btn btn-success" id="bt_sendUserConf"><i class="fa fa-eye" aria-hidden="true"></i> {{Envoyer}}</a>
 						<a class="btn btn-success" id="bt_viewUserConf"><i class="fa fa-eye" aria-hidden="true"></i> {{Voir}}</a>
 					</div>
 				</div>
@@ -143,5 +144,28 @@ if (!isConnect()) {
 	$('#bt_viewUserConf').on('click',function(){
 		$('#md_modal2').dialog({title: "{{Configuration utilisateur}}"});
 		$('#md_modal2').load('index.php?v=d&plugin=gsh&modal=showUserConf').dialog('open');
+	});
+
+
+	$('#bt_sendUserConf').on('click',function(){
+		$.ajax({
+			type: "POST",
+			url: "plugins/gsh/core/ajax/gsh.ajax.php",
+			data: {
+				action: "sendUsers",
+			},
+			global:false,
+			dataType: 'json',
+			error: function (request, status, error) {
+				handleAjaxError(request, status, error);
+			},
+			success: function (data) {
+				if (data.state != 'ok') {
+					$('#div_alert').showAlert({message: data.result, level: 'danger'});
+					return;
+				}
+				$('#div_alert').showAlert({message: '{{Synchronisation réussie}}', level: 'success'});
+			},
+		});
 	});
 </script>

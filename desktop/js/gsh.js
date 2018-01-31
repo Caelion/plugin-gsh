@@ -28,18 +28,18 @@
  			$('#div_alert').showAlert({message: error.message, level: 'danger'});
  		},
  		success: function () {
- 			syncDevices();
+ 			sendDevices();
  		}
  	});
  });
 
 
- function syncDevices(){
+ function sendDevices(){
  	$.ajax({
  		type: "POST", 
  		url: "plugins/gsh/core/ajax/gsh.ajax.php", 
  		data: {
- 			action: "syncDevices",
+ 			action: "sendDevices",
  		},
  		global:false,
  		dataType: 'json',

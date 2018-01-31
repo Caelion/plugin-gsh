@@ -26,8 +26,13 @@ try {
 
 	ajax::init();
 
-	if (init('action') == 'syncDevices') {
-		gsh::sendSync();
+	if (init('action') == 'sendDevices') {
+		gsh::sendDevices();
+		ajax::success();
+	}
+
+	if (init('action') == 'sendUsers') {
+		gsh::sendUsers();
 		ajax::success();
 	}
 
