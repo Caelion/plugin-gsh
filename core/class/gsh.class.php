@@ -123,19 +123,23 @@ class gsh extends eqLogic {
 	}
 
 	public static function exec($_data) {
-		$return = array();
+		$return = array('commands' => array());
 		foreach ($_data['data']['commands'] as $command) {
 			foreach ($command['devices'] as $infos) {
 				$device = gsh_devices::byLinkTypeLinkId('eqLogic', $infos['id']);
+				$result = array('ids' => array($infos['id']));
 				if (!is_object($device)) {
-					$return[] = 'deviceNotFound';
+					$result['status'] = 'ERROR';
+					$return['commands'][] = $result;
 					continue;
 				}
 				if ($device->getEnable() == 0) {
-					$return[] = 'deviceOffline';
+					$result['status'] = 'OFFLINE';
+					$return['commands'][] = $result;
 					continue;
 				}
-				$return[] = $device->exec($command['execution'], $infos);
+				$result = array_merge($result, $device->exec($command['execution'], $infos));
+				$return['commands'][] = $result;
 			}
 		}
 		return $return;

@@ -65,10 +65,9 @@ class gsh_light {
 	public static function exec($_device, $_executions, $_infos) {
 		$eqLogic = $_device->getLink();
 		if (!is_object($eqLogic)) {
-			return 'deviceNotFound';
+			return array('status' => 'ERROR');
 		}
 		$cmds = $eqLogic->getCmd();
-		log::add('gsh', 'debug', print_r($_executions, true));
 		foreach ($_executions as $execution) {
 			switch ($execution['command']) {
 				case 'action.devices.commands.OnOff':
@@ -76,33 +75,33 @@ class gsh_light {
 						foreach ($cmds as $cmd) {
 							if (in_array($cmd->getDisplay('generic_type'), array('LIGHT_ON'))) {
 								$cmd->execCmd();
-								return 'SUCCESS';
+								return array('status' => 'SUCCESS');
 							}
 						}
 						foreach ($cmds as $cmd) {
 							if (in_array($cmd->getDisplay('generic_type'), array('LIGHT_SLIDER'))) {
 								$cmd->execCmd(array('slider' => 100));
-								return 'SUCCESS';
+								return array('status' => 'SUCCESS');
 							}
 						}
 					} else {
 						foreach ($cmds as $cmd) {
 							if (in_array($cmd->getDisplay('generic_type'), array('LIGHT_OFF'))) {
 								$cmd->execCmd();
-								return 'SUCCESS';
+								return array('status' => 'SUCCESS');
 							}
 						}
 						foreach ($cmds as $cmd) {
 							if (in_array($cmd->getDisplay('generic_type'), array('LIGHT_SLIDER'))) {
 								$cmd->execCmd(array('slider' => 0));
-								return 'SUCCESS';
+								return array('status' => 'SUCCESS');
 							}
 						}
 					}
 					break;
 			}
 		}
-		return 'notSupported';
+		return array('status' => 'ERROR');
 	}
 
 	public static function query($_device) {
