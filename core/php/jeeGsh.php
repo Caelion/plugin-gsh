@@ -39,6 +39,11 @@ if ($data['action'] == 'exec') {
 	die();
 }
 
+if ($data['action'] == 'query') {
+	echo json_encode(gsh::query($data));
+	die();
+}
+
 echo json_encode(array(
 	'status' => 'SUCCESS',
 ));

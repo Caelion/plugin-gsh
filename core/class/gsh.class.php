@@ -145,8 +145,22 @@ class gsh extends eqLogic {
 		return $return;
 	}
 
-	public static function query() {
-
+	public static function query($_data) {
+		$return = array('devices' => array());
+		foreach ($_data['commands']['devices'] as $infos) {
+			$return['devices'][$infos['id']] = array();
+			$device = gsh_devices::byLinkTypeLinkId('eqLogic', $infos['id']);
+			if (!is_object($device)) {
+				$return['devices'][$infos['id']] = array('status' => 'ERROR');
+				continue;
+			}
+			if ($device->getEnable() == 0) {
+				$return['devices'][$infos['id']] = array('status' => 'OFFLINE');
+				continue;
+			}
+			$return['devices'][$infos['id']] = $device->query();
+		}
+		return $return;
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
@@ -252,6 +266,17 @@ class gsh_devices {
 			return array();
 		}
 		return $class::exec($this, $_execution, $_infos);
+	}
+
+	public function query() {
+		if (!isset(gsh::$_supportedType[$this->getType()])) {
+			return;
+		}
+		$class = gsh::$_supportedType[$this->getType()]['class'];
+		if (!class_exists($class)) {
+			return array();
+		}
+		return $class::query($this);
 	}
 
 	public function getCmdByGenericType($_generic_type) {

@@ -50,6 +50,10 @@ class gsh_light {
 		}
 		if (!in_array('action.devices.traits.ColorSpectrum', $return['traits']) && $_device->getCmdByGenericType(array('LIGHT_SET_COLOR')) != null) {
 			$return['traits'][] = 'action.devices.traits.ColorSpectrum';
+			if (!isset($return['attributes'])) {
+				$return['attributes'] = array();
+			}
+			$return['attributes']['colorModel'] = 'RGB';
 		}
 		if ($_device->getCmdByGenericType(array('LIGHT_STATE')) != null) {
 			$return['willReportState'] = true;
@@ -58,6 +62,14 @@ class gsh_light {
 			return array();
 		}
 		return $return;
+	}
+
+	public static function query($_device) {
+		$eqLogic = $_device->getLink();
+		if (!is_object($eqLogic)) {
+			return array('status' => 'ERROR');
+		}
+		return self::getState($_device);
 	}
 
 	public static function exec($_device, $_executions, $_infos) {
@@ -94,13 +106,56 @@ class gsh_light {
 						}
 					}
 					break;
+				case 'action.devices.commands.ColorAbsolute':
+					$cmd = $_device->getCmdByGenericType(array('LIGHT_SET_COLOR'));
+					if (is_object($cmd)) {
+						$cmd->execCmd(array('color' => '#' . str_pad(dechex($execution['params']['color']['spectrumRGB']), 6, '0', STR_PAD_LEFT)));
+						$return = array('status' => 'SUCCESS');
+					}
+					break;
+				case 'action.devices.commands.BrightnessAbsolute':
+					$cmd = $_device->getCmdByGenericType(array('LIGHT_SLIDER'));
+					if (is_object($cmd)) {
+						$value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['brightness'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
+						$cmd->execCmd(array('slider' => $value));
+						$return = array('status' => 'SUCCESS');
+					}
+					break;
 			}
 		}
+		$return['states'] = self::getState($_device);
 		return $return;
 	}
 
-	public static function query($_device) {
-
+	public static function getState($_device) {
+		$return = array();
+		$cmds = $_device->getCmdByGenericType(array('LIGHT_STATE', 'LIGHT_STATE_BOOL', 'LIGHT_SET_COLOR_TEMP'));
+		if ($cmds == null) {
+			return $return;
+		}
+		if (!is_array($cmds)) {
+			$cmds = array($cmds);
+		}
+		foreach ($cmds as $cmd) {
+			$value = $cmd->execCmd();
+			if ($cmd->getSubtype() == 'numeric') {
+				$return['brightness'] = $value / $cmd->getConfiguration('maxValue', 100) * 100;
+				if ($return['brightness'] > 0) {
+					$return['on'] = true;
+				} else {
+					$return['on'] = false;
+				}
+			}
+			if ($cmd->getSubtype() == 'binary') {
+				$return['on'] = boolval($value);
+			}
+			if ($cmd->getSubtype() == 'string') {
+				$return['color'] = array(
+					'spectrumRGB' => hexdec(str_replace('#', '', $value)),
+				);
+			}
+		}
+		return $return;
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
