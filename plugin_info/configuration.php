@@ -22,3 +22,74 @@ if (!isConnect()) {
 	die();
 }
 ?>
+<form class="form-horizontal">
+	<fieldset>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">{{J'utilise mon propre serveur}}</label>
+			<div class="col-lg-2">
+				<input type="checkbox" class="configKey" data-l1key="useMyOwnServer" value="1" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">{{DNS ou IP du serveur}}</label>
+			<div class="col-lg-2">
+				<input class="configKey form-control" data-l1key="gshs::ip" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">{{Clef maitre}}</label>
+			<div class="col-lg-3">
+				<input class="configKey form-control" data-l1key="gshs::masterkey" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">{{Clef API Google}}</label>
+			<div class="col-lg-3">
+				<input class="configKey form-control" data-l1key="gshs::googleapikey" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">{{Cient ID}}</label>
+			<div class="col-lg-3">
+				<input class="configKey form-control" data-l1key="gshs::clientId" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">{{Cient Secret}}</label>
+			<div class="col-lg-3">
+				<input class="configKey form-control" data-l1key="gshs::clientSecret" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">{{Port}}</label>
+			<div class="col-lg-3">
+				<input class="configKey form-control" data-l1key="gshs::port" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">{{Timeout}}</label>
+			<div class="col-lg-3">
+				<input class="configKey form-control" data-l1key="gshs::timeout" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">{{URL}}</label>
+			<div class="col-lg-3">
+				<input class="configKey form-control" data-l1key="gshs::url" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">{{Configuration}}</label>
+			<div class="col-lg-3">
+				<a class="btn btn-success" id="bt_viewConf">{{Voir}}</a>
+			</div>
+		</div>
+	</fieldset>
+</form>
+
+<script type="text/javascript">
+	$('#bt_viewConf').on('click',function(){
+		$('#md_modal2').dialog({title: "{{Configuration général}}"});
+		$('#md_modal2').load('index.php?v=d&plugin=gsh&modal=showConf').dialog('open');
+	});
+</script>

@@ -24,6 +24,18 @@ class gsh extends eqLogic {
 
 	/*     * ***********************Methode static*************************** */
 
+	public static function generateConfiguration() {
+		$return = array();
+		$return["devPortSmartHome"] = config::byKey('gshs::port', 'gsh');
+		$return["smartHomeProviderGoogleClientId"] = config::byKey('gshs::clientId', 'gsh');
+		$return["smartHomeProvideGoogleClientSecret"] = config::byKey('gshs::clientSecret', 'gsh');
+		$return["smartHomeProviderApiKey"] = config::byKey('gshs::googleapikey', 'gsh');
+		$return["masterkey"] = config::byKey('gshs::masterkey', 'gsh');
+		$return["jeedomTimeout"] = config::byKey('gshs::timeout', 'gsh');
+		$return["url"] = config::byKey('gshs::url', 'gsh');
+		return $return;
+	}
+
 	public static function sync() {
 		$result = array();
 		$eqLogicSyncs = config::byKey('syncEqLogic', 'gsh');

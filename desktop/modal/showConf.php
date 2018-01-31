@@ -1,5 +1,4 @@
 <?php
-
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -16,26 +15,11 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
-
-function gsh_install() {
-	if (config::byKey('gshs::masterkey', 'gsh') == '') {
-		config::save('gshs::masterkey', config::genKey(30), 'gsh');
-	}
-	if (config::byKey('gshs::clientId', 'gsh') == '') {
-		config::save('gshs::clientId', config::genKey(10), 'gsh');
-	}
-	if (config::byKey('gshs::clientSecret', 'gsh') == '') {
-		config::save('gshs::clientSecret', config::genKey(30), 'gsh');
-	}
+if (!isConnect('admin')) {
+	throw new Exception('401 Unauthorized');
 }
-
-function gsh_update() {
-
-}
-
-function gsh_remove() {
-
-}
-
+echo '<pre>';
+echo json_encode(gsh::generateConfiguration(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+echo '</pre>';
 ?>
+

@@ -16,26 +16,18 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
+try {
+	require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
+	include_file('core', 'authentification', 'php');
 
-function gsh_install() {
-	if (config::byKey('gshs::masterkey', 'gsh') == '') {
-		config::save('gshs::masterkey', config::genKey(30), 'gsh');
+	if (!isConnect()) {
+		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
-	if (config::byKey('gshs::clientId', 'gsh') == '') {
-		config::save('gshs::clientId', config::genKey(10), 'gsh');
-	}
-	if (config::byKey('gshs::clientSecret', 'gsh') == '') {
-		config::save('gshs::clientSecret', config::genKey(30), 'gsh');
-	}
+
+	ajax::init();
+
+	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+	/*     * *********Catch exeption*************** */
+} catch (Exception $e) {
+	ajax::error(displayExeption($e), $e->getCode());
 }
-
-function gsh_update() {
-
-}
-
-function gsh_remove() {
-
-}
-
-?>
