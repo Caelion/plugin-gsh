@@ -87,3 +87,8 @@
  }
 
  loadData();
+
+ $('#bt_displayDevice').on('click',function(){
+ 	$('#md_modal').dialog({title: "{{Configuration péripheriques}}"});
+ 	$('#md_modal').load('index.php?v=d&plugin=gsh&modal=showDevicesConf').dialog('open');
+ });

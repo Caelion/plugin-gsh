@@ -19,6 +19,7 @@
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 include_file('core', 'gsh_light', 'class', 'gsh');
+include_file('core', 'gsh_thermostat', 'class', 'gsh');
 
 class gsh extends eqLogic {
 
