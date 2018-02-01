@@ -35,6 +35,7 @@ class gsh_thermostat {
 		$return['type'] = $_device->getType();
 		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => array($eqLogic->getName()));
 		$return['traits'] = array('action.devices.traits.TemperatureSetting');
+		$return['willReportState'] = true;
 		$return['attributes'] = array('availableThermostatModes' => 'on,off,heat,cool', 'thermostatTemperatureUnit' => 'C');
 
 		return $return;

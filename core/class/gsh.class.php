@@ -29,7 +29,7 @@ class gsh extends eqLogic {
 	public static $_supportedType = array(
 		'action.devices.types.LIGHT' => array('class' => 'gsh_light', 'name' => 'Lumière'),
 		'action.devices.types.THERMOSTAT' => array('class' => 'gsh_thermostat', 'name' => 'Thermostat'),
-		'action.devices.traits.SCENE' => array('class' => 'gsh_scene', 'name' => 'Scene'),
+		'action.devices.types.SCENE' => array('class' => 'gsh_scene', 'name' => 'Scene'),
 	);
 
 	/*     * ***********************Methode static*************************** */
@@ -112,7 +112,6 @@ class gsh extends eqLogic {
 	public static function sync() {
 		$return = array();
 		$devices = gsh_devices::all(true);
-
 		foreach ($devices as $device) {
 			$info = $device->buildDevice();
 			if (count($info) == 0) {
@@ -127,7 +126,11 @@ class gsh extends eqLogic {
 		$return = array('commands' => array());
 		foreach ($_data['data']['commands'] as $command) {
 			foreach ($command['devices'] as $infos) {
-				$device = gsh_devices::byLinkTypeLinkId('eqLogic', $infos['id']);
+				if (strpos($infos['id'], 'scene::') !== false) {
+					$device = gsh_devices::byId(str_replace('scene::', '', $infos['id']));
+				} else {
+					$device = gsh_devices::byLinkTypeLinkId('eqLogic', $infos['id']);
+				}
 				$result = array('ids' => array($infos['id']));
 				if (!is_object($device)) {
 					$result['status'] = 'ERROR';
@@ -240,9 +243,6 @@ class gsh_devices {
 		}
 		if ($this->getLink_type() == 'eqLogic') {
 			$this->_link = eqLogic::byId($this->getLink_id());
-		}
-		if ($this->getlink_type() == 'scenario') {
-			$this->_link = scenario::byId($this->getLink_id());
 		}
 		return $this->_link;
 	}

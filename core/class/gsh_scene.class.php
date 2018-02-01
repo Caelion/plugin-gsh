@@ -27,11 +27,12 @@ class gsh_scene {
 
 	public static function buildDevice($_device) {
 		$return = array();
-		$return['id'] = $_device->getId();
+		$return['id'] = 'scene::' . $_device->getId();
 		$return['type'] = $_device->getType();
-		$return['name'] = array('name' => '', 'nicknames' => array($$_device->getOptions('name')));
+		$return['name'] = array('name' => $_device->getOptions('name'), 'defaultNames' => array(), 'nicknames' => array());
+		$return['traits'] = array('action.devices.traits.Scene');
 		$return['willReportState'] = false;
-		$return['attributes'] = array('sceneReversible' => false);
+		$return['attributes'] = array('sceneReversible' => (count($_device->getOptions('outAction')) > 0));
 		return $return;
 	}
 
@@ -41,18 +42,15 @@ class gsh_scene {
 
 	public static function exec($_device, $_executions, $_infos) {
 		$return = array('status' => 'ERROR');
-		$eqLogic = $_device->getLink();
-		if (!is_object($eqLogic)) {
-			return $return;
-		}
 		foreach ($_executions as $execution) {
 			switch ($execution['command']) {
-				case 'action.devices.commands.ActivateScene	':
-					$cmd = $_device->getCmdByGenericType(array('THERMOSTAT_SET_SETPOINT'));
-					if (is_object($cmd)) {
-						$cmd->execCmd(array('slider' => $execution['params']['thermostatTemperatureSetpoint']));
-						$return = array('status' => 'SUCCESS');
+				case 'action.devices.commands.ActivateScene':
+					if ($execution['params']['deactivate']) {
+						self::doAction($_device, 'outAction');
+					} else {
+						self::doAction($_device, 'inAction');
 					}
+					$return = array('status' => 'SUCCESS');
 					break;
 			}
 		}
@@ -64,6 +62,23 @@ class gsh_scene {
 		$return = array();
 		$return['online'] = true;
 		return $return;
+	}
+
+	public function doAction($_device, $_action) {
+		if (!is_array($_device->getOptions($_action))) {
+			return;
+		}
+		foreach ($_device->getOptions($_action) as $action) {
+			try {
+				$options = array();
+				if (isset($action['options'])) {
+					$options = $action['options'];
+				}
+				scenarioExpression::createAndExec('action', $action['cmd'], $options);
+			} catch (Exception $e) {
+				log::add('gsh', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
+			}
+		}
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
