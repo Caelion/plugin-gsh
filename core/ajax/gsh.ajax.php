@@ -42,6 +42,13 @@ try {
 			$device = new gsh_devices();
 			utils::a2o($device, $device_json);
 			$device->save();
+			$enableList[$device->getId()] = true;
+		}
+		$dbList = gsh_devices::all();
+		foreach ($dbList as $dbObject) {
+			if (!isset($enableList[$dbObject->getId()])) {
+				$dbObject->remove();
+			}
 		}
 		ajax::success();
 	}

@@ -55,7 +55,8 @@
  				$('#div_alert').showAlert({message: data.result, level: 'danger'});
  				return;
  			}
- 			sendDevices()
+ 			loadData();
+ 			sendDevices();
  		},
  	});
  });
@@ -82,6 +83,7 @@
  }
 
  function loadData(){
+ 	$("#div_scenes").empty();
  	$.ajax({
  		type: "POST", 
  		url: "plugins/gsh/core/ajax/gsh.ajax.php", 
