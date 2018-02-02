@@ -26,7 +26,7 @@ if (!isConnect('admin')) {
 				<?php
 foreach (eqLogic::all() as $eqLogic) {
 	echo '<tr class="device" data-link_id="' . $eqLogic->getId() . '" data-link_type="eqLogic">';
-	echo '<td>' . $eqLogic->getHumanName() . '</td>';
+	echo '<td>' . $eqLogic->getHumanName(true) . '</td>';
 	echo '<td>';
 	echo '<input style="display:none;" class="deviceAttr" data-l1key="id" />';
 	echo '<input style="display:none;" class="deviceAttr" data-l1key="link_type" value="eqLogic" />';
@@ -34,9 +34,12 @@ foreach (eqLogic::all() as $eqLogic) {
 	echo '<input type="checkbox" class="deviceAttr" data-l1key="enable" />';
 	echo '</td>';
 	echo '<td>';
-	echo '<select class="deviceAttr form-control" data-l1key="type">';
+	echo '<select class="deviceAttr form-control input-sm" data-l1key="type">';
 	echo '<option value="">{{Aucun}}</option>';
 	foreach (gsh::$_supportedType as $key => $value) {
+		if ($key == 'action.devices.types.SCENE') {
+			continue;
+		}
 		echo '<option value="' . $key . '">{{' . $value['name'] . '}}</option>';
 	}
 	echo '<select>';

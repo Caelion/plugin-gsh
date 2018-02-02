@@ -79,47 +79,51 @@ class gsh_light {
 			return $return;
 		}
 		foreach ($_executions as $execution) {
-			switch ($execution['command']) {
-				case 'action.devices.commands.OnOff':
-					if ($execution['params']['on']) {
-						$cmd = $_device->getCmdByGenericType(array('LIGHT_ON'));
+			try {
+				switch ($execution['command']) {
+					case 'action.devices.commands.OnOff':
+						if ($execution['params']['on']) {
+							$cmd = $_device->getCmdByGenericType(array('LIGHT_ON'));
+							if (is_object($cmd)) {
+								$cmd->execCmd();
+								$return = array('status' => 'SUCCESS');
+							}
+							$cmd = $_device->getCmdByGenericType(array('LIGHT_SLIDER'));
+							if (is_object($cmd)) {
+								$cmd->execCmd(array('slider' => 100));
+								$return = array('status' => 'SUCCESS');
+							}
+						} else {
+							$cmd = $_device->getCmdByGenericType(array('LIGHT_OFF'));
+							if (is_object($cmd)) {
+								$cmd->execCmd(array('slider' => 100));
+								$return = array('status' => 'SUCCESS');
+							}
+							$cmd = $_device->getCmdByGenericType(array('LIGHT_SLIDER'));
+							if (is_object($cmd)) {
+								$cmd->execCmd(array('slider' => 0));
+								$return = array('status' => 'SUCCESS');
+							}
+						}
+						break;
+					case 'action.devices.commands.ColorAbsolute':
+						$cmd = $_device->getCmdByGenericType(array('LIGHT_SET_COLOR'));
 						if (is_object($cmd)) {
-							$cmd->execCmd();
+							$cmd->execCmd(array('color' => '#' . str_pad(dechex($execution['params']['color']['spectrumRGB']), 6, '0', STR_PAD_LEFT)));
 							$return = array('status' => 'SUCCESS');
 						}
+						break;
+					case 'action.devices.commands.BrightnessAbsolute':
 						$cmd = $_device->getCmdByGenericType(array('LIGHT_SLIDER'));
 						if (is_object($cmd)) {
-							$cmd->execCmd(array('slider' => 100));
+							$value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['brightness'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
+							$cmd->execCmd(array('slider' => $value));
 							$return = array('status' => 'SUCCESS');
 						}
-					} else {
-						$cmd = $_device->getCmdByGenericType(array('LIGHT_OFF'));
-						if (is_object($cmd)) {
-							$cmd->execCmd(array('slider' => 100));
-							$return = array('status' => 'SUCCESS');
-						}
-						$cmd = $_device->getCmdByGenericType(array('LIGHT_SLIDER'));
-						if (is_object($cmd)) {
-							$cmd->execCmd(array('slider' => 0));
-							$return = array('status' => 'SUCCESS');
-						}
-					}
-					break;
-				case 'action.devices.commands.ColorAbsolute':
-					$cmd = $_device->getCmdByGenericType(array('LIGHT_SET_COLOR'));
-					if (is_object($cmd)) {
-						$cmd->execCmd(array('color' => '#' . str_pad(dechex($execution['params']['color']['spectrumRGB']), 6, '0', STR_PAD_LEFT)));
-						$return = array('status' => 'SUCCESS');
-					}
-					break;
-				case 'action.devices.commands.BrightnessAbsolute':
-					$cmd = $_device->getCmdByGenericType(array('LIGHT_SLIDER'));
-					if (is_object($cmd)) {
-						$value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['brightness'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
-						$cmd->execCmd(array('slider' => $value));
-						$return = array('status' => 'SUCCESS');
-					}
-					break;
+						break;
+				}
+			} catch (Exception $e) {
+				$return = array('status' => 'ERROR');
 			}
 		}
 		$return['states'] = self::getState($_device);
@@ -139,11 +143,7 @@ class gsh_light {
 			$value = $cmd->execCmd();
 			if ($cmd->getSubtype() == 'numeric') {
 				$return['brightness'] = $value / $cmd->getConfiguration('maxValue', 100) * 100;
-				if ($return['brightness'] > 0) {
-					$return['on'] = true;
-				} else {
-					$return['on'] = false;
-				}
+				$return['on'] = ($return['brightness'] > 0);
 			}
 			if ($cmd->getSubtype() == 'binary') {
 				$return['on'] = boolval($value);

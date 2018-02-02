@@ -56,28 +56,32 @@ class gsh_thermostat {
 			return $return;
 		}
 		foreach ($_executions as $execution) {
-			switch ($execution['command']) {
-				case 'action.devices.commands.ThermostatTemperatureSetpoint':
-					$cmd = $_device->getCmdByGenericType(array('THERMOSTAT_SET_SETPOINT'));
-					if (is_object($cmd)) {
-						$cmd->execCmd(array('slider' => $execution['params']['thermostatTemperatureSetpoint']));
-						$return = array('status' => 'SUCCESS');
-					}
-					break;
-				case 'action.devices.commands.ThermostatSetMode':
-					$cmds = $_device->getCmdByGenericType(array('THERMOSTAT_SET_MODE'));
-					if ($cmds == null) {
-						break;
-					}
-					if (is_array($cmds)) {
-						$cmds = array($cmds);
-					}
-					foreach ($cmds as $cmd) {
-						if ($execution['params']['thermostatMode'] == $cmd->getName()) {
-							$cmd->execCmd();
+			try {
+				switch ($execution['command']) {
+					case 'action.devices.commands.ThermostatTemperatureSetpoint':
+						$cmd = $_device->getCmdByGenericType(array('THERMOSTAT_SET_SETPOINT'));
+						if (is_object($cmd)) {
+							$cmd->execCmd(array('slider' => $execution['params']['thermostatTemperatureSetpoint']));
+							$return = array('status' => 'SUCCESS');
 						}
-					}
-					break;
+						break;
+					case 'action.devices.commands.ThermostatSetMode':
+						$cmds = $_device->getCmdByGenericType(array('THERMOSTAT_SET_MODE'));
+						if ($cmds == null) {
+							break;
+						}
+						if (is_array($cmds)) {
+							$cmds = array($cmds);
+						}
+						foreach ($cmds as $cmd) {
+							if ($execution['params']['thermostatMode'] == $cmd->getName()) {
+								$cmd->execCmd();
+							}
+						}
+						break;
+				}
+			} catch (Exception $e) {
+				$return = array('status' => 'ERROR');
 			}
 		}
 		$return['states'] = self::getState($_device);

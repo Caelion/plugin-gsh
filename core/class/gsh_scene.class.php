@@ -43,15 +43,19 @@ class gsh_scene {
 	public static function exec($_device, $_executions, $_infos) {
 		$return = array('status' => 'ERROR');
 		foreach ($_executions as $execution) {
-			switch ($execution['command']) {
-				case 'action.devices.commands.ActivateScene':
-					if ($execution['params']['deactivate']) {
-						self::doAction($_device, 'outAction');
-					} else {
-						self::doAction($_device, 'inAction');
-					}
-					$return = array('status' => 'SUCCESS');
-					break;
+			try {
+				switch ($execution['command']) {
+					case 'action.devices.commands.ActivateScene':
+						if ($execution['params']['deactivate']) {
+							self::doAction($_device, 'outAction');
+						} else {
+							self::doAction($_device, 'inAction');
+						}
+						$return = array('status' => 'SUCCESS');
+						break;
+				}
+			} catch (Exception $e) {
+				$return = array('status' => 'ERROR');
 			}
 		}
 		$return['states'] = self::getState($_device);
