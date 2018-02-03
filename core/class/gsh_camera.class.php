@@ -67,14 +67,34 @@ class gsh_camera {
 		if (!is_object($eqLogic)) {
 			return array();
 		}
+		system::kill('stream2chromecast.py');
 		$replace = array(
 			'#username#' => urlencode($eqLogic->getConfiguration('username')),
 			'#password#' => urlencode($eqLogic->getConfiguration('password')),
 			'#ip#' => urlencode($eqLogic->getConfiguration('ip')),
 			'#port#' => urlencode($eqLogic->getConfiguration('port')),
 		);
+		if (file_exists(jeedom::getTmpFolder('gsh') . '/camera_stream')) {
+			unlink(jeedom::getTmpFolder('gsh') . '/camera_stream');
+			shell_exec(system::getCmdSudo() . ' rm ' . jeedom::getTmpFolder('gsh') . '/camera_stream  > /dev/null 2>&1');
+
+		}
+		$cmd = system::getCmdSudo() . ' python ' . dirname(__FILE__) . '/../../resources/stream2chromecast.py ' . str_replace(array_keys($replace), $replace, $eqLogic->getConfiguration('cameraStreamAccessUrl', '')) . ' ' . jeedom::getTmpFolder('gsh') . ' > /dev/null 2>&1 &';
+		log::add('gsh', 'debug', $cmd);
+		shell_exec($cmd);
+		$count = 0;
+		while (!file_exists(jeedom::getTmpFolder('gsh') . '/camera_stream')) {
+			usleep(100);
+			$count++;
+			log::add('gsh', 'debug', $count);
+			if ($count > 5000) {
+				break;
+			}
+		}
+		$content = shell_exec(system::getCmdSudo() . ' cat ' . jeedom::getTmpFolder('gsh') . '/camera_stream');
+		log::add('gsh', 'debug', $content);
 		$return = array(
-			"cameraStreamAccessUrl" => str_replace(array_keys($replace), $replace, $eqLogic->getConfiguration('cameraStreamAccessUrl', '')),
+			"cameraStreamAccessUrl" => file_get_contents(jeedom::getTmpFolder('gsh') . '/camera_stream') . '/camera.mp4',
 		);
 		return $return;
 	}
