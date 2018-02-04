@@ -72,3 +72,7 @@ L'application va normalement se synchroniser avec vos équipements, vous pourrez
 >
 > Effectivement lors de nos tests nous avons rencontrer un soucis assez genant : les pluriels et genre.
 > Exemple : "Ok google ferme tous les volets" ne marchera pas à cause du s à volet alors que "Ok google ferme volet" marchera
+
+>**Comment faire pour resynchroniser les équipements avec Google**
+>
+> En lisant simplement le message lors d'une sauvegarde sur la page du plugin, il vous indiquera comment faire
