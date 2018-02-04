@@ -33,6 +33,7 @@ function gsh_install() {
 	if (config::byKey('gshs::token', 'gsh') == '') {
 		config::save('gshs::token', config::genKey(30), 'gsh');
 	}
+	jeedom::getApiKey('gsh');
 }
 
 function gsh_update() {

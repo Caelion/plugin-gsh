@@ -67,7 +67,7 @@ class gsh extends eqLogic {
 					"name" => config::byKey('gshs::username', 'gsh'),
 					"password" => sha1(config::byKey('gshs::password', 'gsh')),
 					"tokens" => array(config::byKey('gshs::token', 'gsh')),
-					"url" => network::getNetworkAccess('external'),
+					"url" => network::getNetworkAccess(config::byKey('gshs::jeedomnetwork', 'gsh', 'internal')),
 					"apikey" => jeedom::getApiKey('gsh'),
 				),
 			),
