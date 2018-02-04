@@ -127,6 +127,15 @@ if (!isConnect()) {
 					</div>
 				</div>
 				<div class="form-group">
+					<label class="col-lg-6 control-label">{{Mode d'accès Jeedom}}</label>
+					<div class="col-lg-6">
+						<select class="form-control configKey" data-l1key="gshs::jeedomnetwork">
+							<option value="internal">{{Interne}}</option>
+							<option value="external">{{Externe}}</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
 					<label class="col-lg-6 control-label">{{Configuration}}</label>
 					<div class="col-lg-6">
 						<a class="btn btn-success" id="bt_viewUserConf"><i class="fa fa-eye" aria-hidden="true"></i> {{Voir}}</a>
