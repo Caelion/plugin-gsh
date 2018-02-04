@@ -6,5 +6,5 @@ CREATE TABLE IF NOT EXISTS `gsh_devices` (
   `type` varchar(255),
   `options` TEXT NULL,
   PRIMARY KEY (`id`),
-  INDEX `index` (`link_type` ASC, `link_id` ASC),
+  INDEX `index` (`link_type` ASC, `link_id` ASC)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

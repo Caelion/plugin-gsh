@@ -30,6 +30,9 @@ function gsh_install() {
 	if (config::byKey('gshs::clientSecret', 'gsh') == '') {
 		config::save('gshs::clientSecret', config::genKey(30), 'gsh');
 	}
+	if (config::byKey('gshs::token', 'gsh') == '') {
+		config::save('gshs::token', config::genKey(30), 'gsh');
+	}
 }
 
 function gsh_update() {
