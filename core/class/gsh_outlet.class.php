@@ -37,7 +37,7 @@ class gsh_outlet {
 		$return = array();
 		$return['id'] = $eqLogic->getId();
 		$return['type'] = $_device->getType();
-		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => array($eqLogic->getName()));
+		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => array($eqLogic->getName(), $eqLogic->getName() . 's'));
 		$return['traits'] = array();
 		$return['willReportState'] = false;
 		if (!in_array('action.devices.traits.OnOff', $return['traits']) && $_device->getCmdByGenericType(array_merge(self::$_ON, self::$_OFF)) != null) {

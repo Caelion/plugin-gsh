@@ -33,7 +33,7 @@ class gsh_light {
 		$return = array();
 		$return['id'] = $eqLogic->getId();
 		$return['type'] = $_device->getType();
-		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => array($eqLogic->getName()));
+		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => array($eqLogic->getName(), $eqLogic->getName() . 's'));
 		$return['traits'] = array();
 		$return['willReportState'] = false;
 		if (!in_array('action.devices.traits.OnOff', $return['traits']) && $_device->getCmdByGenericType(array('LIGHT_ON', 'LIGHT_OFF')) != null) {
