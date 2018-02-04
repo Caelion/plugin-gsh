@@ -78,38 +78,28 @@ class gsh extends eqLogic {
 		return $return;
 	}
 
-	public static function sendUsers() {
-		$request_http = new com_http(trim(config::byKey('gshs::url', 'gsh')) . '/jeedom/sync/users');
-		$post = array(
-			'masterkey' => config::byKey('gshs::masterkey', 'gsh'),
-			'data' => json_encode(self::generateUserConf(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE),
-		);
-		$request_http->setPost(http_build_query($post));
-		$result = $request_http->exec(60);
-		if (!is_json($result)) {
-			throw new Exception($result);
-		}
-		$result = json_decode($result, true);
-		if (!isset($result['success']) || !$result['success']) {
-			throw new Exception($result);
-		}
-	}
-
 	public static function sendDevices() {
-		$request_http = new com_http(trim(config::byKey('gshs::url', 'gsh')) . '/jeedom/sync/devices');
-		$post = array(
-			'masterkey' => config::byKey('gshs::masterkey', 'gsh'),
-			'userId' => config::byKey('gshs::userid', 'gsh'),
-			'data' => json_encode(self::sync(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE),
-		);
-		$request_http->setPost(http_build_query($post));
-		$result = $request_http->exec(60);
-		if (!is_json($result)) {
-			throw new Exception($result);
-		}
-		$result = json_decode($result, true);
-		if (!isset($result['success']) || !$result['success']) {
-			throw new Exception($result);
+		if (config::byKey('mode', 'gsh') == 'jeedom') {
+			$market = repo_market::getJsonRpc();
+			if (!$market->sendRequest('gsh::sync', array('devices' => self::sync()))) {
+				throw new Exception($market->getError(), $market->getErrorCode());
+			}
+		} else {
+			$request_http = new com_http(trim(config::byKey('gshs::url', 'gsh')) . '/jeedom/sync/devices');
+			$post = array(
+				'masterkey' => config::byKey('gshs::masterkey', 'gsh'),
+				'userId' => config::byKey('gshs::userid', 'gsh'),
+				'data' => json_encode(self::sync(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE),
+			);
+			$request_http->setPost(http_build_query($post));
+			$result = $request_http->exec(60);
+			if (!is_json($result)) {
+				throw new Exception($result);
+			}
+			$result = json_decode($result, true);
+			if (!isset($result['success']) || !$result['success']) {
+				throw new Exception($result);
+			}
 		}
 	}
 

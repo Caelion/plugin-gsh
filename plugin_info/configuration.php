@@ -26,12 +26,15 @@ if (!isConnect()) {
 	<fieldset>
 		<legend>{{Serveur Google smarthome}}</legend>
 		<div class="form-group">
-			<label class="col-lg-3 control-label">{{J'utilise mon propre serveur}}</label>
+			<label class="col-lg-3 control-label">{{Mode}}</label>
 			<div class="col-lg-2">
-				<input type="checkbox" class="configKey" data-l1key="useMyOwnServer" value="1" />
+				<select class="form-control configKey" data-l1key="mode">
+					<option value="jeedom">{{Service Jeedom Cloud}}</option>
+					<option value="internal">{{Service Interne}}</option>
+				</select>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group gshmode internal">
 			<label class="col-lg-3 control-label">{{DNS ou IP du serveur}}</label>
 			<div class="col-lg-2">
 				<input class="configKey form-control" data-l1key="gshs::ip" />
@@ -39,7 +42,7 @@ if (!isConnect()) {
 		</div>
 	</fieldset>
 </form>
-<div class='row'>
+<div class='row gshmode internal'>
 	<div class='col-md-6'>
 		<form class="form-horizontal">
 			<fieldset>
@@ -135,6 +138,10 @@ if (!isConnect()) {
 </div>
 
 <script type="text/javascript">
+	$('.configKey[data-l1key=mode]').on('change',function(){
+		$('.gshmode').hide();
+		$('.gshmode.'+$(this).value()).show();
+	});
 	$('#bt_viewConf').on('click',function(){
 		$('#md_modal2').dialog({title: "{{Configuration général}}"});
 		$('#md_modal2').load('index.php?v=d&plugin=gsh&modal=showConf').dialog('open');
