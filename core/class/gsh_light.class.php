@@ -23,6 +23,10 @@ class gsh_light {
 
 	/*     * *************************Attributs****************************** */
 
+	private static $_ON = array('ENERGY_ON', 'LIGHT_ON');
+	private static $_OFF = array('ENERGY_OFF', 'LIGHT_OFF');
+	private static $_STATE = array('ENERGY_STATE', 'LIGHT_STATE');
+
 	/*     * ***********************Methode static*************************** */
 
 	public static function buildDevice($_device) {
@@ -36,7 +40,7 @@ class gsh_light {
 		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => array($eqLogic->getName(), $eqLogic->getName() . 's'));
 		$return['traits'] = array();
 		$return['willReportState'] = false;
-		if (!in_array('action.devices.traits.OnOff', $return['traits']) && $_device->getCmdByGenericType(array('LIGHT_ON', 'LIGHT_OFF')) != null) {
+		if (!in_array('action.devices.traits.OnOff', $return['traits']) && $_device->getCmdByGenericType(array_merge(self::$_ON, self::$_OFF)) != null) {
 			$return['traits'][] = 'action.devices.traits.OnOff';
 		}
 		if (!in_array('action.devices.traits.ColorTemperature', $return['traits']) && $_device->getCmdByGenericType(array('LIGHT_COLOR_TEMP')) != null) {
@@ -55,7 +59,7 @@ class gsh_light {
 			}
 			$return['attributes']['colorModel'] = 'RGB';
 		}
-		if ($_device->getCmdByGenericType(array('LIGHT_STATE')) != null) {
+		if ($_device->getCmdByGenericType(self::$_STATE) != null) {
 			$return['willReportState'] = true;
 		}
 		if (count($return['traits']) == 0) {
@@ -83,25 +87,33 @@ class gsh_light {
 				switch ($execution['command']) {
 					case 'action.devices.commands.OnOff':
 						if ($execution['params']['on']) {
-							$cmd = $_device->getCmdByGenericType(array('LIGHT_ON'));
-							if (is_object($cmd)) {
-								$cmd->execCmd();
-								$return = array('status' => 'SUCCESS');
+							$cmds = $_device->getCmdByGenericType(self::$_ON);
+							if ($cmds == null) {
+								break;
 							}
-							$cmd = $_device->getCmdByGenericType(array('LIGHT_SLIDER'));
-							if (is_object($cmd)) {
-								$cmd->execCmd(array('slider' => 100));
+							if (!is_array($cmds)) {
+								$cmds = array($cmds);
+							}
+							if ($cmds[0]->getSubtype() == 'other') {
+								$cmds[0]->execCmd();
+								$return = array('status' => 'SUCCESS');
+							} else if ($cmds[0]->getSubtype() == 'slider') {
+								$cmds[0]->execCmd(array('slider' => 100));
 								$return = array('status' => 'SUCCESS');
 							}
 						} else {
-							$cmd = $_device->getCmdByGenericType(array('LIGHT_OFF'));
-							if (is_object($cmd)) {
-								$cmd->execCmd(array('slider' => 100));
-								$return = array('status' => 'SUCCESS');
+							$cmds = $_device->getCmdByGenericType(self::$_OFF);
+							if ($cmds == null) {
+								break;
 							}
-							$cmd = $_device->getCmdByGenericType(array('LIGHT_SLIDER'));
-							if (is_object($cmd)) {
-								$cmd->execCmd(array('slider' => 0));
+							if (!is_array($cmds)) {
+								$cmds = array($cmds);
+							}
+							if ($cmds[0]->getSubtype() == 'other') {
+								$cmds[0]->execCmd();
+								$return = array('status' => 'SUCCESS');
+							} else if ($cmds[0]->getSubtype() == 'slider') {
+								$cmds[0]->execCmd(array('slider' => 0));
 								$return = array('status' => 'SUCCESS');
 							}
 						}
@@ -132,7 +144,7 @@ class gsh_light {
 
 	public static function getState($_device) {
 		$return = array();
-		$cmds = $_device->getCmdByGenericType(array('LIGHT_STATE', 'LIGHT_STATE_BOOL', 'LIGHT_SET_COLOR_TEMP'));
+		$cmds = $_device->getCmdByGenericType(array_merge(self::$_STATE, array('LIGHT_COLOR')));
 		if ($cmds == null) {
 			return $return;
 		}
