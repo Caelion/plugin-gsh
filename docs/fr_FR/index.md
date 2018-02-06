@@ -72,7 +72,7 @@ L'application va normalement se synchroniser avec vos équipements, vous pourrez
 
 >**Quelles sont les commandes possibles ?**
 >
->Les commandes vocales (ainsi que les retours) sont gérés uniquement pas Google, voila la documentation https://support.google.com/googlehome/answer/7073578?hl=fr
+>Les commandes vocales (ainsi que les retours) sont gérés uniquement pas Google, voila la [documentation](https://support.google.com/googlehome/answer/7073578?hl=fr)
 
 >**L'assistant me demande d'affecter les pieces mais je ne sais pas à quoi correspond l'équipement.**
 >
