@@ -23,21 +23,21 @@ Ensuite sur le market dans votre profil partie "Mes Jeedoms", il faut que vous c
 - Donnez l'url de votre Jeedom (https obligatoire)
 - Mettez la clef API précédemment récuperée
 
+![gsh](../images/gsh1.png)
+
 Validez ensuite la configuration. 
 
 Il vous faut maintenant attendre 24h le temps que votre demande soit prise en compte.
 
 > **IMPORTANT**
 >
-> Toute modification d'URL de votre Jeedom ou de clef API nécessite d'attendre 24h pour être prise en compte.
-
-> **NOTE**
->
-> Pour savoir si votre modification est prise en compte, il vous suffit de regarder le statut, si c'est "actif" alors votre configuration est prise en compte.
+> Suite à l'activation et/ou modification des informations pour Google Smarthome il faut attendre 24h pour que cela soit prise en compte
 
 ## Configuration du plugin
 
 Sur votre Jeedom, allez sur Plugin -> Communication -> Google Smarthome et dans la partie équipement sélectionnez les équipements à transmettre à Google ainsi que le type de l'équipement.
+
+![gsh](../images/gsh2.png)
 
 > **IMPORTANT**
 >
@@ -50,11 +50,21 @@ Sur votre Jeedom, allez sur Plugin -> Communication -> Google Smarthome et dans 
 
 Vous pouvez aussi créer des scènes dans l'onglet scène, avec des actions d'entrée et de sortie.
 
+![gsh](../images/gsh3.png)
+
 ## Configuration Google
 
-Depuis votre téléphone, lancez l'application Google Home puis dans le Menu (à gauche) cliquez sur "Contrôle de maison".
+Depuis votre téléphone, lancez l'application Google Home puis dans le Menu (à gauche) cliquez sur "Contrôle de maison" :
 
-Cliquez sur le "+" et cherchez "Jeedom Smarthome" dans la liste, une fois sélectionné indiquez vos identifiants Market.
+![gsh](../images/gsh4.png)
+
+Cliquez sur le "+" et cherchez "Jeedom Smarthome" dans la liste :
+
+![gsh](../images/gsh5.png)
+
+Une fois sélectionné indiquez vos identifiants Market :
+
+![gsh](../images/gsh6.png)
 
 L'application va normalement se synchroniser avec vos équipements, vous pourrez ensuite les mettres dans les pièces et piloter vocalement votre domotique.
 
