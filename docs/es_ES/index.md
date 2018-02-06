@@ -70,6 +70,18 @@ L'application va normalement se synchroniser avec vos équipements, vous pourrez
 
 # FAQ
 
+>**Lors de la connexion j'ai eu page blanche avec du texte bizarre ?**
+>
+>Votre mot de passe ou nom d'utilisateur n'est pas reconnu. Avez vous bien activer Google Smarthome sur le market ? Avez vous bien mis une URL ? Avez vous bien mis une clef API pour Google Smarthome ? Avez vous bien attendu 24h suite à cela ? Mettez vous bien vos identifiants market ?
+
+>**Quelles sont les commandes possibles ?**
+>
+>Les commandes vocales (ainsi que les retours) sont gérés uniquement pas Google, voila la [documentation](https://support.google.com/googlehome/answer/7073578?hl=fr)
+
+>**L'assistant me demande d'affecter les pieces mais je ne sais pas à quoi correspond l'équipement.**
+>
+>Oui l'assisant n'affiche pas le nom réel de l'équipement, juste le pseudo. Il faut donc quitter l'assistant et revenir sur la page d'acceuil du controle de la maison. La en cliquant sur l'équipement vous allez avoir son nom vous pourrez ensuite l'affecter à une piece
+
 >**Pourquoi faut-il affecter des pièces à chaque équipement ?**
 >
 >Car Google ne permet pas de le faire par l'API vous devez donc absolument le faire manuellement.
