@@ -44,19 +44,25 @@ script_name = (sys.argv[0].split(os.sep))[-1]
 PIDFILE = os.path.join(tempfile.gettempdir(), "stream2chromecast_%s.pid") 
 FFMPEG = 'ffmpeg %s -i "%s" -preset ultrafast -f mp4 -frag_duration 3000 -b:v 2000k -loglevel error %s -'
 AVCONV = 'avconv %s -i "%s" -preset ultrafast -f mp4 -frag_duration 3000 -b:v 2000k -loglevel error %s -'
+EXCEPT_NUMBER=0
 
 class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
     content_type = "video/mp4"
     filename = ''
     
     def do_GET(self):
+        global EXCEPT_NUMBER
         self.suppress_socket_error_report = None
         self.send_headers()   
         try: 
             self.write_response()
-        except socket.error, e:     
+        except socket.error, e:    
+            print 'Exeption number : '+str(EXCEPT_NUMBER) 
             if isinstance(e.args, tuple) and  e[0] in (errno.EPIPE, errno.ECONNRESET):
-                sys.exit(0)
+                EXCEPT_NUMBER = EXCEPT_NUMBER + 1
+            if EXCEPT_NUMBER > 1 :
+                print 'Exeption so exit'
+                os._exit(0)
 
     def handle_one_request(self):
         try:
@@ -149,10 +155,9 @@ def play(filename,folder):
         print "No transcoder is installed. Attempting standard playback"
     req_handler.filename = filename
     server = BaseHTTPServer.HTTPServer((webserver_ip, 0), req_handler)
-    thread = Thread(target=server.handle_request)
-    thread.start()
     file(folder+'/camera_stream', 'w').write("http://%s:%s" % (webserver_ip, str(server.server_port)))
-
+    server.serve_forever()
+    
 def run():
     args = sys.argv[1:] 
     play(args[0],args[1])                         
