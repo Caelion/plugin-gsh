@@ -68,6 +68,11 @@ class gsh_camera {
 			return array();
 		}
 		system::kill('stream2chromecast.py');
+		if (trim($eqLogic->getConfiguration('cameraStreamAccessUrl', '')) == '') {
+			return array(
+				"cameraStreamAccessUrl" => '',
+			);
+		}
 		$replace = array(
 			'#username#' => urlencode($eqLogic->getConfiguration('username')),
 			'#password#' => urlencode($eqLogic->getConfiguration('password')),
