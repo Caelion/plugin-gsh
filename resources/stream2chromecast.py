@@ -40,8 +40,7 @@ import urlparse
 import socket
 import tempfile
 
-script_name = (sys.argv[0].split(os.sep))[-1]
-PIDFILE = os.path.join(tempfile.gettempdir(), "stream2chromecast_%s.pid") 
+script_name = (sys.argv[0].split(os.sep))[-1] 
 FFMPEG = 'ffmpeg %s -i "%s" -preset ultrafast -f mp4 -frag_duration 3000 -b:v 2000k -loglevel error %s -'
 AVCONV = 'avconv %s -i "%s" -preset ultrafast -f mp4 -frag_duration 3000 -b:v 2000k -loglevel error %s -'
 EXCEPT_NUMBER=0
