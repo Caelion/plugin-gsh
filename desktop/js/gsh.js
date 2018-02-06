@@ -29,6 +29,11 @@
  	}, 50);
  })
 
+ $('.bt_configureEqLogic').on('click',function(){
+ 	$('#md_modal').dialog({title: "{{Configuration de l'équipement}}"});
+ 	$('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).attr('data-id')).dialog('open');
+ });
+
 
  $('#bt_saveConfiguration').on('click',function(){
  	var devices = $('#div_configuration .device[data-link_type=eqLogic]').getValues('.deviceAttr');
@@ -101,7 +106,7 @@
  			}
  			for(var i in data.result){
  				if(data.result[i]['link_type'] == 'scene'){
- 					 addScene(data.result[i]);
+ 					addScene(data.result[i]);
  					continue;
  				}
  				var el = $('.device[data-link_id='+data.result[i]['link_id']+'][data-link_type='+data.result[i]['link_type']+']');
