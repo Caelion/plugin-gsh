@@ -156,6 +156,7 @@ def play(filename,folder):
     req_handler.filename = filename
     server = BaseHTTPServer.HTTPServer((webserver_ip, 0), req_handler)
     file(folder+'/camera_stream', 'w').write("http://%s:%s" % (webserver_ip, str(server.server_port)))
+    print "http://%s:%s" % (webserver_ip, str(server.server_port))
     server.serve_forever()
     
 def run():
