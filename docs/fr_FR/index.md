@@ -72,7 +72,7 @@ L'application va normalement se synchroniser avec vos équipements, vous pourrez
 
 >**Lors de la connexion j'ai eu page blanche avec du texte bizarre ?**
 >
->Votre mot de passe ou nom d'utilisateur n'est pas reconnu. Avez vous bien activer Google Smarthome sur le market ? Avez vous bien mis une URL ? Avez vous bien mis une clef API ? Avez vous bien attendu 24h suite à cela ? Mettez vous bien vos identifiants market ?
+>Votre mot de passe ou nom d'utilisateur n'est pas reconnu. Avez vous bien activer Google Smarthome sur le market ? Avez vous bien mis une URL ? Avez vous bien mis une clef API pour Google Smarthome ? Avez vous bien attendu 24h suite à cela ? Mettez vous bien vos identifiants market ?
 
 >**Quelles sont les commandes possibles ?**
 >
