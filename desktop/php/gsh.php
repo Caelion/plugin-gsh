@@ -18,6 +18,7 @@ if (!isConnect('admin')) {
 			<thead>
 				<tr>
 					<th>{{Equipement}}</th>
+					<th>{{Plugin}}</th>
 					<th>{{Transmettre}}</th>
 					<th>{{Type}}</th>
 				</tr>
@@ -27,6 +28,7 @@ if (!isConnect('admin')) {
 foreach (eqLogic::all() as $eqLogic) {
 	echo '<tr class="device" data-link_id="' . $eqLogic->getId() . '" data-link_type="eqLogic">';
 	echo '<td>' . $eqLogic->getHumanName(true) . '</td>';
+	echo '<td>' . $eqLogic->getEqType_name() . '</td>';
 	echo '<td>';
 	echo '<input style="display:none;" class="deviceAttr" data-l1key="id" />';
 	echo '<input style="display:none;" class="deviceAttr" data-l1key="link_type" value="eqLogic" />';
