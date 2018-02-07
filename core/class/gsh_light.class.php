@@ -40,26 +40,26 @@ class gsh_light {
 		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => array($eqLogic->getName(), $eqLogic->getName() . 's'));
 		$return['traits'] = array();
 		$return['willReportState'] = false;
-		if (!in_array('action.devices.traits.OnOff', $return['traits']) && $_device->getCmdByGenericType(array_merge(self::$_ON, self::$_OFF)) != null) {
+		if (!in_array('action.devices.traits.OnOff', $return['traits']) && count(cmd::byGenericType(array_merge(self::$_ON, self::$_OFF), $_device->getLink_id())) > 0) {
 			$return['traits'][] = 'action.devices.traits.OnOff';
 		}
-		if (!in_array('action.devices.traits.ColorTemperature', $return['traits']) && $_device->getCmdByGenericType(array('LIGHT_COLOR_TEMP')) != null) {
+		if (!in_array('action.devices.traits.ColorTemperature', $return['traits']) && count(cmd::byGenericType(array('LIGHT_COLOR_TEMP'), $_device->getLink_id())) > 0) {
 			$return['traits'][] = 'action.devices.traits.ColorTemperature';
 		}
-		if (!in_array('action.devices.traits.Brightness', $return['traits']) && $_device->getCmdByGenericType(array('LIGHT_SLIDER')) != null) {
+		if (!in_array('action.devices.traits.Brightness', $return['traits']) && count(cmd::byGenericType(array('LIGHT_SLIDER'), $_device->getLink_id())) > 0) {
 			$return['traits'][] = 'action.devices.traits.Brightness';
 		}
-		if (!in_array('action.devices.traits.OnOff', $return['traits']) && $_device->getCmdByGenericType(array('LIGHT_SLIDER')) != null) {
+		if (!in_array('action.devices.traits.OnOff', $return['traits']) && count(cmd::byGenericType(array('LIGHT_SLIDER'), $_device->getLink_id())) > 0) {
 			$return['traits'][] = 'action.devices.traits.OnOff';
 		}
-		if (!in_array('action.devices.traits.ColorSpectrum', $return['traits']) && $_device->getCmdByGenericType(array('LIGHT_SET_COLOR')) != null) {
+		if (!in_array('action.devices.traits.ColorSpectrum', $return['traits']) && count(cmd::byGenericType(array('LIGHT_SET_COLOR'), $_device->getLink_id())) > 0) {
 			$return['traits'][] = 'action.devices.traits.ColorSpectrum';
 			if (!isset($return['attributes'])) {
 				$return['attributes'] = array();
 			}
 			$return['attributes']['colorModel'] = 'RGB';
 		}
-		if ($_device->getCmdByGenericType(self::$_STATE) != null) {
+		if (count(cmd::byGenericType(self::$_STATE, $_device->getLink_id())) > 0) {
 			$return['willReportState'] = true;
 		}
 		if (count($return['traits']) == 0) {
@@ -69,64 +69,50 @@ class gsh_light {
 	}
 
 	public static function query($_device) {
-		$eqLogic = $_device->getLink();
-		if (!is_object($eqLogic)) {
-			return array('status' => 'ERROR');
-		}
 		return self::getState($_device);
 	}
 
 	public static function exec($_device, $_executions, $_infos) {
 		$return = array('status' => 'ERROR');
-		$eqLogic = $_device->getLink();
-		if (!is_object($eqLogic)) {
-			return $return;
-		}
 		foreach ($_executions as $execution) {
 			try {
 				switch ($execution['command']) {
 					case 'action.devices.commands.OnOff':
 						if ($execution['params']['on']) {
-							$cmds = $_device->getCmdByGenericType(self::$_ON);
-							if ($cmds == null) {
+							$cmd = cmd::byGenericType(self::$_ON, $_device->getLink_id(), true);
+							if ($cmd == null) {
 								break;
 							}
-							if (!is_array($cmds)) {
-								$cmds = array($cmds);
-							}
-							if ($cmds[0]->getSubtype() == 'other') {
-								$cmds[0]->execCmd();
+							if ($cmd->getSubtype() == 'other') {
+								$cmd->execCmd();
 								$return = array('status' => 'SUCCESS');
-							} else if ($cmds[0]->getSubtype() == 'slider') {
-								$cmds[0]->execCmd(array('slider' => 100));
+							} else if ($cmd->getSubtype() == 'slider') {
+								$cmd->execCmd(array('slider' => 100));
 								$return = array('status' => 'SUCCESS');
 							}
 						} else {
-							$cmds = $_device->getCmdByGenericType(self::$_OFF);
-							if ($cmds == null) {
+							$cmd = cmd::byGenericType(self::$_OFF, $_device->getLink_id(), true);
+							if ($cmd == null) {
 								break;
 							}
-							if (!is_array($cmds)) {
-								$cmds = array($cmds);
-							}
-							if ($cmds[0]->getSubtype() == 'other') {
-								$cmds[0]->execCmd();
+							if ($cmd->getSubtype() == 'other') {
+								$cmd->execCmd();
 								$return = array('status' => 'SUCCESS');
-							} else if ($cmds[0]->getSubtype() == 'slider') {
-								$cmds[0]->execCmd(array('slider' => 0));
+							} else if ($cmd->getSubtype() == 'slider') {
+								$cmd->execCmd(array('slider' => 0));
 								$return = array('status' => 'SUCCESS');
 							}
 						}
 						break;
 					case 'action.devices.commands.ColorAbsolute':
-						$cmd = $_device->getCmdByGenericType(array('LIGHT_SET_COLOR'));
+						$cmd = cmd::byGenericType('LIGHT_SET_COLOR', $_device->getLink_id(), true);
 						if (is_object($cmd)) {
 							$cmd->execCmd(array('color' => '#' . str_pad(dechex($execution['params']['color']['spectrumRGB']), 6, '0', STR_PAD_LEFT)));
 							$return = array('status' => 'SUCCESS');
 						}
 						break;
 					case 'action.devices.commands.BrightnessAbsolute':
-						$cmd = $_device->getCmdByGenericType(array('LIGHT_SLIDER'));
+						$cmd = cmd::byGenericType('LIGHT_SLIDER', $_device->getLink_id(), true);
 						if (is_object($cmd)) {
 							$value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['brightness'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
 							$cmd->execCmd(array('slider' => $value));
@@ -144,12 +130,9 @@ class gsh_light {
 
 	public static function getState($_device) {
 		$return = array();
-		$cmds = $_device->getCmdByGenericType(array_merge(self::$_STATE, array('LIGHT_COLOR')));
+		$cmds = cmd::byGenericType(array_merge(self::$_STATE, array('LIGHT_COLOR')), $_device->getLink_id());
 		if ($cmds == null) {
 			return $return;
-		}
-		if (!is_array($cmds)) {
-			$cmds = array($cmds);
 		}
 		foreach ($cmds as $cmd) {
 			$value = $cmd->execCmd();

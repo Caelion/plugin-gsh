@@ -40,7 +40,7 @@ class gsh_outlet {
 		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => array($eqLogic->getName(), $eqLogic->getName() . 's'));
 		$return['traits'] = array();
 		$return['willReportState'] = false;
-		if (!in_array('action.devices.traits.OnOff', $return['traits']) && $_device->getCmdByGenericType(array_merge(self::$_ON, self::$_OFF)) != null) {
+		if (!in_array('action.devices.traits.OnOff', $return['traits']) && count(cmd::byGenericType(array_merge(self::$_ON, self::$_OFF), $_device->getLink_id())) > 0) {
 			$return['traits'][] = 'action.devices.traits.OnOff';
 		}
 		if ($_device->getCmdByGenericType(self::$_STATE) != null) {
@@ -53,10 +53,6 @@ class gsh_outlet {
 	}
 
 	public static function query($_device) {
-		$eqLogic = $_device->getLink();
-		if (!is_object($eqLogic)) {
-			return array('status' => 'ERROR');
-		}
 		return self::getState($_device);
 	}
 
@@ -71,40 +67,34 @@ class gsh_outlet {
 				switch ($execution['command']) {
 					case 'action.devices.commands.OnOff':
 						if ($execution['params']['on']) {
-							$cmds = $_device->getCmdByGenericType(self::$_ON);
-							if ($cmds == null) {
+							$cmd = cmd::byGenericType(self::$_ON, $_device->getLink_id(), true);
+							if ($cmd == null) {
 								break;
 							}
-							if (!is_array($cmds)) {
-								$cmds = array($cmds);
-							}
-							if ($cmds[0]->getSubtype() == 'other') {
-								$cmds[0]->execCmd();
+							if ($cmd->getSubtype() == 'other') {
+								$cmd->execCmd();
 								$return = array('status' => 'SUCCESS');
-							} else if ($cmds[0]->getSubtype() == 'slider') {
-								if (in_array($cmds[0]->getDisplay('generic_type'), array('FLAP_SLIDER'))) {
-									$cmds[0]->execCmd(array('slider' => 0));
+							} else if ($cmd->getSubtype() == 'slider') {
+								if (in_array($cmd->getDisplay('generic_type'), array('FLAP_SLIDER'))) {
+									$cmd->execCmd(array('slider' => 0));
 								} else {
-									$cmds[0]->execCmd(array('slider' => 100));
+									$cmd->execCmd(array('slider' => 100));
 								}
 								$return = array('status' => 'SUCCESS');
 							}
 						} else {
-							$cmds = $_device->getCmdByGenericType(self::$_OFF);
-							if ($cmds == null) {
+							$cmd = cmd::byGenericType(self::$_OFF, $_device->getLink_id(), true);
+							if ($cmd == null) {
 								break;
 							}
-							if (!is_array($cmds)) {
-								$cmds = array($cmds);
-							}
-							if ($cmds[0]->getSubtype() == 'other') {
-								$cmds[0]->execCmd();
+							if ($cmd->getSubtype() == 'other') {
+								$cmd->execCmd();
 								$return = array('status' => 'SUCCESS');
-							} else if ($cmds[0]->getSubtype() == 'slider') {
-								if (in_array($cmds[0]->getDisplay('generic_type'), array('FLAP_SLIDER'))) {
-									$cmds[0]->execCmd(array('slider' => 100));
+							} else if ($cmd->getSubtype() == 'slider') {
+								if (in_array($cmd->getDisplay('generic_type'), array('FLAP_SLIDER'))) {
+									$cmd->execCmd(array('slider' => 100));
 								} else {
-									$cmds[0]->execCmd(array('slider' => 0));
+									$cmd->execCmd(array('slider' => 0));
 								}
 								$return = array('status' => 'SUCCESS');
 							}
@@ -122,7 +112,7 @@ class gsh_outlet {
 
 	public static function getState($_device) {
 		$return = array();
-		$cmds = $_device->getCmdByGenericType(self::$_STATE);
+		$cmds = cmd::byGenericType(self::$_STATE, $_device->getLink_id());
 		if ($cmds == null) {
 			return $return;
 		}
