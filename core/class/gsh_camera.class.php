@@ -68,6 +68,7 @@ class gsh_camera {
 			return array();
 		}
 		system::kill('stream2chromecast.py');
+		system::kill('avconv -i');
 		if (trim($eqLogic->getConfiguration('cameraStreamAccessUrl', '')) == '') {
 			return array(
 				"cameraStreamAccessUrl" => '',
