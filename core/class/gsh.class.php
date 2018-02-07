@@ -89,7 +89,7 @@ class gsh extends eqLogic {
 			$post = array(
 				'masterkey' => config::byKey('gshs::masterkey', 'gsh'),
 				'userId' => config::byKey('gshs::userid', 'gsh'),
-				'data' => json_encode(self::sync(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE),
+				'data' => json_encode(self::sync(), JSON_UNESCAPED_UNICODE),
 			);
 			$request_http->setPost(http_build_query($post));
 			$result = $request_http->exec(60);
