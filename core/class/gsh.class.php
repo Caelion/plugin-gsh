@@ -274,31 +274,6 @@ class gsh_devices {
 		return $class::query($this);
 	}
 
-	public function getCmdByGenericType($_generic_type) {
-		if ($this->getLink_type() != 'eqLogic') {
-			return null;
-		}
-		if ($this->_cmds == null) {
-			$this->_cmds = $this->getLink()->getCmd();
-		}
-		if (!is_array($_generic_type)) {
-			$_generic_type = array($_generic_type);
-		}
-		$return = array();
-		foreach ($this->_cmds as $cmd) {
-			if (in_array($cmd->getDisplay('generic_type'), $_generic_type)) {
-				$return[] = $cmd;
-			}
-		}
-		if (count($return) == 0) {
-			return null;
-		}
-		if (count($return) == 1) {
-			return $return[0];
-		}
-		return $return;
-	}
-
 	/*     * **********************Getteur Setteur*************************** */
 	public function getId() {
 		return $this->id;

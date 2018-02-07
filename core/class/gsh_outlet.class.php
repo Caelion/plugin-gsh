@@ -43,7 +43,7 @@ class gsh_outlet {
 		if (!in_array('action.devices.traits.OnOff', $return['traits']) && count(cmd::byGenericType(array_merge(self::$_ON, self::$_OFF), $_device->getLink_id())) > 0) {
 			$return['traits'][] = 'action.devices.traits.OnOff';
 		}
-		if ($_device->getCmdByGenericType(self::$_STATE) != null) {
+		if (count(cmd::byGenericType(self::$_STATE, $_device->getLink_id())) > 0) {
 			$return['willReportState'] = true;
 		}
 		if (count($return['traits']) == 0) {
