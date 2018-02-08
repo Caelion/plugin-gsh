@@ -116,7 +116,9 @@ class gsh_light {
 						$cmd = cmd::byGenericType('LIGHT_SLIDER', $_device->getLink_id(), true);
 						log::add('gsh', 'debug', 'je trouve la commande ' . print_r($cmd, true));
 						if (is_object($cmd)) {
+							log::add('gsh', 'debug', 'brightness ' . $execution['params']['brightness']);
 							$value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['brightness'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
+							log::add('gsh', 'debug', 'Calcul value ' . $value);
 							$cmd->execCmd(array('slider' => $value));
 							$return = array('status' => 'SUCCESS');
 						}
