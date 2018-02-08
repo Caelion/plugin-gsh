@@ -115,6 +115,13 @@
  					continue;
  				}
  				el.setValues(data.result[i], '.deviceAttr');
+ 				if(data.result[i].options.configState){
+ 					if(data.result[i].options.configState == 'OK'){
+ 						el.find('.deviceAttr[data-l2key=configState]').removeClass('label-danger').addClass('label-success');
+ 					}else{
+ 						el.find('.deviceAttr[data-l2key=configState]').removeClass('label-success').addClass('label-danger');
+ 					}
+ 				}
  			}
  			jeedom.cmd.displayActionsOption({
  				params : actionOptions,

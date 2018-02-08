@@ -39,7 +39,7 @@ foreach (eqLogic::all() as $eqLogic) {
 	echo '<input type="checkbox" class="deviceAttr" data-l1key="enable" />';
 	echo '</td>';
 	echo '<td>';
-	echo '<span class="deviceAttr" data-l1key="options" data-l2key="configState"></span>';
+	echo '<span class="deviceAttr label" data-l1key="options" data-l2key="configState" style="font-size:1em;"></span>';
 	echo '</td>';
 	echo '<td>';
 	echo '<select class="deviceAttr form-control input-sm" data-l1key="type">';
