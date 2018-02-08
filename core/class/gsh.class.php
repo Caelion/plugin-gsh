@@ -280,7 +280,7 @@ class gsh_devices {
 
 	public function getPseudo() {
 		$eqLogic = $this->getLink();
-		$pseudo = array($eqLogic->getName(), $eqLogic->getName() . 's');
+		$pseudo = array(trim($eqLogic->getName()), trim($eqLogic->getName()) . 's');
 		if ($this->getOptions('pseudo') != '') {
 			$pseudo = array_merge(explode(',', $this->getOptions('pseudo')), $pseudo);
 		}
