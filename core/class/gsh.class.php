@@ -227,6 +227,12 @@ class gsh_devices {
 
 	/*     * *********************Methode d'instance************************* */
 
+	public function preSave() {
+		if ($this->getEnable() == 0) {
+			$this->setOptions('configState', '');
+		}
+	}
+
 	public function save() {
 		return DB::save($this);
 	}
