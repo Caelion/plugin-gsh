@@ -37,7 +37,7 @@ class gsh_camera {
 		$return['traits'] = array('action.devices.traits.CameraStream');
 		$return['willReportState'] = false;
 		$return['attributes'] = array(
-			'cameraStreamSupportedProtocols' => array($eqLogic->getConfiguration('cameraStreamSupportedProtocols', 'HLS')),
+			'cameraStreamSupportedProtocols' => array($eqLogic->getConfiguration('cameraStreamSupportedProtocols', 'hls')),
 			'cameraStreamNeedAuthToken' => false,
 			'cameraStreamNeedDrmEncryption' => false,
 		);
