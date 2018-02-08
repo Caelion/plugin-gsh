@@ -33,7 +33,7 @@ class gsh_thermostat {
 		$return = array();
 		$return['id'] = $eqLogic->getId();
 		$return['type'] = $_device->getType();
-		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => array($eqLogic->getName(), $eqLogic->getName() . 's'));
+		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => $_device->getPseudo());
 		$return['traits'] = array('action.devices.traits.TemperatureSetting');
 		$return['willReportState'] = true;
 		$return['attributes'] = array('availableThermostatModes' => 'on,off,heat,cool', 'thermostatTemperatureUnit' => 'C');

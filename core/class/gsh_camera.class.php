@@ -33,7 +33,7 @@ class gsh_camera {
 		$return = array();
 		$return['id'] = $eqLogic->getId();
 		$return['type'] = $_device->getType();
-		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => array($eqLogic->getName(), $eqLogic->getName() . 's'));
+		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => $_device->getPseudo());
 		$return['traits'] = array('action.devices.traits.CameraStream');
 		$return['willReportState'] = false;
 		$return['attributes'] = array(

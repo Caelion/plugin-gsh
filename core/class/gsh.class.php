@@ -274,6 +274,15 @@ class gsh_devices {
 		return $class::query($this);
 	}
 
+	public function getPseudo() {
+		$eqLogic = $this->getLink();
+		$pseudo = array($eqLogic->getName(), $eqLogic->getName() . 's');
+		if ($this->getOptions('pseudo') != '') {
+			$pseudo = array_merge(explode(',', $this->getOptions('pseudo')), $pseudo);
+		}
+		return $pseudo;
+	}
+
 	/*     * **********************Getteur Setteur*************************** */
 	public function getId() {
 		return $this->id;

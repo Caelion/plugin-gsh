@@ -82,7 +82,7 @@
  				$('#div_alert').showAlert({message: data.result, level: 'danger'});
  				return;
  			}
- 			$('#div_alert').showAlert({message: '{{Synchronisation réussie, n\'oubliez pas de dire à Google : Synchroniser tous mes appareils}}', level: 'success'});
+ 			$('#div_alert').showAlert({message: '{{Synchronisation réussie}}', level: 'success'});
  		},
  	});
  }
