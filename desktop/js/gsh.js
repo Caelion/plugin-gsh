@@ -83,6 +83,7 @@
  				return;
  			}
  			$('#div_alert').showAlert({message: '{{Synchronisation réussie}}', level: 'success'});
+ 			loadData();
  		},
  	});
  }
