@@ -33,7 +33,7 @@ if (!$plugin->isActive()) {
 	));
 	die();
 }
-
+log::add('gsh', 'debug', json_encode($data));
 if ($data['action'] == 'exec') {
 	echo json_encode(gsh::exec($data));
 	die();
