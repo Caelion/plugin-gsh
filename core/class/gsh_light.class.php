@@ -48,6 +48,9 @@ class gsh_light {
 		}
 		if (!in_array('action.devices.traits.Brightness', $return['traits']) && count(cmd::byGenericType(array('LIGHT_SLIDER'), $_device->getLink_id())) > 0) {
 			$return['traits'][] = 'action.devices.traits.Brightness';
+			if (!in_array('action.devices.traits.OnOff', $return['traits'])) {
+				$return['traits'][] = 'action.devices.traits.OnOff';
+			}
 		}
 		if (!in_array('action.devices.traits.OnOff', $return['traits']) && count(cmd::byGenericType(array('LIGHT_SLIDER'), $_device->getLink_id())) > 0) {
 			$return['traits'][] = 'action.devices.traits.OnOff';
