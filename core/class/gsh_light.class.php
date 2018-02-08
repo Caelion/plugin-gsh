@@ -112,7 +112,9 @@ class gsh_light {
 						}
 						break;
 					case 'action.devices.commands.BrightnessAbsolute':
+						log::add('gsh', 'debug', 'je passe dans BrightnessAbsolute');
 						$cmd = cmd::byGenericType('LIGHT_SLIDER', $_device->getLink_id(), true);
+						log::add('gsh', 'debug', 'je trouve la commande ' . print_r($cmd, true));
 						if (is_object($cmd)) {
 							$value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['brightness'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
 							$cmd->execCmd(array('slider' => $value));
