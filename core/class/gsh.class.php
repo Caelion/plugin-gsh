@@ -31,7 +31,7 @@ class gsh extends eqLogic {
 	public static $_supportedType = array(
 		'action.devices.types.LIGHT' => array('class' => 'gsh_light', 'name' => 'Lumière'),
 		'action.devices.types.THERMOSTAT' => array('class' => 'gsh_thermostat', 'name' => 'Thermostat'),
-		'action.devices.types.OUTLET' => array('class' => 'gsh_outlet', 'name' => 'Bistable (Prise/Volet...)'),
+		'action.devices.types.OUTLET' => array('class' => 'gsh_outlet', 'name' => 'Info Binaire/Actionneur on/off'),
 		'action.devices.types.CAMERA' => array('class' => 'gsh_camera', 'name' => 'Caméra'),
 		'action.devices.types.SCENE' => array('class' => 'gsh_scene', 'name' => 'Scene'),
 	);
