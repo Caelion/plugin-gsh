@@ -25,7 +25,7 @@ class gsh_outlet {
 
 	private static $_ON = array('FLAP_BSO_UP', 'FLAP_SLIDER', 'FLAP_UP', 'ENERGY_ON', 'FLAP_SLIDER', 'HEATING_ON', 'LOCK_OPEN', 'SIREN_ON', 'GB_OPEN', 'GB_TOGGLE');
 	private static $_OFF = array('FLAP_BSO_DOWN', 'FLAP_SLIDER', 'FLAP_DOWN', 'ENERGY_OFF', 'FLAP_SLIDER', 'HEATING_OFF', 'LOCK_CLOSE', 'SIREN_OFF', 'GB_CLOSE', 'GB_TOGGLE');
-	private static $_STATE = array('ENERGY_STATE', 'FLAP_STATE', 'FLAP_BSO_STATE', 'HEATING_STATE', 'LOCK_STATE', 'SIREN_STATE', 'GARAGE_STATE', 'BARRIER_STATE');
+	private static $_STATE = array('ENERGY_STATE', 'FLAP_STATE', 'FLAP_BSO_STATE', 'HEATING_STATE', 'LOCK_STATE', 'SIREN_STATE', 'GARAGE_STATE', 'BARRIER_STATE', 'OPENING', 'OPENING_WINDOW');
 
 	/*     * ***********************Methode static*************************** */
 
@@ -59,8 +59,11 @@ class gsh_outlet {
 				$return['customData']['cmd_get_state'] = $cmd->getId();
 			}
 		}
-		if (count($return['traits']) == 0) {
+		if (count($return['traits']) == 0 && !$return['willReportState']) {
 			return array();
+		}
+		if (!in_array('action.devices.traits.OnOff', $return['traits'])) {
+			$return['traits'][] = 'action.devices.traits.OnOff';
 		}
 		return $return;
 	}

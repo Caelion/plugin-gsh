@@ -98,7 +98,10 @@ class gsh extends eqLogic {
 			}
 			$result = json_decode($result, true);
 			if (!isset($result['success']) || !$result['success']) {
-				throw new Exception($result);
+				if (isset($result['message'])) {
+					throw new Exception($result['message']);
+				}
+				throw new Exception(json_encode($result, true));
 			}
 		}
 	}
