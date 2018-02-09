@@ -35,12 +35,16 @@ if (!$plugin->isActive()) {
 }
 log::add('gsh', 'debug', json_encode($data));
 if ($data['action'] == 'exec') {
-	echo json_encode(gsh::exec($data));
+	$result = json_encode(gsh::exec($data));
+	log::add('gsh', 'debug', $result);
+	echo $result;
 	die();
 }
 
 if ($data['action'] == 'query') {
-	echo json_encode(gsh::query($data));
+	$result = json_encode(gsh::query($data));
+	log::add('gsh', 'debug', $result);
+	echo $result;
 	die();
 }
 

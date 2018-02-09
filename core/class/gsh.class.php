@@ -160,7 +160,7 @@ class gsh extends eqLogic {
 				$return['devices'][$infos['id']] = array('status' => 'OFFLINE');
 				continue;
 			}
-			$return['devices'][$infos['id']] = $device->query();
+			$return['devices'][$infos['id']] = $device->query($infos);
 		}
 		return $return;
 	}
@@ -273,7 +273,7 @@ class gsh_devices {
 		return $class::exec($this, $_execution, $_infos);
 	}
 
-	public function query() {
+	public function query($_infos) {
 		if (!isset(gsh::$_supportedType[$this->getType()])) {
 			return;
 		}
@@ -281,7 +281,7 @@ class gsh_devices {
 		if (!class_exists($class)) {
 			return array();
 		}
-		return $class::query($this);
+		return $class::query($this, $_infos);
 	}
 
 	public function getPseudo() {

@@ -36,8 +36,8 @@ class gsh_scene {
 		return $return;
 	}
 
-	public static function query($_device) {
-		return self::getState($_device);
+	public static function query($_device, $_infos) {
+		return self::getState($_device, $_infos);
 	}
 
 	public static function exec($_device, $_executions, $_infos) {
@@ -58,11 +58,11 @@ class gsh_scene {
 				$return = array('status' => 'ERROR');
 			}
 		}
-		$return['states'] = self::getState($_device);
+		$return['states'] = self::getState($_device, $_infos);
 		return $return;
 	}
 
-	public static function getState($_device) {
+	public static function getState($_device, $_infos) {
 		$return = array();
 		$return['online'] = true;
 		return $return;

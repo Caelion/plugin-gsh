@@ -40,11 +40,24 @@ class gsh_outlet {
 		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => $_device->getPseudo());
 		$return['traits'] = array();
 		$return['willReportState'] = false;
-		if (!in_array('action.devices.traits.OnOff', $return['traits']) && count(cmd::byGenericType(array_merge(self::$_ON, self::$_OFF), $_device->getLink_id())) > 0) {
-			$return['traits'][] = 'action.devices.traits.OnOff';
-		}
-		if (count(cmd::byGenericType(self::$_STATE, $_device->getLink_id())) > 0) {
-			$return['willReportState'] = true;
+		foreach ($eqLogic->getCmd() as $cmd) {
+			if (in_array($cmd->getGeneric_type(), self::$_ON)) {
+				if (!in_array('action.devices.traits.OnOff', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.OnOff';
+				}
+				$return['customData']['cmd_set_on'] = $cmd->getId();
+			}
+			if (in_array($cmd->getGeneric_type(), self::$_OFF)) {
+				if (!in_array('action.devices.traits.OnOff', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.OnOff';
+				}
+				$return['customData']['cmd_set_off'] = $cmd->getId();
+			}
+
+			if (in_array($cmd->getGeneric_type(), self::$_STATE)) {
+				$return['willReportState'] = true;
+				$return['customData']['cmd_get_state'] = $cmd->getId();
+			}
 		}
 		if (count($return['traits']) == 0) {
 			return array();
@@ -52,8 +65,8 @@ class gsh_outlet {
 		return $return;
 	}
 
-	public static function query($_device) {
-		return self::getState($_device);
+	public static function query($_device, $_infos) {
+		return self::getState($_device, $_infos);
 	}
 
 	public static function exec($_device, $_executions, $_infos) {
@@ -67,35 +80,33 @@ class gsh_outlet {
 				switch ($execution['command']) {
 					case 'action.devices.commands.OnOff':
 						if ($execution['params']['on']) {
-							$cmd = cmd::byGenericType(self::$_ON, $_device->getLink_id(), true);
-							if ($cmd == null) {
+							if (isset($_infos['customData']['cmd_set_on'])) {
+								$cmd = cmd::byId($_infos['customData']['cmd_set_on']);
+							}
+							if (!is_object($cmd)) {
 								break;
 							}
 							if ($cmd->getSubtype() == 'other') {
 								$cmd->execCmd();
 								$return = array('status' => 'SUCCESS');
 							} else if ($cmd->getSubtype() == 'slider') {
-								if (in_array($cmd->getDisplay('generic_type'), array('FLAP_SLIDER'))) {
-									$cmd->execCmd(array('slider' => 0));
-								} else {
-									$cmd->execCmd(array('slider' => 100));
-								}
+								$value = (in_array($cmd->getGeneric_type(), array('FLAP_SLIDER'))) ? 0 : 100;
+								$cmd->execCmd(array('slider' => $value));
 								$return = array('status' => 'SUCCESS');
 							}
 						} else {
-							$cmd = cmd::byGenericType(self::$_OFF, $_device->getLink_id(), true);
-							if ($cmd == null) {
+							if (isset($_infos['customData']['cmd_set_off'])) {
+								$cmd = cmd::byId($_infos['customData']['cmd_set_off']);
+							}
+							if (!is_object($cmd)) {
 								break;
 							}
 							if ($cmd->getSubtype() == 'other') {
 								$cmd->execCmd();
 								$return = array('status' => 'SUCCESS');
 							} else if ($cmd->getSubtype() == 'slider') {
-								if (in_array($cmd->getDisplay('generic_type'), array('FLAP_SLIDER'))) {
-									$cmd->execCmd(array('slider' => 100));
-								} else {
-									$cmd->execCmd(array('slider' => 0));
-								}
+								$value = (in_array($cmd->getGeneric_type(), array('FLAP_SLIDER'))) ? 100 : 0;
+								$cmd->execCmd(array('slider' => $value));
 								$return = array('status' => 'SUCCESS');
 							}
 						}
@@ -106,30 +117,27 @@ class gsh_outlet {
 				$return = array('status' => 'ERROR');
 			}
 		}
-		$return['states'] = self::getState($_device);
+		$return['states'] = self::getState($_device, $_infos);
 		return $return;
 	}
 
-	public static function getState($_device) {
+	public static function getState($_device, $_infos) {
 		$return = array();
-		$cmds = cmd::byGenericType(self::$_STATE, $_device->getLink_id());
-		if ($cmds == null) {
+		$cmd = null;
+		if (isset($_infos['customData']['cmd_get_state'])) {
+			$cmd = cmd::byId($_infos['customData']['cmd_get_state']);
+		}
+		if (!is_object($cmd)) {
 			return $return;
 		}
-		if (!is_array($cmds)) {
-			$cmds = array($cmds);
+		$value = $cmd->execCmd();
+		if ($cmd->getSubtype() == 'numeric') {
+			$return['on'] = ($value > 0);
+		} else if ($cmd->getSubtype() == 'binary') {
+			$return['on'] = boolval($value);
 		}
-		foreach ($cmds as $cmd) {
-			$value = $cmd->execCmd();
-			if ($cmd->getSubtype() == 'numeric') {
-				$return['on'] = ($value > 0);
-			}
-			if ($cmd->getSubtype() == 'binary') {
-				$return['on'] = boolval($value);
-			}
-			if (in_array($cmd->getDisplay('generic_type'), array('FLAP_SLIDER'))) {
-				$return['on'] = (!$return['on']);
-			}
+		if (in_array($cmd->getDisplay('generic_type'), array('FLAP_SLIDER'))) {
+			$return['on'] = (!$return['on']);
 		}
 		return $return;
 	}
