@@ -93,6 +93,13 @@ class gsh_light {
 
 	public static function exec($_device, $_executions, $_infos) {
 		$return = array('status' => 'ERROR');
+		$eqLogic = $_device->getLink();
+		if (!is_object($eqLogic)) {
+			return $return;
+		}
+		if ($eqLogic->getIsEnable() == 0) {
+			return $return;
+		}
 		foreach ($_executions as $execution) {
 			$cmd = null;
 			try {

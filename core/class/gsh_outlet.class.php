@@ -81,6 +81,9 @@ class gsh_outlet {
 		if (!is_object($eqLogic)) {
 			return $return;
 		}
+		if ($eqLogic->getIsEnable() == 0) {
+			return $return;
+		}
 		foreach ($_executions as $execution) {
 			try {
 				switch ($execution['command']) {
