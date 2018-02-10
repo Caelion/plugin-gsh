@@ -34,6 +34,9 @@ class gsh_outlet {
 		if (!is_object($eqLogic)) {
 			return 'deviceNotFound';
 		}
+		if ($eqLogic->getIsEnable() == 0) {
+			return 'deviceNotFound';
+		}
 		$return = array();
 		$return['id'] = $eqLogic->getId();
 		$return['type'] = $_device->getType();
