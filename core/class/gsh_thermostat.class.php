@@ -39,6 +39,7 @@ class gsh_thermostat {
 		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => $_device->getPseudo());
 		$return['customData'] = array();
 		$return['willReportState'] = false;
+		$return['traits'] = array();
 		foreach ($eqLogic->getCmd() as $cmd) {
 			if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_SET_SETPOINT'))) {
 				if (!in_array('action.devices.traits.TemperatureSetting', $return['traits'])) {
