@@ -105,6 +105,8 @@
  				$('#div_alert').showAlert({message: data.result, level: 'danger'});
  				return;
  			}
+ 			var nbDeviceOk = 0
+ 			var nbDeviceNok = 0
  			for(var i in data.result){
  				if(data.result[i]['link_type'] == 'scene'){
  					addScene(data.result[i]);
@@ -117,12 +119,15 @@
  				el.setValues(data.result[i], '.deviceAttr');
  				if(data.result[i].options && data.result[i].options.configState){
  					if(data.result[i].options.configState == 'OK'){
+ 						nbDeviceOk++
  						el.find('.deviceAttr[data-l2key=configState]').removeClass('label-danger').addClass('label-success');
  					}else{
+ 						nbDeviceNok++
  						el.find('.deviceAttr[data-l2key=configState]').removeClass('label-success').addClass('label-danger');
  					}
  				}
  			}
+ 			$('#span_summaryDevice').text('{{Vous avez}} '+nbDeviceOk+' {{équipement(s) OK et}} '+nbDeviceNok+' {{avec une configuration invalide}}');
  			jeedom.cmd.displayActionsOption({
  				params : actionOptions,
  				async : false,

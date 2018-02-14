@@ -14,6 +14,7 @@ if (!isConnect('admin')) {
 <div class="tab-content" id="div_configuration" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 	<div role="tabpanel" class="tab-pane active" id="eqlogictab">
 		<br/>
+		<center><span id="span_summaryDevice" style="margin-bottom: 5px;font-weight: bold;"></span></center>
 		<table class="table table-bordered tablesorter">
 			<thead>
 				<tr>
