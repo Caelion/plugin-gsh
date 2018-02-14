@@ -4,7 +4,7 @@
 	"description" : "Plugin pour Google Smarthome",
 	"licence" : "AGPL",
 	"author" : "Loïc",
-	"require" : "3.1",
+	"require" : "3.2.1",
 	"category" : "communication",
 	"changelog" : "https://jeedom.github.io/plugin-gsh/#language#/changelog",
 	"documentation" : "https://jeedom.github.io/plugin-gsh/#language#/"
