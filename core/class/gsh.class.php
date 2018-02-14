@@ -111,7 +111,7 @@ class gsh extends eqLogic {
 		$devices = gsh_devices::all(true);
 		foreach ($devices as $device) {
 			$info = $device->buildDevice();
-			if (count($info) == 0) {
+			if (!is_array($info) || count($info) == 0) {
 				$device->setOptions('configState', 'NOK');
 				$device->save();
 				continue;
