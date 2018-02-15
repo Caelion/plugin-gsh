@@ -20,7 +20,7 @@ Après l'installation du plugin, il vous suffit d'aller dans la partie Administr
 Ensuite sur le market dans votre profil partie "Mes Jeedoms", il faut que vous complétiez les champs "Google Smarthome" : 
 
 - Activez le service google Smarthome
-- Donnez l'url de votre Jeedom (https obligatoire)
+- Donnez l'url de votre Jeedom (HTTPS obligatoire sinon votre configuration ne passera jamais active)
 - Mettez la clef API précédemment récuperée
 
 ![gsh](../images/gsh1.png)
