@@ -17,6 +17,15 @@
  */
 header('Content-type: application/json');
 require_once dirname(__FILE__) . "/../../../../core/php/core.inc.php";
+if (init('apikey') != '') {
+	if (!jeedom::apiAccess(init('apikey'), 'gsh')) {
+		echo __('Vous n\'etes pas autorisé à effectuer cette action. Clef API invalide. Merci de corriger la clef API sur votre page profils du market et d\'attendre 24h avant de réessayer.', __FILE__);
+		die();
+	} else {
+		echo __('Configuration OK', __FILE__);
+		die();
+	}
+}
 $data = json_decode(file_get_contents('php://input'), true);
 if (!isset($data['apikey']) || !jeedom::apiAccess($data['apikey'], 'gsh')) {
 	echo json_encode(array(
