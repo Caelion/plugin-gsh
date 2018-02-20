@@ -34,6 +34,12 @@ if (!isConnect()) {
 				</select>
 			</div>
 		</div>
+		<div class="form-group gshmode jeedom">
+			<label class="col-lg-3 control-label">{{Envoyer configuration au market}}</label>
+			<div class="col-lg-2">
+				<a class="btn btn-default" id="bt_sendConfigToMarket"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{Envoyer}}</a>
+			</div>
+		</div>
 		<div class="form-group gshmode internal">
 			<label class="col-lg-3 control-label">{{DNS ou IP du serveur}}</label>
 			<div class="col-lg-2">
@@ -159,5 +165,26 @@ if (!isConnect()) {
 	$('#bt_viewUserConf').on('click',function(){
 		$('#md_modal2').dialog({title: "{{Configuration utilisateur}}"});
 		$('#md_modal2').load('index.php?v=d&plugin=gsh&modal=showUserConf').dialog('open');
+	});
+
+	$('#bt_sendConfigToMarket').on('click', function () {
+		$.ajax({
+			type: "POST",
+			url: "plugins/gsh/core/ajax/gsh.ajax.php",
+			data: {
+				action: "sendConfig",
+			},
+			dataType: 'json',
+			error: function (request, status, error) {
+				handleAjaxError(request, status, error);
+			},
+            success: function (data) { // si l'appel a bien fonctionné
+            if (data.state != 'ok') {
+            	$('#div_alert').showAlert({message: data.result, level: 'danger'});
+            	return;
+            }
+            $('#div_alert').showAlert({message: '{{Configuration envoyée avec succès}}', level: 'success'});
+        }
+    });
 	});
 </script>

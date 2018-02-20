@@ -52,6 +52,11 @@ try {
 		ajax::success(utils::o2a(gsh_devices::all()));
 	}
 
+	if (init('action') == 'sendConfig') {
+		gsh::sendJeedomConfig();
+		ajax::success();
+	}
+
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
