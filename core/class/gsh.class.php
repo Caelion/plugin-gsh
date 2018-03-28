@@ -303,6 +303,11 @@ class gsh_devices {
 		return $pseudo;
 	}
 
+	public function cronHourly() {
+		system::kill('stream2chromecast.py');
+		system::kill('avconv -i');
+	}
+
 	/*     * **********************Getteur Setteur*************************** */
 	public function getId() {
 		return $this->id;
