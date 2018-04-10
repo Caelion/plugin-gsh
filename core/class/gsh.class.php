@@ -48,8 +48,8 @@ class gsh extends eqLogic {
 	public static function generateConfiguration() {
 		$return = array(
 			"devPortSmartHome" => config::byKey('gshs::port', 'gsh'),
-			"smartHomeProviderGoogleClientId" => config::byKey('gshs::clientId', 'gsh'),
-			"smartHomeProvideGoogleClientSecret" => config::byKey('gshs::clientSecret', 'gsh'),
+			"smartHomeProviderClientId" => config::byKey('gshs::clientId', 'gsh'),
+			"smartHomeProvideClientSecret" => config::byKey('gshs::clientSecret', 'gsh'),
 			"smartHomeProviderApiKey" => config::byKey('gshs::googleapikey', 'gsh'),
 			"masterkey" => config::byKey('gshs::masterkey', 'gsh'),
 			"jeedomTimeout" => config::byKey('gshs::timeout', 'gsh'),
