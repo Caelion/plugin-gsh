@@ -102,6 +102,12 @@ if (!isConnect()) {
 					</div>
 				</div>
 				<div class="form-group">
+					<label class="col-lg-6 control-label">{{Chaine de sécurisation URL}}</label>
+					<div class="col-lg-6">
+						<input class="configKey form-control" data-l1key="gshs::secureUrl" />
+					</div>
+				</div>
+				<div class="form-group">
 					<label class="col-lg-6 control-label">{{Port}}</label>
 					<div class="col-lg-6">
 						<input class="configKey form-control" data-l1key="gshs::port" />

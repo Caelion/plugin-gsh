@@ -52,6 +52,7 @@ class gsh extends eqLogic {
 			"smartHomeProvideClientSecret" => config::byKey('gshs::clientSecret', 'gsh'),
 			"smartHomeProviderApiKey" => config::byKey('gshs::googleapikey', 'gsh'),
 			"smartHomeProviderInteractApiKey" => config::byKey('gshs::interactApikey', 'gsh'),
+			"smartHomeProviderSecureUrl" => config::byKey('gshs::secureUrl', 'gsh'),
 			"masterkey" => config::byKey('gshs::masterkey', 'gsh'),
 			"jeedomTimeout" => config::byKey('gshs::timeout', 'gsh'),
 			"url" => config::byKey('gshs::url', 'gsh'),
