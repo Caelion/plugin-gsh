@@ -59,7 +59,7 @@ if (!isConnect()) {
 						<input class="configKey form-control" data-l1key="googleDialogflowProjectId" />
 					</div>
 					<div class="col-lg-2">
-						<a class="btn btn-sm btn-success" id="bt_connectGoogleDialogFlow">{{Connection}}</a>
+						<a class="btn btn-sm btn-success" id="bt_connectGoogleDialogFlow"><i class="fa fa-plug" aria-hidden="true"></i> {{Connection}}</a>
 					</div>
 				</div>
 				<div class="form-group">
@@ -68,7 +68,7 @@ if (!isConnect()) {
 						<input class="configKey form-control" data-l1key="googleSmarthomeProjectId" />
 					</div>
 					<div class="col-lg-2">
-						<a class="btn btn-sm btn-success" id="bt_connectGoogleSmarthome">{{Connection}}</a>
+						<a class="btn btn-sm btn-success" id="bt_connectGoogleSmarthome"><i class="fa fa-plug" aria-hidden="true"></i> {{Connection}}</a>
 					</div>
 				</div>
 				<div class="form-group">
