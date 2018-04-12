@@ -94,7 +94,7 @@ class gsh extends eqLogic {
 				throw new Exception($market->getError(), $market->getErrorCode());
 			}
 		} else {
-			$request_http = new com_http(trim(config::byKey('gshs::url', 'gsh')) . '/jeedom/sync/devices');
+			$request_http = new com_http(trim(config::byKey('gshs::url', 'gsh')) . '/jeedom/sync/devices' . trim(config::byKey('gshs::secureUrl', 'gsh')));
 			$post = array(
 				'masterkey' => config::byKey('gshs::masterkey', 'gsh'),
 				'userId' => config::byKey('gshs::userid', 'gsh'),
