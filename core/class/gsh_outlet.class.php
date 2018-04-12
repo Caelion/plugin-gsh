@@ -145,7 +145,7 @@ class gsh_outlet {
 		} else if ($cmd->getSubtype() == 'binary') {
 			$return['on'] = boolval($value);
 		}
-		if (in_array($cmd->getDisplay('generic_type'), array('FLAP_SLIDER'))) {
+		if (in_array($cmd->getGeneric_type(), array('FLAP_SLIDER'))) {
 			$return['on'] = (!$return['on']);
 		}
 		return $return;

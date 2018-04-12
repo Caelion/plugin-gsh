@@ -57,6 +57,12 @@ if ($data['action'] == 'query') {
 	die();
 }
 
+if ($data['action'] == 'interact') {
+	$params = array('plugin' => 'gsh', 'reply_cmd' => null);
+	echo json_encode(interactQuery::tryToReply(trim($data['data']['queryResult']['queryText']), $params));
+	die();
+}
+
 echo json_encode(array(
 	'status' => 'SUCCESS',
 ));
