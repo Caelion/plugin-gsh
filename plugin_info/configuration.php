@@ -54,6 +54,24 @@ if (!isConnect()) {
 			<fieldset>
 				<legend>{{Configuration général}}</legend>
 				<div class="form-group">
+					<label class="col-lg-6 control-label">{{ID du projet Dialogflow}}</label>
+					<div class="col-lg-4">
+						<input class="configKey form-control" data-l1key="googleDialogflowProjectId" />
+					</div>
+					<div class="col-lg-2">
+						<a class="btn btn-sm btn-success" id="bt_connectGoogleDialogFlow">{{Connection}}</a>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-6 control-label">{{ID du projet Smarthome}}</label>
+					<div class="col-lg-4">
+						<input class="configKey form-control" data-l1key="googleSmarthomeProjectId" />
+					</div>
+					<div class="col-lg-2">
+						<a class="btn btn-sm btn-success" id="bt_connectGoogleSmarthome">{{Connection}}</a>
+					</div>
+				</div>
+				<div class="form-group">
 					<label class="col-lg-6 control-label">{{Clef maitre}}</label>
 					<div class="col-lg-6">
 						<input class="configKey form-control" data-l1key="gshs::masterkey" />
@@ -75,6 +93,12 @@ if (!isConnect()) {
 					<label class="col-lg-6 control-label">{{Cient Secret}}</label>
 					<div class="col-lg-6">
 						<input class="configKey form-control" data-l1key="gshs::clientSecret" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-6 control-label">{{Clef API Interaction}}</label>
+					<div class="col-lg-6">
+						<input class="configKey form-control" data-l1key="gshs::interactApikey" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -153,6 +177,14 @@ if (!isConnect()) {
 </div>
 
 <script type="text/javascript">
+	$('#bt_connectGoogleDialogFlow').off('click').on('click',function(){
+		window.open('https://assistant.google.com/services/auth/handoffs/auth/start?provider='+$('.configKey[data-l1key=googleDialogflowProjectId]').value()+'_dev&return_url=https://some.useless.url/ ', '_blank');
+	});
+
+	$('#bt_connectGoogleSmarthome').off('click').on('click',function(){
+		window.open('https://assistant.google.com/services/auth/handoffs/auth/start?provider='+$('.configKey[data-l1key=googleSmarthomeProjectId]').value()+'_dev&return_url=https://some.useless.url/ ', '_blank');
+	});
+
 	$('.configKey[data-l1key=mode]').on('change',function(){
 		$('.gshmode').hide();
 		$('.gshmode.'+$(this).value()).show();
