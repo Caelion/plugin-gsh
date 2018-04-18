@@ -38,6 +38,17 @@ class gsh extends eqLogic {
 
 	/*     * ***********************Methode static*************************** */
 
+	public static function cronHourly() {
+		$processes = array_merge(system::ps('stream2chromecast.py'), system::ps('avconv -i'));
+		foreach ($processes as $process) {
+			$duration = shell_exec('ps -p ' . $process['pid'] . ' -o etimes -h');
+			if ($duration < 3600) {
+				continue;
+			}
+			system::kill($process['pid']);
+		}
+	}
+
 	public static function sendJeedomConfig() {
 		$market = repo_market::getJsonRpc();
 		if (!$market->sendRequest('gsh::configGsh', array('gsh::apikey' => jeedom::getApiKey('gsh'), 'gsh::url' => network::getNetworkAccess('external')))) {
@@ -303,11 +314,6 @@ class gsh_devices {
 			$pseudo = array_merge(explode(',', $this->getOptions('pseudo')), $pseudo);
 		}
 		return $pseudo;
-	}
-
-	public function cronHourly() {
-		system::kill('stream2chromecast.py');
-		system::kill('avconv -i');
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
