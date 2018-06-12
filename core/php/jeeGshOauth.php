@@ -25,7 +25,6 @@ if (isset($_GET['response_type'])) {
 		$authorization_code = config::genKey();
 		config::save('OAuthAuthorizationCode', $authorization_code, 'gsh');
 		header('Location: ' . $_GET['redirect_uri'] . '?code=' . $authorization_code . '&state=' . $_GET['state']);
-		die('Redirect');
 	}
 } else if ($_POST['client_id'] == config::byKey('gshs::clientId', 'gsh') && $_POST['client_secret'] == config::byKey('gshs::clientSecret', 'gsh')) {
 	header('Content-type: application/json');
