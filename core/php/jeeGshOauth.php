@@ -27,12 +27,6 @@ if (isset($_GET['response_type'])) {
 		$cible_url = $_GET['redirect_uri'] . '?code=' . $authorization_code . '&state=' . $_GET['state'];
 		header('Location: ' . $cible_url);
 		die('Redirect');
-	} elseif ($_GET['client_id'] == config::byKey('gshs::clientId', 'gsh') && $_GET['response_type'] == 'token') {
-		$access_token = config::genKey();
-		config::save('OAuthAccessToken', $access_token, 'gsh');
-		$cible_url = $_GET['redirect_uri'] . '?access_token=' . $access_token . '&token_type=bearer&state=' . $_GET['state'];
-		header('Location: ' . $cible_url);
-		die('Redirect');
 	}
 	die();
 } else if ($_POST['client_id'] == config::byKey('gshs::clientId', 'gsh') && $_POST['client_secret'] == config::byKey('gshs::clientSecret', 'gsh')) {
