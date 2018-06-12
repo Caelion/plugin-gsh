@@ -27,7 +27,6 @@ if (isset($_GET['response_type'])) {
 		header('Location: ' . $_GET['redirect_uri'] . '?code=' . $authorization_code . '&state=' . $_GET['state']);
 		die('Redirect');
 	}
-	die();
 } else if ($_POST['client_id'] == config::byKey('gshs::clientId', 'gsh') && $_POST['client_secret'] == config::byKey('gshs::clientSecret', 'gsh')) {
 	header('Content-type: application/json');
 	header('HTTP/1.1 200 OK');
@@ -55,6 +54,5 @@ if (isset($_GET['response_type'])) {
 		);
 		echo json_encode($response);
 	}
-	die();
 }
 ?>
