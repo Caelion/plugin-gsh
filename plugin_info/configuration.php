@@ -17,9 +17,12 @@
 
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 include_file('core', 'authentification', 'php');
-if (!isConnect()) {
+if (!isConnect('admin')) {
 	include_file('desktop', '404', 'php');
 	die();
+}
+if (init('result_code') == 'FAILURE') {
+	echo '<div class="alert alert-danger">' . init('result_message') . '</div>';
 }
 ?>
 <form class="form-horizontal">
@@ -40,21 +43,20 @@ if (!isConnect()) {
 				<a class="btn btn-default" id="bt_sendConfigToMarket"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{Envoyer}}</a>
 			</div>
 		</div>
-		<div class="form-group gshmode internal">
-			<label class="col-lg-3 control-label">{{DNS ou IP du serveur}}</label>
-			<div class="col-lg-2">
-				<input class="configKey form-control" data-l1key="gshs::ip" />
-			</div>
-		</div>
 	</fieldset>
 </form>
 <div class='row gshmode internal'>
-	<div class='col-md-6'>
+	<div class='col-md-12'>
 		<form class="form-horizontal">
 			<fieldset>
 				<legend>{{Configuration général}}</legend>
+				<div class="alert alert-info">
+					{{Fulfillment URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGsh.php' ?><br/>
+					{{Authorization URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGshOauth.php' ?><br/>
+					{{Token URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGshOauth.php' ?>
+				</div>
 				<div class="form-group">
-					<label class="col-lg-6 control-label">{{ID du projet Dialogflow}}</label>
+					<label class="col-lg-3 control-label">{{ID du projet Dialogflow}}</label>
 					<div class="col-lg-4">
 						<input class="configKey form-control" data-l1key="googleDialogflowProjectId" />
 					</div>
@@ -63,7 +65,7 @@ if (!isConnect()) {
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-6 control-label">{{ID du projet Smarthome}}</label>
+					<label class="col-lg-3 control-label">{{ID du projet Smarthome}}</label>
 					<div class="col-lg-4">
 						<input class="configKey form-control" data-l1key="googleSmarthomeProjectId" />
 					</div>
@@ -72,109 +74,27 @@ if (!isConnect()) {
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-6 control-label">{{Clef maitre}}</label>
-					<div class="col-lg-6">
-						<input class="configKey form-control" data-l1key="gshs::masterkey" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-6 control-label">{{Clef API Google}}</label>
-					<div class="col-lg-6">
+					<label class="col-lg-3 control-label">{{Homegraph API Google}}</label>
+					<div class="col-lg-3">
 						<input class="configKey form-control" data-l1key="gshs::googleapikey" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-6 control-label">{{Cient ID}}</label>
-					<div class="col-lg-6">
+					<label class="col-lg-3 control-label">{{Homegraph User Agent}}</label>
+					<div class="col-lg-3">
+						<input class="configKey form-control" data-l1key="gshs::useragent" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-3 control-label">{{Cient ID}}</label>
+					<div class="col-lg-3">
 						<input class="configKey form-control" data-l1key="gshs::clientId" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-6 control-label">{{Cient Secret}}</label>
-					<div class="col-lg-6">
+					<label class="col-lg-3 control-label">{{Cient Secret}}</label>
+					<div class="col-lg-3">
 						<input class="configKey form-control" data-l1key="gshs::clientSecret" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-6 control-label">{{Clef API Interaction}}</label>
-					<div class="col-lg-6">
-						<input class="configKey form-control" data-l1key="gshs::interactApikey" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-6 control-label">{{Chaine de sécurisation URL}}</label>
-					<div class="col-lg-6">
-						<input class="configKey form-control" data-l1key="gshs::secureUrl" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-6 control-label">{{Port}}</label>
-					<div class="col-lg-6">
-						<input class="configKey form-control" data-l1key="gshs::port" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-6 control-label">{{Timeout}}</label>
-					<div class="col-lg-6">
-						<input class="configKey form-control" data-l1key="gshs::timeout" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-6 control-label">{{URL}}</label>
-					<div class="col-lg-6">
-						<input class="configKey form-control" data-l1key="gshs::url" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-6 control-label">{{Configuration}}</label>
-					<div class="col-lg-6">
-						<a class="btn btn-success" id="bt_viewConf"><i class="fa fa-eye" aria-hidden="true"></i> {{Voir}}</a>
-					</div>
-				</div>
-			</fieldset>
-		</form>
-	</div>
-	<div class='col-md-6'>
-		<form class="form-horizontal">
-			<fieldset>
-				<legend>{{Utilisateur}}</legend>
-				<div class="form-group">
-					<label class="col-lg-6 control-label">{{ID utilisateur}}</label>
-					<div class="col-lg-6">
-						<input class="configKey form-control" data-l1key="gshs::userid" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-6 control-label">{{Nom d'utilisateur}}</label>
-					<div class="col-lg-6">
-						<input class="configKey form-control" data-l1key="gshs::username" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-6 control-label">{{Mot de passe}}</label>
-					<div class="col-lg-6">
-						<input class="configKey form-control" data-l1key="gshs::password" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-6 control-label">{{Token}}</label>
-					<div class="col-lg-6">
-						<input class="configKey form-control" data-l1key="gshs::token" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-6 control-label">{{Mode d'accès Jeedom}}</label>
-					<div class="col-lg-6">
-						<select class="form-control configKey" data-l1key="gshs::jeedomnetwork">
-							<option value="internal">{{Interne}}</option>
-							<option value="external">{{Externe}}</option>
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-6 control-label">{{Configuration}}</label>
-					<div class="col-lg-6">
-						<a class="btn btn-success" id="bt_viewUserConf"><i class="fa fa-eye" aria-hidden="true"></i> {{Voir}}</a>
 					</div>
 				</div>
 			</fieldset>
@@ -183,26 +103,24 @@ if (!isConnect()) {
 </div>
 
 <script type="text/javascript">
+	var return_url = window.location.href
+	if(getUrlVars('result_code') == 'FAILURE'){
+		return_url = window.location.href.replace('result_code='+getUrlVars('result_code'),'').replace('result_message='+getUrlVars('result_message'),'');
+		$('#div_alert').showAlert({message: getUrlVars('result_message').replace(/\+/g, ' '), level: 'danger'});
+	}
+	if(getUrlVars('result_code') == 'SUCCESS'){
+		return_url = window.location.href.replace('result_code='+getUrlVars('result_code'),'').replace('result_message='+getUrlVars('result_message'),'');
+		$('#div_alert').showAlert({message: getUrlVars('result_message').replace(/\+/g, ' '), level: 'success'});
+	}
 	$('#bt_connectGoogleDialogFlow').off('click').on('click',function(){
-		window.open('https://assistant.google.com/services/auth/handoffs/auth/start?provider='+$('.configKey[data-l1key=googleDialogflowProjectId]').value()+'_dev&return_url=https://some.useless.url/ ', '_blank');
+		window.location = 'https://assistant.google.com/services/auth/handoffs/auth/start?provider='+$('.configKey[data-l1key=googleDialogflowProjectId]').value()+'_dev&return_url='+encodeURIComponent(return_url+'&id=gsh');
 	});
-
 	$('#bt_connectGoogleSmarthome').off('click').on('click',function(){
-		window.open('https://assistant.google.com/services/auth/handoffs/auth/start?provider='+$('.configKey[data-l1key=googleSmarthomeProjectId]').value()+'_dev&return_url=https://some.useless.url/ ', '_blank');
+		window.location = 'https://assistant.google.com/services/auth/handoffs/auth/start?provider='+$('.configKey[data-l1key=googleSmarthomeProjectId]').value()+'_dev&return_url='+encodeURIComponent(return_url+'&id=gsh');
 	});
-
 	$('.configKey[data-l1key=mode]').on('change',function(){
 		$('.gshmode').hide();
 		$('.gshmode.'+$(this).value()).show();
-	});
-	$('#bt_viewConf').on('click',function(){
-		$('#md_modal2').dialog({title: "{{Configuration général}}"});
-		$('#md_modal2').load('index.php?v=d&plugin=gsh&modal=showConf').dialog('open');
-	});
-
-	$('#bt_viewUserConf').on('click',function(){
-		$('#md_modal2').dialog({title: "{{Configuration utilisateur}}"});
-		$('#md_modal2').load('index.php?v=d&plugin=gsh&modal=showUserConf').dialog('open');
 	});
 
 	$('#bt_sendConfigToMarket').on('click', function () {
@@ -216,13 +134,13 @@ if (!isConnect()) {
 			error: function (request, status, error) {
 				handleAjaxError(request, status, error);
 			},
-            success: function (data) { // si l'appel a bien fonctionné
-            if (data.state != 'ok') {
-            	$('#div_alert').showAlert({message: data.result, level: 'danger'});
-            	return;
-            }
-            $('#div_alert').showAlert({message: '{{Configuration envoyée avec succès}}', level: 'success'});
-        }
-    });
+			success: function (data) {
+				if (data.state != 'ok') {
+					$('#div_alert').showAlert({message: data.result, level: 'danger'});
+					return;
+				}
+				$('#div_alert').showAlert({message: '{{Configuration envoyée avec succès}}', level: 'success'});
+			}
+		});
 	});
 </script>

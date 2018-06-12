@@ -15,7 +15,43 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-require_once dirname(__FILE__) . "/../../../../core/php/core.inc.php";
+require_once __DIR__ . "/../../../../core/php/core.inc.php";
+$headers = apache_request_headers();
+if (isset($headers['Authorization'])) {
+	header('Content-type: application/json');
+	$matches = array();
+	preg_match('/Bearer (.*)/', $headers['Authorization'], $matches);
+	if (!isset($matches[1]) || $matches[1] != config::byKey('OAuthAccessToken', 'gsh')) {
+		header('HTTP/1.1 401 Unauthorized');
+		echo json_encode(array());
+		die();
+	}
+	$plugin = plugin::byId('gsh');
+	if (!$plugin->isActive()) {
+		header('HTTP/1.1 401 Unauthorized');
+		echo json_encode(array());
+		die();
+	}
+	$body = json_decode(file_get_contents('php://input'), true);
+	$reply = array();
+	$reply['requestId'] = $body['requestId'];
+	foreach ($body['inputs'] as $input) {
+		if ($input['intent'] == 'action.devices.EXECUTE') {
+			$reply['payload'] = gsh::exec(array('data' => $input['payload']));
+		} else if ($input['intent'] == 'action.devices.QUERY') {
+			$reply['payload'] = gsh::query($input['payload']);
+		} else if ($input['intent'] == 'action.devices.SYNC') {
+			log::add('gsh', 'debug', 'SYNC');
+			$reply['payload'] = array();
+			$reply['payload']['agentUserId'] = config::byKey('gshs::useragent', 'gsh');
+			$reply['payload']['devices'] = gsh::sync();
+		}
+	}
+	header('HTTP/1.1 200 OK');
+	echo json_encode($reply);
+	die();
+}
+
 if (init('apikey') != '') {
 	if (!jeedom::apiAccess(init('apikey'), 'gsh')) {
 		echo __('Vous n\'etes pas autorisé à effectuer cette action. Clef API invalide. Merci de corriger la clef API sur votre page profils du market et d\'attendre 24h avant de réessayer.', __FILE__);
@@ -34,6 +70,7 @@ if (!isset($data['apikey']) || !jeedom::apiAccess($data['apikey'], 'gsh')) {
 	));
 	die();
 }
+
 $plugin = plugin::byId('gsh');
 if (!$plugin->isActive()) {
 	echo json_encode(array(
@@ -48,18 +85,10 @@ if ($data['action'] == 'exec') {
 	log::add('gsh', 'debug', $result);
 	echo $result;
 	die();
-}
-
-if ($data['action'] == 'query') {
+} else if ($data['action'] == 'query') {
 	$result = json_encode(gsh::query($data));
 	log::add('gsh', 'debug', $result);
 	echo $result;
-	die();
-}
-
-if ($data['action'] == 'interact') {
-	$params = array('plugin' => 'gsh', 'reply_cmd' => null);
-	echo json_encode(interactQuery::tryToReply(trim($data['data']['queryResult']['queryText']), $params));
 	die();
 }
 

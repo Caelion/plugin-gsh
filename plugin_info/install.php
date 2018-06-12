@@ -21,17 +21,14 @@ require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 function gsh_install() {
 	$sql = file_get_contents(dirname(__FILE__) . '/install.sql');
 	DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-	if (config::byKey('gshs::masterkey', 'gsh') == '') {
-		config::save('gshs::masterkey', config::genKey(30), 'gsh');
-	}
 	if (config::byKey('gshs::clientId', 'gsh') == '') {
 		config::save('gshs::clientId', config::genKey(10), 'gsh');
 	}
 	if (config::byKey('gshs::clientSecret', 'gsh') == '') {
 		config::save('gshs::clientSecret', config::genKey(30), 'gsh');
 	}
-	if (config::byKey('gshs::token', 'gsh') == '') {
-		config::save('gshs::token', config::genKey(30), 'gsh');
+	if (config::byKey('homegraph_userid', 'gsh') == '') {
+		config::save('homegraph_userid', 'jeedom-gsh-' . config::genKey(), 'gsh');
 	}
 	jeedom::getApiKey('gsh');
 }

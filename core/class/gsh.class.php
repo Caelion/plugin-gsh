@@ -56,48 +56,6 @@ class gsh extends eqLogic {
 		}
 	}
 
-	public static function generateConfiguration() {
-		$return = array(
-			"devPortSmartHome" => config::byKey('gshs::port', 'gsh'),
-			"smartHomeProviderClientId" => config::byKey('gshs::clientId', 'gsh'),
-			"smartHomeProvideClientSecret" => config::byKey('gshs::clientSecret', 'gsh'),
-			"smartHomeProviderApiKey" => config::byKey('gshs::googleapikey', 'gsh'),
-			"smartHomeProviderInteractApiKey" => config::byKey('gshs::interactApikey', 'gsh'),
-			"smartHomeProviderSecureUrl" => config::byKey('gshs::secureUrl', 'gsh'),
-			"masterkey" => config::byKey('gshs::masterkey', 'gsh'),
-			"jeedomTimeout" => config::byKey('gshs::timeout', 'gsh'),
-			"url" => config::byKey('gshs::url', 'gsh'),
-		);
-		return $return;
-	}
-
-	public static function generateUserConf() {
-		$return = array(
-			"tokens" => array(
-				config::byKey('gshs::token', 'gsh') => array(
-					"uid" => config::byKey('gshs::userid', 'gsh'),
-					"accessToken" => config::byKey('gshs::token', 'gsh'),
-					"refreshToken" => config::byKey('gshs::token', 'gsh'),
-					"userId" => config::byKey('gshs::userid', 'gsh'),
-				),
-			),
-			"users" => array(
-				config::byKey('gshs::userid', 'gsh') => array(
-					"uid" => config::byKey('gshs::userid', 'gsh'),
-					"name" => config::byKey('gshs::username', 'gsh'),
-					"password" => sha1(config::byKey('gshs::password', 'gsh')),
-					"tokens" => array(config::byKey('gshs::token', 'gsh')),
-					"url" => network::getNetworkAccess(config::byKey('gshs::jeedomnetwork', 'gsh', 'internal')),
-					"apikey" => jeedom::getApiKey('gsh'),
-				),
-			),
-			"usernames" => array(
-				config::byKey('gshs::username', 'gsh') => config::byKey('gshs::userid', 'gsh'),
-			),
-		);
-		return $return;
-	}
-
 	public static function sendDevices() {
 		if (config::byKey('mode', 'gsh') == 'jeedom') {
 			$market = repo_market::getJsonRpc();
@@ -105,23 +63,17 @@ class gsh extends eqLogic {
 				throw new Exception($market->getError(), $market->getErrorCode());
 			}
 		} else {
-			$request_http = new com_http(trim(config::byKey('gshs::url', 'gsh')) . '/jeedom/sync/devices' . trim(config::byKey('gshs::secureUrl', 'gsh')));
-			$post = array(
-				'masterkey' => config::byKey('gshs::masterkey', 'gsh'),
-				'userId' => config::byKey('gshs::userid', 'gsh'),
-				'data' => json_encode(self::sync(), JSON_UNESCAPED_UNICODE),
-			);
-			$request_http->setPost(http_build_query($post));
-			$result = $request_http->exec(60);
+			$request_http = new com_http('https://homegraph.googleapis.com/v1/devices:requestSync?key=' . config::byKey('gshs::googleapikey', 'gsh'));
+			$request_http->setPost(json_encode(array('agent_user_id' => config::byKey('gshs::useragent', 'gsh'))));
+			$request_http->setHeader(array('Content-Type: application/json'));
+			$result = $request_http->exec(30);
+
 			if (!is_json($result)) {
 				throw new Exception($result);
 			}
 			$result = json_decode($result, true);
-			if (!isset($result['success']) || !$result['success']) {
-				if (isset($result['message'])) {
-					throw new Exception($result['message']);
-				}
-				throw new Exception(json_encode($result, true));
+			if (isset($result['error'])) {
+				throw new Exception($result['error']['message']);
 			}
 		}
 	}
