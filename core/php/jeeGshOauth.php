@@ -24,8 +24,7 @@ if (isset($_GET['response_type'])) {
 	if ($_GET['client_id'] == config::byKey('gshs::clientId', 'gsh') && $_GET['response_type'] == 'code') {
 		$authorization_code = config::genKey();
 		config::save('OAuthAuthorizationCode', $authorization_code, 'gsh');
-		$cible_url = $_GET['redirect_uri'] . '?code=' . $authorization_code . '&state=' . $_GET['state'];
-		header('Location: ' . $cible_url);
+		header('Location: ' . $_GET['redirect_uri'] . '?code=' . $authorization_code . '&state=' . $_GET['state']);
 		die('Redirect');
 	}
 	die();
