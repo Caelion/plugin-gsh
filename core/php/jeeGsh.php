@@ -18,9 +18,13 @@
 require_once __DIR__ . "/../../../../core/php/core.inc.php";
 $headers = apache_request_headers();
 $body = json_decode(file_get_contents('php://input'), true);
-log::add('gsh', 'debug', '$_INPUT : ' . file_get_contents('php://input'));
 if (isset($body['originalDetectIntentRequest']) && isset($body['originalDetectIntentRequest']['payload']) && isset($body['originalDetectIntentRequest']['payload']['user']) & isset($body['originalDetectIntentRequest']['payload']['user']['accessToken'])) {
 	if ($body['originalDetectIntentRequest']['payload']['user']['accessToken'] != config::byKey('OAuthAccessToken', 'gsh') || config::byKey('OAuthAccessToken', 'gsh') == '') {
+		header('HTTP/1.1 401 Unauthorized');
+		echo json_encode(array());
+		die();
+	}
+	if (config::byKey('dialogflow::authkey', 'gsh') != '' && (!isset($headers['authkey']) || config::byKey('dialogflow::authkey', 'gsh') != $headers['authkey'])) {
 		header('HTTP/1.1 401 Unauthorized');
 		echo json_encode(array());
 		die();
@@ -35,10 +39,7 @@ if (isset($body['originalDetectIntentRequest']) && isset($body['originalDetectIn
 	$params = array('plugin' => 'gsh', 'reply_cmd' => null);
 	$response = interactQuery::tryToReply(trim($query), $params);
 	header('Content-type: application/json');
-
-	$json = json_encode(gsh::buildDialogflowResponse($body, $response));
-	log::add('gsh', 'debug', $json);
-	echo $json;
+	echo json_encode(gsh::buildDialogflowResponse($body, $response));
 	die();
 } else if (isset($headers['Authorization'])) {
 	header('Content-type: application/json');

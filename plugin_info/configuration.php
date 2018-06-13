@@ -49,21 +49,26 @@ if (init('result_code') == 'FAILURE') {
 	<div class='col-md-12'>
 		<form class="form-horizontal">
 			<fieldset>
-				<legend>{{Configuration général}}</legend>
+				<legend>{{Information}}</legend>
 				<div class="alert alert-info">
 					{{Fulfillment URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGsh.php' ?><br/>
 					{{Authorization URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGshOauth.php' ?><br/>
 					{{Token URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGshOauth.php' ?>
 				</div>
+				<legend>{{Oauth}}</legend>
 				<div class="form-group">
-					<label class="col-lg-3 control-label">{{ID du projet Dialogflow}}</label>
-					<div class="col-lg-4">
-						<input class="configKey form-control" data-l1key="googleDialogflowProjectId" />
-					</div>
-					<div class="col-lg-2">
-						<a class="btn btn-sm btn-success" id="bt_connectGoogleDialogFlow"><i class="fa fa-plug" aria-hidden="true"></i> {{Connection}}</a>
+					<label class="col-lg-3 control-label">{{Cient ID}}</label>
+					<div class="col-lg-3">
+						<input class="configKey form-control" data-l1key="gshs::clientId" />
 					</div>
 				</div>
+				<div class="form-group">
+					<label class="col-lg-3 control-label">{{Cient Secret}}</label>
+					<div class="col-lg-3">
+						<input class="configKey form-control" data-l1key="gshs::clientSecret" />
+					</div>
+				</div>
+				<legend>{{Smarthome}}</legend>
 				<div class="form-group">
 					<label class="col-lg-3 control-label">{{ID du projet Smarthome}}</label>
 					<div class="col-lg-4">
@@ -85,16 +90,20 @@ if (init('result_code') == 'FAILURE') {
 						<input class="configKey form-control" data-l1key="gshs::useragent" />
 					</div>
 				</div>
+				<legend>{{Interaction}}</legend>
 				<div class="form-group">
-					<label class="col-lg-3 control-label">{{Cient ID}}</label>
-					<div class="col-lg-3">
-						<input class="configKey form-control" data-l1key="gshs::clientId" />
+					<label class="col-lg-3 control-label">{{ID du projet Dialogflow}}</label>
+					<div class="col-lg-4">
+						<input class="configKey form-control" data-l1key="googleDialogflowProjectId" />
+					</div>
+					<div class="col-lg-2">
+						<a class="btn btn-sm btn-success" id="bt_connectGoogleDialogFlow"><i class="fa fa-plug" aria-hidden="true"></i> {{Connection}}</a>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-3 control-label">{{Cient Secret}}</label>
-					<div class="col-lg-3">
-						<input class="configKey form-control" data-l1key="gshs::clientSecret" />
+					<label class="col-lg-3 control-label">{{[Optionnel] Clef authentification header (authkey)}}</label>
+					<div class="col-lg-4">
+						<input class="configKey form-control" data-l1key="dialogflow::authkey" />
 					</div>
 				</div>
 			</fieldset>
