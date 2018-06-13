@@ -18,7 +18,7 @@ require_once __DIR__ . '/../../../../core/php/core.inc.php';
 if (isset($_GET['response_type'])) {
 	include_file('core', 'authentification', 'php');
 	if (!isConnect('admin')) {
-		echo 'Merci de vous connecter avant de configurer la connexion';
+		echo 'Merci de vous connecter à Jeedom avant de configurer la connexion avec Google';
 		die();
 	}
 	if ($_GET['client_id'] == config::byKey('gshs::clientId', 'gsh') && $_GET['response_type'] == 'code') {
@@ -31,7 +31,8 @@ if (isset($_GET['response_type'])) {
 	header('HTTP/1.1 200 OK');
 	header('\'Access-Control-Allow-Origin\': *');
 	header('\'Access-Control-Allow-Headers\': \'Content-Type, Authorization\'');
-	if ($_POST['grant_type'] == 'authorization_code' && $_POST['code'] == config::byKey('OAuthAuthorizationCode', 'gsh')) {
+	if ($_POST['grant_type'] == 'authorization_code' && $_POST['code'] == config::byKey('OAuthAuthorizationCode', 'gsh') && config::byKey('OAuthAuthorizationCode', 'gsh') != '') {
+		config::save('OAuthAuthorizationCode', '', 'gsh');
 		$access_token = config::genKey();
 		config::save('OAuthAccessToken', $access_token, 'gsh');
 		$refresh_token = config::genKey();
@@ -43,7 +44,7 @@ if (isset($_GET['response_type'])) {
 			'expires_in' => 60 * 24 * 2,
 		);
 		echo json_encode($response);
-	} elseif ($_POST['grant_type'] == 'refresh_token' && $_POST['refresh_token'] == config::byKey('OAuthRefreshToken', 'gsh')) {
+	} elseif ($_POST['grant_type'] == 'refresh_token' && $_POST['refresh_token'] == config::byKey('OAuthRefreshToken', 'gsh') && config::byKey('OAuthRefreshToken', 'gsh') != '') {
 		$access_token = config::genKey();
 		config::save('OAuthAccessToken', $access_token, 'gsh');
 		$response = array(
