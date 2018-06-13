@@ -17,11 +17,34 @@
  */
 require_once __DIR__ . "/../../../../core/php/core.inc.php";
 $headers = apache_request_headers();
-if (isset($headers['Authorization'])) {
+$body = json_decode(file_get_contents('php://input'), true);
+log::add('gsh', 'debug', '$_INPUT : ' . file_get_contents('php://input'));
+if (isset($body['originalDetectIntentRequest']) && isset($body['originalDetectIntentRequest']['payload']) && isset($body['originalDetectIntentRequest']['payload']['user']) & isset($body['originalDetectIntentRequest']['payload']['user']['accessToken'])) {
+	if ($body['originalDetectIntentRequest']['payload']['user']['accessToken'] != config::byKey('OAuthAccessToken', 'gsh') || config::byKey('OAuthAccessToken', 'gsh') == '') {
+		header('HTTP/1.1 401 Unauthorized');
+		echo json_encode(array());
+		die();
+	}
+
+	if (!isset($body['queryResult']) || !isset($body['queryResult']['queryText'])) {
+		header('HTTP/1.1 401 Unauthorized');
+		echo json_encode(array());
+		die();
+	}
+	$query = $body['queryResult']['queryText'];
+	$params = array('plugin' => 'gsh', 'reply_cmd' => null);
+	$response = interactQuery::tryToReply(trim($query), $params);
+	header('Content-type: application/json');
+
+	$json = json_encode(gsh::buildDialogflowResponse($body, $response));
+	log::add('gsh', 'debug', $json);
+	echo $json;
+	die();
+} else if (isset($headers['Authorization'])) {
 	header('Content-type: application/json');
 	$matches = array();
 	preg_match('/Bearer (.*)/', $headers['Authorization'], $matches);
-	if (!isset($matches[1]) || $matches[1] != config::byKey('OAuthAccessToken', 'gsh')) {
+	if (!isset($matches[1]) || $matches[1] != config::byKey('OAuthAccessToken', 'gsh') || config::byKey('OAuthAccessToken', 'gsh') == '') {
 		header('HTTP/1.1 401 Unauthorized');
 		echo json_encode(array());
 		die();
@@ -32,7 +55,6 @@ if (isset($headers['Authorization'])) {
 		echo json_encode(array());
 		die();
 	}
-	$body = json_decode(file_get_contents('php://input'), true);
 	$reply = array();
 	$reply['requestId'] = $body['requestId'];
 	foreach ($body['inputs'] as $input) {
@@ -62,8 +84,7 @@ if (init('apikey') != '') {
 	}
 }
 header('Content-type: application/json');
-$data = json_decode(file_get_contents('php://input'), true);
-if (!isset($data['apikey']) || !jeedom::apiAccess($data['apikey'], 'gsh')) {
+if (!isset($body['apikey']) || !jeedom::apiAccess($body['apikey'], 'gsh')) {
 	echo json_encode(array(
 		'status' => 'ERROR',
 		'errorCode' => 'authFailure',
@@ -79,14 +100,14 @@ if (!$plugin->isActive()) {
 	));
 	die();
 }
-log::add('gsh', 'debug', json_encode($data));
-if ($data['action'] == 'exec') {
-	$result = json_encode(gsh::exec($data));
+log::add('gsh', 'debug', json_encode($body));
+if ($body['action'] == 'exec') {
+	$result = json_encode(gsh::exec($body));
 	log::add('gsh', 'debug', $result);
 	echo $result;
 	die();
-} else if ($data['action'] == 'query') {
-	$result = json_encode(gsh::query($data));
+} else if ($body['action'] == 'query') {
+	$result = json_encode(gsh::query($body));
 	log::add('gsh', 'debug', $result);
 	echo $result;
 	die();

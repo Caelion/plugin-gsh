@@ -140,6 +140,13 @@ class gsh extends eqLogic {
 		return $return;
 	}
 
+	public static function buildDialogflowResponse($_data, $_response) {
+		$return = array();
+		$return['fulfillmentText'] = $_response['reply'];
+		return $return;
+
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
 
 	/*     * **********************Getteur Setteur*************************** */
