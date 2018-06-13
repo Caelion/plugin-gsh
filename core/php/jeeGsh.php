@@ -19,6 +19,12 @@ require_once __DIR__ . "/../../../../core/php/core.inc.php";
 $headers = apache_request_headers();
 $body = json_decode(file_get_contents('php://input'), true);
 if (isset($body['originalDetectIntentRequest']) && isset($body['originalDetectIntentRequest']['payload']) && isset($body['originalDetectIntentRequest']['payload']['user']) & isset($body['originalDetectIntentRequest']['payload']['user']['accessToken'])) {
+	$plugin = plugin::byId('gsh');
+	if (!$plugin->isActive()) {
+		header('HTTP/1.1 401 Unauthorized');
+		echo json_encode(array());
+		die();
+	}
 	if ($body['originalDetectIntentRequest']['payload']['user']['accessToken'] != config::byKey('OAuthAccessToken', 'gsh') || config::byKey('OAuthAccessToken', 'gsh') == '') {
 		header('HTTP/1.1 401 Unauthorized');
 		echo json_encode(array());
@@ -29,7 +35,6 @@ if (isset($body['originalDetectIntentRequest']) && isset($body['originalDetectIn
 		echo json_encode(array());
 		die();
 	}
-
 	if (!isset($body['queryResult']) || !isset($body['queryResult']['queryText'])) {
 		header('HTTP/1.1 401 Unauthorized');
 		echo json_encode(array());
