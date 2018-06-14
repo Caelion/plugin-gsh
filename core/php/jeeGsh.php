@@ -44,6 +44,7 @@ if (isset($body['originalDetectIntentRequest']) && isset($body['originalDetectIn
 	$params = array('plugin' => 'gsh', 'reply_cmd' => null);
 	$response = interactQuery::tryToReply(trim($query), $params);
 	header('Content-type: application/json');
+	log::add('gsh', 'debug', json_encode(gsh::buildDialogflowResponse($body, $response)));
 	echo json_encode(gsh::buildDialogflowResponse($body, $response));
 	die();
 } else if (isset($headers['Authorization'])) {

@@ -38,6 +38,10 @@ class gsh extends eqLogic {
 
 	/*     * ***********************Methode static*************************** */
 
+	public static function cronDaily() {
+		shell_exec('sudo rm -rf ' . __DIR__ . '/../../data/*');
+	}
+
 	public static function cronHourly() {
 		$processes = array_merge(system::ps('stream2chromecast.py'), system::ps('avconv -i'));
 		foreach ($processes as $process) {
@@ -143,8 +147,67 @@ class gsh extends eqLogic {
 	public static function buildDialogflowResponse($_data, $_response) {
 		$return = array();
 		$return['fulfillmentText'] = $_response['reply'];
-		return $return;
+		if (isset($_response['file'])) {
+			$carroussel = array('items' => array());
+			$urls = array();
+			$output_dir = __DIR__ . '/../../data/';
+			$items = array(
+				array(
+					'simpleResponse' => array(
+						'textToSpeech' => $_response['reply'],
+					),
+				),
+			);
+			foreach ($_response['file'] as $file) {
+				$filename = config::genKey();
+				copy($file, $output_dir . $filename . '.' . pathinfo($file, PATHINFO_EXTENSION));
+				$urls[] = network::getNetworkAccess('external') . '/plugins/gsh/data/' . $filename . '.' . pathinfo($file, PATHINFO_EXTENSION);
+			}
 
+			if (count($urls) == 1) {
+				$items[] = array(
+					'basicCard' => array(
+						"title" => $_response['reply'],
+						"image" => array(
+							"url" => $urls[0],
+							"accessibilityText" => $_response['reply'],
+						),
+						"buttons" => array(
+							array(
+								"title" => 'Jeedom',
+								"openUrlAction" => array(
+									"url" => network::getNetworkAccess('external'),
+								),
+							),
+						),
+					),
+				);
+			} else {
+				foreach ($urls as $url) {
+					$carroussel['items'][] = array(
+						"title" => $_response['reply'],
+						"image" => array(
+							"url" => $url,
+							"accessibilityText" => $_response['reply'],
+						),
+						"openUrlAction" => array(
+							"url" => network::getNetworkAccess('external'),
+						),
+					);
+				}
+				$items[] = array('carouselBrowse' => $carroussel);
+			}
+
+			$return['payload'] = array(
+				"google" => array(
+					'expectUserResponse' => true,
+					'richResponse' => array(
+						'items' => $items,
+					),
+				),
+			);
+		}
+		return $return;
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
