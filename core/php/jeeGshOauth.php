@@ -15,6 +15,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 require_once __DIR__ . '/../../../../core/php/core.inc.php';
+
 if (isset($_GET['response_type'])) {
 	include_file('core', 'authentification', 'php');
 	if (!isConnect('admin')) {
@@ -27,6 +28,10 @@ if (isset($_GET['response_type'])) {
 		header('Location: ' . $_GET['redirect_uri'] . '?code=' . $authorization_code . '&state=' . $_GET['state']);
 	}
 } else if ($_POST['client_id'] == config::byKey('gshs::clientId', 'gsh') && $_POST['client_secret'] == config::byKey('gshs::clientSecret', 'gsh')) {
+	if (!in_array(init('type', 'sh'), array('df', 'sh'))) {
+		echo 'Le type ne peut etre que sh ou df';
+		die();
+	}
 	header('Content-type: application/json');
 	header('HTTP/1.1 200 OK');
 	header('\'Access-Control-Allow-Origin\': *');
@@ -34,23 +39,23 @@ if (isset($_GET['response_type'])) {
 	if ($_POST['grant_type'] == 'authorization_code' && $_POST['code'] == config::byKey('OAuthAuthorizationCode', 'gsh') && config::byKey('OAuthAuthorizationCode', 'gsh') != '') {
 		config::save('OAuthAuthorizationCode', '', 'gsh');
 		$access_token = config::genKey();
-		config::save('OAuthAccessToken', $access_token, 'gsh');
+		config::save('OAuthAccessToken' . init('type', 'sh'), $access_token, 'gsh');
 		$refresh_token = config::genKey();
-		config::save('OAuthRefreshToken', $refresh_token, 'gsh');
+		config::save('OAuthRefreshToken' . init('type', 'sh'), $refresh_token, 'gsh');
 		$response = array(
 			'token_type' => 'bearer',
 			'access_token' => $access_token,
 			'refresh_token' => $refresh_token,
-			'expires_in' => 60 * 24 * 2,
+			'expires_in' => 3600 * 24,
 		);
 		echo json_encode($response);
-	} elseif ($_POST['grant_type'] == 'refresh_token' && $_POST['refresh_token'] == config::byKey('OAuthRefreshToken', 'gsh') && config::byKey('OAuthRefreshToken', 'gsh') != '') {
+	} elseif ($_POST['grant_type'] == 'refresh_token' && $_POST['refresh_token'] == config::byKey('OAuthRefreshToken' . init('type', 'sh'), 'gsh') && config::byKey('OAuthRefreshToken' . init('type', 'sh'), 'gsh') != '') {
 		$access_token = config::genKey();
-		config::save('OAuthAccessToken', $access_token, 'gsh');
+		config::save('OAuthAccessToken' . init('type', 'sh'), $access_token, 'gsh');
 		$response = array(
 			'token_type' => 'bearer',
 			'access_token' => $access_token,
-			'expires_in' => 60 * 24 * 2,
+			'expires_in' => 3600 * 24,
 		);
 		echo json_encode($response);
 	}

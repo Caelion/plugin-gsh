@@ -50,11 +50,6 @@ if (init('result_code') == 'FAILURE') {
 		<form class="form-horizontal">
 			<fieldset>
 				<legend>{{Information}}</legend>
-				<div class="alert alert-info">
-					{{Fulfillment URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGsh.php' ?><br/>
-					{{Authorization URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGshOauth.php' ?><br/>
-					{{Token URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGshOauth.php' ?>
-				</div>
 				<legend>{{Oauth}}</legend>
 				<div class="form-group">
 					<label class="col-lg-3 control-label">{{Cient ID}}</label>
@@ -69,6 +64,11 @@ if (init('result_code') == 'FAILURE') {
 					</div>
 				</div>
 				<legend>{{Smarthome}}</legend>
+				<div class="alert alert-info">
+					{{Fulfillment URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGsh.php' ?><br/>
+					{{Authorization URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGshOauth.php?type=sh' ?><br/>
+					{{Token URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGshOauth.php?type=sh' ?>
+				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label">{{ID du projet Smarthome}}</label>
 					<div class="col-lg-4">
@@ -91,6 +91,11 @@ if (init('result_code') == 'FAILURE') {
 					</div>
 				</div>
 				<legend>{{Interaction}}</legend>
+				<div class="alert alert-info">
+					{{Fulfillment URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGsh.php' ?><br/>
+					{{Authorization URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGshOauth.php?type=df' ?><br/>
+					{{Token URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGshOauth.php?type=df' ?>
+				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label">{{ID du projet Dialogflow}}</label>
 					<div class="col-lg-4">
@@ -114,11 +119,11 @@ if (init('result_code') == 'FAILURE') {
 <script type="text/javascript">
 	var return_url = window.location.href
 	if(getUrlVars('result_code') == 'FAILURE'){
-		return_url = window.location.href.replace('result_code='+getUrlVars('result_code'),'').replace('result_message='+getUrlVars('result_message'),'');
+		return_url = window.location.href.replace('result_code='+getUrlVars('result_code'),'').replace('result_message='+getUrlVars('result_message'),'').replace('id=gsh','').replace('#','');
 		$('#div_alert').showAlert({message: getUrlVars('result_message').replace(/\+/g, ' '), level: 'danger'});
 	}
 	if(getUrlVars('result_code') == 'SUCCESS'){
-		return_url = window.location.href.replace('result_code='+getUrlVars('result_code'),'').replace('result_message='+getUrlVars('result_message'),'');
+		return_url = window.location.href.replace('result_code='+getUrlVars('result_code'),'').replace('id=gsh','').replace('#','');
 		$('#div_alert').showAlert({message: getUrlVars('result_message').replace(/\+/g, ' '), level: 'success'});
 	}
 	$('#bt_connectGoogleDialogFlow').off('click').on('click',function(){

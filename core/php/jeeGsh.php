@@ -25,7 +25,7 @@ if (isset($body['originalDetectIntentRequest']) && isset($body['originalDetectIn
 		echo json_encode(array());
 		die();
 	}
-	if ($body['originalDetectIntentRequest']['payload']['user']['accessToken'] != config::byKey('OAuthAccessToken', 'gsh') || config::byKey('OAuthAccessToken', 'gsh') == '') {
+	if ($body['originalDetectIntentRequest']['payload']['user']['accessToken'] != config::byKey('OAuthAccessTokendf', 'gsh') || config::byKey('OAuthAccessTokendf', 'gsh') == '') {
 		header('HTTP/1.1 401 Unauthorized');
 		echo json_encode(array());
 		die();
@@ -50,7 +50,7 @@ if (isset($body['originalDetectIntentRequest']) && isset($body['originalDetectIn
 	header('Content-type: application/json');
 	$matches = array();
 	preg_match('/Bearer (.*)/', $headers['Authorization'], $matches);
-	if (!isset($matches[1]) || $matches[1] != config::byKey('OAuthAccessToken', 'gsh') || config::byKey('OAuthAccessToken', 'gsh') == '') {
+	if (!isset($matches[1]) || $matches[1] != config::byKey('OAuthAccessTokensh', 'gsh') || config::byKey('OAuthAccessTokensh', 'gsh') == '') {
 		header('HTTP/1.1 401 Unauthorized');
 		echo json_encode(array());
 		die();
