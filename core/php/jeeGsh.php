@@ -30,7 +30,7 @@ if (isset($body['originalDetectIntentRequest']) && isset($body['originalDetectIn
 		echo json_encode(array());
 		die();
 	}
-	if (config::byKey('dialogflow::authkey', 'gsh') != '' && (!isset($headers['authkey']) || config::byKey('dialogflow::authkey', 'gsh') != $headers['authkey'])) {
+	if (config::byKey('dialogflow::authkey', 'gsh') == '' || !isset($headers['authkey']) || config::byKey('dialogflow::authkey', 'gsh') != $headers['authkey']) {
 		header('HTTP/1.1 401 Unauthorized');
 		echo json_encode(array());
 		die();
@@ -49,6 +49,11 @@ if (isset($body['originalDetectIntentRequest']) && isset($body['originalDetectIn
 	die();
 } else if (isset($headers['Authorization'])) {
 	header('Content-type: application/json');
+	if (config::byKey('gshs::authkey', 'gsh') == '' || init('secure') != config::byKey('gshs::authkey', 'gsh')) {
+		header('HTTP/1.1 401 Unauthorized');
+		echo json_encode(array());
+		die();
+	}
 	$matches = array();
 	preg_match('/Bearer (.*)/', $headers['Authorization'], $matches);
 	if (!isset($matches[1]) || $matches[1] != config::byKey('OAuthAccessTokensh', 'gsh') || config::byKey('OAuthAccessTokensh', 'gsh') == '') {

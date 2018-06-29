@@ -27,6 +27,12 @@ function gsh_install() {
 	if (config::byKey('gshs::clientSecret', 'gsh') == '') {
 		config::save('gshs::clientSecret', config::genKey(30), 'gsh');
 	}
+	if (config::byKey('gshs::authkey', 'gsh') == '') {
+		config::save('gshs::authkey', config::genKey(16), 'gsh');
+	}
+	if (config::byKey('dialogflow::authkey', 'gsh') == '') {
+		config::save('dialogflow::authkey', config::genKey(16), 'gsh');
+	}
 	if (config::byKey('homegraph_userid', 'gsh') == '') {
 		config::save('homegraph_userid', 'jeedom-gsh-' . config::genKey(), 'gsh');
 	}
