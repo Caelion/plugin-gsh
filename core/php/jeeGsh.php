@@ -90,6 +90,7 @@ if (init('apikey') != '') {
 		die();
 	}
 }
+log::add('gsh', 'debug', $body['apikey']);
 header('Content-type: application/json');
 if (!isset($body['apikey']) || !jeedom::apiAccess($body['apikey'], 'gsh')) {
 	echo json_encode(array(
@@ -117,6 +118,21 @@ if ($body['action'] == 'exec') {
 	$result = json_encode(gsh::query($body));
 	log::add('gsh', 'debug', $result);
 	echo $result;
+	die();
+} else if ($body['action'] == 'interact') {
+	if (isset($data['queryResult']['languageCode']) && method_exists('translate', 'setLanguage') && str_replace('_', '-', strtolower(translate::getLanguage())) != $data['queryResult']['languageCode']) {
+		if (strpos($data['queryResult']['languageCode'], 'en-') !== false) {
+			translate::setLanguage('en_US');
+		} elseif (strpos($data['queryResult']['languageCode'], 'fr-') !== false) {
+			translate::setLanguage('fr_FR');
+		}
+	}
+	$query = $body['data']['queryResult']['queryText'];
+	$params = array('plugin' => 'gsh', 'reply_cmd' => null);
+	$response = interactQuery::tryToReply(trim($query), $params);
+	header('Content-type: application/json');
+	log::add('gsh', 'debug', json_encode(gsh::buildDialogflowResponse($body['data'], $response)));
+	echo json_encode(gsh::buildDialogflowResponse($body['data'], $response));
 	die();
 }
 
