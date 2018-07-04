@@ -34,7 +34,7 @@ function gsh_install() {
 		config::save('dialogflow::authkey', config::genKey(16), 'gsh');
 	}
 	if (config::byKey('homegraph_userid', 'gsh') == '') {
-		config::save('homegraph_userid', 'jeedom-gsh-' . config::genKey(), 'gsh');
+		config::save('homegraph_userid', 'jeedom-gsh-' . config::genKey(10), 'gsh');
 	}
 	jeedom::getApiKey('gsh');
 }

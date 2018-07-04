@@ -32,8 +32,8 @@ if (init('result_code') == 'FAILURE') {
 			<label class="col-lg-3 control-label">{{Mode}}</label>
 			<div class="col-lg-2">
 				<select class="form-control configKey" data-l1key="mode">
-					<option value="jeedom">{{Service Jeedom Cloud}}</option>
-					<option value="internal">{{Service Interne}}</option>
+					<option value="jeedom">{{Cloud}}</option>
+					<option value="internal">{{Standalone}}</option>
 				</select>
 			</div>
 		</div>
@@ -65,7 +65,7 @@ if (init('result_code') == 'FAILURE') {
 				</div>
 				<legend>{{Smarthome}}</legend>
 				<div class="alert alert-info">
-					{{Fulfillment URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGsh.php' ?><br/>
+					{{Fulfillment URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGsh.php?secure=' . config::byKey('gshs::authkey', 'gsh') ?><br/>
 					{{Authorization URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGshOauth.php?type=sh' ?><br/>
 					{{Token URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGshOauth.php?type=sh' ?>
 				</div>
@@ -98,7 +98,7 @@ if (init('result_code') == 'FAILURE') {
 				</div>
 				<legend>{{Interaction}}</legend>
 				<div class="alert alert-info">
-					{{Fulfillment URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGsh.php?secure=' . config::byKey('gshs::authkey', 'gsh') ?><br/>
+					{{Fulfillment URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGsh.php' ?><br/>
 					{{Authorization URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGshOauth.php?type=df' ?><br/>
 					{{Token URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGshOauth.php?type=df' ?>
 				</div>
