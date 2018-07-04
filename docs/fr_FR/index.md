@@ -41,7 +41,7 @@ Pour rappel le plugin permet de :
 - utiliser l'implementation native de Google pour la gestion des objets connectés
 - utiliser les interactions de jeedom en utilisant "Parler a ..."
 
-Il y a donc 2 applications coté Google : une pour la partie Google Smarthome et une pour la partie interaction (vous pouvez bien sur n'en faire que une des 2)
+Il y a donc 2 applications coté Google : une pour la partie Google Smarthome et une pour la partie intéraction (vous pouvez bien sur n'en faire que une des 2)
 
 ## Application Google Smarthome
 
@@ -155,6 +155,10 @@ Puis sur test :
 ![gsh](../images/gsh28.png)
 
 Il ne vous reste plus qu'a aller sur la page de gestion du plugin Google Smarthome puis dans la partie "Smarthome" cliquer sur "Connection"
+
+## Application Intéraction
+
+A venir
 
 # Configuration du plugin
 
