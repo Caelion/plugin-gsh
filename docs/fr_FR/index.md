@@ -156,7 +156,6 @@ Puis sur test :
 
 Il ne vous reste plus qu'a aller sur la page de gestion du plugin Google Smarthome puis dans la partie "Smarthome" cliquer sur "Connection"
 
-
 # Configuration du plugin
 
 Sur votre Jeedom, allez sur Plugin -> Communication -> Google Smarthome et dans la partie équipement sélectionnez les équipements à transmettre à Google ainsi que le type de l'équipement.
@@ -176,22 +175,9 @@ Vous pouvez aussi créer des scènes dans l'onglet scène, avec des actions d'en
 
 ![gsh](../images/gsh3.png)
 
-
-## Configuration Google
-
-Depuis votre téléphone, lancez l'application Google Home puis dans le Menu (à gauche) cliquez sur "Contrôle de maison" :
-
-![gsh](../images/gsh4.png)
-
-Cliquez sur le "+" et cherchez "Jeedom Smarthome" dans la liste :
-
-![gsh](../images/gsh5.png)
-
-Une fois sélectionné indiquez vos identifiants Market :
-
-![gsh](../images/gsh6.png)
-
-L'application va normalement se synchroniser avec vos équipements, vous pourrez ensuite les mettres dans les pièces et piloter vocalement votre domotique.
+> **NOTE**
+>
+> Lors de la sauvegarde Jeedom va automatiquement demander une synchronisation avec Google. Attention en mode standalone si vous avez une erreur essayez de réactiver le test de l'application ([ici](https://console.actions.google.com)) puis de recliquez sur le bouton de connection sur la page la page de configuration du plugin
 
 # FAQ
 
