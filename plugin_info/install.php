@@ -40,7 +40,22 @@ function gsh_install() {
 }
 
 function gsh_update() {
-
+	if (config::byKey('gshs::clientId', 'gsh') == '') {
+		config::save('gshs::clientId', config::genKey(10), 'gsh');
+	}
+	if (config::byKey('gshs::clientSecret', 'gsh') == '') {
+		config::save('gshs::clientSecret', config::genKey(30), 'gsh');
+	}
+	if (config::byKey('gshs::authkey', 'gsh') == '') {
+		config::save('gshs::authkey', config::genKey(16), 'gsh');
+	}
+	if (config::byKey('dialogflow::authkey', 'gsh') == '') {
+		config::save('dialogflow::authkey', config::genKey(16), 'gsh');
+	}
+	if (config::byKey('homegraph_userid', 'gsh') == '') {
+		config::save('homegraph_userid', 'jeedom-gsh-' . config::genKey(10), 'gsh');
+	}
+	jeedom::getApiKey('gsh');
 }
 
 function gsh_remove() {
