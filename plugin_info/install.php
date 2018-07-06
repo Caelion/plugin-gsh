@@ -33,8 +33,8 @@ function gsh_install() {
 	if (config::byKey('dialogflow::authkey', 'gsh') == '') {
 		config::save('dialogflow::authkey', config::genKey(16), 'gsh');
 	}
-	if (config::byKey('homegraph_userid', 'gsh') == '') {
-		config::save('homegraph_userid', 'jeedom-gsh-' . config::genKey(10), 'gsh');
+	if (config::byKey('gshs::useragent', 'gsh') == '') {
+		config::save('gshs::useragent', 'gsh-' . config::genKey(10), 'gsh');
 	}
 	jeedom::getApiKey('gsh');
 }
@@ -52,8 +52,8 @@ function gsh_update() {
 	if (config::byKey('dialogflow::authkey', 'gsh') == '') {
 		config::save('dialogflow::authkey', config::genKey(16), 'gsh');
 	}
-	if (config::byKey('homegraph_userid', 'gsh') == '') {
-		config::save('homegraph_userid', 'jeedom-gsh-' . config::genKey(10), 'gsh');
+	if (config::byKey('gshs::useragent', 'gsh') == '') {
+		config::save('gshs::useragent', 'gsh-' . config::genKey(10), 'gsh');
 	}
 	jeedom::getApiKey('gsh');
 }
