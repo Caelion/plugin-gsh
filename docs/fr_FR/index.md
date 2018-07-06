@@ -156,6 +156,10 @@ Puis sur test :
 
 Il ne vous reste plus qu'a aller sur la page de gestion du plugin Google Smarthome puis dans la partie "Smarthome" cliquer sur "Connection"
 
+> **IMPORTANT**
+>
+> Vous devez vous connecter à Jeedom par l'url externe (celle en https mise dans la configuration de l'application Google) absolument pour que la connexion marche sinon vous aurez "Merci de vous connecter à Jeedom avant de configurer la connexion avec Google"
+
 ## Application Intéraction
 
 A venir
