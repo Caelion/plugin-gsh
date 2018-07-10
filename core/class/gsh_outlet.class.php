@@ -183,8 +183,8 @@ class gsh_outlet {
 				$return['on'] = ($return['on']) ? false : true;
 			}
 		}
-		if (in_array($cmd->getGeneric_type(), array('FLAP_SLIDER'))) {
-			$return['on'] = (!$return['on']);
+		if (in_array($cmd->getGeneric_type(), array('FLAP_BSO_STATE', 'FLAP_STATE'))) {
+			$return['on'] = ($return['on']) ? false : true;
 		}
 		return $return;
 	}
