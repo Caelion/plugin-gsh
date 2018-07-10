@@ -28,6 +28,8 @@ class gsh_outlet {
 	private static $_OFF = array('FLAP_BSO_DOWN', 'FLAP_SLIDER', 'FLAP_DOWN', 'ENERGY_OFF', 'FLAP_SLIDER', 'HEATING_OFF', 'LOCK_CLOSE', 'SIREN_OFF', 'GB_CLOSE', 'GB_TOGGLE');
 	private static $_STATE = array('ENERGY_STATE', 'FLAP_STATE', 'FLAP_BSO_STATE', 'HEATING_STATE', 'LOCK_STATE', 'SIREN_STATE', 'GARAGE_STATE', 'BARRIER_STATE', 'OPENING', 'OPENING_WINDOW');
 
+	private static $_FAKE_STATE = array('OPENING', 'OPENING_WINDOW');
+
 	/*     * ***********************Methode static*************************** */
 
 	public static function buildDevice($_device) {
@@ -57,7 +59,6 @@ class gsh_outlet {
 				}
 				$return['customData']['cmd_set_off'] = $cmd->getId();
 			}
-
 			if (in_array($cmd->getGeneric_type(), self::$_STATE)) {
 				$return['willReportState'] = true;
 				$return['customData']['cmd_get_state'] = $cmd->getId();
@@ -67,6 +68,15 @@ class gsh_outlet {
 					$return['traits'][] = 'action.devices.traits.Brightness';
 				}
 				$return['customData']['cmd_set_slider'] = $cmd->getId();
+			}
+			if (in_array($cmd->getGeneric_type(), self::$_FAKE_STATE)) {
+				$return['willReportState'] = true;
+				$return['customData']['cmd_get_state'] = $cmd->getId();
+				if (!in_array('action.devices.traits.OnOff', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.OnOff';
+				}
+				$return['customData']['cmd_set_on'] = 'fake';
+				$return['customData']['cmd_set_off'] = 'fake';
 			}
 		}
 		if (count($return['traits']) == 0 && !$return['willReportState']) {
@@ -96,6 +106,10 @@ class gsh_outlet {
 				switch ($execution['command']) {
 					case 'action.devices.commands.OnOff':
 						if ($execution['params']['on']) {
+							if ($_infos['customData']['cmd_set_on'] == 'fake') {
+								$return = array('status' => 'SUCCESS');
+								break;
+							}
 							if (isset($_infos['customData']['cmd_set_on'])) {
 								$cmd = cmd::byId($_infos['customData']['cmd_set_on']);
 							}
@@ -111,6 +125,10 @@ class gsh_outlet {
 								$return = array('status' => 'SUCCESS');
 							}
 						} else {
+							if ($_infos['customData']['cmd_set_off'] == 'fake') {
+								$return = array('status' => 'SUCCESS');
+								break;
+							}
 							if (isset($_infos['customData']['cmd_set_off'])) {
 								$cmd = cmd::byId($_infos['customData']['cmd_set_off']);
 							}
@@ -161,6 +179,9 @@ class gsh_outlet {
 			$return['on'] = ($value > 0);
 		} else if ($cmd->getSubtype() == 'binary') {
 			$return['on'] = boolval($value);
+			if ($cmd->getDisplay('invertBinary') == 0 && in_array($cmd->getGeneric_type(), self::$_FAKE_STATE)) {
+				$return['on'] = ($return['on']) ? false : true;
+			}
 		}
 		if (in_array($cmd->getGeneric_type(), array('FLAP_SLIDER'))) {
 			$return['on'] = (!$return['on']);
