@@ -67,6 +67,7 @@ if (isset($body['originalDetectIntentRequest']) && isset($body['originalDetectIn
 		echo json_encode(array());
 		die();
 	}
+	log::add('gsh', 'debug', 'Ask : ' . json_encode($body, true));
 	$reply = array();
 	$reply['requestId'] = $body['requestId'];
 	foreach ($body['inputs'] as $input) {
@@ -75,12 +76,12 @@ if (isset($body['originalDetectIntentRequest']) && isset($body['originalDetectIn
 		} else if ($input['intent'] == 'action.devices.QUERY') {
 			$reply['payload'] = gsh::query($input['payload']);
 		} else if ($input['intent'] == 'action.devices.SYNC') {
-			log::add('gsh', 'debug', 'SYNC');
 			$reply['payload'] = array();
 			$reply['payload']['agentUserId'] = config::byKey('gshs::useragent', 'gsh');
 			$reply['payload']['devices'] = gsh::sync();
 		}
 	}
+	log::add('gsh', 'debug', 'Reply : ' . json_encode($reply, true));
 	header('HTTP/1.1 200 OK');
 	echo json_encode($reply);
 	die();
