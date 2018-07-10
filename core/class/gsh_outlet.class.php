@@ -43,6 +43,9 @@ class gsh_outlet {
 		$return = array();
 		$return['id'] = $eqLogic->getId();
 		$return['type'] = $_device->getType();
+		if (is_object($eqLogic->getObject())) {
+			$return['roomHint'] = $eqLogic->getObject()->getName();
+		}
 		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => $_device->getPseudo());
 		$return['traits'] = array();
 		$return['willReportState'] = false;
