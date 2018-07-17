@@ -36,6 +36,10 @@ Il vous faut maintenant attendre 24h le temps que votre demande soit prise en co
 >
 > Etant donné que l'application est une application de dev coté Google ils peuvent à tout moment la couper, la supprimer ou changer les régles. Dans ce cas Jeedom ne pourra aucunement être tenu responsable en cas de mauvais fonctionnement.
 
+> **IMPORTANT**
+>
+> Pour que la ou les applications marchent il faut absolument que votre jeedom soit en https avec un certificat valide (si vous avez un service pack l'accès DNS est la pour ca)
+
 Pour rappel le plugin permet de : 
 
 - utiliser l'implementation native de Google pour la gestion des objets connectés
