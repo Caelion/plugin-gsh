@@ -36,6 +36,10 @@ Il vous faut maintenant attendre 24h le temps que votre demande soit prise en co
 >
 > Etant donné que l'application est une application de dev coté Google ils peuvent à tout moment la couper, la supprimer ou changer les régles. Dans ce cas Jeedom ne pourra aucunement être tenu responsable en cas de mauvais fonctionnement.
 
+> **IMPORTANT**
+>
+> Pour que la ou les applications marchent il faut absolument que votre jeedom soit en https avec un certificat valide (si vous avez un service pack l'accès DNS est la pour ca)
+
 Pour rappel le plugin permet de : 
 
 - utiliser l'implementation native de Google pour la gestion des objets connectés
@@ -156,6 +160,10 @@ Puis sur test :
 
 Il ne vous reste plus qu'a aller sur la page de gestion du plugin Google Smarthome puis dans la partie "Smarthome" cliquer sur "Connection"
 
+> **IMPORTANT**
+>
+> Vous devez vous connecter à Jeedom par l'url externe (celle en https mise dans la configuration de l'application Google) absolument pour que la connexion marche sinon vous aurez "Merci de vous connecter à Jeedom avant de configurer la connexion avec Google"
+
 ## Application Intéraction
 
 A venir
@@ -182,6 +190,8 @@ Vous pouvez aussi créer des scènes dans l'onglet scène, avec des actions d'en
 > **NOTE**
 >
 > Lors de la sauvegarde Jeedom va automatiquement demander une synchronisation avec Google. Attention en mode standalone si vous avez une erreur essayez de réactiver le test de l'application ([ici](https://console.actions.google.com)) puis de recliquez sur le bouton de connection sur la page la page de configuration du plugin
+
+Il ne vous reste plus qu'a faire l'affectation des équipements aux pieces dans l'application Google Home
 
 # FAQ
 
