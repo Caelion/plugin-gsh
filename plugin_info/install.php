@@ -34,7 +34,7 @@ function gsh_install() {
 		config::save('dialogflow::authkey', config::genKey(16), 'gsh');
 	}
 	if (config::byKey('gshs::useragent', 'gsh') == '') {
-		config::save('gshs::useragent', 'gsh-' . config::genKey(10), 'gsh');
+		config::save('gshs::useragent', rand(100, 10000), 'gsh');
 	}
 	jeedom::getApiKey('gsh');
 }
