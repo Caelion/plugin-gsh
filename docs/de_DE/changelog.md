@@ -1,3 +1,7 @@
+# 31/07/2018
+
+- Fehlerbehebungen
+
 # 17/07/2018
 
 - Aktualisierung des Dokuments
