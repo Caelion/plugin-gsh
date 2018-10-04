@@ -23,6 +23,7 @@ include_file('core', 'gsh_thermostat', 'class', 'gsh');
 include_file('core', 'gsh_outlet', 'class', 'gsh');
 include_file('core', 'gsh_camera', 'class', 'gsh');
 include_file('core', 'gsh_scene', 'class', 'gsh');
+include_file('core', 'gsh_blinds', 'class', 'gsh');
 
 class gsh extends eqLogic {
 
@@ -34,6 +35,7 @@ class gsh extends eqLogic {
 		'action.devices.types.OUTLET' => array('class' => 'gsh_outlet', 'name' => 'Info Binaire/Actionneur on/off'),
 		'action.devices.types.CAMERA' => array('class' => 'gsh_camera', 'name' => 'Caméra'),
 		'action.devices.types.SCENE' => array('class' => 'gsh_scene', 'name' => 'Scene'),
+		'action.devices.types.BLINDS' => array('class' => 'gsh_blinds', 'name' => 'Volet'),
 	);
 
 	/*     * ***********************Methode static*************************** */
