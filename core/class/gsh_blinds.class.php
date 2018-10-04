@@ -50,13 +50,13 @@ class gsh_blinds {
 		foreach ($eqLogic->getCmd() as $cmd) {
 			if (in_array($cmd->getGeneric_type(), self::$_ON)) {
 				if (!in_array('action.devices.traits.OnOff', $return['traits'])) {
-					$return['traits'][] = 'action.devices.traits.OnOff';
+					$return['traits'][] = 'action.devices.traits.OpenClose';
 				}
 				$return['customData']['cmd_set_on'] = $cmd->getId();
 			}
 			if (in_array($cmd->getGeneric_type(), self::$_OFF)) {
 				if (!in_array('action.devices.traits.OnOff', $return['traits'])) {
-					$return['traits'][] = 'action.devices.traits.OnOff';
+					$return['traits'][] = 'action.devices.traits.OpenClose';
 				}
 				$return['customData']['cmd_set_off'] = $cmd->getId();
 			}
@@ -66,7 +66,7 @@ class gsh_blinds {
 			}
 			if (in_array($cmd->getGeneric_type(), self::$_SLIDER)) {
 				if (!in_array('action.devices.traits.Brightness', $return['traits'])) {
-					$return['traits'][] = 'action.devices.traits.Brightness';
+					$return['traits'][] = 'action.devices.traits.OpenClose';
 				}
 				$return['customData']['cmd_set_slider'] = $cmd->getId();
 			}
@@ -74,8 +74,8 @@ class gsh_blinds {
 		if (count($return['traits']) == 0 && !$return['willReportState']) {
 			return array();
 		}
-		if (!in_array('action.devices.traits.OnOff', $return['traits'])) {
-			$return['traits'][] = 'action.devices.traits.OnOff';
+		if (!in_array('action.devices.traits.OpenClose', $return['traits'])) {
+			$return['traits'][] = 'action.devices.traits.OpenClose';
 		}
 		return $return;
 	}
@@ -96,8 +96,18 @@ class gsh_blinds {
 		foreach ($_executions as $execution) {
 			try {
 				switch ($execution['command']) {
-					case 'action.devices.commands.OnOff':
-						if ($execution['params']['on']) {
+					case 'action.devices.commands.OpenClose':
+						if (isset($_infos['customData']['cmd_set_slider'])) {
+							$cmd = cmd::byId($_infos['customData']['cmd_set_slider']);
+							if (is_object($cmd)) {
+								$execution['params']['openPercent'] = 100 - $execution['params']['openPercent'];
+								$value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['openPercent'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
+								$cmd->execCmd(array('slider' => $value));
+								$return = array('status' => 'SUCCESS');
+							}
+							break;
+						}
+						if ($execution['params']['openPercent'] > 50) {
 							if (isset($_infos['customData']['cmd_set_on'])) {
 								$cmd = cmd::byId($_infos['customData']['cmd_set_on']);
 							}
@@ -127,16 +137,6 @@ class gsh_blinds {
 								$cmd->execCmd(array('slider' => $value));
 								$return = array('status' => 'SUCCESS');
 							}
-						}
-						break;
-					case 'action.devices.commands.BrightnessAbsolute':
-						if (isset($_infos['customData']['cmd_set_slider'])) {
-							$cmd = cmd::byId($_infos['customData']['cmd_set_slider']);
-						}
-						if (is_object($cmd)) {
-							$value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['brightness'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
-							$cmd->execCmd(array('slider' => $value));
-							$return = array('status' => 'SUCCESS');
 						}
 						break;
 				}
