@@ -45,9 +45,6 @@ class gsh_thermostat {
 		$return['traits'] = array();
 		foreach ($eqLogic->getCmd() as $cmd) {
 			if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_SET_SETPOINT'))) {
-				if (!in_array('action.devices.traits.TemperatureControl', $return['traits'])) {
-					$return['traits'][] = 'action.devices.traits.TemperatureControl';
-				}
 				if (!in_array('action.devices.traits.TemperatureSetting', $return['traits'])) {
 					$return['traits'][] = 'action.devices.traits.TemperatureSetting';
 				}
@@ -76,12 +73,30 @@ class gsh_thermostat {
 				$return['customData']['cmd_get_setpoint'] = $cmd->getId();
 				$return['willReportState'] = true;
 			}
-			if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_TEMPERATURE'))) {
+			if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_TEMPERATURE', 'TEMPERATURE'))) {
 				$return['customData']['cmd_get_temperature'] = $cmd->getId();
 				$return['willReportState'] = true;
 			}
+			if (in_array($cmd->getGeneric_type(), array('HUMIDITY'))) {
+				$return['customData']['cmd_get_humidity'] = $cmd->getId();
+				$return['willReportState'] = true;
+			}
 		}
-		if (count($return['traits']) == 0) {
+		if ($return['willReportState'] && count($return['traits']) == 0) {
+			$return['traits'][] = 'action.devices.traits.TemperatureSetting';
+			if (!isset($return['attributes'])) {
+				$return['attributes'] = array();
+			}
+			if (!isset($return['attributes']['temperatureRange'])) {
+				$return['attributes']['temperatureRange'] = array();
+			}
+			$return['attributes']['temperatureRange']['minThresholdCelsius'] = 10;
+			$return['attributes']['temperatureRange']['maxThresholdCelsius'] = 40;
+			$return['attributes']['temperatureStepCelsius'] = 0.5;
+			$return['attributes']['temperatureUnitForUX'] = 'C';
+			$return['attributes']['availableThermostatModes'] = '';
+		}
+		if (count($return['traits']) == 0 && !$return['willReportState']) {
 			return array();
 		}
 		return $return;
@@ -179,7 +194,12 @@ class gsh_thermostat {
 			$cmd = cmd::byId($_infos['customData']['cmd_get_temperature']);
 			if (is_object($cmd)) {
 				$return['thermostatTemperatureAmbient'] = $cmd->execCmd();
-				$return['temperatureAmbientCelsius'] = $return['thermostatTemperatureAmbient'];
+			}
+		}
+		if (isset($_infos['customData']['cmd_get_humidity'])) {
+			$cmd = cmd::byId($_infos['customData']['cmd_get_humidity']);
+			if (is_object($cmd)) {
+				$return['thermostatHumidityAmbient'] = $cmd->execCmd();
 			}
 		}
 		return $return;
