@@ -1,3 +1,7 @@
+# 04/10/2018
+
+- Support des volets (attention c'est non officiel coté Google)
+
 # 31/07/2018
 
 - Fehlerbehebungen
