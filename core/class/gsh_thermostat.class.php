@@ -51,14 +51,9 @@ class gsh_thermostat {
 				if (!isset($return['attributes'])) {
 					$return['attributes'] = array();
 				}
-				if (!isset($return['attributes']['temperatureRange'])) {
-					$return['attributes']['temperatureRange'] = array();
-				}
-				$return['attributes']['temperatureRange']['minThresholdCelsius'] = 10;
-				$return['attributes']['temperatureRange']['maxThresholdCelsius'] = 40;
+				$return['attributes']['availableThermostatModes'] = 'heat';
 				$return['attributes']['temperatureStepCelsius'] = 0.5;
 				$return['attributes']['temperatureUnitForUX'] = 'C';
-				$return['attributes']['availableThermostatModes'] = 'heatcool';
 				$return['customData']['cmd_set_thermostat'] = $cmd->getId();
 			}
 			if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_STATE'))) {
@@ -87,14 +82,9 @@ class gsh_thermostat {
 			if (!isset($return['attributes'])) {
 				$return['attributes'] = array();
 			}
-			if (!isset($return['attributes']['temperatureRange'])) {
-				$return['attributes']['temperatureRange'] = array();
-			}
-			$return['attributes']['temperatureRange']['minThresholdCelsius'] = 10;
-			$return['attributes']['temperatureRange']['maxThresholdCelsius'] = 40;
 			$return['attributes']['temperatureStepCelsius'] = 0.5;
 			$return['attributes']['temperatureUnitForUX'] = 'C';
-			$return['attributes']['availableThermostatModes'] = 'heatcool';
+			$return['attributes']['availableThermostatModes'] = 'heat';
 		}
 		if (count($return['traits']) == 0 && !$return['willReportState']) {
 			return array();
@@ -165,7 +155,7 @@ class gsh_thermostat {
 	public static function getState($_device, $_infos) {
 		$return = array();
 		$return['online'] = true;
-		$return['thermostatMode'] = 'heatcool';
+		$return['thermostatMode'] = 'heat';
 		if (isset($_infos['customData']['cmd_get_setpoint'])) {
 			$cmd = cmd::byId($_infos['customData']['cmd_get_setpoint']);
 			if (is_object($cmd)) {
@@ -184,6 +174,9 @@ class gsh_thermostat {
 			if (is_object($cmd)) {
 				$return['thermostatHumidityAmbient'] = $cmd->execCmd();
 			}
+		}
+		if (!isset($return['thermostatTemperatureSetpoint'])) {
+			$return['thermostatTemperatureSetpoint'] = $return['thermostatTemperatureAmbient'];
 		}
 		return $return;
 	}
