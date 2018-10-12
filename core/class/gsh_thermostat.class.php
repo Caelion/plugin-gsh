@@ -58,7 +58,7 @@ class gsh_thermostat {
 				$return['attributes']['temperatureRange']['maxThresholdCelsius'] = 40;
 				$return['attributes']['temperatureStepCelsius'] = 0.5;
 				$return['attributes']['temperatureUnitForUX'] = 'C';
-				$return['attributes']['availableThermostatModes'] = 'off,heat,cool,on';
+				$return['attributes']['availableThermostatModes'] = 'heatcool';
 				$return['customData']['cmd_set_thermostat'] = $cmd->getId();
 			}
 			if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_STATE'))) {
@@ -94,7 +94,7 @@ class gsh_thermostat {
 			$return['attributes']['temperatureRange']['maxThresholdCelsius'] = 40;
 			$return['attributes']['temperatureStepCelsius'] = 0.5;
 			$return['attributes']['temperatureUnitForUX'] = 'C';
-			$return['attributes']['availableThermostatModes'] = '';
+			$return['attributes']['availableThermostatModes'] = 'heatcool';
 		}
 		if (count($return['traits']) == 0 && !$return['willReportState']) {
 			return array();
@@ -165,29 +165,12 @@ class gsh_thermostat {
 	public static function getState($_device, $_infos) {
 		$return = array();
 		$return['online'] = true;
-		if (isset($_infos['customData']['cmd_get_state'])) {
-			$cmd = cmd::byId($_infos['customData']['cmd_get_state']);
-			if (is_object($cmd)) {
-				$return['thermostatMode'] = ($cmd->execCmd()) ? 'on' : 'off';
-			}
-		}
-		if (isset($_infos['customData']['cmd_get_mode'])) {
-			$cmd = cmd::byId($_infos['customData']['cmd_get_mode']);
-			if (is_object($cmd)) {
-				$value = $cmd->execCmd();
-				if ($value == __('Chauffage', __FILE__)) {
-					$return['thermostatMode'] = 'heat';
-				}
-				if ($value == __('Climatisation', __FILE__)) {
-					$return['thermostatMode'] = 'cool';
-				}
-			}
-		}
+		$return['thermostatMode'] = 'heatcool';
 		if (isset($_infos['customData']['cmd_get_setpoint'])) {
 			$cmd = cmd::byId($_infos['customData']['cmd_get_setpoint']);
 			if (is_object($cmd)) {
 				$return['thermostatTemperatureSetpoint'] = $cmd->execCmd();
-				$return['temperatureSetpointCelsius'] = $return['thermostatTemperatureSetpoint'];
+				//	$return['temperatureSetpointCelsius'] = $return['thermostatTemperatureSetpoint'];
 			}
 		}
 		if (isset($_infos['customData']['cmd_get_temperature'])) {
