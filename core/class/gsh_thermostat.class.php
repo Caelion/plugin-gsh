@@ -79,7 +79,7 @@ class gsh_thermostat {
 			$return['attributes']['temperatureUnitForUX'] = 'C';
 			$return['attributes']['availableThermostatModes'] = 'heat';
 		}
-		if (count($return['traits']) == 0 && !$return['willReportState']) {
+		if (count($return['traits']) == 0) {
 			return array();
 		}
 		return $return;
@@ -153,7 +153,6 @@ class gsh_thermostat {
 			$cmd = cmd::byId($_infos['customData']['cmd_get_setpoint']);
 			if (is_object($cmd)) {
 				$return['thermostatTemperatureSetpoint'] = $cmd->execCmd();
-				$return['temperatureSetpointCelsius'] = $return['thermostatTemperatureSetpoint'];
 			}
 		}
 		if (isset($_infos['customData']['cmd_get_temperature'])) {
