@@ -24,8 +24,8 @@ class gsh_blinds {
 	/*     * *************************Attributs****************************** */
 
 	private static $_SLIDER = array('FLAP_SLIDER');
-	private static $_ON = array('FLAP_BSO_UP', 'FLAP_SLIDER', 'FLAP_UP', 'FLAP_SLIDER');
-	private static $_OFF = array('FLAP_BSO_DOWN', 'FLAP_SLIDER', 'FLAP_DOWN', 'FLAP_SLIDER');
+	private static $_ON = array('FLAP_BSO_UP', 'FLAP_UP');
+	private static $_OFF = array('FLAP_BSO_DOWN', 'FLAP_DOWN');
 	private static $_STATE = array('FLAP_STATE', 'FLAP_BSO_STATE');
 
 	/*     * ***********************Methode static*************************** */
