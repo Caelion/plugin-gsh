@@ -164,6 +164,9 @@ class gsh extends eqLogic {
 		if (!is_object($device)) {
 			return;
 		}
+		if ($device->getCache('lastSendSuccess') >= strtotime('now')) {
+			return;
+		}
 		$return = array(
 			'requestId' => config::genKey(),
 			'agentUserId' => config::byKey('gshs::useragent', 'gsh'),
@@ -405,7 +408,11 @@ class gsh_devices {
 		if (!class_exists($class)) {
 			return array();
 		}
-		return $class::exec($this, $_execution, $_infos);
+		$result = $class::exec($this, $_execution, $_infos);
+		if (isset($result['status']) && $result['status'] == 'SUCCESS') {
+			$this->setCache('lastSendSuccess', strtotime('now'));
+		}
+		return $result;
 	}
 
 	public function query($_infos) {
@@ -416,7 +423,11 @@ class gsh_devices {
 		if (!class_exists($class)) {
 			return array();
 		}
-		return $class::query($this, $_infos);
+		$result = $class::query($this, $_infos);
+		if (isset($result['status']) && $result['status'] == 'SUCCESS') {
+			$this->setCache('lastSendSuccess', strtotime('now'));
+		}
+		return $result;
 	}
 
 	public function getPseudo() {
@@ -506,5 +517,13 @@ class gsh_devices {
 
 	public function setOptions($_key, $_value) {
 		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
+	}
+
+	public function getCache($_key = '', $_default = '') {
+		return utils::getJsonAttr(cache::byKey('gshDeviceCache' . $this->getId())->getValue(), $_key, $_default);
+	}
+
+	public function setCache($_key, $_value = null) {
+		cache::set('gshDeviceCache' . $this->getId(), utils::setJsonAttr(cache::byKey('gshDeviceCache' . $this->getId())->getValue(), $_key, $_value));
 	}
 }
