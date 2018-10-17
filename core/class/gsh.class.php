@@ -175,6 +175,9 @@ class gsh extends eqLogic {
 				),
 			),
 		);
+		if ($device->getCache('lastState') == json_encode($return['payload']['devices']['states'][$cmd->getEqLogic_id()])) {
+			return;
+		}
 		log::add('gsh', 'debug', 'Report state : ' . json_encode($return));
 
 		if (config::byKey('mode', 'gsh') == 'jeedom') {
@@ -418,6 +421,9 @@ class gsh_devices {
 			return array();
 		}
 		$result = $class::query($this, $_infos);
+		if (isset($result['status']) && $result['status'] == 'SUCCESS') {
+			$this->setCache('lastState', json_encode($result['state']));
+		}
 		return $result;
 	}
 
