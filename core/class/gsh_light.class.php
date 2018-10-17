@@ -180,7 +180,7 @@ class gsh_light {
 		}
 		$value = $cmd->execCmd();
 		if ($cmd->getSubtype() == 'numeric') {
-			$return['brightness'] = $value / $cmd->getConfiguration('maxValue', 100) * 100;
+			$return['brightness'] = round($value / $cmd->getConfiguration('maxValue', 100) * 100);
 			$return['on'] = ($return['brightness'] > 0);
 		} else if ($cmd->getSubtype() == 'binary') {
 			$return['on'] = boolval($value);
