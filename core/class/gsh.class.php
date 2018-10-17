@@ -200,7 +200,7 @@ class gsh extends eqLogic {
 			}
 			$result = json_decode($result, true);
 			if (isset($result['error'])) {
-				throw new Exception($result['error']['message']);
+				throw new Exception($result['error']['message'] . ' => ' . json_encode($return));
 			}
 		}
 	}
