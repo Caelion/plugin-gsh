@@ -20,8 +20,8 @@ if (!isConnect('admin')) {
 				<tr>
 					<th>{{Equipement}}</th>
 					<th>{{Plugin}}</th>
-					<th>{{Transmettre}}</th>
-					<th>{{Paramétrage}}</th>
+					<th>{{Options}}</th>
+					<th>{{Status}}</th>
 					<th>{{Type}}</th>
 					<th>{{Pseudo}}</th>
 					<th>{{Action}}</th>
@@ -37,7 +37,8 @@ foreach (eqLogic::all() as $eqLogic) {
 	echo '<input style="display:none;" class="deviceAttr" data-l1key="id" />';
 	echo '<input style="display:none;" class="deviceAttr" data-l1key="link_type" value="eqLogic" />';
 	echo '<input style="display:none;" class="deviceAttr" data-l1key="link_id" value="' . $eqLogic->getId() . '" />';
-	echo '<input type="checkbox" class="deviceAttr" data-l1key="enable" />';
+	echo '<input type="checkbox" class="deviceAttr" data-l1key="enable" /> <label>{{Transmettre}}</label><br/>';
+	echo '<input type="checkbox" class="deviceAttr" data-l1key="options" data-l2key="reportState" /> <label>{{Remonter l\'état}}</label>';
 	echo '</td>';
 	echo '<td>';
 	echo '<span class="deviceAttr label" data-l1key="options" data-l2key="configState" style="font-size:1em;"></span>';

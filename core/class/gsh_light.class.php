@@ -46,7 +46,7 @@ class gsh_light {
 		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => $_device->getPseudo());
 		$return['traits'] = array();
 		$return['customData'] = array();
-		$return['willReportState'] = false;
+		$return['willReportState'] = ($_device->getOptions('reportState') == 1);
 		foreach ($eqLogic->getCmd() as $cmd) {
 			if (in_array($cmd->getGeneric_type(), self::$_ON)) {
 				if (!in_array('action.devices.traits.OnOff', $return['traits'])) {
@@ -80,7 +80,6 @@ class gsh_light {
 				$return['attributes']['colorModel'] = 'RGB';
 			}
 			if (in_array($cmd->getGeneric_type(), self::$_STATE)) {
-				$return['willReportState'] = true;
 				$return['customData']['cmd_get_state'] = $cmd->getId();
 			}
 		}

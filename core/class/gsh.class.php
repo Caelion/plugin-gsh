@@ -18,6 +18,9 @@
 
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
+require_once dirname(__FILE__) . '/../../vendor/autoload.php';
+use \Firebase\JWT\JWT;
+
 include_file('core', 'gsh_light', 'class', 'gsh');
 include_file('core', 'gsh_thermostat', 'class', 'gsh');
 include_file('core', 'gsh_outlet', 'class', 'gsh');
@@ -96,7 +99,13 @@ class gsh extends eqLogic {
 			}
 			$return[] = $info;
 			$device->setOptions('configState', 'OK');
+			$device->setOptions('build', json_encode($info));
 			$device->save();
+			if ($device->getOptions('reportState') == 1) {
+				$device->addListner();
+			} else {
+				$device->removeListner();
+			}
 		}
 		return $return;
 	}
@@ -144,6 +153,85 @@ class gsh extends eqLogic {
 			$return['devices'][$infos['id']] = $device->query($infos);
 		}
 		return $return;
+	}
+
+	public static function reportState($_options) {
+		$cmd = cmd::byId($_options['event_id']);
+		if (!is_object($cmd)) {
+			return;
+		}
+		$device = gsh_devices::byLinkTypeLinkId('eqLogic', $cmd->getEqLogic_id());
+		if (!is_object($device)) {
+			return;
+		}
+		$return = array(
+			'requestId' => config::genKey(),
+			'agentUserId' => config::byKey('gshs::useragent', 'gsh'),
+			'payload' => array(
+				'devices' => array(
+					'states' => array(
+						$cmd->getEqLogic_id() => $device->query(json_decode($device->getOptions('build'), true)),
+					),
+				),
+			),
+		);
+		log::add('gsh', 'debug', 'Report state : ' . json_encode($return));
+
+		if (config::byKey('mode', 'gsh') == 'jeedom') {
+			$market = repo_market::getJsonRpc();
+			if (!$market->sendRequest('gsh::reportState', $return)) {
+				throw new Exception($market->getError(), $market->getErrorCode());
+			}
+		} else {
+			$request_http = new com_http('https://homegraph.googleapis.com/v1/devices:reportStateAndNotification');
+			$request_http->setHeader(array(
+				'Authorization: Bearer ' . self::jwt(),
+				'X-GFE-SSL: yes',
+				'Content-Type: application/json',
+			));
+			$request_http->setPost(json_encode($return));
+			$result = $request_http->exec(30);
+
+			if (!is_json($result)) {
+				throw new Exception($result);
+			}
+			$result = json_decode($result, true);
+			if (isset($result['error'])) {
+				throw new Exception($result['error']['message']);
+			}
+		}
+	}
+
+	public static function jwt() {
+		$prevToken = cache::byKey('gsh::jwt:token');
+		if ($prevToken->getValue() != '' && is_array($prevToken->getValue())) {
+			$token = $prevToken->getValue();
+			if (isset($token['token']) && isset($token['exp']) && $token['exp'] > (strtotime('now') + 60)) {
+				return $token['token'];
+			}
+		}
+		$now = strtotime('now');
+		$token = array(
+			'iat' => $now,
+			'exp' => $now + 3600,
+			'scope' => 'https://www.googleapis.com/auth/homegraph',
+			'iss' => config::byKey('gshs::jwtclientmail', 'gsh'),
+			'aud' => 'https://accounts.google.com/o/oauth2/token',
+		);
+		$jwt = JWT::encode($token, str_replace('\n', "\n", config::byKey('gshs::jwtprivkey', 'gsh')), 'RS256');
+		$request_http = new com_http('https://accounts.google.com/o/oauth2/token');
+		$request_http->setHeader(array('content-type : application/x-www-form-urlencoded'));
+		$request_http->setPost('grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=' . $jwt);
+		$result = $request_http->exec(30);
+		if (!is_json($result)) {
+			throw new Exception(__('JWT retour invalide : ', __FILE__) . $result);
+		}
+		$result = json_decode($result, true);
+		if (!isset($result['access_token'])) {
+			throw new Exception(__('JWT aucun token : ', __FILE__) . json_encode($result));
+		}
+		cache::set('gsh::jwt:token', array('token' => $result['access_token'], 'exp' => $token['exp']));
+		return $result['access_token'];
 	}
 
 	public static function buildDialogflowResponse($_data, $_response) {
@@ -338,6 +426,37 @@ class gsh_devices {
 			$pseudo = array_merge(explode(',', $this->getOptions('pseudo')), $pseudo);
 		}
 		return $pseudo;
+	}
+
+	public function addListner() {
+		if ($this->getLink_type() != 'eqLogic') {
+			return;
+		}
+		$eqLogic = $this->getLink();
+		$listener = listener::byClassAndFunction('gsh', 'reportState', array('eqLogic_id' => intval($eqLogic->getId())));
+		if (!is_object($listener)) {
+			$listener = new listener();
+		}
+		$listener->setClass('gsh');
+		$listener->setFunction('reportState');
+		$listener->setOption(array('eqLogic_id' => intval($eqLogic->getId())));
+		$listener->emptyEvent();
+		foreach ($eqLogic->getCmd('info') as $cmd) {
+			$listener->addEvent($cmd->getId());
+		}
+		$listener->save();
+	}
+
+	public function removeListner() {
+		if ($this->getLink_type() != 'eqLogic') {
+			return;
+		}
+		$eqLogic = $this->getLink();
+
+		$listener = listener::byClassAndFunction('gsh', 'reportState', array('eqLogic_id' => intval($eqLogic->getId())));
+		if (is_object($listener)) {
+			$listener->remove();
+		}
 	}
 
 	/*     * **********************Getteur Setteur*************************** */

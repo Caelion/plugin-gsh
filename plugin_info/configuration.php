@@ -96,6 +96,18 @@ if (init('result_code') == 'FAILURE') {
 						<input class="configKey form-control" data-l1key="gshs::authkey" />
 					</div>
 				</div>
+				<div class="form-group">
+					<label class="col-lg-3 control-label">{{Mail client (JWT)}}</label>
+					<div class="col-lg-3">
+						<input class="configKey form-control" data-l1key="gshs::jwtclientmail" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-3 control-label">{{Clef privé (JWT)}}</label>
+					<div class="col-lg-5">
+						<textarea rows="10" class="configKey form-control" data-l1key="gshs::jwtprivkey"></textarea>
+					</div>
+				</div>
 				<legend>{{Interaction}}</legend>
 				<div class="alert alert-info">
 					{{Fulfillment URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGsh.php' ?><br/>

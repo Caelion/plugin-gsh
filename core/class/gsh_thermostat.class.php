@@ -41,7 +41,7 @@ class gsh_thermostat {
 		}
 		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => $_device->getPseudo());
 		$return['customData'] = array();
-		$return['willReportState'] = false;
+		$return['willReportState'] = ($_device->getOptions('reportState') == 1);
 		$return['traits'] = array();
 		foreach ($eqLogic->getCmd() as $cmd) {
 			if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_SET_SETPOINT'))) {
@@ -52,37 +52,30 @@ class gsh_thermostat {
 					$return['attributes'] = array();
 				}
 				$return['attributes']['availableThermostatModes'] = 'heat';
-				$return['attributes']['temperatureStepCelsius'] = 0.5;
 				$return['attributes']['temperatureUnitForUX'] = 'C';
 				$return['customData']['cmd_set_thermostat'] = $cmd->getId();
 			}
 			if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_STATE'))) {
 				$return['customData']['cmd_get_state'] = $cmd->getId();
-				$return['willReportState'] = true;
 			}
 			if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_STATE_NAME'))) {
 				$return['customData']['cmd_get_mode'] = $cmd->getId();
-				$return['willReportState'] = true;
 			}
 			if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_SETPOINT'))) {
 				$return['customData']['cmd_get_setpoint'] = $cmd->getId();
-				$return['willReportState'] = true;
 			}
 			if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_TEMPERATURE', 'TEMPERATURE'))) {
 				$return['customData']['cmd_get_temperature'] = $cmd->getId();
-				$return['willReportState'] = true;
 			}
 			if (in_array($cmd->getGeneric_type(), array('HUMIDITY'))) {
 				$return['customData']['cmd_get_humidity'] = $cmd->getId();
-				$return['willReportState'] = true;
 			}
 		}
-		if ($return['willReportState'] && count($return['traits']) == 0) {
+		if (isset($return['customData']['cmd_get_temperature']) && count($return['traits']) == 0) {
 			$return['traits'][] = 'action.devices.traits.TemperatureSetting';
 			if (!isset($return['attributes'])) {
 				$return['attributes'] = array();
 			}
-			$return['attributes']['temperatureStepCelsius'] = 0.5;
 			$return['attributes']['temperatureUnitForUX'] = 'C';
 			$return['attributes']['availableThermostatModes'] = 'heat';
 		}
