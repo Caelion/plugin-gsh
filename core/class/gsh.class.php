@@ -164,9 +164,6 @@ class gsh extends eqLogic {
 		if (!is_object($device)) {
 			return;
 		}
-		if ($device->getCache('lastSendSuccess') >= strtotime('now')) {
-			return;
-		}
 		$return = array(
 			'requestId' => config::genKey(),
 			'agentUserId' => config::byKey('gshs::useragent', 'gsh'),
@@ -409,9 +406,6 @@ class gsh_devices {
 			return array();
 		}
 		$result = $class::exec($this, $_execution, $_infos);
-		if (isset($result['status']) && $result['status'] == 'SUCCESS') {
-			$this->setCache('lastSendSuccess', strtotime('now'));
-		}
 		return $result;
 	}
 
@@ -424,9 +418,6 @@ class gsh_devices {
 			return array();
 		}
 		$result = $class::query($this, $_infos);
-		if (isset($result['status']) && $result['status'] == 'SUCCESS') {
-			$this->setCache('lastSendSuccess', strtotime('now'));
-		}
 		return $result;
 	}
 
