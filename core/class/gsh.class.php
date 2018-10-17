@@ -178,8 +178,8 @@ class gsh extends eqLogic {
 		if ($device->getCache('lastState') == json_encode($return['payload']['devices']['states'][$cmd->getEqLogic_id()])) {
 			return;
 		}
+		$device->setCache('lastState', json_encode($return['payload']['devices']['states'][$cmd->getEqLogic_id()]));
 		log::add('gsh', 'debug', 'Report state : ' . json_encode($return));
-
 		if (config::byKey('mode', 'gsh') == 'jeedom') {
 			$market = repo_market::getJsonRpc();
 			if (!$market->sendRequest('gsh::reportState', $return)) {
@@ -460,7 +460,6 @@ class gsh_devices {
 			return;
 		}
 		$eqLogic = $this->getLink();
-
 		$listener = listener::byClassAndFunction('gsh', 'reportState', array('eqLogic_id' => intval($eqLogic->getId())));
 		if (is_object($listener)) {
 			$listener->remove();
