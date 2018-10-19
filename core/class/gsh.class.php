@@ -101,7 +101,7 @@ class gsh extends eqLogic {
 			$device->setOptions('configState', 'OK');
 			$device->setOptions('build', json_encode($info));
 			$device->save();
-			if ($device->getOptions('reportState') == 1) {
+			if (isset($info['willReportState']) && $info['willReportState']) {
 				$device->addListner();
 			} else {
 				$device->removeListner();
