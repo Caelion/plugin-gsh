@@ -39,7 +39,7 @@ class gsh_thermostat {
 		if (is_object($eqLogic->getObject())) {
 			$return['roomHint'] = $eqLogic->getObject()->getName();
 		}
-		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => $_device->getPseudo());
+		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => $_device->getPseudo(), 'defaultNames' => $_device->getPseudo());
 		$return['customData'] = array();
 		$return['willReportState'] = ($_device->getOptions('reportState') == 1);
 		$return['traits'] = array();
@@ -52,7 +52,7 @@ class gsh_thermostat {
 					$return['attributes'] = array();
 				}
 				$return['attributes']['availableThermostatModes'] = 'heat';
-				$return['attributes']['temperatureUnitForUX'] = 'C';
+				$return['attributes']['thermostatTemperatureUnit'] = 'C';
 				$return['customData']['cmd_set_thermostat'] = $cmd->getId();
 			}
 			if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_STATE'))) {
@@ -76,7 +76,7 @@ class gsh_thermostat {
 			if (!isset($return['attributes'])) {
 				$return['attributes'] = array();
 			}
-			$return['attributes']['temperatureUnitForUX'] = 'C';
+			$return['attributes']['thermostatTemperatureUnit'] = 'C';
 			$return['attributes']['availableThermostatModes'] = 'heat';
 		}
 		if (count($return['traits']) == 0) {
