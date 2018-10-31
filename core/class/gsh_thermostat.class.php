@@ -43,6 +43,15 @@ class gsh_thermostat {
 		$return['customData'] = array();
 		$return['willReportState'] = ($_device->getOptions('reportState') == 1);
 		$return['traits'] = array();
+		$modes = '';
+		if ($eqLogic->getEqType_name() == 'thermostat') {
+			if (count($eqLogic->getConfiguration('cooling')) > 0) {
+				$modes .= 'cool,';
+			}
+			if (count($eqLogic->getConfiguration('heating')) > 0) {
+				$modes .= 'heat,';
+			}
+		}
 		foreach ($eqLogic->getCmd() as $cmd) {
 			if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_SET_SETPOINT'))) {
 				if (!in_array('action.devices.traits.TemperatureSetting', $return['traits'])) {
@@ -55,11 +64,16 @@ class gsh_thermostat {
 				$return['attributes']['thermostatTemperatureUnit'] = 'C';
 				$return['customData']['cmd_set_thermostat'] = $cmd->getId();
 			}
-			if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_STATE'))) {
+			if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_STATE_NAME'))) {
 				$return['customData']['cmd_get_state'] = $cmd->getId();
 			}
-			if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_STATE_NAME'))) {
+			if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_MODE'))) {
 				$return['customData']['cmd_get_mode'] = $cmd->getId();
+			}
+			if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_SET_MODE'))) {
+				if ($cmd->getLogicalId() == 'off') {
+					$modes .= 'off,';
+				}
 			}
 			if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_SETPOINT'))) {
 				$return['customData']['cmd_get_setpoint'] = $cmd->getId();
@@ -71,13 +85,17 @@ class gsh_thermostat {
 				$return['customData']['cmd_get_humidity'] = $cmd->getId();
 			}
 		}
+
 		if (isset($return['customData']['cmd_get_temperature']) && count($return['traits']) == 0) {
 			$return['traits'][] = 'action.devices.traits.TemperatureSetting';
 			if (!isset($return['attributes'])) {
 				$return['attributes'] = array();
 			}
 			$return['attributes']['thermostatTemperatureUnit'] = 'C';
-			$return['attributes']['availableThermostatModes'] = 'heat';
+			$modes = 'heat';
+		}
+		if (isset($return['attributes']['availableThermostatModes'])) {
+			$return['attributes']['availableThermostatModes'] = trim($modes, ',');
 		}
 		if (count($return['traits']) == 0) {
 			return array();
@@ -129,11 +147,21 @@ class gsh_thermostat {
 						if (is_array($cmds)) {
 							$cmds = array($cmds);
 						}
-						foreach ($cmds as $cmd) {
-							if ($execution['params']['thermostatMode'] == $cmd->getName()) {
-								$cmd->execCmd();
+						if ($execution['params']['thermostatMode'] == 'off') {
+							$cmd = $eqLogic->getCmd('action', 'off');
+						} else {
+							foreach ($eqLogic->getCmd(null, 'modeAction', null, true) as $cmd_found) {
+								log::add('gsh', 'debug', $cmd_found->getName());
+								if ($cmd_found->getName() == __('Confort', __FILE__)) {
+									$cmd = $cmd_found;
+									break;
+								}
 							}
 						}
+						if (!is_object($cmd)) {
+							break;
+						}
+						$cmd->execCmd();
 						break;
 				}
 			} catch (Exception $e) {
@@ -149,12 +177,48 @@ class gsh_thermostat {
 		$return = array();
 		$return['online'] = true;
 		$return['thermostatMode'] = 'heat';
+		$eqLogic = $_device->getLink();
+		if ($eqLogic->getEqType_name() == 'thermostat') {
+			if (count($eqLogic->getConfiguration('cooling')) > 0 && count($eqLogic->getConfiguration('heating')) == 0) {
+				$return['thermostatMode'] = 'cool';
+			} elseif (count($eqLogic->getConfiguration('heating')) > 0 && count($eqLogic->getConfiguration('cooling')) == 0) {
+				$return['thermostatMode'] = 'heat';
+			} elseif ($eqLogic->getConfiguration('lastState') == 'heat') {
+				$return['thermostatMode'] = 'heat';
+			} elseif ($eqLogic->getConfiguration('lastState') == 'cool') {
+				$return['thermostatMode'] = 'cool';
+			}
+		}
 		if (isset($_infos['customData']['cmd_get_setpoint'])) {
 			$cmd = cmd::byId($_infos['customData']['cmd_get_setpoint']);
 			if (is_object($cmd)) {
 				$return['thermostatTemperatureSetpoint'] = $cmd->execCmd();
 			}
 		}
+		if (isset($_infos['customData']['cmd_get_state'])) {
+			$cmd = cmd::byId($_infos['customData']['cmd_get_state']);
+			if (is_object($cmd)) {
+				$mode = $cmd->execCmd();
+				switch ($mode) {
+					case __('Off', __FILE__):
+						$return['thermostatMode'] = 'off';
+						break;
+					case __('Arrêté', __FILE__):
+						$return['thermostatMode'] = 'off';
+						break;
+					case __('Suspendu', __FILE__):
+						$return['thermostatMode'] = 'off';
+						break;
+					case __('Chauffage', __FILE__):
+						$return['thermostatMode'] = 'heat';
+						break;
+					case __('Climatisation', __FILE__):
+						$return['thermostatMode'] = 'cool';
+						break;
+				}
+			}
+		}
+
 		if (isset($_infos['customData']['cmd_get_temperature'])) {
 			$cmd = cmd::byId($_infos['customData']['cmd_get_temperature']);
 			if (is_object($cmd)) {
@@ -169,6 +233,7 @@ class gsh_thermostat {
 		}
 		if (!isset($return['thermostatTemperatureSetpoint'])) {
 			$return['thermostatTemperatureSetpoint'] = $return['thermostatTemperatureAmbient'];
+			$return['thermostatMode'] = 'heat';
 		}
 		return $return;
 	}
