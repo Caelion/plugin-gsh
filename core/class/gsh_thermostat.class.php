@@ -231,9 +231,18 @@ class gsh_thermostat {
 				$return['thermostatHumidityAmbient'] = $cmd->execCmd();
 			}
 		}
+		if (isset($return['thermostatHumidityAmbient']) && $return['thermostatHumidityAmbient'] == '') {
+			$return['thermostatHumidityAmbient'] = 0;
+		}
+		if (isset($return['thermostatTemperatureAmbient']) && $return['thermostatTemperatureAmbient'] == '') {
+			$return['thermostatTemperatureAmbient'] = 0;
+		}
 		if (!isset($return['thermostatTemperatureSetpoint'])) {
 			$return['thermostatTemperatureSetpoint'] = $return['thermostatTemperatureAmbient'];
 			$return['thermostatMode'] = 'heat';
+		}
+		if (isset($return['thermostatTemperatureSetpoint']) && $return['thermostatTemperatureSetpoint'] == '') {
+			$return['thermostatTemperatureSetpoint'] = 0;
 		}
 		return $return;
 	}
