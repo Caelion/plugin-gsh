@@ -34,7 +34,13 @@ try {
 	if (init('action') == 'saveDevices') {
 		$devices = json_decode(init('devices'), true);
 		foreach ($devices as $device_json) {
-			$device = new gsh_devices();
+			$device = null;
+			if (isset($device_json['id'])) {
+				$device = gsh_devices::byId($device_json['id']);
+			}
+			if (!is_object($device)) {
+				$device = new gsh_devices();
+			}
 			utils::a2o($device, $device_json);
 			$device->save();
 			$enableList[$device->getId()] = true;
@@ -45,6 +51,17 @@ try {
 				$dbObject->remove();
 			}
 		}
+		ajax::success();
+	}
+
+	if (init('action') == 'saveDevice') {
+		$device_ajax = json_decode(init('device'), true);
+		$device = gsh_devices::byId($device_ajax['id']);
+		if (!is_object($device)) {
+			throw new Exception(__('Device non trouvé : ', __FILE__) . $device_ajax['id']);
+		}
+		utils::a2o($device, $device_ajax);
+		$device->save();
 		ajax::success();
 	}
 

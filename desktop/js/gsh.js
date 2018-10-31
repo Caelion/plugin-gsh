@@ -35,6 +35,11 @@
  });
 
 
+ $('.bt_advanceConfigureEqLogic').on('click',function(){
+ 	$('#md_modal').dialog({title: "{{Configuration avancée}}"});
+ 	$('#md_modal').load('index.php?v=d&plugin=gsh&modal=advanceConfig&eqLogic_id=' + $(this).attr('data-id')).dialog('open');
+ });
+
  $('#bt_saveConfiguration').on('click',function(){
  	var devices = $('#div_configuration .device[data-link_type=eqLogic]').getValues('.deviceAttr');
  	$('#div_scenes .scene').each(function () {

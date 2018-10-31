@@ -58,7 +58,8 @@ foreach (eqLogic::all() as $eqLogic) {
 	echo '<input class="deviceAttr form-control" data-l1key="options" data-l2key="pseudo" />';
 	echo '</td>';
 	echo '<td>';
-	echo '<a class="btn btn-default btn-sm bt_configureEqLogic" data-id="' . $eqLogic->getId() . '"><i class="fa fa-cogs"></i></a>';
+	echo ' <a class="btn btn-success btn-sm bt_advanceConfigureEqLogic" data-id="' . $eqLogic->getId() . '" ><i class="fas fa-cog"></i></a>';
+	echo ' <a class="btn btn-default btn-sm bt_configureEqLogic" data-id="' . $eqLogic->getId() . '"><i class="fa fa-cogs"></i></a>';
 	echo ' <a class="btn btn-default btn-sm" href="' . $eqLogic->getLinkToConfiguration() . '"  target="_blank"><i class="fa fa-external-link"></i></a>';
 	echo '</td>';
 	echo '</tr>';
