@@ -183,12 +183,7 @@ class gsh_thermostat {
 			if (is_object($cmd)) {
 				$mode = $cmd->execCmd();
 				foreach ($eqLogic->getCmd(null, 'modeAction', null, true) as $cmd_found) {
-					echo $mode . ' == ' . $cmd_found->getName() . "\n";
 					if ($mode == $cmd_found->getName()) {
-						echo $cmd_found->getId();
-						echo ' ---- ' . $_device->getOptions('thermostat::heat');
-						echo ' ---- ' . $_device->getOptions('thermostat::cool');
-						print_r($_device);
 						switch ($cmd_found->getId()) {
 							case $_device->getOptions('thermostat::heat'):
 								$return['thermostatMode'] = 'heat';
