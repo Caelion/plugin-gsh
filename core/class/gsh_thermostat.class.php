@@ -187,10 +187,8 @@ class gsh_thermostat {
 						switch ($cmd_found->getId()) {
 							case $_device->getOptions('thermostat::heat'):
 								$return['thermostatMode'] = 'heat';
-								echo 'je passe';
 								break;
 							case $_device->getOptions('thermostat::cool'):
-								echo 'je passe 2';
 								$return['thermostatMode'] = 'cool';
 								break;
 						}
