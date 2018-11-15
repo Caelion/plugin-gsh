@@ -330,7 +330,6 @@ class gsh_devices {
 	private $_cache = null;
 	private $_link = null;
 	private $_cmds = null;
-	private $_cache = null;
 
 	/*     * ***********************Methode static*************************** */
 
@@ -525,6 +524,7 @@ class gsh_devices {
 	}
 
 	public function setCache($_key, $_value = null) {
-		cache::set('gshDeviceCache' . $this->getId(), utils::setJsonAttr(cache::byKey('gshDeviceCache' . $this->getId())->getValue(), $_key, $_value));
+		$this->_cache = utils::setJsonAttr(cache::byKey('gshDeviceCache' . $this->getId())->getValue(), $_key, $_value);
+		cache::set('gshDeviceCache' . $this->getId(), $this->_cache);
 	}
 }
