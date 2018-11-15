@@ -327,6 +327,7 @@ class gsh_devices {
 	private $link_id;
 	private $type;
 	private $options;
+	private $_cache = null;
 	private $_link = null;
 	private $_cmds = null;
 
@@ -516,7 +517,8 @@ class gsh_devices {
 	}
 
 	public function getCache($_key = '', $_default = '') {
-		return utils::getJsonAttr(cache::byKey('gshDeviceCache' . $this->getId())->getValue(), $_key, $_default);
+		$cache = cache::byKey('gshDeviceCache' . $this->getId())->getValue();
+		return utils::getJsonAttr($cache, $_key, $_default);
 	}
 
 	public function setCache($_key, $_value = null) {
