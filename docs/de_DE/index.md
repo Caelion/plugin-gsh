@@ -168,7 +168,7 @@ Il ne vous reste plus qu'a aller sur la page de gestion du plugin Google Smartho
 
 A venir
 
-# Configuration du plugin
+# Plugin Konfiguration
 
 Sur votre Jeedom, allez sur Plugin -> Communication -> Google Smarthome et dans la partie équipement sélectionnez les équipements à transmettre à Google ainsi que le type de l'équipement.
 
