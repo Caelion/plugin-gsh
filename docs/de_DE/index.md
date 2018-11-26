@@ -158,11 +158,7 @@ Puis sur test :
 
 ![gsh](../images/gsh28.png)
 
-Il ne vous reste plus qu'a aller sur la page de gestion du plugin Google Smarthome puis dans la partie "Smarthome" cliquer sur "Connection"
-
-> **IMPORTANT**
->
-> Vous devez vous connecter à Jeedom par l'url externe (celle en https mise dans la configuration de l'application Google) absolument pour que la connexion marche sinon vous aurez "Merci de vous connecter à Jeedom avant de configurer la connexion avec Google"
+Il vous faut ensuite sur un smartphone **android**(obligatoirement ne marche pas sur un iphone) vous connecter a votre Jeedom par**l'url externe** de celui-ci. Il faut ensuite aller dans l'application home puis "configurer ou ajouter" puis "Configurer un appareil" et enfin cliquer sur "Fonctionne avec Google" et la ajouter votre service crée plus haut (il commence par [test])
 
 ## Application Intéraction
 

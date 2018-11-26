@@ -1,3 +1,7 @@
+# 25/11/2018
+
+- Actualización de la documentación
+
 # 04/10/2018
 
 - Support des volets (attention c'est non officiel coté Google)
