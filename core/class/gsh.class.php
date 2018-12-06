@@ -75,12 +75,7 @@ class gsh extends eqLogic {
 			$request_http = new com_http('https://homegraph.googleapis.com/v1/devices:requestSync?key=' . config::byKey('gshs::googleapikey', 'gsh'));
 			$request_http->setPost(json_encode(array('agent_user_id' => config::byKey('gshs::useragent', 'gsh'))));
 			$request_http->setHeader(array('Content-Type: application/json'));
-			$result = $request_http->exec(30);
-
-			if (!is_json($result)) {
-				throw new Exception($result);
-			}
-			$result = json_decode($result, true);
+			$result = is_json($request_http->exec(30), true);
 			if (isset($result['error'])) {
 				throw new Exception($result['error']['message']);
 			}
@@ -225,11 +220,7 @@ class gsh extends eqLogic {
 		$request_http = new com_http('https://accounts.google.com/o/oauth2/token');
 		$request_http->setHeader(array('content-type : application/x-www-form-urlencoded'));
 		$request_http->setPost('grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=' . $jwt);
-		$result = $request_http->exec(30);
-		if (!is_json($result)) {
-			throw new Exception(__('JWT retour invalide : ', __FILE__) . $result);
-		}
-		$result = json_decode($result, true);
+		$result = is_json($request_http->exec(30), array());
 		if (!isset($result['access_token'])) {
 			throw new Exception(__('JWT aucun token : ', __FILE__) . json_encode($result));
 		}
