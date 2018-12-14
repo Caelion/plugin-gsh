@@ -51,6 +51,7 @@ try {
 				$dbObject->remove();
 			}
 		}
+		gsh::sync();
 		ajax::success();
 	}
 
