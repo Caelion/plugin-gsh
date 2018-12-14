@@ -433,13 +433,13 @@ class gsh_devices {
 			return;
 		}
 		$eqLogic = $this->getLink();
-		$listener = listener::byClassAndFunction('gsh', 'reportState', array('repeat' => false, 'eqLogic_id' => intval($eqLogic->getId())));
+		$listener = listener::byClassAndFunction('gsh', 'reportState', array('eqLogic_id' => intval($eqLogic->getId())));
 		if (!is_object($listener)) {
 			$listener = new listener();
 		}
 		$listener->setClass('gsh');
 		$listener->setFunction('reportState');
-		$listener->setOption(array('repeat' => false, 'eqLogic_id' => intval($eqLogic->getId())));
+		$listener->setOption(array('eqLogic_id' => intval($eqLogic->getId())));
 		$listener->emptyEvent();
 		foreach ($eqLogic->getCmd('info') as $cmd) {
 			$listener->addEvent($cmd->getId());
