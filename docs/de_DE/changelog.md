@@ -1,3 +1,7 @@
+- Ajout d'une option pour inverser l'ouverture/fermeture des volets
+- Ajout d'options pour le thermostat
+- Support du report state
+
 # 25/11/2018
 
 - Aktualisierung des Dokuments
