@@ -27,6 +27,10 @@ include_file('core', 'gsh_outlet', 'class', 'gsh');
 include_file('core', 'gsh_camera', 'class', 'gsh');
 include_file('core', 'gsh_scene', 'class', 'gsh');
 include_file('core', 'gsh_blinds', 'class', 'gsh');
+include_file('core', 'gsh_sensor', 'class', 'gsh');
+include_file('core', 'gsh_window', 'class', 'gsh');
+include_file('core', 'gsh_door', 'class', 'gsh');
+include_file('core', 'gsh_shutter', 'class', 'gsh');
 
 class gsh extends eqLogic {
 
@@ -38,7 +42,11 @@ class gsh extends eqLogic {
 		'action.devices.types.OUTLET' => array('class' => 'gsh_outlet', 'name' => 'Info Binaire/Actionneur on/off'),
 		'action.devices.types.CAMERA' => array('class' => 'gsh_camera', 'name' => 'Caméra'),
 		'action.devices.types.SCENE' => array('class' => 'gsh_scene', 'name' => 'Scene'),
-		'action.devices.types.BLINDS' => array('class' => 'gsh_blinds', 'name' => 'Volet'),
+		'action.devices.types.BLINDS' => array('class' => 'gsh_blinds', 'name' => 'Store'),
+		'action.devices.types.SHUTTER' => array('class' => 'gsh_shutter', 'name' => 'Volet'),
+		'action.devices.types.SENSOR' => array('class' => 'gsh_sensor', 'name' => 'Capteur'),
+		'action.devices.types.WINDOW' => array('class' => 'gsh_window', 'name' => 'Fenêtre'),
+		'action.devices.types.DOOR' => array('class' => 'gsh_door', 'name' => 'Porte'),
 	);
 
 	/*     * ***********************Methode static*************************** */
@@ -73,11 +81,11 @@ class gsh extends eqLogic {
 			}
 		} else {
 			$request_http = new com_http('https://homegraph.googleapis.com/v1/devices:requestSync?key=' . config::byKey('gshs::googleapikey', 'gsh'));
-			$request_http->setPost(json_encode(array('agent_user_id' => config::byKey('gshs::useragent', 'gsh'))));
+			$request_http->setPost(json_encode(array('agent_user_id' => config::byKey('gshs::useragent', 'gsh'),'async' => false)));
 			$request_http->setHeader(array('Content-Type: application/json'));
 			$result = is_json($request_http->exec(30), true);
 			if (isset($result['error'])) {
-				throw new Exception($result['error']['message']);
+				throw new Exception(json_encode($result));
 			}
 		}
 	}
