@@ -47,8 +47,8 @@ class gsh_sensor {
 		foreach ($eqLogic->getCmd() as $cmd) {
 			if (in_array($cmd->getGeneric_type(), array('TEMPERATURE'))) {
 				$return['customData']['cmd_get_temperature'] = $cmd->getId();
-				if (!in_array('action.devices.traits.Sensor', $return['traits'])) {
-					$return['traits'][] = 'action.devices.traits.Sensor';
+				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.SensorState';
 				}
 			}
 		}

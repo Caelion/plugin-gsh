@@ -17,14 +17,21 @@
 
  actionOptions = []
 
+ $('.deviceAttr[data-l1key=options][data-l2key=challenge]').on('change',function(){
+   $(this).closest('tr').find('.challenge').hide();
+   if(+$(this).value() != ''){
+      $(this).closest('tr').find('.challenge.'+$(this).value()).show();
+   }
+ });
+
  $('.nav-tabs li a').on('click',function(){
- 	setTimeout(function(){ 
+ 	setTimeout(function(){
  		taAutosize();
  	}, 50);
  })
 
  $('#div_modes').on('click','.panel-heading',function(){
- 	setTimeout(function(){ 
+ 	setTimeout(function(){
  		taAutosize();
  	}, 50);
  })
@@ -50,8 +57,8 @@
  	});
 
  	$.ajax({
- 		type: "POST", 
- 		url: "plugins/gsh/core/ajax/gsh.ajax.php", 
+ 		type: "POST",
+ 		url: "plugins/gsh/core/ajax/gsh.ajax.php",
  		data: {
  			action: "saveDevices",
  			devices : json_encode(devices),
@@ -60,7 +67,7 @@
  		error: function (request, status, error) {
  			handleAjaxError(request, status, error);
  		},
- 		success: function (data) { 
+ 		success: function (data) {
  			if (data.state != 'ok') {
  				$('#div_alert').showAlert({message: data.result, level: 'danger'});
  				return;
@@ -73,8 +80,8 @@
 
  function sendDevices(){
  	$.ajax({
- 		type: "POST", 
- 		url: "plugins/gsh/core/ajax/gsh.ajax.php", 
+ 		type: "POST",
+ 		url: "plugins/gsh/core/ajax/gsh.ajax.php",
  		data: {
  			action: "sendDevices",
  		},
@@ -82,7 +89,7 @@
  		error: function (request, status, error) {
  			handleAjaxError(request, status, error);
  		},
- 		success: function (data) { 
+ 		success: function (data) {
  			if (data.state != 'ok') {
  				$('#div_alert').showAlert({message: data.result, level: 'danger'});
  				return;
@@ -96,8 +103,8 @@
  function loadData(){
  	$("#div_scenes").empty();
  	$.ajax({
- 		type: "POST", 
- 		url: "plugins/gsh/core/ajax/gsh.ajax.php", 
+ 		type: "POST",
+ 		url: "plugins/gsh/core/ajax/gsh.ajax.php",
  		data: {
  			action: "allDevices"
  		},
@@ -105,7 +112,7 @@
  		error: function (request, status, error) {
  			handleAjaxError(request, status, error);
  		},
- 		success: function (data) { 
+ 		success: function (data) {
  			if (data.state != 'ok') {
  				$('#div_alert').showAlert({message: data.result, level: 'danger'});
  				return;

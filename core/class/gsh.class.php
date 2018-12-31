@@ -1,20 +1,20 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
@@ -133,178 +133,194 @@ class gsh extends eqLogic {
 					$return['commands'][] = $result;
 					continue;
 				}
+				if($device->getOptions('challenge') == 'ackNeeded' && (!isset($command['execution'][0]['challenge']) || !isset($command['execution'][0]['challenge']['ack']) || !$command['execution'][0]['challenge']['ack'])){
+					$result = array_merge($result,array(
+						'status' => 'ERROR',
+						'errorCode' => 'challengeNeeded',
+						'challengeNeeded' => array(
+							'type' => 'ackNeeded'
+						)));
+			}else if($device->getOptions('challenge') == 'pinNeeded' && ( !isset($command['execution'][0]['challenge']) || !isset($command['execution'][0]['challenge']['pin']) || $device->getOptions('challenge_pin') != $command['execution'][0]['challenge']['pin'])){
+					$result = array_merge($result,array(
+						'status' => 'ERROR',
+						'errorCode' => 'challengeNeeded',
+						'challengeNeeded' => array(
+							'type' => 'pinNeeded'
+						)));
+			}else{
 				$result = array_merge($result, $device->exec($command['execution'], $infos));
-				$return['commands'][] = $result;
 			}
+			$return['commands'][] = $result;
 		}
-		return $return;
 	}
+	return $return;
+}
 
-	public static function query($_data) {
-		$return = array('devices' => array());
-		foreach ($_data['devices'] as $infos) {
-			$return['devices'][$infos['id']] = array();
-			$device = gsh_devices::byLinkTypeLinkId('eqLogic', $infos['id']);
-			if (!is_object($device)) {
-				$return['devices'][$infos['id']] = array('status' => 'ERROR');
-				continue;
-			}
-			if ($device->getEnable() == 0) {
-				$return['devices'][$infos['id']] = array('status' => 'OFFLINE');
-				continue;
-			}
-			$return['devices'][$infos['id']] = $device->query($infos);
-		}
-		return $return;
-	}
-
-	public static function reportState($_options) {
-		$cmd = cmd::byId($_options['event_id']);
-		if (!is_object($cmd)) {
-			return;
-		}
-		$device = gsh_devices::byLinkTypeLinkId('eqLogic', $cmd->getEqLogic_id());
+public static function query($_data) {
+	$return = array('devices' => array());
+	foreach ($_data['devices'] as $infos) {
+		$return['devices'][$infos['id']] = array();
+		$device = gsh_devices::byLinkTypeLinkId('eqLogic', $infos['id']);
 		if (!is_object($device)) {
-			return;
+			$return['devices'][$infos['id']] = array('status' => 'ERROR');
+			continue;
 		}
-		$return = array(
-			'requestId' => config::genKey(),
-			'agentUserId' => config::byKey('gshs::useragent', 'gsh'),
-			'payload' => array(
-				'devices' => array(
-					'states' => array(
-						$cmd->getEqLogic_id() => $device->query(json_decode($device->getOptions('build'), true)),
-					),
+		if ($device->getEnable() == 0) {
+			$return['devices'][$infos['id']] = array('status' => 'OFFLINE');
+			continue;
+		}
+		$return['devices'][$infos['id']] = $device->query($infos);
+	}
+	return $return;
+}
+
+public static function reportState($_options) {
+	$cmd = cmd::byId($_options['event_id']);
+	if (!is_object($cmd)) {
+		return;
+	}
+	$device = gsh_devices::byLinkTypeLinkId('eqLogic', $cmd->getEqLogic_id());
+	if (!is_object($device)) {
+		return;
+	}
+	$return = array(
+		'requestId' => config::genKey(),
+		'agentUserId' => config::byKey('gshs::useragent', 'gsh'),
+		'payload' => array(
+			'devices' => array(
+				'states' => array(
+					$cmd->getEqLogic_id() => $device->query(json_decode($device->getOptions('build'), true)),
+				),
+			),
+		),
+	);
+	if ($device->getCache('lastState') == json_encode($return['payload']['devices']['states'][$cmd->getEqLogic_id()])) {
+		return;
+	}
+	$device->setCache('lastState', json_encode($return['payload']['devices']['states'][$cmd->getEqLogic_id()]));
+	log::add('gsh', 'debug', 'Report state : ' . json_encode($return));
+	if (config::byKey('mode', 'gsh') == 'jeedom') {
+		$market = repo_market::getJsonRpc();
+		if (!$market->sendRequest('gsh::reportState', $return)) {
+			throw new Exception($market->getError(), $market->getErrorCode());
+		}
+	} else {
+		$request_http = new com_http('https://homegraph.googleapis.com/v1/devices:reportStateAndNotification');
+		$request_http->setHeader(array(
+			'Authorization: Bearer ' . self::jwt(),
+			'X-GFE-SSL: yes',
+			'Content-Type: application/json',
+		));
+		$request_http->setPost(json_encode($return));
+		$result = $request_http->exec(30);
+
+		if (!is_json($result)) {
+			throw new Exception($result);
+		}
+		$result = json_decode($result, true);
+		if (isset($result['error'])) {
+			throw new Exception($result['error']['message'] . ' => ' . json_encode($return));
+		}
+	}
+}
+
+public static function jwt() {
+	$prevToken = cache::byKey('gsh::jwt:token');
+	if ($prevToken->getValue() != '' && is_array($prevToken->getValue())) {
+		$token = $prevToken->getValue();
+		if (isset($token['token']) && isset($token['exp']) && $token['exp'] > (strtotime('now') + 60)) {
+			return $token['token'];
+		}
+	}
+	$now = strtotime('now');
+	$token = array(
+		'iat' => $now,
+		'exp' => $now + 3600,
+		'scope' => 'https://www.googleapis.com/auth/homegraph',
+		'iss' => config::byKey('gshs::jwtclientmail', 'gsh'),
+		'aud' => 'https://accounts.google.com/o/oauth2/token',
+	);
+	$jwt = JWT::encode($token, str_replace('\n', "\n", config::byKey('gshs::jwtprivkey', 'gsh')), 'RS256');
+	$request_http = new com_http('https://accounts.google.com/o/oauth2/token');
+	$request_http->setHeader(array('content-type : application/x-www-form-urlencoded'));
+	$request_http->setPost('grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=' . $jwt);
+	$result = is_json($request_http->exec(30), array());
+	if (!isset($result['access_token'])) {
+		throw new Exception(__('JWT aucun token : ', __FILE__) . json_encode($result));
+	}
+	cache::set('gsh::jwt:token', array('token' => $result['access_token'], 'exp' => $token['exp']));
+	return $result['access_token'];
+}
+
+public static function buildDialogflowResponse($_data, $_response) {
+	$return = array();
+	$return['fulfillmentText'] = $_response['reply'];
+	if (isset($_response['file'])) {
+		$carroussel = array('items' => array());
+		$urls = array();
+		$output_dir = __DIR__ . '/../../data/';
+		$items = array(
+			array(
+				'simpleResponse' => array(
+					'textToSpeech' => $_response['reply'],
 				),
 			),
 		);
-		if ($device->getCache('lastState') == json_encode($return['payload']['devices']['states'][$cmd->getEqLogic_id()])) {
-			return;
+		foreach ($_response['file'] as $file) {
+			$filename = config::genKey();
+			copy($file, $output_dir . $filename . '.' . pathinfo($file, PATHINFO_EXTENSION));
+			$urls[] = network::getNetworkAccess('external') . '/plugins/gsh/data/' . $filename . '.' . pathinfo($file, PATHINFO_EXTENSION);
 		}
-		$device->setCache('lastState', json_encode($return['payload']['devices']['states'][$cmd->getEqLogic_id()]));
-		log::add('gsh', 'debug', 'Report state : ' . json_encode($return));
-		if (config::byKey('mode', 'gsh') == 'jeedom') {
-			$market = repo_market::getJsonRpc();
-			if (!$market->sendRequest('gsh::reportState', $return)) {
-				throw new Exception($market->getError(), $market->getErrorCode());
-			}
-		} else {
-			$request_http = new com_http('https://homegraph.googleapis.com/v1/devices:reportStateAndNotification');
-			$request_http->setHeader(array(
-				'Authorization: Bearer ' . self::jwt(),
-				'X-GFE-SSL: yes',
-				'Content-Type: application/json',
-			));
-			$request_http->setPost(json_encode($return));
-			$result = $request_http->exec(30);
 
-			if (!is_json($result)) {
-				throw new Exception($result);
-			}
-			$result = json_decode($result, true);
-			if (isset($result['error'])) {
-				throw new Exception($result['error']['message'] . ' => ' . json_encode($return));
-			}
-		}
-	}
-
-	public static function jwt() {
-		$prevToken = cache::byKey('gsh::jwt:token');
-		if ($prevToken->getValue() != '' && is_array($prevToken->getValue())) {
-			$token = $prevToken->getValue();
-			if (isset($token['token']) && isset($token['exp']) && $token['exp'] > (strtotime('now') + 60)) {
-				return $token['token'];
-			}
-		}
-		$now = strtotime('now');
-		$token = array(
-			'iat' => $now,
-			'exp' => $now + 3600,
-			'scope' => 'https://www.googleapis.com/auth/homegraph',
-			'iss' => config::byKey('gshs::jwtclientmail', 'gsh'),
-			'aud' => 'https://accounts.google.com/o/oauth2/token',
-		);
-		$jwt = JWT::encode($token, str_replace('\n', "\n", config::byKey('gshs::jwtprivkey', 'gsh')), 'RS256');
-		$request_http = new com_http('https://accounts.google.com/o/oauth2/token');
-		$request_http->setHeader(array('content-type : application/x-www-form-urlencoded'));
-		$request_http->setPost('grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=' . $jwt);
-		$result = is_json($request_http->exec(30), array());
-		if (!isset($result['access_token'])) {
-			throw new Exception(__('JWT aucun token : ', __FILE__) . json_encode($result));
-		}
-		cache::set('gsh::jwt:token', array('token' => $result['access_token'], 'exp' => $token['exp']));
-		return $result['access_token'];
-	}
-
-	public static function buildDialogflowResponse($_data, $_response) {
-		$return = array();
-		$return['fulfillmentText'] = $_response['reply'];
-		if (isset($_response['file'])) {
-			$carroussel = array('items' => array());
-			$urls = array();
-			$output_dir = __DIR__ . '/../../data/';
-			$items = array(
-				array(
-					'simpleResponse' => array(
-						'textToSpeech' => $_response['reply'],
+		if (count($urls) == 1) {
+			$items[] = array(
+				'basicCard' => array(
+					"title" => $_response['reply'],
+					"image" => array(
+						"url" => $urls[0],
+						"accessibilityText" => $_response['reply'],
 					),
-				),
-			);
-			foreach ($_response['file'] as $file) {
-				$filename = config::genKey();
-				copy($file, $output_dir . $filename . '.' . pathinfo($file, PATHINFO_EXTENSION));
-				$urls[] = network::getNetworkAccess('external') . '/plugins/gsh/data/' . $filename . '.' . pathinfo($file, PATHINFO_EXTENSION);
-			}
-
-			if (count($urls) == 1) {
-				$items[] = array(
-					'basicCard' => array(
-						"title" => $_response['reply'],
-						"image" => array(
-							"url" => $urls[0],
-							"accessibilityText" => $_response['reply'],
-						),
-						"buttons" => array(
-							array(
-								"title" => 'Jeedom',
-								"openUrlAction" => array(
-									"url" => network::getNetworkAccess('external'),
-								),
+					"buttons" => array(
+						array(
+							"title" => 'Jeedom',
+							"openUrlAction" => array(
+								"url" => network::getNetworkAccess('external'),
 							),
 						),
 					),
-				);
-			} else {
-				foreach ($urls as $url) {
-					$carroussel['items'][] = array(
-						"title" => $_response['reply'],
-						"image" => array(
-							"url" => $url,
-							"accessibilityText" => $_response['reply'],
-						),
-						"openUrlAction" => array(
-							"url" => network::getNetworkAccess('external'),
-						),
-					);
-				}
-				$items[] = array('carouselBrowse' => $carroussel);
-			}
-
-			$return['payload'] = array(
-				"google" => array(
-					'expectUserResponse' => true,
-					'richResponse' => array(
-						'items' => $items,
-					),
 				),
 			);
+		} else {
+			foreach ($urls as $url) {
+				$carroussel['items'][] = array(
+					"title" => $_response['reply'],
+					"image" => array(
+						"url" => $url,
+						"accessibilityText" => $_response['reply'],
+					),
+					"openUrlAction" => array(
+						"url" => network::getNetworkAccess('external'),
+					),
+				);
+			}
+			$items[] = array('carouselBrowse' => $carroussel);
 		}
-		return $return;
+
+		$return['payload'] = array(
+			"google" => array(
+				'expectUserResponse' => true,
+				'richResponse' => array(
+					'items' => $items,
+				),
+			),
+		);
 	}
+	return $return;
+}
 
-	/*     * *********************Méthodes d'instance************************* */
+/*     * *********************Méthodes d'instance************************* */
 
-	/*     * **********************Getteur Setteur*************************** */
+/*     * **********************Getteur Setteur*************************** */
 }
 
 class gshCmd extends cmd {
