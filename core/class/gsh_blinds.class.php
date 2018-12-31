@@ -102,7 +102,7 @@ class gsh_blinds {
 								$execution['params']['openPercent'] = 100 - $execution['params']['openPercent'];
 								$value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['openPercent'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
 								if($_device->getOptions('blinds::invert',0) == 1){
-									$value = 100 - $value;
+									$value = $cmd->getConfiguration('maxValue', 100) - $value;
 								}
 								$cmd->execCmd(array('slider' => $value));
 								$return = array('status' => 'SUCCESS');
