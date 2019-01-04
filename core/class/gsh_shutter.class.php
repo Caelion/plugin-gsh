@@ -49,13 +49,13 @@ class gsh_shutter {
 		$return['willReportState'] = ($_device->getOptions('reportState') == 1);
 		foreach ($eqLogic->getCmd() as $cmd) {
 			if (in_array($cmd->getGeneric_type(), self::$_ON)) {
-				if (!in_array('action.devices.traits.OnOff', $return['traits'])) {
+				if (!in_array('action.devices.traits.OpenClose', $return['traits'])) {
 					$return['traits'][] = 'action.devices.traits.OpenClose';
 				}
 				$return['customData']['cmd_set_on'] = $cmd->getId();
 			}
 			if (in_array($cmd->getGeneric_type(), self::$_OFF)) {
-				if (!in_array('action.devices.traits.OnOff', $return['traits'])) {
+				if (!in_array('action.devices.traits.OpenClose', $return['traits'])) {
 					$return['traits'][] = 'action.devices.traits.OpenClose';
 				}
 				$return['customData']['cmd_set_off'] = $cmd->getId();
@@ -64,7 +64,7 @@ class gsh_shutter {
 				$return['customData']['cmd_get_state'] = $cmd->getId();
 			}
 			if (in_array($cmd->getGeneric_type(), self::$_SLIDER)) {
-				if (!in_array('action.devices.traits.Brightness', $return['traits'])) {
+				if (!in_array('action.devices.traits.OpenClose', $return['traits'])) {
 					$return['traits'][] = 'action.devices.traits.OpenClose';
 				}
 				$return['customData']['cmd_set_slider'] = $cmd->getId();
