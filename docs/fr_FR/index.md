@@ -229,6 +229,7 @@ Les types d'équipements sont important cela permet à Google de réagir en fonc
 * Fenêtre [beta] : supporte normalement le status ouvert/fermé d'une fenetre (pour information il n'y a que si je pose la question en anglais que ca marche)
 * Porte [beta] : supporte normalement le status ouvert/fermé d'une porte (pour information il n'y a que si je pose la question en anglais que ca marche)
 * Alarme [beta] : permet d'armer/désarmer l'alarme (attention il faut employer le terme arme/désarme pour que Google fasse l'action)
+* Verrou [beta] : permet de fermer/ouvrir un équipement
 
 ## Scénario
 
@@ -255,3 +256,7 @@ Il ne vous reste plus qu'a faire l'affectation des équipements aux pieces dans 
 >**Pourquoi faut-il affecter des pièces à chaque équipement ?**
 >
 >Car Google ne permet pas de le faire par l'API vous devez donc absolument le faire manuellement.
+
+>**J'ai le message d'erreur "OpenSSL unable to sign data"**
+>
+>Vous avez du cocher la case "Remonter l'état" sans faire la configuration JWT
