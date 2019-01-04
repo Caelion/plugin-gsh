@@ -11,20 +11,19 @@ if (!isConnect('admin')) {
 	<li role="presentation"><a href="#scenariotab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Scénario}}</a></li>
 </ul>
 
-<div class="tab-content" id="div_configuration" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
+<div class="tab-content" id="div_configuration">
 	<div role="tabpanel" class="tab-pane active" id="eqlogictab">
 		<br/>
-		<center><span id="span_summaryDevice" style="margin-bottom: 5px;font-weight: bold;"></span></center>
 		<table class="table table-bordered tablesorter">
 			<thead>
 				<tr>
 					<th>{{Equipement}}</th>
 					<th>{{Plugin}}</th>
-					<th>{{Options}}</th>
+					<th data-sorter="false" data-filter="false">{{Options}}</th>
 					<th>{{Status}}</th>
 					<th>{{Type}}</th>
 					<th>{{Pseudo}}</th>
-					<th>{{Action}}</th>
+					<th data-sorter="false" data-filter="false">{{Action}}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -44,7 +43,7 @@ foreach (eqLogic::all() as $eqLogic) {
 	echo '<div class="col-lg-6">';
 	echo '<select class="deviceAttr form-control input-sm" data-l1key="options" data-l2key="challenge">';
 	echo '<option value="">{{Aucune}}</option>';
-	echo '<option value="ackNeeded">{{Validation}}</option>';
+	//echo '<option value="ackNeeded">{{Validation}}</option>';
 	echo '<option value="pinNeeded">{{Code}}</option>';
 	echo '</select>';
 	echo '</div>';
@@ -71,9 +70,9 @@ foreach (eqLogic::all() as $eqLogic) {
 	echo '<select>';
 	echo '</td>';
 	echo '<td>';
-	echo '<input class="deviceAttr form-control" data-l1key="options" data-l2key="pseudo" />';
+	echo '<input class="deviceAttr form-control input-sm" data-l1key="options" data-l2key="pseudo" />';
 	echo '</td>';
-	echo '<td>';
+	echo '<td style="width:150px;">';
 	echo ' <a class="btn btn-success btn-sm bt_advanceConfigureEqLogic" data-id="' . $eqLogic->getId() . '" ><i class="fas fa-cog"></i></a>';
 	echo ' <a class="btn btn-default btn-sm bt_configureEqLogic" data-id="' . $eqLogic->getId() . '"><i class="fa fa-cogs"></i></a>';
 	echo ' <a class="btn btn-default btn-sm" href="' . $eqLogic->getLinkToConfiguration() . '"  target="_blank"><i class="fa fa-external-link"></i></a>';

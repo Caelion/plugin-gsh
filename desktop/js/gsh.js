@@ -139,7 +139,6 @@
  					}
  				}
  			}
- 			$('#span_summaryDevice').text('{{Vous avez}} '+nbDeviceOk+' {{équipement(s) OK et}} '+nbDeviceNok+' {{avec une configuration invalide}}');
  			jeedom.cmd.displayActionsOption({
  				params : actionOptions,
  				async : false,
