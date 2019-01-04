@@ -80,15 +80,12 @@ class gsh_door {
 		}
 		$value = $cmd->execCmd();
 		if ($cmd->getSubtype() == 'numeric') {
-			$return['on'] = ($value > 0);
+			$return['openPercent'] = $value;
 		} else if ($cmd->getSubtype() == 'binary') {
-			$return['on'] = boolval($value);
+			$return['openPercent'] = ($value) ? 100 : 0;
 			if ($cmd->getDisplay('invertBinary') == 0) {
-				$return['on'] = ($return['on']) ? false : true;
+				$return['openPercent'] = 100 - $return['openPercent'];
 			}
-		}
-		if (in_array($cmd->getGeneric_type(), array('FLAP_BSO_STATE', 'FLAP_STATE'))) {
-			$return['on'] = ($return['on']) ? false : true;
 		}
 		return $return;
 	}

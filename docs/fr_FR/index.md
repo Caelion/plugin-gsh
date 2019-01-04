@@ -175,7 +175,7 @@ Pour faire la configuration il faut
   * Cliquez sur  "Créer une clé"
     * Laissez JSON et cliquez sur OK
   * Cliquez sur OK
-  * Ouvrez le fichier téléchargé et copier la partie 'private_key' (commence par "-----BEGIN PRIVATE KEY-----", inclus et fini par -----END PRIVATE KEY-----, inclus) dans la configuration du plugin sur Jeedom (champs : Clef privé (JWT)) 
+  * Ouvrez le fichier téléchargé et copier la partie 'private_key' (commence par "-----BEGIN PRIVATE KEY-----", inclus et fini par -----END PRIVATE KEY-----, inclus) dans la configuration du plugin sur Jeedom (champs : Clef privé (JWT))
 
 ## Application Intéraction
 
@@ -205,11 +205,29 @@ Sur les équipements vous pouvez configurer :
   * Remonter l'état : envoi toute informations de changement d'état à Google directement (cela évite que lors d'une demande d'information Google Home interroge Jeedom). Voir partie "Configuration JWT"
   * Challenge [Aucun,Code] : si en mode code alors Google vous demandera un Code (celui indiqué juste en dessous) pour chaque action sur l'équipement
 * Status : indique si la transmission est OK, si c'est NOK alors cela vient des Générique type
+* Type : indique le type d'équipements
 * Pseudo : pseudo de l'équipement, si vide alors c'est le nom de l'équipement qui est utilisé
 * Action :
   * Permet la configuration avancé de l'équipement pour Google Home (dépend du type utilisé)
   * Configuration avancée de l'équipements, permet d'accéder à la configuration avancée des commandes et donc de modifier les types générique
   * Permet d'aller directement sur la page de configuration de l'équipement
+
+### Type
+
+Les types d'équipements sont important cela permet à Google de réagir en fonction des phrases que vous dite.
+
+> **IMPORTANT**
+>
+> Jeedom support des types "beta" non encore documenté chez Google donc qui peuvent marcher ou non en fonction des mises à jour chez google
+
+* Lumière : supporte l'allumage/l'arret, le changement de couleur, le dimming....
+* Thermostat : support le changement de consigne et les modes (de maniere limité seul certain nom de mode sont autorisé par Google, attention a bien faire la configuration avancée)
+* Prise : marche/arret
+* Caméra : en beta, peut afficher le flux sur une télé Android sur le réseaux local
+* Store [beta] : permet d'ouvrir/fermer un store (vous pouvez inverser le sens dans la configuration avancée)
+* Volet [beta] : permet d'ouvrir/fermer un volet (vous pouvez inverser le sens dans la configuration avancée)
+* Fenêtre [beta] : supporte normalement le status ouvert/fermé d'une fenetre (pour information il n'y a que si je pose la question en anglais que ca marche)
+* Porte [beta] : supporte normalement le status ouvert/fermé d'une porte (pour information il n'y a que si je pose la question en anglais que ca marche)
 
 ## Scénario
 

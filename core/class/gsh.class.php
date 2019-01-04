@@ -39,12 +39,12 @@ class gsh extends eqLogic {
 	public static $_supportedType = array(
 		'action.devices.types.LIGHT' => array('class' => 'gsh_light', 'name' => 'Lumière'),
 		'action.devices.types.THERMOSTAT' => array('class' => 'gsh_thermostat', 'name' => 'Thermostat'),
-		'action.devices.types.OUTLET' => array('class' => 'gsh_outlet', 'name' => 'Info Binaire/Actionneur on/off'),
+		'action.devices.types.OUTLET' => array('class' => 'gsh_outlet', 'name' => 'Prise'),
 		'action.devices.types.CAMERA' => array('class' => 'gsh_camera', 'name' => 'Caméra'),
 		'action.devices.types.SCENE' => array('class' => 'gsh_scene', 'name' => 'Scene'),
 		'action.devices.types.BLINDS' => array('class' => 'gsh_blinds', 'name' => 'Store'),
 		'action.devices.types.SHUTTER' => array('class' => 'gsh_shutter', 'name' => 'Volet'),
-		'action.devices.types.SENSOR' => array('class' => 'gsh_sensor', 'name' => 'Capteur'),
+	//	'action.devices.types.SENSOR' => array('class' => 'gsh_sensor', 'name' => 'Capteur'),
 		'action.devices.types.WINDOW' => array('class' => 'gsh_window', 'name' => 'Fenêtre'),
 		'action.devices.types.DOOR' => array('class' => 'gsh_door', 'name' => 'Porte'),
 	);
