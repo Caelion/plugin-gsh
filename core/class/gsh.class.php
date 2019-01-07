@@ -35,9 +35,9 @@ include_file('core', 'gsh_securitysystem', 'class', 'gsh');
 include_file('core', 'gsh_lock', 'class', 'gsh');
 
 class gsh extends eqLogic {
-
+	
 	/*     * *************************Attributs****************************** */
-
+	
 	public static $_supportedType = array(
 		'action.devices.types.LIGHT' => array('class' => 'gsh_light', 'name' => 'Lumière'),
 		'action.devices.types.THERMOSTAT' => array('class' => 'gsh_thermostat', 'name' => 'Thermostat'),
@@ -46,19 +46,19 @@ class gsh extends eqLogic {
 		'action.devices.types.SCENE' => array('class' => 'gsh_scene', 'name' => 'Scene'),
 		'action.devices.types.BLINDS' => array('class' => 'gsh_blinds', 'name' => 'Store'),
 		'action.devices.types.SHUTTER' => array('class' => 'gsh_shutter', 'name' => 'Volet'),
-	//	'action.devices.types.SENSOR' => array('class' => 'gsh_sensor', 'name' => 'Capteur'),
+		//	'action.devices.types.SENSOR' => array('class' => 'gsh_sensor', 'name' => 'Capteur'),
 		'action.devices.types.WINDOW' => array('class' => 'gsh_window', 'name' => 'Fenêtre'),
 		'action.devices.types.DOOR' => array('class' => 'gsh_door', 'name' => 'Porte'),
 		'action.devices.types.SECURITYSYSTEM' => array('class' => 'gsh_securitysystem', 'name' => 'Alarme'),
 		'action.devices.types.LOCK' => array('class' => 'gsh_lock', 'name' => 'Verrou'),
 	);
-
+	
 	/*     * ***********************Methode static*************************** */
-
+	
 	public static function cronDaily() {
 		shell_exec('sudo rm -rf ' . __DIR__ . '/../../data/*');
 	}
-
+	
 	public static function cronHourly() {
 		$processes = array_merge(system::ps('stream2chromecast.py'), system::ps('avconv -i'));
 		foreach ($processes as $process) {
@@ -69,14 +69,14 @@ class gsh extends eqLogic {
 			system::kill($process['pid']);
 		}
 	}
-
+	
 	public static function sendJeedomConfig() {
 		$market = repo_market::getJsonRpc();
 		if (!$market->sendRequest('gsh::configGsh', array('gsh::apikey' => jeedom::getApiKey('gsh'), 'gsh::url' => network::getNetworkAccess('external')))) {
 			throw new Exception($market->getError(), $market->getErrorCode());
 		}
 	}
-
+	
 	public static function sendDevices() {
 		if (config::byKey('mode', 'gsh') == 'jeedom') {
 			$market = repo_market::getJsonRpc();
@@ -93,7 +93,7 @@ class gsh extends eqLogic {
 			}
 		}
 	}
-
+	
 	public static function sync() {
 		$return = array();
 		$devices = gsh_devices::all(true);
@@ -116,7 +116,7 @@ class gsh extends eqLogic {
 		}
 		return $return;
 	}
-
+	
 	public static function exec($_data) {
 		$return = array('commands' => array());
 		foreach ($_data['data']['commands'] as $command) {
@@ -166,7 +166,7 @@ class gsh extends eqLogic {
 				}
 				return $return;
 			}
-
+			
 			public static function query($_data) {
 				$return = array('devices' => array());
 				foreach ($_data['devices'] as $infos) {
@@ -184,7 +184,7 @@ class gsh extends eqLogic {
 				}
 				return $return;
 			}
-
+			
 			public static function reportState($_options) {
 				$cmd = cmd::byId($_options['event_id']);
 				if (!is_object($cmd)) {
@@ -224,7 +224,7 @@ class gsh extends eqLogic {
 					));
 					$request_http->setPost(json_encode($return));
 					$result = $request_http->exec(30);
-
+					
 					if (!is_json($result)) {
 						throw new Exception($result);
 					}
@@ -234,7 +234,7 @@ class gsh extends eqLogic {
 					}
 				}
 			}
-
+			
 			public static function jwt() {
 				$prevToken = cache::byKey('gsh::jwt:token');
 				if ($prevToken->getValue() != '' && is_array($prevToken->getValue())) {
@@ -262,7 +262,7 @@ class gsh extends eqLogic {
 				cache::set('gsh::jwt:token', array('token' => $result['access_token'], 'exp' => $token['exp']));
 				return $result['access_token'];
 			}
-
+			
 			public static function buildDialogflowResponse($_data, $_response) {
 				$return = array();
 				$return['fulfillmentText'] = $_response['reply'];
@@ -282,7 +282,7 @@ class gsh extends eqLogic {
 						copy($file, $output_dir . $filename . '.' . pathinfo($file, PATHINFO_EXTENSION));
 						$urls[] = network::getNetworkAccess('external') . '/plugins/gsh/data/' . $filename . '.' . pathinfo($file, PATHINFO_EXTENSION);
 					}
-
+					
 					if (count($urls) == 1) {
 						$items[] = array(
 							'basicCard' => array(
@@ -316,7 +316,7 @@ class gsh extends eqLogic {
 						}
 						$items[] = array('carouselBrowse' => $carroussel);
 					}
-
+					
 					$return['payload'] = array(
 						"google" => array(
 							'expectUserResponse' => true,
@@ -328,25 +328,25 @@ class gsh extends eqLogic {
 				}
 				return $return;
 			}
-
+			
 			/*     * *********************Méthodes d'instance************************* */
-
+			
 			/*     * **********************Getteur Setteur*************************** */
 		}
-
+		
 		class gshCmd extends cmd {
 			/*     * *************************Attributs****************************** */
-
+			
 			/*     * ***********************Methode static*************************** */
-
+			
 			/*     * *********************Methode d'instance************************* */
-
+			
 			/*     * **********************Getteur Setteur*************************** */
 		}
-
+		
 		class gsh_devices {
 			/*     * *************************Attributs****************************** */
-
+			
 			private $id;
 			private $enable;
 			private $link_type;
@@ -356,9 +356,9 @@ class gsh extends eqLogic {
 			private $_cache = null;
 			private $_link = null;
 			private $_cmds = null;
-
+			
 			/*     * ***********************Methode static*************************** */
-
+			
 			public static function all($_onlyEnable = false) {
 				$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 				FROM gsh_devices';
@@ -367,7 +367,7 @@ class gsh extends eqLogic {
 				}
 				return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 			}
-
+			
 			public static function byId($_id) {
 				$values = array(
 					'id' => $_id,
@@ -377,7 +377,7 @@ class gsh extends eqLogic {
 				WHERE id=:id';
 				return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 			}
-
+			
 			public static function byLinkTypeLinkId($_link_type, $_link_id) {
 				$values = array(
 					'link_type' => $_link_type,
@@ -389,23 +389,32 @@ class gsh extends eqLogic {
 				AND link_id=:link_id';
 				return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 			}
-
+			
+			/*     * ***********************Methode utils*************************** */
+			
+			public function traitsModeBuildSetting($_name,$_synonyms,$_lang = 'fr'){
+				return array(
+					'setting_name'=> $_name,
+					'setting_values' => array(array('setting_synonym'=> $_synonyms,'lang'=> $_lang))
+				);
+			}
+			
 			/*     * *********************Methode d'instance************************* */
-
+			
 			public function preSave() {
 				if ($this->getEnable() == 0) {
 					$this->setOptions('configState', '');
 				}
 			}
-
+			
 			public function save() {
 				return DB::save($this);
 			}
-
+			
 			public function remove() {
 				DB::remove($this);
 			}
-
+			
 			public function getLink() {
 				if ($this->_link != null) {
 					return $this->_link;
@@ -415,7 +424,7 @@ class gsh extends eqLogic {
 				}
 				return $this->_link;
 			}
-
+			
 			public function buildDevice() {
 				if (!isset(gsh::$_supportedType[$this->getType()])) {
 					return array();
@@ -426,7 +435,7 @@ class gsh extends eqLogic {
 				}
 				return $class::buildDevice($this);
 			}
-
+			
 			public function exec($_execution, $_infos) {
 				if (!isset(gsh::$_supportedType[$this->getType()])) {
 					return;
@@ -438,7 +447,7 @@ class gsh extends eqLogic {
 				$result = $class::exec($this, $_execution, $_infos);
 				return $result;
 			}
-
+			
 			public function query($_infos) {
 				if (!isset(gsh::$_supportedType[$this->getType()])) {
 					return;
@@ -453,7 +462,7 @@ class gsh extends eqLogic {
 				}
 				return $result;
 			}
-
+			
 			public function getPseudo() {
 				$eqLogic = $this->getLink();
 				$pseudo = array(trim($eqLogic->getName()), trim($eqLogic->getName()) . 's');
@@ -462,7 +471,7 @@ class gsh extends eqLogic {
 				}
 				return $pseudo;
 			}
-
+			
 			public function addListner() {
 				if ($this->getLink_type() != 'eqLogic') {
 					return;
@@ -481,7 +490,7 @@ class gsh extends eqLogic {
 				}
 				$listener->save();
 			}
-
+			
 			public function removeListner() {
 				if ($this->getLink_type() != 'eqLogic') {
 					return;
@@ -492,65 +501,66 @@ class gsh extends eqLogic {
 					$listener->remove();
 				}
 			}
-
+			
 			/*     * **********************Getteur Setteur*************************** */
 			public function getId() {
 				return $this->id;
 			}
-
+			
 			public function setId($id) {
 				$this->id = $id;
 			}
-
+			
 			public function getEnable() {
 				return $this->enable;
 			}
-
+			
 			public function setEnable($enable) {
 				$this->enable = $enable;
 			}
-
+			
 			public function getlink_type() {
 				return $this->link_type;
 			}
-
+			
 			public function setLink_type($link_type) {
 				$this->link_type = $link_type;
 			}
-
+			
 			public function getLink_id() {
 				return $this->link_id;
 			}
-
+			
 			public function setLink_id($link_id) {
 				$this->link_id = $link_id;
 			}
-
+			
 			public function getType() {
 				return $this->type;
 			}
-
+			
 			public function setType($type) {
 				$this->type = $type;
 			}
-
+			
 			public function getOptions($_key = '', $_default = '') {
 				return utils::getJsonAttr($this->options, $_key, $_default);
 			}
-
+			
 			public function setOptions($_key, $_value) {
 				$this->options = utils::setJsonAttr($this->options, $_key, $_value);
 			}
-
+			
 			public function getCache($_key = '', $_default = '') {
 				if ($this->_cache == null) {
 					$this->_cache = cache::byKey('gshDeviceCache' . $this->getId())->getValue();
 				}
 				return utils::getJsonAttr($this->_cache, $_key, $_default);
 			}
-
+			
 			public function setCache($_key, $_value = null) {
 				$this->_cache = utils::setJsonAttr(cache::byKey('gshDeviceCache' . $this->getId())->getValue(), $_key, $_value);
 				cache::set('gshDeviceCache' . $this->getId(), $this->_cache);
 			}
 		}
+		

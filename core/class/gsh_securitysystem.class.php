@@ -20,15 +20,17 @@
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 class gsh_securitysystem {
-
+	
 	/*     * *************************Attributs****************************** */
-
+	
 	private static $_STATE = array('ALARM_ENABLE_STATE');
 	private static $_ON = array('ALARM_ARMED');
 	private static $_OFF = array('ALARM_RELEASED');
-
+	private static $_SET_MODE = array('ALARM_SET_MODE');
+	private static $_GET_MODE = array('ALARM_MODE');
+	
 	/*     * ***********************Methode static*************************** */
-
+	
 	public static function buildDevice($_device) {
 		$eqLogic = $_device->getLink();
 		if (!is_object($eqLogic)) {
@@ -47,7 +49,7 @@ class gsh_securitysystem {
 		$return['customData'] = array();
 		$return['willReportState'] = ($_device->getOptions('reportState') == 1);
 		$return['traits'] = array();
-		$modes = '';
+		$settings = array();
 		foreach ($eqLogic->getCmd() as $cmd) {
 			if (in_array($cmd->getGeneric_type(), self::$_ON)) {
 				if (!in_array('action.devices.traits.ArmDisarm', $return['traits'])) {
@@ -67,17 +69,44 @@ class gsh_securitysystem {
 					$return['traits'][] = 'action.devices.traits.ArmDisarm';
 				}
 			}
+			if (in_array($cmd->getGeneric_type(), self::$_SET_MODE)) {
+				$settings[] = gsh_devices::traitsModeBuildSetting($cmd->getId(),array($cmd->getName()));
+				if (!in_array('action.devices.traits.Modes', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.Modes';
+				}
+			}
+			if (in_array($cmd->getGeneric_type(), self::$_GET_MODE)) {
+				$return['customData']['cmd_get_mode'] = $cmd->getId();
+				if (!in_array('action.devices.traits.Modes', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.Modes';
+				}
+			}
+		}
+		if (in_array('action.devices.traits.Modes', $return['traits']) && count($settings) == 0) {
+			unset($return['traits']['action.devices.traits.Modes']);
+			unset($return['customData']['cmd_get_mode']);
+		}
+		if (in_array('action.devices.traits.Modes', $return['traits'])) {
+			if (!isset($return['attributes'])) {
+				$return['attributes'] = array();
+			}
+			$return['attributes']['availableModes'] =  array(
+				'name' => 'mode',
+				'name_values' => array(array('name_synonym' => array('mode'),'lang' => 'en')),
+				'settings'  => $settings,
+				'ordered'=> true
+			);
 		}
 		if (count($return['traits']) == 0) {
 			return array();
 		}
 		return $return;
 	}
-
+	
 	public static function query($_device, $_infos) {
 		return self::getState($_device, $_infos);
 	}
-
+	
 	public static function exec($_device, $_executions, $_infos) {
 		$return = array('status' => 'ERROR');
 		$eqLogic = $_device->getLink();
@@ -90,6 +119,15 @@ class gsh_securitysystem {
 		foreach ($_executions as $execution) {
 			try {
 				switch ($execution['command']) {
+					case 'action.devices.commands.SetModes':
+					foreach ($execution['command']['params'] as $key => $value) {
+						$cmd = cmd::byId($key);
+						if (!is_object($cmd)) {
+							continue;
+						}
+						$cmd->execCmd();
+					}
+					break;
 					case 'action.devices.commands.ArmDisarm':
 					if($execution['params']['arm']){
 						if (isset($_infos['customData']['cmd_set_on'])) {
@@ -120,7 +158,7 @@ class gsh_securitysystem {
 		$return['states'] = self::getState($_device, $_infos);
 		return $return;
 	}
-
+	
 	public static function getState($_device, $_infos) {
 		$return = array();
 		$cmd = null;
@@ -139,11 +177,28 @@ class gsh_securitysystem {
 				$return['isArmed'] = ($return['isArmed']) ? false : true;
 			}
 		}
+		if(isset($_infos['customData']['cmd_get_mode'])){
+			$cmd = cmd::byId($_infos['customData']['cmd_get_mode']);
+			if(is_object($cmd)){
+				$return['currentModeSettings'] = array();
+				$value = $cmd->execCmd();
+				foreach ($return['attributes']['availableModes'] as $mode) {
+					$found = null;
+					foreach ($mode['settings'] as $setting) {
+						if(strtolower($value) == strtolower($setting['setting_values']['setting_synonym'][0])){
+							$found = $setting['setting_name'];
+							break;
+						}
+					}
+					$return['currentModeSettings'][$mode['name']] =  $found;
+				}
+			}
+		}
 		return $return;
 	}
-
+	
 	/*     * *********************Méthodes d'instance************************* */
-
+	
 	/*     * **********************Getteur Setteur*************************** */
-
+	
 }
