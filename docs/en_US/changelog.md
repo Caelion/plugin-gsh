@@ -1,3 +1,6 @@
+# 07/01/2018
+
+- Updated documentation
 - Ajout d'une option pour inverser l'ouverture/fermeture des volets
 - Ajout d'options pour le thermostat
 - Support du report state
