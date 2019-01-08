@@ -52,6 +52,22 @@ sendVarToJs('device', utils::o2a($device));
 		</form>
 		<?php
 		break;
+		case 'action.devices.types.SHUTTER':
+		?>
+		<a class="btn btn-success pull-right bt_advanceConfigSaveDevice">{{Sauvegarder}}</a>
+		<legend>{{Configuration du volet}}</legend>
+		<form class="form-horizontal">
+			<fieldset>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">{{Inverser}}</label>
+					<div class="col-sm-3">
+						<input type="checkbox" class="deviceAttr" data-l1key="options" data-l2key="shutter::invert"></input>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+		<?php
+		break;
 		case 'action.devices.types.THERMOSTAT':
 		?>
 		<a class="btn btn-success pull-right bt_advanceConfigSaveDevice">{{Sauvegarder}}</a>
