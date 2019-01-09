@@ -1,3 +1,6 @@
+- Support des modes sur l'alarme coté Jeedom (ne marche pas encore coté Google...)
+- Ajout de l'inversion sur les volets et store
+
 # 07/01/2018
 
 - Updated documentation
