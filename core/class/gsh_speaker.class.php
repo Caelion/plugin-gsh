@@ -19,13 +19,12 @@
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
-class gsh_lock {
+class gsh_speaker {
 	
 	/*     * *************************Attributs****************************** */
 	
-	private static $_STATE = array('LOCK_STATE');
-	private static $_ON = array('LOCK_OPEN');
-	private static $_OFF = array('LOCK_CLOSE');
+	private static $_VOLUME = array('VOLUME');
+	private static $_SET_VOLUME = array('SET_VOLUME');
 	
 	/*     * ***********************Methode static*************************** */
 	
@@ -40,29 +39,21 @@ class gsh_lock {
 		if (is_object($eqLogic->getObject())) {
 			$return['roomHint'] = $eqLogic->getObject()->getName();
 		}
-		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => $_device->getPseudo(), 'defaultNames' => $_device->getPseudo());
-		$return['customData'] = array();
-		$return['willReportState'] = ($_device->getOptions('reportState') == 1);
+		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => $_device->getPseudo());
 		$return['traits'] = array();
-		$modes = '';
+		$return['willReportState'] = ($_device->getOptions('reportState') == 1);
 		foreach ($eqLogic->getCmd() as $cmd) {
-			if (in_array($cmd->getGeneric_type(), self::$_ON)) {
-				if (!in_array('action.devices.traits.LockUnlock', $return['traits'])) {
-					$return['traits'][] = 'action.devices.traits.LockUnlock';
+			if (in_array($cmd->getGeneric_type(), self::$_VOLUME)) {
+				if (!in_array('action.devices.traits.Volume', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.Volume';
 				}
-				$return['customData']['cmd_set_on'] = $cmd->getId();
+				$return['customData']['cmd_get_volume'] = $cmd->getId();
 			}
-			if (in_array($cmd->getGeneric_type(), self::$_OFF)) {
-				if (!in_array('action.devices.traits.LockUnlock', $return['traits'])) {
-					$return['traits'][] = 'action.devices.traits.LockUnlock';
+			if (in_array($cmd->getGeneric_type(), self::$_SET_VOLUME)) {
+				if (!in_array('action.devices.traits.Volume', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.Volume';
 				}
-				$return['customData']['cmd_set_off'] = $cmd->getId();
-			}
-			if (in_array($cmd->getGeneric_type(), self::$_STATE)) {
-				$return['customData']['cmd_get_state'] = $cmd->getId();
-				if (!in_array('action.devices.traits.LockUnlock', $return['traits'])) {
-					$return['traits'][] = 'action.devices.traits.LockUnlock';
-				}
+				$return['customData']['cmd_set_volume'] = $cmd->getId();
 			}
 		}
 		if (count($return['traits']) == 0) {
@@ -87,26 +78,23 @@ class gsh_lock {
 		foreach ($_executions as $execution) {
 			try {
 				switch ($execution['command']) {
-					case 'action.devices.commands.ArmDisarm':
-					if($execution['params']['lock']){
-						if (isset($_infos['customData']['cmd_set_on'])) {
-							$cmd = cmd::byId($_infos['customData']['cmd_set_on']);
-						}
-						if (!is_object($cmd)) {
-							break;
-						}
-						$cmd->execCmd();
-						$return = array('status' => 'SUCCESS');
-					}else{
-						if (isset($_infos['customData']['cmd_set_off'])) {
-							$cmd = cmd::byId($_infos['customData']['cmd_set_off']);
-						}
-						if (!is_object($cmd)) {
-							break;
-						}
-						$cmd->execCmd();
-						$return = array('status' => 'SUCCESS');
+					case 'action.devices.commands.setVolume':
+					$cmd = cmd::byId($_infos['customData']['cmd_set_volume']);
+					if (!is_object($cmd)) {
+						continue;
 					}
+					$cmd->execCmd(array('slider'=> $execution['params']['volumeLevel']));
+					break;
+					case 'action.devices.commands.volumeRelative':
+					$cmd = cmd::byId($_infos['customData']['cmd_set_volume']);
+					if (!is_object($cmd)) {
+						continue;
+					}
+					$cmd_info = cmd::byId($_infos['customData']['cmd_get_volume']);
+					if (!is_object($cmd_info)) {
+						continue;
+					}
+					$cmd->execCmd(array('slider'=> $cmd_info->execCmd() + $execution['params']['volumeRelativeLevel']));
 					break;
 				}
 			} catch (Exception $e) {
@@ -119,21 +107,13 @@ class gsh_lock {
 	}
 	
 	public static function getState($_device, $_infos) {
-		$return = array('isJammed' => false);
+		$return = array();
 		$cmd = null;
-		if (isset($_infos['customData']['cmd_get_state'])) {
-			$cmd = cmd::byId($_infos['customData']['cmd_get_state']);
-		}
-		if (!is_object($cmd)) {
-			return $return;
-		}
-		$value = $cmd->execCmd();
-		if ($cmd->getSubtype() == 'numeric') {
-			$return['isLocked'] = ($value != 0);
-		} else if ($cmd->getSubtype() == 'binary') {
-			$return['isLocked'] = boolval($value);
-			if ($cmd->getDisplay('invertBinary') == 1) {
-				$return['isLocked'] = ($return['isArmed']) ? false : true;
+		if (isset($_infos['customData']['cmd_get_volume'])) {
+			$cmd = cmd::byId($_infos['customData']['cmd_get_volume']);
+			if (is_object($cmd)) {
+				$return['currentVolume'] = $cmd->execCmd();
+				$return['isMute'] = false;
 			}
 		}
 		return $return;

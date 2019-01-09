@@ -24,18 +24,15 @@ class gsh_shutter {
 	/*     * *************************Attributs****************************** */
 	
 	private static $_SLIDER = array('FLAP_SLIDER');
-	private static $_ON = array('FLAP_BSO_UP', 'FLAP_UP');
-	private static $_OFF = array('FLAP_BSO_DOWN', 'FLAP_DOWN');
-	private static $_STATE = array('FLAP_STATE', 'FLAP_BSO_STATE');
+	private static $_ON = array('FLAP_BSO_UP', 'FLAP_UP','GB_OPEN');
+	private static $_OFF = array('FLAP_BSO_DOWN', 'FLAP_DOWN','GB_CLOSE');
+	private static $_STATE = array('FLAP_STATE', 'FLAP_BSO_STATE','GARAGE_STATE','BARRIER_STATE');
 	
 	/*     * ***********************Methode static*************************** */
 	
 	public static function buildDevice($_device) {
 		$eqLogic = $_device->getLink();
 		if (!is_object($eqLogic)) {
-			return 'deviceNotFound';
-		}
-		if ($eqLogic->getIsEnable() == 0) {
 			return 'deviceNotFound';
 		}
 		$return = array();
@@ -70,11 +67,8 @@ class gsh_shutter {
 				$return['customData']['cmd_set_slider'] = $cmd->getId();
 			}
 		}
-		if (count($return['traits']) == 0 && !$return['willReportState']) {
+		if (count($return['traits']) == 0) {
 			return array();
-		}
-		if (!in_array('action.devices.traits.OpenClose', $return['traits'])) {
-			$return['traits'][] = 'action.devices.traits.OpenClose';
 		}
 		return $return;
 	}

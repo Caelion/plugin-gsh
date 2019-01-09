@@ -1,36 +1,33 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 class gsh_sensor {
-
+	
 	/*     * *************************Attributs****************************** */
-
+	
 	/*     * ***********************Methode static*************************** */
-
+	
 	public static function buildDevice($_device) {
 		$eqLogic = $_device->getLink();
 		if (!is_object($eqLogic)) {
-			return 'deviceNotFound';
-		}
-		if ($eqLogic->getIsEnable() == 0) {
 			return 'deviceNotFound';
 		}
 		$return = array();
@@ -57,16 +54,16 @@ class gsh_sensor {
 		}
 		return $return;
 	}
-
+	
 	public static function query($_device, $_infos) {
 		return self::getState($_device, $_infos);
 	}
-
+	
 	public static function exec($_device, $_executions, $_infos) {
 		$return = array('status' => 'ERROR');
 		return $return;
 	}
-
+	
 	public static function getState($_device, $_infos) {
 		$return = array();
 		$return['online'] = true;
@@ -79,9 +76,9 @@ class gsh_sensor {
 		}
 		return $return;
 	}
-
+	
 	/*     * *********************Méthodes d'instance************************* */
-
+	
 	/*     * **********************Getteur Setteur*************************** */
-
+	
 }

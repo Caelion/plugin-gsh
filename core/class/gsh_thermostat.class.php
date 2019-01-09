@@ -1,36 +1,33 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 class gsh_thermostat {
-
+	
 	/*     * *************************Attributs****************************** */
-
+	
 	/*     * ***********************Methode static*************************** */
-
+	
 	public static function buildDevice($_device) {
 		$eqLogic = $_device->getLink();
 		if (!is_object($eqLogic)) {
-			return 'deviceNotFound';
-		}
-		if ($eqLogic->getIsEnable() == 0) {
 			return 'deviceNotFound';
 		}
 		$return = array();
@@ -83,7 +80,7 @@ class gsh_thermostat {
 				$return['customData']['cmd_get_humidity'] = $cmd->getId();
 			}
 		}
-
+		
 		if (isset($return['customData']['cmd_get_temperature']) && count($return['traits']) == 0) {
 			$return['traits'][] = 'action.devices.traits.TemperatureSetting';
 			if (!isset($return['attributes'])) {
@@ -100,11 +97,11 @@ class gsh_thermostat {
 		}
 		return $return;
 	}
-
+	
 	public static function query($_device, $_infos) {
 		return self::getState($_device, $_infos);
 	}
-
+	
 	public static function exec($_device, $_executions, $_infos) {
 		$return = array('status' => 'ERROR');
 		$eqLogic = $_device->getLink();
@@ -118,46 +115,46 @@ class gsh_thermostat {
 			try {
 				switch ($execution['command']) {
 					case 'action.devices.commands.ThermostatTemperatureSetpoint':
-						if (isset($_infos['customData']['cmd_set_thermostat'])) {
-							$cmd = cmd::byId($_infos['customData']['cmd_set_thermostat']);
-						}
-						if (!is_object($cmd)) {
-							break;
-						}
-						$cmd->execCmd(array('slider' => $execution['params']['thermostatTemperatureSetpoint']));
-						$return = array('status' => 'SUCCESS');
+					if (isset($_infos['customData']['cmd_set_thermostat'])) {
+						$cmd = cmd::byId($_infos['customData']['cmd_set_thermostat']);
+					}
+					if (!is_object($cmd)) {
 						break;
+					}
+					$cmd->execCmd(array('slider' => $execution['params']['thermostatTemperatureSetpoint']));
+					$return = array('status' => 'SUCCESS');
+					break;
 					case 'action.devices.commands.SetTemperature':
-						if (isset($_infos['customData']['cmd_set_thermostat'])) {
-							$cmd = cmd::byId($_infos['customData']['cmd_set_thermostat']);
-						}
-						if (!is_object($cmd)) {
-							break;
-						}
-						$cmd->execCmd(array('slider' => $execution['params']['temperature']));
-						$return = array('status' => 'SUCCESS');
+					if (isset($_infos['customData']['cmd_set_thermostat'])) {
+						$cmd = cmd::byId($_infos['customData']['cmd_set_thermostat']);
+					}
+					if (!is_object($cmd)) {
 						break;
+					}
+					$cmd->execCmd(array('slider' => $execution['params']['temperature']));
+					$return = array('status' => 'SUCCESS');
+					break;
 					case 'action.devices.commands.ThermostatSetMode':
-						$cmds = cmd::byGenericType('THERMOSTAT_SET_MODE', $_device->getLink_id(), true);
-						if ($cmds == null) {
-							break;
-						}
-						if (is_array($cmds)) {
-							$cmds = array($cmds);
-						}
-						if ($execution['params']['thermostatMode'] == 'off') {
-							$cmd = $eqLogic->getCmd('action', 'off');
-						} elseif ($execution['params']['thermostatMode'] == 'heat') {
-							$cmd = cmd::byId($_device->getOptions('thermostat::heat'));
-						} elseif ($execution['params']['thermostatMode'] == 'cool') {
-							$cmd = cmd::byId($_device->getOptions('thermostat::cool'));
-						}
-
-						if (!is_object($cmd)) {
-							break;
-						}
-						$cmd->execCmd();
+					$cmds = cmd::byGenericType('THERMOSTAT_SET_MODE', $_device->getLink_id(), true);
+					if ($cmds == null) {
 						break;
+					}
+					if (is_array($cmds)) {
+						$cmds = array($cmds);
+					}
+					if ($execution['params']['thermostatMode'] == 'off') {
+						$cmd = $eqLogic->getCmd('action', 'off');
+					} elseif ($execution['params']['thermostatMode'] == 'heat') {
+						$cmd = cmd::byId($_device->getOptions('thermostat::heat'));
+					} elseif ($execution['params']['thermostatMode'] == 'cool') {
+						$cmd = cmd::byId($_device->getOptions('thermostat::cool'));
+					}
+					
+					if (!is_object($cmd)) {
+						break;
+					}
+					$cmd->execCmd();
+					break;
 				}
 			} catch (Exception $e) {
 				log::add('gsh', 'error', $e->getMessage());
@@ -167,7 +164,7 @@ class gsh_thermostat {
 		$return['states'] = self::getState($_device, $_infos);
 		return $return;
 	}
-
+	
 	public static function getState($_device, $_infos) {
 		$return = array();
 		$return['online'] = true;
@@ -186,32 +183,32 @@ class gsh_thermostat {
 					if ($mode == $cmd_found->getName()) {
 						switch ($cmd_found->getId()) {
 							case $_device->getOptions('thermostat::heat'):
-								$return['thermostatMode'] = 'heat';
-								break;
+							$return['thermostatMode'] = 'heat';
+							break;
 							case $_device->getOptions('thermostat::cool'):
-								$return['thermostatMode'] = 'cool';
-								break;
+							$return['thermostatMode'] = 'cool';
+							break;
 						}
 					}
 				}
 			}
 		}
-
+		
 		if (isset($_infos['customData']['cmd_get_state'])) {
 			$cmd = cmd::byId($_infos['customData']['cmd_get_state']);
 			if (is_object($cmd)) {
 				$state = $cmd->execCmd();
 				switch ($state) {
 					case __('Off', __FILE__):
-						$return['thermostatMode'] = 'off';
-						break;
+					$return['thermostatMode'] = 'off';
+					break;
 					case __('Suspendu', __FILE__):
-						$return['thermostatMode'] = 'off';
-						break;
+					$return['thermostatMode'] = 'off';
+					break;
 				}
 			}
 		}
-
+		
 		if (isset($_infos['customData']['cmd_get_temperature'])) {
 			$cmd = cmd::byId($_infos['customData']['cmd_get_temperature']);
 			if (is_object($cmd)) {
@@ -242,9 +239,9 @@ class gsh_thermostat {
 		}
 		return $return;
 	}
-
+	
 	/*     * *********************Méthodes d'instance************************* */
-
+	
 	/*     * **********************Getteur Setteur*************************** */
-
+	
 }

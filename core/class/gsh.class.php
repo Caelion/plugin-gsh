@@ -33,6 +33,8 @@ include_file('core', 'gsh_door', 'class', 'gsh');
 include_file('core', 'gsh_shutter', 'class', 'gsh');
 include_file('core', 'gsh_securitysystem', 'class', 'gsh');
 include_file('core', 'gsh_lock', 'class', 'gsh');
+include_file('core', 'gsh_tv', 'class', 'gsh');
+include_file('core', 'gsh_speaker', 'class', 'gsh');
 
 class gsh extends eqLogic {
 	
@@ -51,6 +53,8 @@ class gsh extends eqLogic {
 		'action.devices.types.DOOR' => array('class' => 'gsh_door', 'name' => 'Porte'),
 		'action.devices.types.SECURITYSYSTEM' => array('class' => 'gsh_securitysystem', 'name' => 'Alarme'),
 		'action.devices.types.LOCK' => array('class' => 'gsh_lock', 'name' => 'Verrou'),
+		'action.devices.types.TV' => array('class' => 'gsh_tv', 'name' => 'TV'),
+		'action.devices.types.SPEAKER' => array('class' => 'gsh_speaker', 'name' => 'Enceinte'),
 	);
 	
 	/*     * ***********************Methode static*************************** */
