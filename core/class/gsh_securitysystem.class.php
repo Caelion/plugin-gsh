@@ -175,12 +175,12 @@ public static function getState($_device, $_infos) {
 			$return['isArmed'] = ($return['isArmed']) ? false : true;
 		}
 	}
-	if(isset($return['attributes']['availableModes']) && count($return['attributes']['availableModes']) > 0 && isset($_infos['customData']['cmd_get_mode'])){
+	if(isset($_infos['attributes']['availableModes']) && count($_infos['attributes']['availableModes']) > 0 && isset($_infos['customData']['cmd_get_mode'])){
 		$cmd = cmd::byId($_infos['customData']['cmd_get_mode']);
 		if(is_object($cmd)){
 			$return['currentModeSettings'] = array();
 			$value = $cmd->execCmd();
-			foreach ($return['attributes']['availableModes'] as $mode) {
+			foreach ($_infos['attributes']['availableModes'] as $mode) {
 				$found = null;
 				foreach ($mode['settings'] as $setting) {
 					if(strtolower($value) == strtolower($setting['setting_values']['setting_synonym'][0])){
