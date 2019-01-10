@@ -230,6 +230,8 @@ Les types d'équipements sont important cela permet à Google de réagir en fonc
 * Porte [beta] : supporte normalement le status ouvert/fermé d'une porte (pour information il n'y a que si je pose la question en anglais que ca marche)
 * Alarme [beta] : permet d'armer/désarmer l'alarme (attention il faut employer le terme arme/désarme pour que Google fasse l'action)
 * Verrou [beta] : permet de fermer/ouvrir un équipement
+* TV [beta] : permet de changer le volume et les chaines
+* Enceinte [beta] : permet de changer le volume
 
 ## Scénario
 
