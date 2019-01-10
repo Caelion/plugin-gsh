@@ -84,6 +84,7 @@ class gsh_speaker {
 						continue;
 					}
 					$cmd->execCmd(array('slider'=> $execution['params']['volumeLevel']));
+					$return = array('status' => 'SUCCESS');
 					break;
 					case 'action.devices.commands.volumeRelative':
 					$cmd = cmd::byId($_infos['customData']['cmd_set_volume']);
@@ -95,6 +96,7 @@ class gsh_speaker {
 						continue;
 					}
 					$cmd->execCmd(array('slider'=> $cmd_info->execCmd() + $execution['params']['volumeRelativeLevel']));
+					$return = array('status' => 'SUCCESS');
 					break;
 				}
 			} catch (Exception $e) {

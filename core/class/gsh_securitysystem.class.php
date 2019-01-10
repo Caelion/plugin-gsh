@@ -175,7 +175,7 @@ public static function getState($_device, $_infos) {
 			$return['isArmed'] = ($return['isArmed']) ? false : true;
 		}
 	}
-	if(isset($_infos['customData']['cmd_get_mode'])){
+	if(isset($return['attributes']['availableModes']) && count($return['attributes']['availableModes']) > 0 && isset($_infos['customData']['cmd_get_mode'])){
 		$cmd = cmd::byId($_infos['customData']['cmd_get_mode']);
 		if(is_object($cmd)){
 			$return['currentModeSettings'] = array();
