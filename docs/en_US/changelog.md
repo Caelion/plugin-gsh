@@ -1,5 +1,7 @@
 - Support des modes sur l'alarme coté Jeedom (ne marche pas encore coté Google...)
 - Ajout de l'inversion sur les volets et store
+- Ajout des TV (nécessite jeedom 3.3.x ou plus)
+- Ajout des enceintes (nécessite jeedom 3.3.x ou plus)
 
 # 07/01/2018
 
