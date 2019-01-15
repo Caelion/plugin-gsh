@@ -215,10 +215,12 @@ class gsh extends eqLogic {
 				$device->setCache('lastState', json_encode($return['payload']['devices']['states'][$cmd->getEqLogic_id()]));
 				log::add('gsh', 'debug', 'Report state : ' . json_encode($return));
 				if (config::byKey('mode', 'gsh') == 'jeedom') {
-					$market = repo_market::getJsonRpc();
-					if (!$market->sendRequest('gsh::reportState', $return)) {
-						throw new Exception($market->getError(), $market->getErrorCode());
-					}
+					$request_http = new com_http('https://api-gh.jeedom.com/jeedom/reportState');
+					$request_http->setPost(json_encode(array(
+						'data' => $return,
+						"apikey" =>  jeedom::getApiKey('gsh')
+					)));
+					$result = $request_http->exec(30);
 				} else {
 					$request_http = new com_http('https://homegraph.googleapis.com/v1/devices:reportStateAndNotification');
 					$request_http->setHeader(array(
