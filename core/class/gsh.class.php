@@ -362,6 +362,7 @@ class gsh extends eqLogic {
 			private $_cache = null;
 			private $_link = null;
 			private $_cmds = null;
+			private $_changed = false;
 			
 			/*     * ***********************Methode static*************************** */
 			
@@ -513,15 +514,17 @@ class gsh extends eqLogic {
 				return $this->id;
 			}
 			
-			public function setId($id) {
-				$this->id = $id;
+			public function setId($_id) {
+				$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
+				$this->id = $_id;
 			}
 			
 			public function getEnable() {
 				return $this->enable;
 			}
 			
-			public function setEnable($enable) {
+			public function setEnable($_enable) {
+				$this->_changed = utils::attrChanged($this->_changed,$this->enable,$_enable);
 				$this->enable = $enable;
 			}
 			
@@ -529,24 +532,27 @@ class gsh extends eqLogic {
 				return $this->link_type;
 			}
 			
-			public function setLink_type($link_type) {
-				$this->link_type = $link_type;
+			public function setLink_type($_link_type) {
+				$this->_changed = utils::attrChanged($this->_changed,$this->link_type,$_link_type);
+				$this->link_type = $_link_type;
 			}
 			
 			public function getLink_id() {
 				return $this->link_id;
 			}
 			
-			public function setLink_id($link_id) {
-				$this->link_id = $link_id;
+			public function setLink_id($_link_id) {
+				$this->_changed = utils::attrChanged($this->_changed,$this->link_id,$_link_id);
+				$this->link_id = $_link_id;
 			}
 			
 			public function getType() {
 				return $this->type;
 			}
 			
-			public function setType($type) {
-				$this->type = $type;
+			public function setType($_type) {
+				$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
+				$this->type = $_type;
 			}
 			
 			public function getOptions($_key = '', $_default = '') {
@@ -554,7 +560,9 @@ class gsh extends eqLogic {
 			}
 			
 			public function setOptions($_key, $_value) {
-				$this->options = utils::setJsonAttr($this->options, $_key, $_value);
+				$options = utils::setJsonAttr($this->options, $_key, $_value);
+				$this->_changed = utils::attrChanged($this->_changed,$this->options,$options);
+				$this->options = $options;
 			}
 			
 			public function getCache($_key = '', $_default = '') {
@@ -567,6 +575,15 @@ class gsh extends eqLogic {
 			public function setCache($_key, $_value = null) {
 				$this->_cache = utils::setJsonAttr(cache::byKey('gshDeviceCache' . $this->getId())->getValue(), $_key, $_value);
 				cache::set('gshDeviceCache' . $this->getId(), $this->_cache);
+			}
+			
+			public function getChanged() {
+				return $this->_changed;
+			}
+			
+			public function setChanged($_changed) {
+				$this->_changed = $_changed;
+				return $this;
 			}
 		}
 		
