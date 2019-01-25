@@ -181,7 +181,7 @@ Pour faire la configuration il faut
 
 A venir
 
-# Configuration du plugin
+# Plugin configuration
 
 Sur votre Jeedom, allez sur Plugin -> Communication -> Google Smarthome et dans la partie équipement sélectionnez les équipements à transmettre à Google ainsi que le type de l'équipement.
 
