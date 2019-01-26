@@ -525,7 +525,7 @@ class gsh extends eqLogic {
 			
 			public function setEnable($_enable) {
 				$this->_changed = utils::attrChanged($this->_changed,$this->enable,$_enable);
-				$this->enable = $enable;
+				$this->enable = $_enable;
 			}
 			
 			public function getlink_type() {
