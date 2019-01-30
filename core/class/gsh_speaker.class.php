@@ -25,6 +25,11 @@ class gsh_speaker {
 	
 	private static $_VOLUME = array('VOLUME');
 	private static $_SET_VOLUME = array('SET_VOLUME');
+	private static $_MEDIA_PAUSE = array('MEDIA_PAUSE');
+	private static $_MEDIA_RESUME= array('MEDIA_PAUSE');
+	private static $_MEDIA_STOP= array('MEDIA_STOP');
+	private static $_MEDIA_NEXT= array('MEDIA_NEXT');
+	private static $_MEDIA_PREVIOUS= array('MEDIA_PREVIOUS');
 	
 	/*     * ***********************Methode static*************************** */
 	
@@ -55,6 +60,37 @@ class gsh_speaker {
 				}
 				$return['customData']['cmd_set_volume'] = $cmd->getId();
 			}
+			if (in_array($cmd->getGeneric_type(), self::$_MEDIA_PAUSE)) {
+				if (!in_array('action.devices.traits.Volume', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.MediaState';
+				}
+				$return['customData']['cmd_set_media_pause'] = $cmd->getId();
+			}
+			if (in_array($cmd->getGeneric_type(), self::$_MEDIA_NEXT)) {
+				if (!in_array('action.devices.traits.Volume', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.MediaState';
+				}
+				$return['customData']['cmd_set_media_next'] = $cmd->getId();
+			}
+			if (in_array($cmd->getGeneric_type(), self::$_MEDIA_PREVIOUS)) {
+				if (!in_array('action.devices.traits.Volume', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.MediaState';
+				}
+				$return['customData']['cmd_set_media_previous'] = $cmd->getId();
+			}
+			if (in_array($cmd->getGeneric_type(), self::$_MEDIA_RESUME)) {
+				if (!in_array('action.devices.traits.Volume', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.MediaState';
+				}
+				$return['customData']['cmd_set_media_resume'] = $cmd->getId();
+			}
+			if (in_array($cmd->getGeneric_type(), self::$_MEDIA_STOP)) {
+				if (!in_array('action.devices.traits.Volume', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.MediaState';
+				}
+				$return['customData']['cmd_set_media_stop'] = $cmd->getId();
+			}
+			
 		}
 		if (count($return['traits']) == 0) {
 			return array();
@@ -96,6 +132,46 @@ class gsh_speaker {
 						continue;
 					}
 					$cmd->execCmd(array('slider'=> $cmd_info->execCmd() + $execution['params']['volumeRelativeLevel']));
+					$return = array('status' => 'SUCCESS');
+					break;
+					case 'action.devices.commands.mediaPause':
+					$cmd = cmd::byId($_infos['customData']['cmd_set_media_pause']);
+					if (!is_object($cmd)) {
+						continue;
+					}
+					$cmd->execCmd();
+					$return = array('status' => 'SUCCESS');
+					break;
+					case 'action.devices.commands.mediaResume':
+					$cmd = cmd::byId($_infos['customData']['cmd_set_media_resume']);
+					if (!is_object($cmd)) {
+						continue;
+					}
+					$cmd->execCmd();
+					$return = array('status' => 'SUCCESS');
+					break;
+					case 'action.devices.commands.mediaStop':
+					$cmd = cmd::byId($_infos['customData']['cmd_set_media_stop']);
+					if (!is_object($cmd)) {
+						continue;
+					}
+					$cmd->execCmd();
+					$return = array('status' => 'SUCCESS');
+					break;
+					case 'action.devices.commands.mediaNext':
+					$cmd = cmd::byId($_infos['customData']['cmd_set_media_next']);
+					if (!is_object($cmd)) {
+						continue;
+					}
+					$cmd->execCmd();
+					$return = array('status' => 'SUCCESS');
+					break;
+					case 'action.devices.commands.mediaPrevious':
+					$cmd = cmd::byId($_infos['customData']['cmd_set_media_previous']);
+					if (!is_object($cmd)) {
+						continue;
+					}
+					$cmd->execCmd();
 					$return = array('status' => 'SUCCESS');
 					break;
 				}
