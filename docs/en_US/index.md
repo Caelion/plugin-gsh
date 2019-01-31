@@ -196,7 +196,7 @@ Sur votre Jeedom, allez sur Plugin -> Communication -> Google Smarthome et dans 
 > Pour le type "caméra" vous devez absolument configurer l'URL du flux (nous avons testé seulement le RTSP) pour que cela marche.
 > A noter que le support des caméras est pour le moment en beta et consomme enormement de ressources
 
-## Equipement
+## Device
 
 Sur les équipements vous pouvez configurer :
 
@@ -231,7 +231,7 @@ Les types d'équipements sont important cela permet à Google de réagir en fonc
 * Alarme [beta] : permet d'armer/désarmer l'alarme (attention il faut employer le terme arme/désarme pour que Google fasse l'action)
 * Verrou [beta] : permet de fermer/ouvrir un équipement
 * TV [beta] : permet de changer le volume et les chaines
-* Enceinte [beta] : permet de changer le volume
+* Enceinte [beta] : permet de changer le volume et de faire stop,pause,suivant,precedent,reprendre
 
 ## Scénario
 
