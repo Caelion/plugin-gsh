@@ -411,6 +411,7 @@ class gsh extends eqLogic {
 			public function preSave() {
 				if ($this->getEnable() == 0) {
 					$this->setOptions('configState', '');
+					$this->removeListner();
 				}
 			}
 			
