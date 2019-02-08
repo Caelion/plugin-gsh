@@ -241,7 +241,7 @@ Vous pouvez aussi créer des scènes dans l'onglet scène, avec des actions d'en
 
 > **NOTE**
 >
-> Lors de la sauvegarde Jeedom va automatiquement demander une synchronisation avec Google. Attention en mode standalone si vous avez une erreur essayez de réactiver le test de l'application ([ici](https://console.actions.google.com)) puis de recliquez sur le bouton de connection sur la page la page de configuration du plugin
+> Lors de la sauvegarde Jeedom va automatiquement demander une synchronisation avec Google. Attention en mode standalone si vous avez une erreur (type "Requested entity was not found") essayez de réactiver le test de l'application ([ici](https://console.actions.google.com)) puis de recliquez sur le bouton de connection sur la page la page de configuration du plugin. Vérifiez aussi la configuration (surtout la partie oauth) de votre application google (desfois les champs sont effacés par Google)
 
 Il ne vous reste plus qu'a faire l'affectation des équipements aux pieces dans l'application Google Home
 
