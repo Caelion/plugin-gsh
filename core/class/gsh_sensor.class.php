@@ -81,7 +81,8 @@ class gsh_sensor {
 		$return['customData'] = array();
 		$return['willReportState'] = ($_device->getOptions('reportState') == 1);
 		$return['traits'] = array();
-		$return['dataTypesSupported'] = array();
+		$return['attributes'] = array();
+		$return['attributes']['dataTypesSupported'] = array();
 		$modes = '';
 		foreach ($eqLogic->getCmd() as $cmd) {
 			if (in_array($cmd->getGeneric_type(), array('TEMPERATURE'))) {
@@ -89,56 +90,56 @@ class gsh_sensor {
 				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
 					$return['traits'][] = 'action.devices.traits.Sensor';
 				}
-				$return['dataTypesSupported'][] = self::$_CONVERSION['TEMPERATURE'];
+				$return['attributes']['dataTypesSupported'][] = self::$_CONVERSION['TEMPERATURE'];
 			}
 			if (in_array($cmd->getGeneric_type(), array('HUMIDITY'))) {
 				$return['customData']['cmd_get_humidity'] = $cmd->getId();
 				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
 					$return['traits'][] = 'action.devices.traits.Sensor';
 				}
-				$return['dataTypesSupported'][] = self::$_CONVERSION['HUMIDITY'];
+				$return['attributes']['dataTypesSupported'][] = self::$_CONVERSION['HUMIDITY'];
 			}
 			if (in_array($cmd->getGeneric_type(), array('AIR_QUALITY'))) {
 				$return['customData']['cmd_get_air_quality'] = $cmd->getId();
 				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
 					$return['traits'][] = 'action.devices.traits.Sensor';
 				}
-				$return['dataTypesSupported'][] = self::$_CONVERSION['AIR_QUALITY'];
+				$return['attributes']['dataTypesSupported'][] = self::$_CONVERSION['AIR_QUALITY'];
 			}
 			if (in_array($cmd->getGeneric_type(), array('DEPTH'))) {
 				$return['customData']['cmd_get_depth'] = $cmd->getId();
 				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
 					$return['traits'][] = 'action.devices.traits.Sensor';
 				}
-				$return['dataTypesSupported'][] = self::$_CONVERSION['DEPTH'];
+				$return['attributes']['dataTypesSupported'][] = self::$_CONVERSION['DEPTH'];
 			}
 			if (in_array($cmd->getGeneric_type(), array('WIND_DIRECTION','WEATHER_WIND_DIRECTION'))) {
 				$return['customData']['cmd_get_wind_direction'] = $cmd->getId();
 				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
 					$return['traits'][] = 'action.devices.traits.Sensor';
 				}
-				$return['dataTypesSupported'][] = self::$_CONVERSION['WIND_DIRECTION'];
+				$return['attributes']['dataTypesSupported'][] = self::$_CONVERSION['WIND_DIRECTION'];
 			}
 			if (in_array($cmd->getGeneric_type(), array('CONSUMPTION'))) {
 				$return['customData']['cmd_get_consumption'] = $cmd->getId();
 				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
 					$return['traits'][] = 'action.devices.traits.Sensor';
 				}
-				$return['dataTypesSupported'][] = self::$_CONVERSION['CONSUMPTION'];
+				$return['attributes']['dataTypesSupported'][] = self::$_CONVERSION['CONSUMPTION'];
 			}
 			if (in_array($cmd->getGeneric_type(), array('SPEED','WEATHER_WIND_SPEED'))) {
 				$return['customData']['cmd_get_speed'] = $cmd->getId();
 				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
 					$return['traits'][] = 'action.devices.traits.Sensor';
 				}
-				$return['dataTypesSupported'][] = self::$_CONVERSION['SPEED'];
+				$return['attributes']['dataTypesSupported'][] = self::$_CONVERSION['SPEED'];
 			}
 			if (in_array($cmd->getGeneric_type(), array('DISTANCE'))) {
 				$return['customData']['cmd_get_speed'] = $cmd->getId();
 				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
 					$return['traits'][] = 'action.devices.traits.Sensor';
 				}
-				$return['dataTypesSupported'][] = self::$_CONVERSION['DISTANCE'];
+				$return['attributes']['dataTypesSupported'][] = self::$_CONVERSION['DISTANCE'];
 			}
 		}
 		if (count($return['traits']) == 0) {
@@ -159,6 +160,7 @@ class gsh_sensor {
 	public static function getState($_device, $_infos) {
 		$return = array();
 		$return['online'] = true;
+		$return['on'] = true;
 		$eqLogic = $_device->getLink();
 		
 		$return['currentSensorData'] = array();
@@ -168,7 +170,7 @@ class gsh_sensor {
 			if(!is_object($cmd)){
 				continue;
 			}
-			$type = str_replace('get_cmd_','',$key);
+			$type = str_replace('cmd_get_','',$key);
 			switch ($type) {
 				case 'temperature':
 				$return['currentSensorData'][] = array(
@@ -182,7 +184,6 @@ class gsh_sensor {
 				$return['currentSensorData'][] = array(
 					'name' =>self::$_CONVERSION[strtoupper($type)]['name'],
 					'data_type_key' => 'humidity',
-					'default_device_units' => '%',
 					'data_value' => $cmd->execCmd(),
 				);
 				break;
@@ -190,7 +191,6 @@ class gsh_sensor {
 				$return['currentSensorData'][] = array(
 					'name' =>self::$_CONVERSION[strtoupper($type)]['name'],
 					'data_type_key' => 'depth',
-					'default_device_units' => 'm',
 					'data_value' => $cmd->execCmd(),
 				);
 				break;
@@ -198,7 +198,6 @@ class gsh_sensor {
 				$return['currentSensorData'][] = array(
 					'name' =>self::$_CONVERSION[strtoupper($type)]['name'],
 					'data_type_key' => 'air_quality_co2',
-					'default_device_units' => 'ppm',
 					'data_value' => $cmd->execCmd(),
 				);
 				break;
@@ -206,7 +205,6 @@ class gsh_sensor {
 				$return['currentSensorData'][] = array(
 					'name' =>self::$_CONVERSION[strtoupper($type)]['name'],
 					'data_type_key' => 'energy_usage',
-					'default_device_units' => 'kWh',
 					'data_value' => $cmd->execCmd(),
 				);
 				break;
@@ -214,7 +212,6 @@ class gsh_sensor {
 				$return['currentSensorData'][] = array(
 					'name' =>self::$_CONVERSION[strtoupper($type)]['name'],
 					'data_type_key' => 'speed',
-					'default_device_units' => 'km/h',
 					'data_value' => $cmd->execCmd(),
 				);
 				break;
@@ -222,7 +219,6 @@ class gsh_sensor {
 				$return['currentSensorData'][] = array(
 					'name' =>self::$_CONVERSION[strtoupper($type)]['name'],
 					'data_type_key' => 'distance',
-					'default_device_units' => 'm',
 					'data_value' => $cmd->execCmd(),
 				);
 				break;
