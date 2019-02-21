@@ -22,7 +22,48 @@ require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 class gsh_sensor {
 	
 	/*     * *************************Attributs****************************** */
-	
+	private static $_CONVERSION = array(
+		'TEMPERATURE' => array(
+			'name' => 'temperature',
+			'data_type' => array(array('type_synonym'=>  array('température'), 'lang'=> 'fr')),
+			'default_device_unit' => '°C',
+		),
+		'HUMIDITY' =>array(
+			'name' => 'humidity',
+			'data_type' => array(array('type_synonym'=>  array('humidité'), 'lang'=> 'fr')),
+			'default_device_unit' => '%',
+		),
+		'AIR_QUALITY' => array(
+			'name' => 'air_quality_co2',
+			'data_type' => array(array('type_synonym'=>  array('qualité de l\'air'), 'lang'=> 'fr')),
+			'default_device_unit' => 'ppm',
+		),
+		'DEPTH' => array(
+			'name' => 'depth',
+			'data_type' => array(array('type_synonym'=>  array('profondeur'), 'lang'=> 'fr')),
+			'default_device_unit' => 'm',
+		),
+		'WIND_DIRECTION' => array(
+			'name' => 'direction',
+			'data_type' => array(array('type_synonym'=>  array('Direction du vent'), 'lang'=> 'fr')),
+			'default_device_unit' => '',
+		),
+		'CONSUMPTION' => array(
+			'name' => 'energy_usage',
+			'data_type' => array(array('type_synonym'=>  array('Consommation'), 'lang'=> 'fr')),
+			'default_device_unit' => 'kWh',
+		),
+		'SPEED' => array(
+			'name' => 'speed',
+			'data_type' => array(array('type_synonym'=>  array('Vitesse'), 'lang'=> 'fr')),
+			'default_device_unit' => 'km/h',
+		),
+		'DISTANCE' => array(
+			'name' => 'distance',
+			'data_type' => array(array('type_synonym'=>  array('Distance'), 'lang'=> 'fr')),
+			'default_device_unit' => 'm',
+		)
+	);
 	/*     * ***********************Methode static*************************** */
 	
 	public static function buildDevice($_device) {
@@ -40,13 +81,64 @@ class gsh_sensor {
 		$return['customData'] = array();
 		$return['willReportState'] = ($_device->getOptions('reportState') == 1);
 		$return['traits'] = array();
+		$return['dataTypesSupported'] = array();
 		$modes = '';
 		foreach ($eqLogic->getCmd() as $cmd) {
 			if (in_array($cmd->getGeneric_type(), array('TEMPERATURE'))) {
 				$return['customData']['cmd_get_temperature'] = $cmd->getId();
 				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
-					$return['traits'][] = 'action.devices.traits.SensorState';
+					$return['traits'][] = 'action.devices.traits.Sensor';
 				}
+				$return['dataTypesSupported'][] = self::$_CONVERSION['TEMPERATURE'];
+			}
+			if (in_array($cmd->getGeneric_type(), array('HUMIDITY'))) {
+				$return['customData']['cmd_get_humidity'] = $cmd->getId();
+				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.Sensor';
+				}
+				$return['dataTypesSupported'][] = self::$_CONVERSION['HUMIDITY'];
+			}
+			if (in_array($cmd->getGeneric_type(), array('AIR_QUALITY'))) {
+				$return['customData']['cmd_get_air_quality'] = $cmd->getId();
+				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.Sensor';
+				}
+				$return['dataTypesSupported'][] = self::$_CONVERSION['AIR_QUALITY'];
+			}
+			if (in_array($cmd->getGeneric_type(), array('DEPTH'))) {
+				$return['customData']['cmd_get_depth'] = $cmd->getId();
+				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.Sensor';
+				}
+				$return['dataTypesSupported'][] = self::$_CONVERSION['DEPTH'];
+			}
+			if (in_array($cmd->getGeneric_type(), array('WIND_DIRECTION','WEATHER_WIND_DIRECTION'))) {
+				$return['customData']['cmd_get_wind_direction'] = $cmd->getId();
+				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.Sensor';
+				}
+				$return['dataTypesSupported'][] = self::$_CONVERSION['WIND_DIRECTION'];
+			}
+			if (in_array($cmd->getGeneric_type(), array('CONSUMPTION'))) {
+				$return['customData']['cmd_get_consumption'] = $cmd->getId();
+				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.Sensor';
+				}
+				$return['dataTypesSupported'][] = self::$_CONVERSION['CONSUMPTION'];
+			}
+			if (in_array($cmd->getGeneric_type(), array('SPEED','WEATHER_WIND_SPEED'))) {
+				$return['customData']['cmd_get_speed'] = $cmd->getId();
+				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.Sensor';
+				}
+				$return['dataTypesSupported'][] = self::$_CONVERSION['SPEED'];
+			}
+			if (in_array($cmd->getGeneric_type(), array('DISTANCE'))) {
+				$return['customData']['cmd_get_speed'] = $cmd->getId();
+				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.Sensor';
+				}
+				$return['dataTypesSupported'][] = self::$_CONVERSION['DISTANCE'];
 			}
 		}
 		if (count($return['traits']) == 0) {
@@ -68,12 +160,75 @@ class gsh_sensor {
 		$return = array();
 		$return['online'] = true;
 		$eqLogic = $_device->getLink();
-		if (isset($_infos['customData']['cmd_get_temperature'])) {
-			$cmd = cmd::byId($_infos['customData']['cmd_get_temperature']);
-			if (is_object($cmd)) {
-				$return['value'] = $cmd->execCmd();
+		
+		$return['currentSensorData'] = array();
+		
+		foreach ($_infos['customData'] as $key => $cmd_id) {
+			$cmd = cmd::byId($cmd_id);
+			if(!is_object($cmd)){
+				continue;
+			}
+			$type = str_replace('get_cmd_','',$key);
+			switch ($type) {
+				case 'temperature':
+				$return['currentSensorData'][] = array(
+					'name' =>self::$_CONVERSION[strtoupper($type)]['name'],
+					'data_type_key' => 'temperature',
+					'default_device_units' => '°C',
+					'data_value' => $cmd->execCmd(),
+				);
+				break;
+				case 'humidity':
+				$return['currentSensorData'][] = array(
+					'name' =>self::$_CONVERSION[strtoupper($type)]['name'],
+					'data_type_key' => 'humidity',
+					'default_device_units' => '%',
+					'data_value' => $cmd->execCmd(),
+				);
+				break;
+				case 'depth':
+				$return['currentSensorData'][] = array(
+					'name' =>self::$_CONVERSION[strtoupper($type)]['name'],
+					'data_type_key' => 'depth',
+					'default_device_units' => 'm',
+					'data_value' => $cmd->execCmd(),
+				);
+				break;
+				case 'air_quality':
+				$return['currentSensorData'][] = array(
+					'name' =>self::$_CONVERSION[strtoupper($type)]['name'],
+					'data_type_key' => 'air_quality_co2',
+					'default_device_units' => 'ppm',
+					'data_value' => $cmd->execCmd(),
+				);
+				break;
+				case 'consumption':
+				$return['currentSensorData'][] = array(
+					'name' =>self::$_CONVERSION[strtoupper($type)]['name'],
+					'data_type_key' => 'energy_usage',
+					'default_device_units' => 'kWh',
+					'data_value' => $cmd->execCmd(),
+				);
+				break;
+				case 'speed':
+				$return['currentSensorData'][] = array(
+					'name' =>self::$_CONVERSION[strtoupper($type)]['name'],
+					'data_type_key' => 'speed',
+					'default_device_units' => 'km/h',
+					'data_value' => $cmd->execCmd(),
+				);
+				break;
+				case 'distance':
+				$return['currentSensorData'][] = array(
+					'name' =>self::$_CONVERSION[strtoupper($type)]['name'],
+					'data_type_key' => 'distance',
+					'default_device_units' => 'm',
+					'data_value' => $cmd->execCmd(),
+				);
+				break;
 			}
 		}
+		
 		return $return;
 	}
 	
