@@ -190,8 +190,8 @@ public static function getState($_device, $_infos) {
 								break;
 							}
 						}
+						$return['currentModeSettings'][$mode['name']] =  $found;
 					}
-					$return['currentModeSettings'][$mode['name']] =  $found;
 				}
 			}
 		}
