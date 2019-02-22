@@ -71,7 +71,7 @@ class gsh_shutter {
 		if (count($return['traits']) == 0) {
 			return array();
 		}
-		$return['attributes']['openDirection'] = 'UP,DOWN';
+		$return['attributes']['openDirection'] = array('UP','DOWN');
 		return $return;
 	}
 	
