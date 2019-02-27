@@ -1,19 +1,19 @@
 <?php
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 include_file('core', 'authentification', 'php');
@@ -27,6 +27,11 @@ if (init('result_code') == 'FAILURE') {
 ?>
 <form class="form-horizontal">
 	<fieldset>
+		<?php
+		if(strpos(network::getNetworkAccess('external'),'https://') == -1){
+			echo '<div class="alert alert-danger">{{Attention votre connexion externe ne semble pas etre en https, ce plugin nécessite ABSOLUMENT une connexion https. Si vous ne savez pas comment faire vous pouvez souscrire à un service pack power pour utiliser le service de DNS Jeedom}}</div>';
+		}
+		?>
 		<legend>{{Serveur Google smarthome}}</legend>
 		<div class="form-group">
 			<label class="col-lg-3 control-label">{{Mode}}</label>
@@ -135,44 +140,44 @@ if (init('result_code') == 'FAILURE') {
 </div>
 
 <script type="text/javascript">
-	var return_url = window.location.href
-	if(getUrlVars('result_code') == 'FAILURE'){
-		return_url = window.location.href.replace('result_code='+getUrlVars('result_code'),'').replace('result_message='+getUrlVars('result_message'),'').replace('id=gsh','').replace('#','');
-		$('#div_alert').showAlert({message: getUrlVars('result_message').replace(/\+/g, ' '), level: 'danger'});
-	}
-	if(getUrlVars('result_code') == 'SUCCESS'){
-		return_url = window.location.href.replace('result_code='+getUrlVars('result_code'),'').replace('id=gsh','').replace('#','');
-		$('#div_alert').showAlert({message: getUrlVars('result_message').replace(/\+/g, ' '), level: 'success'});
-	}
-	$('#bt_connectGoogleDialogFlow').off('click').on('click',function(){
-		window.location = 'https://assistant.google.com/services/auth/handoffs/auth/start?provider='+$('.configKey[data-l1key=googleDialogflowProjectId]').value()+'_dev&return_url='+encodeURIComponent(return_url+'&id=gsh');
-	});
-	$('#bt_connectGoogleSmarthome').off('click').on('click',function(){
-		window.location = 'https://assistant.google.com/services/auth/handoffs/auth/start?provider='+$('.configKey[data-l1key=googleSmarthomeProjectId]').value()+'_dev&return_url='+encodeURIComponent(return_url+'&id=gsh');
-	});
-	$('.configKey[data-l1key=mode]').on('change',function(){
-		$('.gshmode').hide();
-		$('.gshmode.'+$(this).value()).show();
-	});
+var return_url = window.location.href
+if(getUrlVars('result_code') == 'FAILURE'){
+	return_url = window.location.href.replace('result_code='+getUrlVars('result_code'),'').replace('result_message='+getUrlVars('result_message'),'').replace('id=gsh','').replace('#','');
+	$('#div_alert').showAlert({message: getUrlVars('result_message').replace(/\+/g, ' '), level: 'danger'});
+}
+if(getUrlVars('result_code') == 'SUCCESS'){
+	return_url = window.location.href.replace('result_code='+getUrlVars('result_code'),'').replace('id=gsh','').replace('#','');
+	$('#div_alert').showAlert({message: getUrlVars('result_message').replace(/\+/g, ' '), level: 'success'});
+}
+$('#bt_connectGoogleDialogFlow').off('click').on('click',function(){
+	window.location = 'https://assistant.google.com/services/auth/handoffs/auth/start?provider='+$('.configKey[data-l1key=googleDialogflowProjectId]').value()+'_dev&return_url='+encodeURIComponent(return_url+'&id=gsh');
+});
+$('#bt_connectGoogleSmarthome').off('click').on('click',function(){
+	window.location = 'https://assistant.google.com/services/auth/handoffs/auth/start?provider='+$('.configKey[data-l1key=googleSmarthomeProjectId]').value()+'_dev&return_url='+encodeURIComponent(return_url+'&id=gsh');
+});
+$('.configKey[data-l1key=mode]').on('change',function(){
+	$('.gshmode').hide();
+	$('.gshmode.'+$(this).value()).show();
+});
 
-	$('#bt_sendConfigToMarket').on('click', function () {
-		$.ajax({
-			type: "POST",
-			url: "plugins/gsh/core/ajax/gsh.ajax.php",
-			data: {
-				action: "sendConfig",
-			},
-			dataType: 'json',
-			error: function (request, status, error) {
-				handleAjaxError(request, status, error);
-			},
-			success: function (data) {
-				if (data.state != 'ok') {
-					$('#div_alert').showAlert({message: data.result, level: 'danger'});
-					return;
-				}
-				$('#div_alert').showAlert({message: '{{Configuration envoyée avec succès}}', level: 'success'});
+$('#bt_sendConfigToMarket').on('click', function () {
+	$.ajax({
+		type: "POST",
+		url: "plugins/gsh/core/ajax/gsh.ajax.php",
+		data: {
+			action: "sendConfig",
+		},
+		dataType: 'json',
+		error: function (request, status, error) {
+			handleAjaxError(request, status, error);
+		},
+		success: function (data) {
+			if (data.state != 'ok') {
+				$('#div_alert').showAlert({message: data.result, level: 'danger'});
+				return;
 			}
-		});
+			$('#div_alert').showAlert({message: '{{Configuration envoyée avec succès}}', level: 'success'});
+		}
 	});
+});
 </script>
