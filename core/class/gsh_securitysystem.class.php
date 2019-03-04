@@ -182,7 +182,7 @@ public static function getState($_device, $_infos) {
 			$value = $cmd->execCmd();
 			if(isset($_infos['attributes']['availableModes']) && count($_infos['attributes']['availableModes']) > 0){
 				foreach ($_infos['attributes']['availableModes'] as $mode) {
-					if(!isset($mode['name']){
+					if(!isset($mode['name'])){
 						continue;
 					}
 					$found = null;
@@ -193,8 +193,8 @@ public static function getState($_device, $_infos) {
 								break;
 							}
 						}
+						$return['currentModeSettings'][$mode['name']] =  $found;
 					}
-					$return['currentModeSettings'][$mode['name']] =  $found;
 				}
 			}
 		}
