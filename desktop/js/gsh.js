@@ -307,20 +307,42 @@
  	div += '<div class="well">';
  	div += '<form class="form-horizontal" role="form">';
  	div += '<div class="form-group">';
- 	div += '<label class="col-sm-2 control-label">{{Nom du scene}}</label>';
- 	div += '<div class="col-sm-2">';
- 	div += '<input class="sceneAttr" data-l1key="id" style="display:none;" />';
- 	div += '<input class="sceneAttr" data-l1key="enable" style="display:none;" value="1" />';
- 	div += '<input class="sceneAttr" data-l1key="link_type" style="display:none;" value="scene" />';
- 	div += '<input class="sceneAttr" data-l1key="type" style="display:none;" value="action.devices.types.SCENE" />';
- 	div += '<span class="sceneAttr label label-info rename cursor" data-l1key="options" data-l2key="name" style="font-size : 1em;" ></span>';
- 	div += '</div>';
- 	div += '<div class="col-sm-8">';
+	div += '<div class="col-sm-12">';
  	div += '<div class="btn-group pull-right" role="group">';
  	div += '<a class="btn btn-sm bt_removeScene btn-primary"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>';
  	div += '<a class="btn btn-sm bt_addInAction btn-success"><i class="fa fa-plus-circle"></i> {{Action d\'entrée}}</a>';
  	div += '<a class="btn btn-danger btn-sm bt_addOutAction"><i class="fa fa-plus-circle"></i> {{Action de sortie}}</a>';
  	div += '</div>';
+ 	div += '</div>';
+ 	div += '<label class="col-sm-2 control-label">{{Nom du scene}}</label>';
+ 	div += '<div class="col-sm-10">';
+ 	div += '<input class="sceneAttr" data-l1key="id" style="display:none;" />';
+ 	div += '<input class="sceneAttr" data-l1key="enable" style="display:none;" value="1" />';
+ 	div += '<input class="sceneAttr" data-l1key="link_type" style="display:none;" value="scene" />';
+ 	div += '<input class="sceneAttr" data-l1key="type" style="display:none;" value="action.devices.types.SCENE" />';
+ 	div += '<span class="sceneAttr label label-info rename cursor" data-l1key="options" data-l2key="name" style="font-size : 1em;" ></span>';
+	div += '</div>';
+	div += '<label class="col-sm-2 control-label">{{Pseudo}}</label>';
+	div += '<div class="col-sm-10">';
+ 	div += '<input class="sceneAttr" data-l1key="options" data-l2key="pseudo"/>';
+	div += '</div>';
+	div += '<label class="col-sm-2 control-label">{{Pièce}}</label>';
+	div += '<div class="col-sm-3">';
+	div += '<select class="sceneAttr form-control" data-l1key="options" data-l2key="piece">';
+	div += '<option value="">Aucun</option>';
+	jeedom.object.all({
+		async : false,
+		error: function (error) {
+		$('#div_alert').showAlert({message: error.message, level: 'danger'});
+		},
+		success: function (objects) {
+			for (var i in objects) {
+				console.log(objects[i].name);
+				div += '<option value="' + objects[i].name + '">' + objects[i].name+'</option>';
+			}
+		}
+	});
+ 	div += '</select>';
  	div += '</div>';
  	div += '</div>';
  	div += '<hr/>';
