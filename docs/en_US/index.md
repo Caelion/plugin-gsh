@@ -262,3 +262,9 @@ Il ne vous reste plus qu'a faire l'affectation des équipements aux pieces dans 
 >**J'ai le message d'erreur "OpenSSL unable to sign data"**
 >
 >Vous avez du cocher la case "Remonter l'état" sans faire la configuration JWT
+
+>**J'ai le message d'erreur "Cant find ressource 404" lors de la sauvegarde**
+>
+>Alors pas de soucis tout est bien sauvé, c'est juste la synchronisation automatique qui n'est pas faites. Pour la faire dites "Synchroniser mes appareils" à votre assistant. Pour tenter de corriger ce soucis :
+> allez sur la page suivante [ici](https://console.cloud.google.com/cloud-resource-manager). Sur cette page vous verrez la liste de tous les projets même ceux invisibles sur la page google actions. Supprimer tous les projets inutilisés.
+> Puis refaites le tuto à partir de l'étape configurer la clef api Homegraph (activation, génération de clé, puis dissocier jeedom de votre compte google et refaites le lien)
