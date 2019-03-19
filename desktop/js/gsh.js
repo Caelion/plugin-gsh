@@ -262,12 +262,12 @@
  	div += '<div class="col-sm-4 ' + input + '">';
  	div += '<div class="input-group">';
  	div += '<span class="input-group-btn">';
- 	div += '<a class="btn btn-default bt_removeAction btn-sm" data-type="' + _type + '"><i class="fa fa-minus-circle"></i></a>';
+ 	div += '<a class="btn btn-default bt_removeAction btn-sm" data-type="' + _type + '"><i class="fas fa-minus-circle"></i></a>';
  	div += '</span>';
  	div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="' + _type + '" />';
  	div += '<span class="input-group-btn">';
  	div += '<a class="btn ' + button + ' btn-sm listAction" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fa fa-tasks"></i></a>';
- 	div += '<a class="btn ' + button + ' btn-sm listCmdAction" data-type="' + _type + '"><i class="fa fa-list-alt"></i></a>';
+ 	div += '<a class="btn ' + button + ' btn-sm listCmdAction" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>';
  	div += '</span>';
  	div += '</div>';
  	div += '</div>';
@@ -309,7 +309,7 @@
  	div += '<div class="form-group">';
 	div += '<div class="col-sm-12">';
  	div += '<div class="btn-group pull-right" role="group">';
- 	div += '<a class="btn btn-sm bt_removeScene btn-primary"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>';
+ 	div += '<a class="btn btn-sm bt_removeScene btn-primary"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>';
  	div += '<a class="btn btn-sm bt_addInAction btn-success"><i class="fas fa-plus-circle"></i> {{Action d\'entrée}}</a>';
  	div += '<a class="btn btn-danger btn-sm bt_addOutAction"><i class="fas fa-plus-circle"></i> {{Action de sortie}}</a>';
  	div += '</div>';
