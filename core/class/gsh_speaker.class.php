@@ -117,7 +117,7 @@ class gsh_speaker {
 					case 'action.devices.commands.setVolume':
 					$cmd = cmd::byId($_infos['customData']['cmd_set_volume']);
 					if (!is_object($cmd)) {
-						continue;
+						break;
 					}
 					$cmd->execCmd(array('slider'=> $execution['params']['volumeLevel']));
 					$return = array('status' => 'SUCCESS');
@@ -125,11 +125,11 @@ class gsh_speaker {
 					case 'action.devices.commands.volumeRelative':
 					$cmd = cmd::byId($_infos['customData']['cmd_set_volume']);
 					if (!is_object($cmd)) {
-						continue;
+						break;
 					}
 					$cmd_info = cmd::byId($_infos['customData']['cmd_get_volume']);
 					if (!is_object($cmd_info)) {
-						continue;
+						break;
 					}
 					$cmd->execCmd(array('slider'=> $cmd_info->execCmd() + $execution['params']['volumeRelativeLevel']));
 					$return = array('status' => 'SUCCESS');
@@ -137,7 +137,7 @@ class gsh_speaker {
 					case 'action.devices.commands.mediaPause':
 					$cmd = cmd::byId($_infos['customData']['cmd_set_media_pause']);
 					if (!is_object($cmd)) {
-						continue;
+						break;
 					}
 					$cmd->execCmd();
 					$return = array('status' => 'SUCCESS');
@@ -145,7 +145,7 @@ class gsh_speaker {
 					case 'action.devices.commands.mediaResume':
 					$cmd = cmd::byId($_infos['customData']['cmd_set_media_resume']);
 					if (!is_object($cmd)) {
-						continue;
+						break;
 					}
 					$cmd->execCmd();
 					$return = array('status' => 'SUCCESS');
@@ -153,7 +153,7 @@ class gsh_speaker {
 					case 'action.devices.commands.mediaStop':
 					$cmd = cmd::byId($_infos['customData']['cmd_set_media_stop']);
 					if (!is_object($cmd)) {
-						continue;
+						break;
 					}
 					$cmd->execCmd();
 					$return = array('status' => 'SUCCESS');
@@ -161,7 +161,7 @@ class gsh_speaker {
 					case 'action.devices.commands.mediaNext':
 					$cmd = cmd::byId($_infos['customData']['cmd_set_media_next']);
 					if (!is_object($cmd)) {
-						continue;
+						break;
 					}
 					$cmd->execCmd();
 					$return = array('status' => 'SUCCESS');
@@ -169,7 +169,7 @@ class gsh_speaker {
 					case 'action.devices.commands.mediaPrevious':
 					$cmd = cmd::byId($_infos['customData']['cmd_set_media_previous']);
 					if (!is_object($cmd)) {
-						continue;
+						break;
 					}
 					$cmd->execCmd();
 					$return = array('status' => 'SUCCESS');
