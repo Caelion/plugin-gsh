@@ -277,10 +277,10 @@
  	div += '</div>';
  	if (isset(_el)) {
  		_el.find('.div_' + _type).append(div);
- 		_el.find('.' + _type + ':last').setValues(_action, '.expressionAttr');
+ 		_el.find('.' + _type + '').last().setValues(_action, '.expressionAttr');
  	} else {
  		$('#div_' + _type).append(div);
- 		$('#div_' + _type + ' .' + _type + ':last').setValues(_action, '.expressionAttr');
+ 		$('#div_' + _type + ' .' + _type + '').last().setValues(_action, '.expressionAttr');
  	}
  	actionOptions.push({
  		expression : init(_action.cmd, ''),
@@ -356,24 +356,24 @@
  	div += '</div>';
 
  	$('#div_scenes').append(div);
- 	$('#div_scenes .scene:last').setValues(_scene, '.sceneAttr');
+ 	$('#div_scenes .scene').last().setValues(_scene, '.sceneAttr');
  	if (is_array(_scene.options.inAction)) {
  		for (var i in _scene.options.inAction) {
- 			addAction(_scene.options.inAction[i], 'inAction', '{{Action d\'entrée}}', $('#div_scenes .scene:last'));
+ 			addAction(_scene.options.inAction[i], 'inAction', '{{Action d\'entrée}}', $('#div_scenes .scene').last());
  		}
  	} else {
  		if ($.trim(_scene.options.inAction) != '') {
- 			addAction(_scene.options.inAction[i], 'inAction', '{{Action d\'entrée}}', $('#div_scenes .scene:last'));
+ 			addAction(_scene.options.inAction[i], 'inAction', '{{Action d\'entrée}}', $('#div_scenes .scene').last());
  		}
  	}
 
  	if (is_array(_scene.options.outAction)) {
  		for (var i in _scene.options.outAction) {
- 			addAction(_scene.options.outAction[i], 'outAction', '{{Action de sortie}}', $('#div_scenes .scene:last'));
+ 			addAction(_scene.options.outAction[i], 'outAction', '{{Action de sortie}}', $('#div_scenes .scene').last());
  		}
  	} else {
  		if ($.trim(_scene.options.outAction) != '') {
- 			addAction(_scene.options.outAction, 'outAction', '{{Action de sortie}}', $('#div_scenes .scene:last'));
+ 			addAction(_scene.options.outAction, 'outAction', '{{Action de sortie}}', $('#div_scenes .scene').last());
  		}
  	}
  	$('.collapse').collapse();
