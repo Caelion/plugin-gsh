@@ -114,15 +114,15 @@ if (!$plugin->isActive()) {
 	));
 	die();
 }
-log::add('gsh', 'debug', 'Request : '+json_encode($body));
+log::add('gsh', 'debug', 'Request : '.json_encode($body));
 if ($body['action'] == 'exec') {
 	$result = json_encode(gsh::exec($body));
-	log::add('gsh', 'debug', 'Exec result : '+$result);
+	log::add('gsh', 'debug', 'Exec result : '.$result);
 	echo $result;
 	die();
 } else if ($body['action'] == 'query') {
 	$result = json_encode(gsh::query($body));
-	log::add('gsh', 'debug','Query result : '+ $result);
+	log::add('gsh', 'debug','Query result : '. $result);
 	echo $result;
 	die();
 } else if ($body['action'] == 'interact') {
