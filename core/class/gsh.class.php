@@ -85,8 +85,8 @@ class gsh extends eqLogic {
 		if (config::byKey('mode', 'gsh') == 'jeedom') {
 			$request_http = new com_http('https://api-gh.jeedom.com/jeedom/sync/devices');
 			$request_http->setPost(json_encode(array(
-				'data' => self::sync(),
-				"apikey" =>  jeedom::getApiKey('gsh')
+				'apikey' =>  jeedom::getApiKey('gsh'),
+				'data' => self::sync()
 			)));
 			$result = $request_http->exec(30);
 		} else {
