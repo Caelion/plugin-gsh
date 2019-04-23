@@ -218,9 +218,9 @@ class gsh extends eqLogic {
 				log::add('gsh', 'debug', 'Report state : ' . json_encode($return));
 				if (config::byKey('mode', 'gsh') == 'jeedom') {
 					$request_http = new com_http('https://api-gh.jeedom.com/jeedom/reportState');
-					$request_http->setPost(json_encode(array(
-						'data' => $return,
-						"apikey" =>  jeedom::getApiKey('gsh')
+					$request_http->setPost(http_build_query(array(
+						'apikey' =>  jeedom::getApiKey('gsh'),
+						'data' => json_encode($return)
 					)));
 					$result = $request_http->exec(30);
 				} else {
