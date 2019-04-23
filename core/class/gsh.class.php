@@ -84,10 +84,10 @@ class gsh extends eqLogic {
 	public static function sendDevices() {
 		if (config::byKey('mode', 'gsh') == 'jeedom') {
 			$request_http = new com_http('https://api-gh.jeedom.com/jeedom/sync/devices');
-			$request_http->setPost(array(
+			$request_http->setPost(http_build_query(array(
 				'apikey' =>  jeedom::getApiKey('gsh'),
 				'data' => json_encode(self::sync())
-			));
+			)));
 			$result = $request_http->exec(30);
 		} else {
 			$request_http = new com_http('https://homegraph.googleapis.com/v1/devices:requestSync?key=' . config::byKey('gshs::googleapikey', 'gsh'));
