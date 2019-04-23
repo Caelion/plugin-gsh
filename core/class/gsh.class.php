@@ -175,6 +175,7 @@ class gsh extends eqLogic {
 			
 			public static function query($_data) {
 				$return = array('devices' => array());
+				log::add('gsh', 'debug',print_r($_data,true));
 				foreach ($_data['devices'] as $infos) {
 					$return['devices'][$infos['id']] = array();
 					$device = gsh_devices::byLinkTypeLinkId('eqLogic', $infos['id']);
