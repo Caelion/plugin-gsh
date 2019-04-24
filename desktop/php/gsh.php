@@ -26,9 +26,9 @@ if (!isConnect('admin')) {
 							<th>{{Equipement}}</th>
 							<th>{{Plugin}}</th>
 							<th data-sorter="false" data-filter="false">{{Options}}</th>
-							<th>{{Status}}</th>
-							<th data-sorter="select-text">{{Type}}</th>
-							<th data-sorter="inputs">{{Pseudo}}</th>
+							<th data-sorter="false" data-filter="false">{{Status}}</th>
+							<th data-sorter="false" data-filter="false">{{Type}}</th>
+							<th data-sorter="false" data-filter="false">{{Pseudo}}</th>
 							<th data-sorter="false" data-filter="false">{{Action}}</th>
 						</tr>
 					</thead>
@@ -36,7 +36,7 @@ if (!isConnect('admin')) {
 						<?php
 						foreach (eqLogic::all() as $eqLogic) {
 							echo '<tr class="device" data-link_id="' . $eqLogic->getId() . '" data-link_type="eqLogic">';
-							echo '<td>' . $eqLogic->getHumanName(true) . '</td>';
+							echo '<td style="width:250px;">' . $eqLogic->getHumanName(true) . '</td>';
 							echo '<td>' . $eqLogic->getEqType_name() . '</td>';
 							echo '<td>';
 							echo '<input style="display:none;" class="deviceAttr" data-l1key="id" />';
@@ -64,7 +64,7 @@ if (!isConnect('admin')) {
 							echo '<td>';
 							echo '<span class="deviceAttr label" data-l1key="options" data-l2key="configState" style="font-size:1em;"></span>';
 							echo '</td>';
-							echo '<td>';
+							echo '<td style="width:150px;">';
 							echo '<select class="deviceAttr form-control input-sm" data-l1key="type">';
 							echo '<option value="">{{Aucun}}</option>';
 							foreach (gsh::$_supportedType as $key => $value) {
@@ -78,10 +78,10 @@ if (!isConnect('admin')) {
 							echo '<td>';
 							echo '<input class="deviceAttr form-control input-sm" data-l1key="options" data-l2key="pseudo" />';
 							echo '</td>';
-							echo '<td style="width:150px;">';
+							echo '<td style="width:120px;">';
 							echo ' <a class="btn btn-success btn-sm bt_advanceConfigureEqLogic" data-id="' . $eqLogic->getId() . '" ><i class="fas fa-cog"></i></a>';
 							echo ' <a class="btn btn-default btn-sm bt_configureEqLogic" data-id="' . $eqLogic->getId() . '"><i class="fas fa-cogs"></i></a>';
-							echo ' <a class="btn btn-default btn-sm" href="' . $eqLogic->getLinkToConfiguration() . '"  target="_blank"><i class="fa fa-external-link"></i></a>';
+							echo ' <a class="btn btn-default btn-sm" href="' . $eqLogic->getLinkToConfiguration() . '"  target="_blank"><i class="fas fa-external-link-alt"></i></a>';
 							echo '</td>';
 							echo '</tr>';
 						}
