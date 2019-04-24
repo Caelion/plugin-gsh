@@ -131,14 +131,13 @@ function loadData(){
         el.setValues(data.result[i], '.deviceAttr');
         if(data.result[i].options && data.result[i].options.configState){
           if(data.result[i].options.configState == 'OK'){
-            nbDeviceOk++
             el.find('.deviceAttr[data-l2key=configState]').removeClass('label-danger').addClass('label-success');
           }else{
-            nbDeviceNok++
             el.find('.deviceAttr[data-l2key=configState]').removeClass('label-success').addClass('label-danger');
           }
         }
       }
+      $('#eqlogictab .tablesorter').trigger('update')
       jeedom.cmd.displayActionsOption({
         params : actionOptions,
         async : false,
