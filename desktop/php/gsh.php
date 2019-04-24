@@ -78,7 +78,7 @@ if (!isConnect('admin')) {
 							echo '<td>';
 							echo '<input class="deviceAttr form-control input-sm" data-l1key="options" data-l2key="pseudo" />';
 							echo '</td>';
-							echo '<td style="width:120px;">';
+							echo '<td style="width:150px;">';
 							echo ' <a class="btn btn-success btn-sm bt_advanceConfigureEqLogic" data-id="' . $eqLogic->getId() . '" ><i class="fas fa-cog"></i></a>';
 							echo ' <a class="btn btn-default btn-sm bt_configureEqLogic" data-id="' . $eqLogic->getId() . '"><i class="fas fa-cogs"></i></a>';
 							echo ' <a class="btn btn-default btn-sm" href="' . $eqLogic->getLinkToConfiguration() . '"  target="_blank"><i class="fas fa-external-link-alt"></i></a>';
