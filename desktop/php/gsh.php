@@ -26,9 +26,9 @@ if (!isConnect('admin')) {
 							<th>{{Equipement}}</th>
 							<th>{{Plugin}}</th>
 							<th data-sorter="false" data-filter="false">{{Options}}</th>
-							<th data-sorter="false" data-filter="false">{{Status}}</th>
-							<th data-sorter="false" data-filter="false">{{Type}}</th>
-							<th data-sorter="false" data-filter="false">{{Pseudo}}</th>
+							<th>{{Status}}</th>
+							<th data-sorter="select-text">{{Type}}</th>
+							<th data-sorter="inputs">{{Pseudo}}</th>
 							<th data-sorter="false" data-filter="false">{{Action}}</th>
 						</tr>
 					</thead>
