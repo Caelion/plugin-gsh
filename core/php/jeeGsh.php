@@ -1,20 +1,20 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 require_once __DIR__ . "/../../../../core/php/core.inc.php";
 $headers = apache_request_headers();
 $body = json_decode(file_get_contents('php://input'), true);
@@ -114,15 +114,15 @@ if (!$plugin->isActive()) {
 	));
 	die();
 }
-log::add('gsh', 'debug', json_encode($body));
+log::add('gsh', 'debug', 'Request : '.json_encode($body));
 if ($body['action'] == 'exec') {
 	$result = json_encode(gsh::exec($body));
-	log::add('gsh', 'debug', $result);
+	log::add('gsh', 'debug', 'Exec result : '.$result);
 	echo $result;
 	die();
 } else if ($body['action'] == 'query') {
 	$result = json_encode(gsh::query($body));
-	log::add('gsh', 'debug', $result);
+	log::add('gsh', 'debug','Query result : '. $result);
 	echo $result;
 	die();
 } else if ($body['action'] == 'interact') {

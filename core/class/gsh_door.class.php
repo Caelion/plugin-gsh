@@ -42,7 +42,7 @@ class gsh_door {
 		$return['customData'] = array();
 		$return['willReportState'] = ($_device->getOptions('reportState') == 1);
 		$return['traits'] = array();
-		$modes = '';
+		$return['attributes'] = array();
 		foreach ($eqLogic->getCmd() as $cmd) {
 			if (in_array($cmd->getGeneric_type(), self::$_STATE)) {
 				$return['customData']['cmd_get_state'] = $cmd->getId();
@@ -54,6 +54,7 @@ class gsh_door {
 		if (count($return['traits']) == 0) {
 			return array();
 		}
+		$return['attributes']['queryOnlyOpenClose'] = true;
 		return $return;
 	}
 	
@@ -79,10 +80,11 @@ class gsh_door {
 		if ($cmd->getSubtype() == 'numeric') {
 			$return['openPercent'] = $value;
 		} else if ($cmd->getSubtype() == 'binary') {
-			$return['openPercent'] = ($value) ? 100 : 0;
+			$return['openPercent'] = boolval($value);
 			if ($cmd->getDisplay('invertBinary') == 0) {
-				$return['openPercent'] = 100 - $return['openPercent'];
+				$return['openPercent'] = ($return['openPercent']) ? false : true;
 			}
+			$return['openPercent'] = ($return['openPercent']) ? 0 : 100;
 		}
 		return $return;
 	}

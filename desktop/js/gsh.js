@@ -262,12 +262,12 @@
  	div += '<div class="col-sm-4 ' + input + '">';
  	div += '<div class="input-group">';
  	div += '<span class="input-group-btn">';
- 	div += '<a class="btn btn-default bt_removeAction btn-sm" data-type="' + _type + '"><i class="fa fa-minus-circle"></i></a>';
+ 	div += '<a class="btn btn-default bt_removeAction btn-sm" data-type="' + _type + '"><i class="fas fa-minus-circle"></i></a>';
  	div += '</span>';
  	div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="' + _type + '" />';
  	div += '<span class="input-group-btn">';
  	div += '<a class="btn ' + button + ' btn-sm listAction" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fa fa-tasks"></i></a>';
- 	div += '<a class="btn ' + button + ' btn-sm listCmdAction" data-type="' + _type + '"><i class="fa fa-list-alt"></i></a>';
+ 	div += '<a class="btn ' + button + ' btn-sm listCmdAction" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>';
  	div += '</span>';
  	div += '</div>';
  	div += '</div>';
@@ -277,10 +277,10 @@
  	div += '</div>';
  	if (isset(_el)) {
  		_el.find('.div_' + _type).append(div);
- 		_el.find('.' + _type + ':last').setValues(_action, '.expressionAttr');
+ 		_el.find('.' + _type + '').last().setValues(_action, '.expressionAttr');
  	} else {
  		$('#div_' + _type).append(div);
- 		$('#div_' + _type + ' .' + _type + ':last').setValues(_action, '.expressionAttr');
+ 		$('#div_' + _type + ' .' + _type + '').last().setValues(_action, '.expressionAttr');
  	}
  	actionOptions.push({
  		expression : init(_action.cmd, ''),
@@ -307,20 +307,42 @@
  	div += '<div class="well">';
  	div += '<form class="form-horizontal" role="form">';
  	div += '<div class="form-group">';
+	div += '<div class="col-sm-12">';
+ 	div += '<div class="btn-group pull-right" role="group">';
+ 	div += '<a class="btn btn-sm bt_removeScene btn-primary"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>';
+ 	div += '<a class="btn btn-sm bt_addInAction btn-success"><i class="fas fa-plus-circle"></i> {{Action d\'entrée}}</a>';
+ 	div += '<a class="btn btn-danger btn-sm bt_addOutAction"><i class="fas fa-plus-circle"></i> {{Action de sortie}}</a>';
+ 	div += '</div>';
+ 	div += '</div>';
  	div += '<label class="col-sm-2 control-label">{{Nom du scene}}</label>';
- 	div += '<div class="col-sm-2">';
+ 	div += '<div class="col-sm-10">';
  	div += '<input class="sceneAttr" data-l1key="id" style="display:none;" />';
  	div += '<input class="sceneAttr" data-l1key="enable" style="display:none;" value="1" />';
  	div += '<input class="sceneAttr" data-l1key="link_type" style="display:none;" value="scene" />';
  	div += '<input class="sceneAttr" data-l1key="type" style="display:none;" value="action.devices.types.SCENE" />';
  	div += '<span class="sceneAttr label label-info rename cursor" data-l1key="options" data-l2key="name" style="font-size : 1em;" ></span>';
- 	div += '</div>';
- 	div += '<div class="col-sm-8">';
- 	div += '<div class="btn-group pull-right" role="group">';
- 	div += '<a class="btn btn-sm bt_removeScene btn-primary"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>';
- 	div += '<a class="btn btn-sm bt_addInAction btn-success"><i class="fa fa-plus-circle"></i> {{Action d\'entrée}}</a>';
- 	div += '<a class="btn btn-danger btn-sm bt_addOutAction"><i class="fa fa-plus-circle"></i> {{Action de sortie}}</a>';
- 	div += '</div>';
+	div += '</div>';
+	div += '<label class="col-sm-2 control-label">{{Pseudo}}</label>';
+	div += '<div class="col-sm-10">';
+ 	div += '<input class="sceneAttr" data-l1key="options" data-l2key="pseudo"/>';
+	div += '</div>';
+	div += '<label class="col-sm-2 control-label">{{Pièce}}</label>';
+	div += '<div class="col-sm-3">';
+	div += '<select class="sceneAttr form-control" data-l1key="options" data-l2key="piece">';
+	div += '<option value="">Aucun</option>';
+	jeedom.object.all({
+		async : false,
+		error: function (error) {
+		$('#div_alert').showAlert({message: error.message, level: 'danger'});
+		},
+		success: function (objects) {
+			for (var i in objects) {
+				console.log(objects[i].name);
+				div += '<option value="' + objects[i].name + '">' + objects[i].name+'</option>';
+			}
+		}
+	});
+ 	div += '</select>';
  	div += '</div>';
  	div += '</div>';
  	div += '<hr/>';
@@ -334,24 +356,24 @@
  	div += '</div>';
 
  	$('#div_scenes').append(div);
- 	$('#div_scenes .scene:last').setValues(_scene, '.sceneAttr');
+ 	$('#div_scenes .scene').last().setValues(_scene, '.sceneAttr');
  	if (is_array(_scene.options.inAction)) {
  		for (var i in _scene.options.inAction) {
- 			addAction(_scene.options.inAction[i], 'inAction', '{{Action d\'entrée}}', $('#div_scenes .scene:last'));
+ 			addAction(_scene.options.inAction[i], 'inAction', '{{Action d\'entrée}}', $('#div_scenes .scene').last());
  		}
  	} else {
  		if ($.trim(_scene.options.inAction) != '') {
- 			addAction(_scene.options.inAction[i], 'inAction', '{{Action d\'entrée}}', $('#div_scenes .scene:last'));
+ 			addAction(_scene.options.inAction[i], 'inAction', '{{Action d\'entrée}}', $('#div_scenes .scene').last());
  		}
  	}
 
  	if (is_array(_scene.options.outAction)) {
  		for (var i in _scene.options.outAction) {
- 			addAction(_scene.options.outAction[i], 'outAction', '{{Action de sortie}}', $('#div_scenes .scene:last'));
+ 			addAction(_scene.options.outAction[i], 'outAction', '{{Action de sortie}}', $('#div_scenes .scene').last());
  		}
  	} else {
  		if ($.trim(_scene.options.outAction) != '') {
- 			addAction(_scene.options.outAction, 'outAction', '{{Action de sortie}}', $('#div_scenes .scene:last'));
+ 			addAction(_scene.options.outAction, 'outAction', '{{Action de sortie}}', $('#div_scenes .scene').last());
  		}
  	}
  	$('.collapse').collapse();

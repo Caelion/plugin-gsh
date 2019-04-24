@@ -48,7 +48,7 @@ class gsh extends eqLogic {
 		'action.devices.types.SCENE' => array('class' => 'gsh_scene', 'name' => 'Scene'),
 		'action.devices.types.BLINDS' => array('class' => 'gsh_blinds', 'name' => 'Store'),
 		'action.devices.types.SHUTTER' => array('class' => 'gsh_shutter', 'name' => 'Volet'),
-		//	'action.devices.types.SENSOR' => array('class' => 'gsh_sensor', 'name' => 'Capteur'),
+		'action.devices.types.SENSOR' => array('class' => 'gsh_sensor', 'name' => 'Capteur'),
 		'action.devices.types.WINDOW' => array('class' => 'gsh_window', 'name' => 'Fenêtre'),
 		'action.devices.types.DOOR' => array('class' => 'gsh_door', 'name' => 'Porte'),
 		'action.devices.types.SECURITYSYSTEM' => array('class' => 'gsh_securitysystem', 'name' => 'Alarme'),
@@ -83,10 +83,12 @@ class gsh extends eqLogic {
 	
 	public static function sendDevices() {
 		if (config::byKey('mode', 'gsh') == 'jeedom') {
-			$market = repo_market::getJsonRpc();
-			if (!$market->sendRequest('gsh::sync', array('devices' => self::sync()))) {
-				throw new Exception($market->getError(), $market->getErrorCode());
-			}
+			$request_http = new com_http('https://api-gh.jeedom.com/jeedom/sync/devices');
+			$request_http->setPost(http_build_query(array(
+				'apikey' =>  jeedom::getApiKey('gsh'),
+				'data' => json_encode(self::sync())
+			)));
+			$result = $request_http->exec(30);
 		} else {
 			$request_http = new com_http('https://homegraph.googleapis.com/v1/devices:requestSync?key=' . config::byKey('gshs::googleapikey', 'gsh'));
 			$request_http->setPost(json_encode(array('agent_user_id' => config::byKey('gshs::useragent', 'gsh'),'async' => false)));
@@ -216,9 +218,9 @@ class gsh extends eqLogic {
 				log::add('gsh', 'debug', 'Report state : ' . json_encode($return));
 				if (config::byKey('mode', 'gsh') == 'jeedom') {
 					$request_http = new com_http('https://api-gh.jeedom.com/jeedom/reportState');
-					$request_http->setPost(json_encode(array(
-						'data' => $return,
-						"apikey" =>  jeedom::getApiKey('gsh')
+					$request_http->setPost(http_build_query(array(
+						'apikey' =>  jeedom::getApiKey('gsh'),
+						'data' => json_encode($return)
 					)));
 					$result = $request_http->exec(30);
 				} else {

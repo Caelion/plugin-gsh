@@ -95,7 +95,7 @@ class gsh_tv {
 					case 'action.devices.commands.setVolume':
 					$cmd = cmd::byId($_infos['customData']['cmd_set_volume']);
 					if (!is_object($cmd)) {
-						continue;
+						break;
 					}
 					$cmd->execCmd(array('slider'=> $execution['params']['volumeLevel']));
 					$return = array('status' => 'SUCCESS');
@@ -103,11 +103,11 @@ class gsh_tv {
 					case 'action.devices.commands.volumeRelative':
 					$cmd = cmd::byId($_infos['customData']['cmd_set_volume']);
 					if (!is_object($cmd)) {
-						continue;
+						break;
 					}
 					$cmd_info = cmd::byId($_infos['customData']['cmd_get_volume']);
 					if (!is_object($cmd_info)) {
-						continue;
+						break;
 					}
 					$cmd->execCmd(array('slider'=> $cmd_info->execCmd() + $execution['params']['volumeRelativeLevel']));
 					$return = array('status' => 'SUCCESS');
@@ -115,7 +115,7 @@ class gsh_tv {
 					case 'action.devices.commands.selectChannel':
 					$cmd = cmd::byId($_infos['customData']['cmd_set_channel']);
 					if (!is_object($cmd)) {
-						continue;
+						break;
 					}
 					$cmd->execCmd(array('slider'=> $execution['params']['channelNumber']));
 					$return = array('status' => 'SUCCESS');
@@ -123,11 +123,11 @@ class gsh_tv {
 					case 'action.devices.commands.relativeChannel':
 					$cmd = cmd::byId($_infos['customData']['cmd_set_channel']);
 					if (!is_object($cmd)) {
-						continue;
+						break;
 					}
 					$cmd_info = cmd::byId($_infos['customData']['cmd_get_channel']);
 					if (!is_object($cmd_info)) {
-						continue;
+						break;
 					}
 					$cmd->execCmd(array('slider'=> $cmd_info->execCmd() + $execution['params']['relativeChannelChange']));
 					$return = array('status' => 'SUCCESS');

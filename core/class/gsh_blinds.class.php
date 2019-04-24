@@ -43,6 +43,7 @@ class gsh_blinds {
 		}
 		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => $_device->getPseudo());
 		$return['traits'] = array();
+		$return['attributes'] = array();
 		$return['willReportState'] = ($_device->getOptions('reportState') == 1);
 		foreach ($eqLogic->getCmd() as $cmd) {
 			if (in_array($cmd->getGeneric_type(), self::$_ON)) {
@@ -70,6 +71,7 @@ class gsh_blinds {
 		if (count($return['traits']) == 0) {
 			return array();
 		}
+		$return['attributes']['openDirection'] = array('UP','DOWN');
 		return $return;
 	}
 	
@@ -155,16 +157,15 @@ class gsh_blinds {
 			return $return;
 		}
 		$value = $cmd->execCmd();
+		$return['openState'] = array('openPercent' => 0 , 'openDirection' => 'DOWN');
 		if ($cmd->getSubtype() == 'numeric') {
-			$return['on'] = ($value > 0);
+			$return['openState']['openPercent'] = $value;
 		} else if ($cmd->getSubtype() == 'binary') {
-			$return['on'] = boolval($value);
+			$return['openState']['openPercent'] = boolval($value);
 			if ($cmd->getDisplay('invertBinary') == 0) {
-				$return['on'] = ($return['on']) ? false : true;
+				$return['openState']['openPercent'] = ($return['openPercent']) ? false : true;
 			}
-		}
-		if (in_array($cmd->getGeneric_type(), array('FLAP_BSO_STATE', 'FLAP_STATE'))) {
-			$return['on'] = ($return['on']) ? false : true;
+			$return['openState']['openPercent'] = ($return['openPercent']) ? 0 : 100;
 		}
 		return $return;
 	}
