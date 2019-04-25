@@ -27,6 +27,12 @@ class gsh_light {
 	private static $_OFF = array('ENERGY_OFF', 'LIGHT_OFF');
 	private static $_STATE = array('ENERGY_STATE', 'LIGHT_STATE');
 	
+	private static $_BRIGHTNESS = array('LIGHT_SLIDER');
+	private static $_BRIGHTNESS_STATE = array('LIGHT_STATE');
+	
+	private static $_COLOR = array('LIGHT_SET_COLOR');
+	private static $_COLOR_STATE = array('LIGHT_COLOR');
+	
 	/*     * ***********************Methode static*************************** */
 	
 	public static function buildDevice($_device) {
@@ -76,11 +82,14 @@ class gsh_light {
 				}
 				$return['attributes']['colorModel'] = 'RGB';
 			}
-			if (in_array($cmd->getGeneric_type(), self::$_STATE) && !isset($return['customData']['cmd_get_state'])) {
+			if (in_array($cmd->getGeneric_type(), self::$_STATE)) {
 				$return['customData']['cmd_get_state'] = $cmd->getId();
 			}
-			if (in_array($cmd->getGeneric_type(), array('LIGHT_COLOR'))) {
-				$return['customData']['cmd_get_state'] = $cmd->getId();
+			if (in_array($cmd->getGeneric_type(), self::$_BRIGHTNESS_STATE)) {
+				$return['customData']['cmd_get_brightness'] = $cmd->getId();
+			}
+			if (in_array($cmd->getGeneric_type(), self::$_COLOR_STATE)) {
+				$return['customData']['cmd_get_color'] = $cmd->getId();
 			}
 		}
 		if (count($return['traits']) == 0) {
@@ -172,22 +181,22 @@ class gsh_light {
 	public static function getState($_device, $_infos) {
 		$return = array();
 		$cmd = null;
-		if (isset($_infos['customData']['cmd_get_state'])) {
-			$cmd = cmd::byId($_infos['customData']['cmd_get_state']);
-		}
-		if (!is_object($cmd)) {
-			return $return;
-		}
-		$value = $cmd->execCmd();
-		if ($cmd->getSubtype() == 'numeric') {
-			$return['brightness'] = round($value / $cmd->getConfiguration('maxValue', 100) * 100);
-			$return['on'] = ($return['brightness'] > 0);
-		} else if ($cmd->getSubtype() == 'binary') {
-			$return['on'] = boolval($value);
-		} else if ($cmd->getSubtype() == 'string') {
-			$return['color'] = array(
-				'spectrumRGB' => hexdec(str_replace('#', '', $value)),
-			);
+		foreach (array('cmd_get_state','cmd_get_color','cmd_get_brightness') as $key) {
+			if (!isset($_infos['customData'][$key])) {
+				continue;
+			}
+			$cmd = cmd::byId($_infos['customData'][$key]);
+			$value = $cmd->execCmd();
+			if ($cmd->getSubtype() == 'numeric') {
+				$return['brightness'] = round($value / $cmd->getConfiguration('maxValue', 100) * 100);
+				$return['on'] = ($return['brightness'] > 0);
+			} else if ($cmd->getSubtype() == 'binary') {
+				$return['on'] = boolval($value);
+			} else if ($cmd->getSubtype() == 'string') {
+				$return['color'] = array(
+					'spectrumRGB' => hexdec(str_replace('#', '', $value)),
+				);
+			}
 		}
 		return $return;
 	}

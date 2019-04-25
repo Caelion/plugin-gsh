@@ -72,7 +72,6 @@ $('#bt_saveConfiguration').on('click',function(){
         $('#div_alert').showAlert({message: data.result, level: 'danger'});
         return;
       }
-      loadData();
       sendDevices();
     },
   });
@@ -94,8 +93,7 @@ function sendDevices(){
         $('#div_alert').showAlert({message: data.result, level: 'danger'});
         return;
       }
-      $('#div_alert').showAlert({message: '{{Synchronisation réussie}}', level: 'success'});
-      loadData();
+      $('#div_alert').showAlert({message: '{{Synchronisation réussie. Pour voir le status des equipements à jour, merci de rafraichir la page (F5)}}', level: 'success'});
     },
   });
 }
@@ -117,8 +115,6 @@ function loadData(){
         $('#div_alert').showAlert({message: data.result, level: 'danger'});
         return;
       }
-      var nbDeviceOk = 0
-      var nbDeviceNok = 0
       for(var i in data.result){
         if(data.result[i]['link_type'] == 'scene'){
           addScene(data.result[i]);
@@ -137,7 +133,8 @@ function loadData(){
           }
         }
       }
-      $('#eqlogictab .tablesorter').trigger('update')
+      $('#eqlogictab table').trigger('update')
+      
       jeedom.cmd.displayActionsOption({
         params : actionOptions,
         async : false,
