@@ -117,8 +117,7 @@ function loadData(){
         $('#div_alert').showAlert({message: data.result, level: 'danger'});
         return;
       }
-      var nbDeviceOk = 0
-      var nbDeviceNok = 0
+      $('#eqlogictab table').trigger("destroy");
       for(var i in data.result){
         if(data.result[i]['link_type'] == 'scene'){
           addScene(data.result[i]);
@@ -137,7 +136,8 @@ function loadData(){
           }
         }
       }
-      $('#eqlogictab .tablesorter').trigger('update')
+      $('#eqlogictab table').addClass("table table-bordered tablesorter");
+      initTableSorter();
       jeedom.cmd.displayActionsOption({
         params : actionOptions,
         async : false,
