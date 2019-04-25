@@ -76,7 +76,10 @@ class gsh_light {
 				}
 				$return['attributes']['colorModel'] = 'RGB';
 			}
-			if (in_array($cmd->getGeneric_type(), self::$_STATE)) {
+			if (in_array($cmd->getGeneric_type(), self::$_STATE) && !isset($return['customData']['cmd_get_state'])) {
+				$return['customData']['cmd_get_state'] = $cmd->getId();
+			}
+			if (in_array($cmd->getGeneric_type(), array('LIGHT_COLOR'))) {
 				$return['customData']['cmd_get_state'] = $cmd->getId();
 			}
 		}
