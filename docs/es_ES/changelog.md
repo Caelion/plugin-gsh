@@ -1,3 +1,7 @@
+# 24/04/2019
+
+- Corrección de errores
+
 # 08/02/2019
 
 - Support des modes sur l'alarme coté Jeedom (ne marche pas encore coté Google...)

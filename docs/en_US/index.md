@@ -175,7 +175,7 @@ Pour faire la configuration il faut
   * Cliquez sur  "Créer une clé"
     * Laissez JSON et cliquez sur OK
   * Cliquez sur OK
-  * Ouvrez le fichier téléchargé et copier la partie 'private_key' (commence par "-----BEGIN PRIVATE KEY-----", inclus et fini par "-----END PRIVATE KEY-----\n", inclus) dans la configuration du plugin sur Jeedom (champs : Clef privé (JWT))
+  * Ouvrez le fichier téléchargé et copier la partie 'private_key' (commence par "-----BEGIN PRIVATE KEY-----", inclus et fini par "-----END PRIVATE KEY-----\n", inclus sans les ") dans la configuration du plugin sur Jeedom (champs : Clef privé (JWT))
 
 ## Application Intéraction
 
