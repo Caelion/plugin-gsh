@@ -91,7 +91,7 @@ class gsh extends eqLogic {
 			$result = $request_http->exec(30);
 		} else {
 			$request_http = new com_http('https://homegraph.googleapis.com/v1/devices:requestSync?key=' . config::byKey('gshs::googleapikey', 'gsh'));
-			$request_http->setPost(json_encode(array('agent_user_id' => config::byKey('gshs::useragent', 'gsh'),'async' => false)));
+			$request_http->setPost(json_encode(array('agent_user_id' => config::byKey('gshs::useragent', 'gsh'),'async' => true)));
 			$request_http->setHeader(array('Content-Type: application/json'));
 			$result = is_json($request_http->exec(30), true);
 			if (isset($result['error'])) {
