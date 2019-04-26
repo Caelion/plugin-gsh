@@ -159,16 +159,17 @@ class gsh_blinds {
 			return $return;
 		}
 		$value = $cmd->execCmd();
-		$return['openState'] = array('openPercent' => 0 , 'openDirection' => 'UP');
+		$openState = array('openPercent' => 0 , 'openDirection' => 'UP');
 		if ($cmd->getSubtype() == 'numeric') {
-			$return['openState']['openPercent'] = $value;
+			$openState['openPercent'] = $value;
 		} else if ($cmd->getSubtype() == 'binary') {
-			$return['openState']['openPercent'] = boolval($value);
+			$openState['openPercent'] = boolval($value);
 			if ($cmd->getDisplay('invertBinary') == 0) {
-				$return['openState']['openPercent'] = ($return['openPercent']) ? false : true;
+				$openState['openPercent'] = ($return['openPercent']) ? false : true;
 			}
-			$return['openState']['openPercent'] = ($return['openPercent']) ? 0 : 100;
+			$openState['openPercent'] = ($return['openPercent']) ? 0 : 100;
 		}
+		$return['openState'] = array($openState);
 		return $return;
 	}
 	
