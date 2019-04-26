@@ -169,7 +169,7 @@ class gsh_shutter {
 			}
 			$openState['openPercent'] = ($return['openPercent']) ? 0 : 100;
 		}
-		$return['openState'] = array($openState,array('openDirection' => 'DOWN','openPercent' =>100 - $openState['openPercent']));
+		$return['openState'] = array($openState,array('openDirection' => 'DOWN','openPercent' =>100 - $openState['openPercent']),array('openPercent' =>100 - $openState['openPercent']));
 		return $return;
 	}
 	
