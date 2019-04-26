@@ -92,10 +92,12 @@ class gsh_shutter {
 			try {
 				switch ($execution['command']) {
 					case 'action.devices.commands.OpenClose':
+					if(isset($execution['params']['openDirection']) && $execution['params']['openDirection'] == 'DOWN'){
+						$execution['params']['openPercent'] = 100 - $execution['params']['openPercent'];
+					}
 					if (isset($_infos['customData']['cmd_set_slider'])) {
 						$cmd = cmd::byId($_infos['customData']['cmd_set_slider']);
 						if (is_object($cmd)) {
-							$execution['params']['openPercent'] = 100 - $execution['params']['openPercent'];
 							$value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['openPercent'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
 							if($_device->getOptions('shutter::invert',0) == 1){
 								$value = $cmd->getConfiguration('maxValue', 100) - $value;
@@ -105,7 +107,7 @@ class gsh_shutter {
 						}
 						break;
 					}
-					if ($execution['params']['openPercent'] > 50) {
+					if ($execution['params']['openPercent'] < 50) {
 						if (isset($_infos['customData']['cmd_set_on'])) {
 							$cmd = cmd::byId($_infos['customData']['cmd_set_on']);
 						}
@@ -157,16 +159,17 @@ class gsh_shutter {
 			return $return;
 		}
 		$value = $cmd->execCmd();
-		$return['openState'] = array('openPercent' => 0 , 'openDirection' => 'UP');
+		$openState = array('openPercent' => 0 , 'openDirection' => 'UP');
 		if ($cmd->getSubtype() == 'numeric') {
-			$return['openState']['openPercent'] = $value;
+			$openState['openPercent'] = $value;
 		} else if ($cmd->getSubtype() == 'binary') {
-			$return['openState']['openPercent'] = boolval($value);
+			$openState['openPercent'] = boolval($value);
 			if ($cmd->getDisplay('invertBinary') == 0) {
-				$return['openState']['openPercent'] = ($return['openPercent']) ? false : true;
+				$openState['openPercent'] = ($return['openPercent']) ? false : true;
 			}
-			$return['openState']['openPercent'] = ($return['openPercent']) ? 0 : 100;
+			$openState['openPercent'] = ($return['openPercent']) ? 0 : 100;
 		}
+		$return['openState'] = array($openState,array('openDirection' => 'DOWN','openPercent' =>100 - $openState['openPercent']));
 		return $return;
 	}
 	
