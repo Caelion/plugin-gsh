@@ -71,7 +71,6 @@ class gsh_shutter {
 		if (count($return['traits']) == 0) {
 			return array();
 		}
-		$return['attributes']['openDirection'] = array('UP','DOWN');
 		return $return;
 	}
 	
@@ -92,10 +91,8 @@ class gsh_shutter {
 			try {
 				switch ($execution['command']) {
 					case 'action.devices.commands.OpenClose':
-					if(isset($execution['params']['openDirection']) && $execution['params']['openDirection'] == 'DOWN'){
-						$execution['params']['openPercent'] = 100 - $execution['params']['openPercent'];
-					}
 					if (isset($_infos['customData']['cmd_set_slider'])) {
+						$execution['params']['openPercent'] = 100 - $execution['params']['openPercent'];
 						$cmd = cmd::byId($_infos['customData']['cmd_set_slider']);
 						if (is_object($cmd)) {
 							$value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['openPercent'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
@@ -107,7 +104,7 @@ class gsh_shutter {
 						}
 						break;
 					}
-					if ($execution['params']['openPercent'] < 50) {
+					if ($execution['params']['openPercent'] > 50) {
 						if (isset($_infos['customData']['cmd_set_on'])) {
 							$cmd = cmd::byId($_infos['customData']['cmd_set_on']);
 						}
@@ -159,7 +156,7 @@ class gsh_shutter {
 			return $return;
 		}
 		$value = $cmd->execCmd();
-		$openState = array('openPercent' => 0 , 'openDirection' => 'UP');
+		$openState = array('openPercent' => 0);
 		if ($cmd->getSubtype() == 'numeric') {
 			$openState['openPercent'] = $value;
 		} else if ($cmd->getSubtype() == 'binary') {
@@ -169,7 +166,7 @@ class gsh_shutter {
 			}
 			$openState['openPercent'] = ($return['openPercent']) ? 0 : 100;
 		}
-		$return['openState'] = array($openState,array('openDirection' => 'DOWN','openPercent' =>100 - $openState['openPercent']),array('openPercent' =>100 - $openState['openPercent']));
+		$return['openState'] = array($openState);
 		return $return;
 	}
 	
