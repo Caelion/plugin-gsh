@@ -7,8 +7,7 @@ if (!isConnect('admin')) {
 	<div class="col-xs-12">
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
-				<a class="btn btn-sm btn-default" id="bt_displayDevice"><i class="fa fa-eye"></i> {{Voir la configuration}}</a>
-				<a class="btn btn-sm btn-success" id="bt_saveConfiguration"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+				<a class="btn btn-sm btn-default roundedLeft" id="bt_displayDevice"><i class="fa fa-eye"></i> {{Voir la configuration}}</a><a class="btn btn-sm btn-success roundedRight" id="bt_saveConfiguration"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 			</span>
 		</div>
 		
