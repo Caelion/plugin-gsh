@@ -92,10 +92,12 @@ class gsh_blinds {
 			try {
 				switch ($execution['command']) {
 					case 'action.devices.commands.OpenClose':
+					if(isset($execution['params']['openDirection']) && $execution['params']['openDirection'] == 'DOWN'){
+						$execution['params']['openPercent'] = 100 - $execution['params']['openPercent'];
+					}
 					if (isset($_infos['customData']['cmd_set_slider'])) {
 						$cmd = cmd::byId($_infos['customData']['cmd_set_slider']);
 						if (is_object($cmd)) {
-							$execution['params']['openPercent'] = 100 - $execution['params']['openPercent'];
 							$value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['openPercent'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
 							if($_device->getOptions('blinds::invert',0) == 1){
 								$value = $cmd->getConfiguration('maxValue', 100) - $value;
@@ -105,7 +107,7 @@ class gsh_blinds {
 						}
 						break;
 					}
-					if ($execution['params']['openPercent'] > 50) {
+					if ($execution['params']['openPercent'] < 50) {
 						if (isset($_infos['customData']['cmd_set_on'])) {
 							$cmd = cmd::byId($_infos['customData']['cmd_set_on']);
 						}
