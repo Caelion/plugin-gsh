@@ -157,7 +157,7 @@ class gsh_blinds {
 			return $return;
 		}
 		$value = $cmd->execCmd();
-		$return['openState'] = array('openPercent' => 0 , 'openDirection' => 'DOWN');
+		$return['openState'] = array('openPercent' => 0 , 'openDirection' => 'UP');
 		if ($cmd->getSubtype() == 'numeric') {
 			$return['openState']['openPercent'] = $value;
 		} else if ($cmd->getSubtype() == 'binary') {
