@@ -169,7 +169,7 @@ class gsh_blinds {
 			}
 			$openState['openPercent'] = ($return['openPercent']) ? 0 : 100;
 		}
-		$return['openState'] = array($openState);
+		$return['openState'] = array($openState,array('openDirection' => 'DOWN','openPercent' =>100 - $openState['openPercent']));
 		return $return;
 	}
 	
