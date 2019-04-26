@@ -310,6 +310,7 @@ function addScene(_scene) {
   div += '<a class="btn btn-danger btn-sm bt_addOutAction"><i class="fas fa-plus-circle"></i> {{Action de sortie}}</a>';
   div += '</div>';
   div += '</div>';
+  div += '<div class="form-group">';
   div += '<label class="col-sm-2 control-label">{{Nom du scene}}</label>';
   div += '<div class="col-sm-10">';
   div += '<input class="sceneAttr" data-l1key="id" style="display:none;" />';
@@ -318,10 +319,8 @@ function addScene(_scene) {
   div += '<input class="sceneAttr" data-l1key="type" style="display:none;" value="action.devices.types.SCENE" />';
   div += '<span class="sceneAttr label label-info rename cursor" data-l1key="options" data-l2key="name" style="font-size : 1em;" ></span>';
   div += '</div>';
-  div += '<label class="col-sm-2 control-label">{{Pseudo}}</label>';
-  div += '<div class="col-sm-10">';
-  div += '<input class="sceneAttr" data-l1key="options" data-l2key="pseudo"/>';
   div += '</div>';
+  div += '<div class="form-group">';
   div += '<label class="col-sm-2 control-label">{{Pièce}}</label>';
   div += '<div class="col-sm-3">';
   div += '<select class="sceneAttr form-control" data-l1key="options" data-l2key="piece">';
@@ -338,6 +337,11 @@ function addScene(_scene) {
     }
   });
   div += '</select>';
+  div += '</div>';
+  div += '<label class="col-sm-2 control-label">{{Pseudo}}</label>';
+  div += '<div class="col-sm-5">';
+  div += '<input class="sceneAttr form-control" data-l1key="options" data-l2key="pseudo"/>';
+  div += '</div>';
   div += '</div>';
   div += '</div>';
   div += '<hr/>';
