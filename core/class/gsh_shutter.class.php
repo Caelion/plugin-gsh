@@ -71,6 +71,7 @@ class gsh_shutter {
 		if (count($return['traits']) == 0) {
 			return array();
 		}
+		$return['attributes']['openDirection'] = array('DOWN');
 		return $return;
 	}
 	
@@ -156,7 +157,7 @@ class gsh_shutter {
 			return $return;
 		}
 		$value = $cmd->execCmd();
-		$openState = array('openPercent' => 0);
+		$openState = array('openPercent' => 0,'openDirection' => 'DOWN');
 		if ($cmd->getSubtype() == 'numeric') {
 			$openState['openPercent'] = $value;
 		} else if ($cmd->getSubtype() == 'binary') {
@@ -166,7 +167,7 @@ class gsh_shutter {
 			}
 			$openState['openPercent'] = ($return['openPercent']) ? 0 : 100;
 		}
-		$return['openState'] = array($openState);
+		$return['openState'] = array($openState,array('openPercent' => $openState['openPercent']));
 		return $return;
 	}
 	
