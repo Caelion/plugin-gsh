@@ -19,7 +19,7 @@
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
-class gsh_blinds {
+class gsh_curtian {
 	
 	/*     * *************************Attributs****************************** */
 	
@@ -71,7 +71,7 @@ class gsh_blinds {
 		if (count($return['traits']) == 0) {
 			return array();
 		}
-		$return['attributes']['openDirection'] = array('DOWN');
+		$return['attributes']['openDirection'] = array('LEFT');
 		return $return;
 	}
 	
@@ -156,7 +156,7 @@ class gsh_blinds {
 			return $return;
 		}
 		$value = $cmd->execCmd();
-		$openState = array('openPercent' => 0,'openDirection' => 'DOWN');
+		$openState = array('openPercent' => 0,'openDirection' => 'LEFT');
 		if ($cmd->getSubtype() == 'numeric') {
 			$openState['openPercent'] = $value;
 		} else if ($cmd->getSubtype() == 'binary') {

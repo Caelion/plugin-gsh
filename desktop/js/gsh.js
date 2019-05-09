@@ -258,12 +258,12 @@ function addAction(_action, _type, _name, _el) {
   div += '<div class="col-sm-4 ' + input + '">';
   div += '<div class="input-group">';
   div += '<span class="input-group-btn">';
-  div += '<a class="btn btn-default bt_removeAction btn-sm" data-type="' + _type + '"><i class="fas fa-minus-circle"></i></a>';
+  div += '<a class="btn btn-default bt_removeAction btn-sm roundedLeft" data-type="' + _type + '"><i class="fas fa-minus-circle"></i></a>';
   div += '</span>';
   div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="' + _type + '" />';
   div += '<span class="input-group-btn">';
   div += '<a class="btn ' + button + ' btn-sm listAction" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fa fa-tasks"></i></a>';
-  div += '<a class="btn ' + button + ' btn-sm listCmdAction" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>';
+  div += '<a class="btn ' + button + ' btn-sm listCmdAction roundedRight" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>';
   div += '</span>';
   div += '</div>';
   div += '</div>';
@@ -304,12 +304,15 @@ function addScene(_scene) {
   div += '<form class="form-horizontal" role="form">';
   div += '<div class="form-group">';
   div += '<div class="col-sm-12">';
-  div += '<div class="btn-group pull-right" role="group">';
-  div += '<a class="btn btn-sm bt_removeScene btn-primary"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>';
+  div += '<div class="input-group pull-right" style="display:inline-flex">';
+  div += '<span class="input-group-btn">';
+  div += '<a class="btn btn-sm bt_removeScene btn-primary roundedLeft"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>';
   div += '<a class="btn btn-sm bt_addInAction btn-success"><i class="fas fa-plus-circle"></i> {{Action d\'entrée}}</a>';
-  div += '<a class="btn btn-danger btn-sm bt_addOutAction"><i class="fas fa-plus-circle"></i> {{Action de sortie}}</a>';
+  div += '<a class="btn btn-danger btn-sm bt_addOutAction roundedRight"><i class="fas fa-plus-circle"></i> {{Action de sortie}}</a>';
+  div += '</span>';
   div += '</div>';
   div += '</div>';
+  div += '<div class="form-group">';
   div += '<label class="col-sm-2 control-label">{{Nom du scene}}</label>';
   div += '<div class="col-sm-10">';
   div += '<input class="sceneAttr" data-l1key="id" style="display:none;" />';
@@ -318,10 +321,8 @@ function addScene(_scene) {
   div += '<input class="sceneAttr" data-l1key="type" style="display:none;" value="action.devices.types.SCENE" />';
   div += '<span class="sceneAttr label label-info rename cursor" data-l1key="options" data-l2key="name" style="font-size : 1em;" ></span>';
   div += '</div>';
-  div += '<label class="col-sm-2 control-label">{{Pseudo}}</label>';
-  div += '<div class="col-sm-10">';
-  div += '<input class="sceneAttr" data-l1key="options" data-l2key="pseudo"/>';
   div += '</div>';
+  div += '<div class="form-group">';
   div += '<label class="col-sm-2 control-label">{{Pièce}}</label>';
   div += '<div class="col-sm-3">';
   div += '<select class="sceneAttr form-control" data-l1key="options" data-l2key="piece">';
@@ -338,6 +339,11 @@ function addScene(_scene) {
     }
   });
   div += '</select>';
+  div += '</div>';
+  div += '<label class="col-sm-2 control-label">{{Pseudo}}</label>';
+  div += '<div class="col-sm-5">';
+  div += '<input class="sceneAttr form-control" data-l1key="options" data-l2key="pseudo"/>';
+  div += '</div>';
   div += '</div>';
   div += '</div>';
   div += '<hr/>';
