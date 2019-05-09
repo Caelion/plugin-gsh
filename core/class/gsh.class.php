@@ -46,6 +46,8 @@ class gsh extends eqLogic {
 		'action.devices.types.SCENE' => array('class' => 'gsh_scene', 'name' => 'Scene'),
 		'action.devices.types.BLINDS' => array('class' => 'gsh_blinds', 'name' => 'Store'),
 		'action.devices.types.SHUTTER' => array('class' => 'gsh_blinds', 'name' => 'Volet'),
+		'action.devices.types.CURTAIN' => array('class' => 'gsh_curtain', 'name' => 'Rideaux'),
+		'action.devices.types.VALVE' => array('class' => 'gsh_valve', 'name' => 'Vanne'),
 		'action.devices.types.SENSOR' => array('class' => 'gsh_sensor', 'name' => 'Capteur'),
 		'action.devices.types.WINDOW' => array('class' => 'gsh_door', 'name' => 'Fenêtre'),
 		'action.devices.types.DOOR' => array('class' => 'gsh_door', 'name' => 'Porte'),
