@@ -23,7 +23,7 @@ class gsh_door {
 	
 	/*     * *************************Attributs****************************** */
 	
-	private static $_STATE = array('OPENING', 'OPENING_WINDOW');
+	private static $_STATE = array('OPENING', 'OPENING_WINDOW','GARAGE_STATE','BARRIER_STATE');
 	
 	/*     * ***********************Methode static*************************** */
 	
