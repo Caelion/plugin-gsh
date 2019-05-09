@@ -87,6 +87,7 @@ class gsh extends eqLogic {
 			$request_http = new com_http('https://api-gh.jeedom.com/jeedom/sync');
 			$request_http->setPost(http_build_query(array(
 				'apikey' =>  jeedom::getApiKey('gsh'),
+				'url' =>  network::getNetworkAccess('external'),
 				'data' => json_encode(self::sync())
 			)));
 			$result = $request_http->exec(30);
