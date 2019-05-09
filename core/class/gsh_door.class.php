@@ -86,6 +86,9 @@ class gsh_door {
 			}
 			$return['openPercent'] = ($return['openPercent']) ? 0 : 100;
 		}
+		if($_device->getOptions('door::invert')){
+			$return['openPercent'] = 100 - $return['openPercent'];
+		}
 		return $return;
 	}
 	
