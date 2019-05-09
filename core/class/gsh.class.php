@@ -28,9 +28,7 @@ include_file('core', 'gsh_camera', 'class', 'gsh');
 include_file('core', 'gsh_scene', 'class', 'gsh');
 include_file('core', 'gsh_blinds', 'class', 'gsh');
 include_file('core', 'gsh_sensor', 'class', 'gsh');
-include_file('core', 'gsh_window', 'class', 'gsh');
 include_file('core', 'gsh_door', 'class', 'gsh');
-include_file('core', 'gsh_shutter', 'class', 'gsh');
 include_file('core', 'gsh_securitysystem', 'class', 'gsh');
 include_file('core', 'gsh_lock', 'class', 'gsh');
 include_file('core', 'gsh_tv', 'class', 'gsh');
@@ -47,10 +45,11 @@ class gsh extends eqLogic {
 		'action.devices.types.CAMERA' => array('class' => 'gsh_camera', 'name' => 'Caméra'),
 		'action.devices.types.SCENE' => array('class' => 'gsh_scene', 'name' => 'Scene'),
 		'action.devices.types.BLINDS' => array('class' => 'gsh_blinds', 'name' => 'Store'),
-		'action.devices.types.SHUTTER' => array('class' => 'gsh_shutter', 'name' => 'Volet'),
+		'action.devices.types.SHUTTER' => array('class' => 'gsh_blinds', 'name' => 'Volet'),
 		'action.devices.types.SENSOR' => array('class' => 'gsh_sensor', 'name' => 'Capteur'),
-		'action.devices.types.WINDOW' => array('class' => 'gsh_window', 'name' => 'Fenêtre'),
+		'action.devices.types.WINDOW' => array('class' => 'gsh_door', 'name' => 'Fenêtre'),
 		'action.devices.types.DOOR' => array('class' => 'gsh_door', 'name' => 'Porte'),
+		'action.devices.types.GARAGE' => array('class' => 'gsh_door', 'name' => 'Porte Garage'),
 		'action.devices.types.SECURITYSYSTEM' => array('class' => 'gsh_securitysystem', 'name' => 'Alarme'),
 		'action.devices.types.LOCK' => array('class' => 'gsh_lock', 'name' => 'Verrou'),
 		'action.devices.types.TV' => array('class' => 'gsh_tv', 'name' => 'TV'),
