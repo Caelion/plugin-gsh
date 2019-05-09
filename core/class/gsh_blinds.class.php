@@ -71,7 +71,7 @@ class gsh_blinds {
 		if (count($return['traits']) == 0) {
 			return array();
 		}
-		$return['attributes']['openDirection'] = array('UP','DOWN');
+		$return['attributes']['openDirection'] = array('DOWN');
 		return $return;
 	}
 	
@@ -92,9 +92,6 @@ class gsh_blinds {
 			try {
 				switch ($execution['command']) {
 					case 'action.devices.commands.OpenClose':
-					if(isset($execution['params']['openDirection']) && $execution['params']['openDirection'] == 'DOWN'){
-						$execution['params']['openPercent'] = 100 - $execution['params']['openPercent'];
-					}
 					if (isset($_infos['customData']['cmd_set_slider'])) {
 						$cmd = cmd::byId($_infos['customData']['cmd_set_slider']);
 						if (is_object($cmd)) {
@@ -159,7 +156,7 @@ class gsh_blinds {
 			return $return;
 		}
 		$value = $cmd->execCmd();
-		$openState = array('openPercent' => 0 , 'openDirection' => 'UP');
+		$openState = array('openPercent' => 0,'openDirection' => 'DOWN');
 		if ($cmd->getSubtype() == 'numeric') {
 			$openState['openPercent'] = $value;
 		} else if ($cmd->getSubtype() == 'binary') {
@@ -169,7 +166,7 @@ class gsh_blinds {
 			}
 			$openState['openPercent'] = ($return['openPercent']) ? 0 : 100;
 		}
-		$return['openState'] = array($openState,array('openDirection' => 'DOWN','openPercent' =>100 - $openState['openPercent']));
+		$return['openState'] = array($openState,array('openPercent' => $openState['openPercent']));
 		return $return;
 	}
 	
