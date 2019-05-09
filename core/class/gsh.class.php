@@ -481,6 +481,9 @@ class gsh extends eqLogic {
 				if ($this->getOptions('pseudo') != '') {
 					$pseudo = explode(',', $this->getOptions('pseudo'));
 				}
+				if (is_object($eqLogic->getObject())) {
+					$pseudo[] = $eqLogic->getName().' '.$eqLogic->getObject()->getName();
+				}
 				return $pseudo;
 			}
 			
