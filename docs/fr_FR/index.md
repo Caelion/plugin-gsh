@@ -224,8 +224,8 @@ Les types d'équipements sont important cela permet à Google de réagir en fonc
 * Thermostat : support le changement de consigne et les modes (de maniere limité seul certain nom de mode sont autorisé par Google, attention a bien faire la configuration avancée)
 * Prise : marche/arret
 * Caméra : en beta, peut afficher le flux sur une télé Android sur le réseaux local
-* Store [beta] : permet d'ouvrir/fermer un store (vous pouvez inverser le sens dans la configuration avancée)
-* Volet [beta] : permet d'ouvrir/fermer un volet (vous pouvez inverser le sens dans la configuration avancée)
+* Store : permet d'ouvrir/fermer un store (vous pouvez inverser le sens dans la configuration avancée)
+* Volet : permet d'ouvrir/fermer un volet (vous pouvez inverser le sens dans la configuration avancée)
 * Fenêtre [beta] : supporte normalement le status ouvert/fermé d'une fenetre (pour information il n'y a que si je pose la question en anglais que ca marche)
 * Porte [beta] : supporte normalement le status ouvert/fermé d'une porte (pour information il n'y a que si je pose la question en anglais que ca marche)
 * Alarme [beta] : permet d'armer/désarmer l'alarme (attention il faut employer le terme arme/désarme pour que Google fasse l'action)
