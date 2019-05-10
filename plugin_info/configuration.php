@@ -113,27 +113,6 @@ if (init('result_code') == 'FAILURE') {
 						<textarea rows="10" class="configKey form-control" data-l1key="gshs::jwtprivkey"></textarea>
 					</div>
 				</div>
-				<legend>{{Interaction}}</legend>
-				<div class="alert alert-info">
-					{{Fulfillment URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGsh.php' ?><br/>
-					{{Authorization URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGshOauth.php?type=df' ?><br/>
-					{{Token URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGshOauth.php?type=df' ?>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-3 control-label">{{ID du projet Dialogflow}}</label>
-					<div class="col-lg-4">
-						<input class="configKey form-control" data-l1key="googleDialogflowProjectId" />
-					</div>
-					<div class="col-lg-2">
-						<a class="btn btn-sm btn-success" id="bt_connectGoogleDialogFlow"><i class="fa fa-plug" aria-hidden="true"></i> {{Connection}}</a>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-3 control-label">{{Clef authentification header (authkey)}}</label>
-					<div class="col-lg-4">
-						<input class="configKey form-control" data-l1key="dialogflow::authkey" />
-					</div>
-				</div>
 			</fieldset>
 		</form>
 	</div>
