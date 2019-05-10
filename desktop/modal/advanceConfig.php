@@ -35,8 +35,7 @@ sendVarToJs('device', utils::o2a($device));
 <div id="div_advanceConfigForm">
 	<input type="text" class="deviceAttr form-control" data-l1key="id" style="display : none;" />
 	<?php
-	switch ($device->getType()) {
-		case 'action.devices.types.BLINDS':
+	if(in_array($device->getType(),array('action.devices.types.BLINDS','action.devices.types.SHUTTER'))){
 		?>
 		<a class="btn btn-success pull-right bt_advanceConfigSaveDevice">{{Sauvegarder}}</a>
 		<legend>{{Configuration du volet}}</legend>
@@ -51,8 +50,7 @@ sendVarToJs('device', utils::o2a($device));
 			</fieldset>
 		</form>
 		<?php
-		break;
-		case 'action.devices.types.SHUTTER':
+	} else	if(in_array($device->getType(),array('action.devices.types.WINDOW','action.devices.types.DOOR','action.devices.types.GARAGE'))){
 		?>
 		<a class="btn btn-success pull-right bt_advanceConfigSaveDevice">{{Sauvegarder}}</a>
 		<legend>{{Configuration du volet}}</legend>
@@ -61,14 +59,13 @@ sendVarToJs('device', utils::o2a($device));
 				<div class="form-group">
 					<label class="col-sm-3 control-label">{{Inverser}}</label>
 					<div class="col-sm-3">
-						<input type="checkbox" class="deviceAttr" data-l1key="options" data-l2key="shutter::invert"></input>
+						<input type="checkbox" class="deviceAttr" data-l1key="options" data-l2key="door::invert"></input>
 					</div>
 				</div>
 			</fieldset>
 		</form>
 		<?php
-		break;
-		case 'action.devices.types.THERMOSTAT':
+	} else	if(in_array($device->getType(),array('action.devices.types.THERMOSTAT'))){
 		?>
 		<a class="btn btn-success pull-right bt_advanceConfigSaveDevice">{{Sauvegarder}}</a>
 		<legend>{{Configuration du thermostat}}</legend>
@@ -103,10 +100,8 @@ sendVarToJs('device', utils::o2a($device));
 			</fieldset>
 		</form>
 		<?php
-		break;
-		default:
+	}else{
 		echo '<div class="alert alert-info">{{Il n\'y a aucune configuration avancée pour ce type}}</div>';
-		break;
 	}
 	?>
 </div>

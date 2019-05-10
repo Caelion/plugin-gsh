@@ -23,7 +23,7 @@ class gsh_door {
 	
 	/*     * *************************Attributs****************************** */
 	
-	private static $_STATE = array('OPENING', 'OPENING_WINDOW');
+	private static $_STATE = array('OPENING', 'OPENING_WINDOW','GARAGE_STATE','BARRIER_STATE');
 	
 	/*     * ***********************Methode static*************************** */
 	
@@ -85,6 +85,9 @@ class gsh_door {
 				$return['openPercent'] = ($return['openPercent']) ? false : true;
 			}
 			$return['openPercent'] = ($return['openPercent']) ? 0 : 100;
+		}
+		if($_device->getOptions('door::invert')){
+			$return['openPercent'] = 100 - $return['openPercent'];
 		}
 		return $return;
 	}
