@@ -49,6 +49,10 @@ Dans plugin -> communication -> Google Smarthome vous pouvez configurer vos diff
 
 > **IMPORTANT**
 >
+> Si vous avez utilisé le mode cloud il ne faut surtout pas faire cette partie !!! Passer directement au chapitre "Configuration du plugin"
+
+> **IMPORTANT**
+>
 > Le mode standalone est une "arnaque" car cela vous fait créer une application chez Google en mode développement qui ne permet la synchronisation que pendant 3 jours après activation du mode test. Il faut donc lors de l'ajout ou modification des équipements réactiver le mode test tous les 3 jours pour pouvoir faire une synchronisation. Attention on parle bien d'une modification de la configuration si vous n'ajoutez pas ou ne modifiez pas d'équipements il n'y a rien a faire l'application marchera sans limite de temps
 
 > **IMPORTANT**
