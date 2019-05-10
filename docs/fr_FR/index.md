@@ -3,12 +3,11 @@
 Ce plugin permet de :
 
 - utiliser l'implementation native de Google pour la gestion des objets connectés
-- utiliser les interactions de jeedom en utilisant "Parler a ..."
 
 Il peut fonctionner suivant 2 manières :
 
 - Standalone : vous créer les applications en mode dev coté Google puis connectez votre Jeedom au service Google
-- Cloud : en passant par un service cloud mis à disposition par Jeedom (non disponible pour le moment car en cours de validation chez Google)
+- Cloud : en passant par un service cloud mis à disposition par Jeedom
 
 # Mode cloud
 
@@ -18,13 +17,33 @@ Il peut fonctionner suivant 2 manières :
 
 Après l'installation du plugin, il vous suffit d'aller sur la configuration du plugin, de selectionner le mode Cloud puis de cliquer sur "Envoyer" (cela va envoyer les informations de connexion à l'api du plugin sur le market)
 
-Ensuite sur le market dans votre profil partie "Mes Services" puis bouton "Configuration" des assistants vocaux cocher "Activer Google Smarthome" et sauvegarder.
-
 Il vous faut maintenant attendre 24h le temps que votre demande soit prise en compte.
 
 > **IMPORTANT**
 >
 > Suite à l'activation et/ou modification des informations pour Google Smarthome il faut attendre 24h pour que cela soit prise en compte
+
+Ensuite sur l'application Google home il faut aller dans le premiere onglet cliquer sur Ajouter (le +) :
+
+![gsh](../images/gsh29.png)
+
+Puis configurer un appareil :
+
+![gsh](../images/gsh30.png)
+
+Sur "Fonctionne avec Google" :
+
+![gsh](../images/gsh31.png)
+
+Ensuite dans la liste avec le bouton rechercher (loupe en haut a droite), chercher "Jeedom Smarthome" et cliquez dessus :
+
+![gsh](../images/gsh32.png)
+
+La renseignez vos identifiants market (et bien ceux market pas ceux de votre Jeedom).
+
+![gsh](../images/gsh6.png)
+
+Dans plugin -> communication -> Google Smarthome vous pouvez configurer vos differents équipements (voir chapite Configuration du plugin)
 
 # Mode standalone
 
@@ -176,10 +195,6 @@ Pour faire la configuration il faut
     * Laissez JSON et cliquez sur OK
   * Cliquez sur OK
   * Ouvrez le fichier téléchargé et copier la partie 'private_key' (commence par "-----BEGIN PRIVATE KEY-----", inclus et fini par "-----END PRIVATE KEY-----\n", inclus sans les ") dans la configuration du plugin sur Jeedom (champs : Clef privé (JWT))
-
-## Application Intéraction
-
-A venir
 
 # Configuration du plugin
 
