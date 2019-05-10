@@ -104,7 +104,7 @@ class gsh_blinds {
 						}
 						break;
 					}
-					if ($execution['params']['openPercent'] < 50) {
+					if ($execution['params']['openPercent'] > 50) {
 						if (isset($_infos['customData']['cmd_set_on'])) {
 							$cmd = cmd::byId($_infos['customData']['cmd_set_on']);
 						}
