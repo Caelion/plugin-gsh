@@ -77,7 +77,11 @@ class gsh extends eqLogic {
 	
 	public static function sendJeedomConfig() {
 		$market = repo_market::getJsonRpc();
-		if (!$market->sendRequest('gsh::configGsh', array('gsh::apikey' => jeedom::getApiKey('gsh'), 'gsh::url' => network::getNetworkAccess('external')))) {
+		if (!$market->sendRequest('gsh::configGsh', array(
+			'gsh::apikey' => jeedom::getApiKey('gsh'),
+			'gsh::url' => network::getNetworkAccess('external'),
+			'gsh::hwkey' => jeedom::getHardwareKey()
+		))) {
 			throw new Exception($market->getError(), $market->getErrorCode());
 		}
 	}
