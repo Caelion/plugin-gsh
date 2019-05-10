@@ -1,3 +1,10 @@
+# 09/05/2019
+
+- Inversion de l'inversion des volets (pour s'accorder avec google)
+- correction de bugs
+- support de nouveau type d'équipements
+- améliorations diverse
+
 # 24/04/2019
 
 - Corrección de errores
