@@ -88,6 +88,7 @@ class gsh extends eqLogic {
 			$request_http->setPost(http_build_query(array(
 				'apikey' =>  jeedom::getApiKey('gsh'),
 				'url' =>  network::getNetworkAccess('external'),
+				'hwkey' =>  jeedom::getHardwareKey(),
 				'data' => json_encode(self::sync())
 			)));
 			$result = $request_http->exec(30);
