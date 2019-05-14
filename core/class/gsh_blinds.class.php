@@ -111,14 +111,8 @@ class gsh_blinds {
 						if (!is_object($cmd)) {
 							break;
 						}
-						if ($cmd->getSubtype() == 'other') {
-							$cmd->execCmd();
-							$return = array('status' => 'SUCCESS');
-						} else if ($cmd->getSubtype() == 'slider') {
-							$value = (in_array($cmd->getGeneric_type(), array('FLAP_SLIDER'))) ? 0 : 100;
-							$cmd->execCmd(array('slider' => $value));
-							$return = array('status' => 'SUCCESS');
-						}
+						$cmd->execCmd();
+						$return = array('status' => 'SUCCESS');
 					} else {
 						if (isset($_infos['customData']['cmd_set_off'])) {
 							$cmd = cmd::byId($_infos['customData']['cmd_set_off']);
@@ -126,14 +120,8 @@ class gsh_blinds {
 						if (!is_object($cmd)) {
 							break;
 						}
-						if ($cmd->getSubtype() == 'other') {
-							$cmd->execCmd();
-							$return = array('status' => 'SUCCESS');
-						} else if ($cmd->getSubtype() == 'slider') {
-							$value = (in_array($cmd->getGeneric_type(), array('FLAP_SLIDER'))) ? 100 : 0;
-							$cmd->execCmd(array('slider' => $value));
-							$return = array('status' => 'SUCCESS');
-						}
+						$cmd->execCmd();
+						$return = array('status' => 'SUCCESS');
 					}
 					break;
 				}
