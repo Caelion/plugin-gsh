@@ -45,6 +45,15 @@ La renseignez vos identifiants market (et bien ceux market pas ceux de votre Jee
 
 Dans plugin -> communication -> Google Smarthome vous pouvez configurer vos differents équipements (voir chapite Configuration du plugin)
 
+>**NOTE**
+>
+>Pour passer du mode standalone au mode cloud il faut :
+>- dans le plugin passer en clound puis sauvegarder
+>- attendre 24h
+>- dans l'application Google home testsmarthome (votre application standalone)
+>- dans le plugin sauvegarder la configuration
+>- linker Jeedom Smarthome dans google Home
+
 # Mode standalone
 
 > **IMPORTANT**
@@ -287,3 +296,8 @@ Il ne vous reste plus qu'a faire l'affectation des équipements aux pieces dans 
 >Alors pas de soucis tout est bien sauvé, c'est juste la synchronisation automatique qui n'est pas faites. Pour la faire dites "Synchroniser mes appareils" à votre assistant. Pour tenter de corriger ce soucis :
 > allez sur la page suivante [ici](https://console.cloud.google.com/cloud-resource-manager). Sur cette page vous verrez la liste de tous les projets même ceux invisibles sur la page google actions. Supprimer tous les projets inutilisés.
 > Puis refaites le tuto à partir de l'étape configurer la clef api Homegraph (activation, génération de clé, puis dissocier jeedom de votre compte google et refaites le lien)
+
+
+>**Vous avez un link error ou Impossible de mettre a jour le paramètre, vérifier votre connexion en mode cloud**
+>
+>Il faut dans jeedom, sur le plugin ajouter des équipements, sauvegarder et refaire l'association de Jeedom Smarthome dans l'application Google Home
