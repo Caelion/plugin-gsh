@@ -48,11 +48,11 @@ Dans plugin -> communication -> Google Smarthome vous pouvez configurer vos diff
 >**NOTE**
 >
 >Pour passer du mode standalone au mode cloud il faut :
->- dans le plugin passer en clound puis sauvegarder
+>- dans le plugin passer en cloud puis sauvegarder
 >- attendre 24h
->- dans l'application Google home testsmarthome (votre application standalone)
->- dans le plugin sauvegarder la configuration
->- linker Jeedom Smarthome dans google Home
+>- dans l'application Google home il faut dissocier testsmarthome (votre application standalone)
+>- dans Communication/Google Smarthome il faut cliquer sur sauvegarder pour envoyer votre configuration initial
+>- Lier Jeedom Smarthome dans Google Home
 
 # Mode standalone
 
