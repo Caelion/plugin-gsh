@@ -19,6 +19,8 @@ Après l'installation du plugin, il vous suffit d'aller sur la configuration du 
 
 Il vous faut maintenant attendre 24h le temps que votre demande soit prise en compte.
 
+Ensuite dans Jeedom dans Communication/Google Smarthome il faut cliquer sur sauvegarder pour envoyer votre configuration initial (sinon lors de la connexion Google Home <-> Jeedom vous aurez une erreur)
+
 > **IMPORTANT**
 >
 > Suite à l'activation et/ou modification des informations pour Google Smarthome il faut attendre 24h pour que cela soit prise en compte
