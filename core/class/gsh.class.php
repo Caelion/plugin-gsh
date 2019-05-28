@@ -386,6 +386,10 @@ class gsh extends eqLogic {
 				if (!class_exists($class)) {
 					return array();
 				}
+				$eqLogic = $this->getLink();
+				if($eqLogic->getIsEnable() == 0){
+					return array();
+				}
 				return $class::buildDevice($this);
 			}
 			
