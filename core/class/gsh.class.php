@@ -34,6 +34,7 @@ include_file('core', 'gsh_lock', 'class', 'gsh');
 include_file('core', 'gsh_tv', 'class', 'gsh');
 include_file('core', 'gsh_speaker', 'class', 'gsh');
 include_file('core', 'gsh_curtain', 'class', 'gsh');
+include_file('core', 'gsh_valve', 'class', 'gsh');
 
 class gsh extends eqLogic {
 	
