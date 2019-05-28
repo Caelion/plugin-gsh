@@ -19,7 +19,7 @@
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
-class gsh_curtian {
+class gsh_valve {
 	
 	/*     * *************************Attributs****************************** */
 	
