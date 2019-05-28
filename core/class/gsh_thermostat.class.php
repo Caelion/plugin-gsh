@@ -93,7 +93,12 @@ class gsh_thermostat {
 			$return['attributes']['availableThermostatModes'] = trim($modes, ',');
 		}
 		if (count($return['traits']) == 0) {
-			return array();
+			return array('missingGenericType' => array(
+				__('Themostat',__FILE__) => array('THERMOSTAT_SET_SETPOINT'),
+				__('Etat themostat ',__FILE__) => array('THERMOSTAT_TEMPERATURE'),
+				__('Température',__FILE__) => array('TEMPERATURE'),
+				__('Humidité',__FILE__) => array('HUMIDITY')
+			));
 		}
 		return $return;
 	}

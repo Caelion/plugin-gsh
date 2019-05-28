@@ -95,7 +95,13 @@ class gsh_securitysystem {
 			);
 		}
 		if (count($return['traits']) == 0) {
-			return array();
+			return array('missingGenericType' => array(
+				__('Mode',__FILE__) => self::$_SET_MODE,
+				__('Etat mode',__FILE__) => self::$_GET_MODE,
+				__('On',__FILE__) => self::$_ON,
+				__('Off',__FILE__) => self::$_OFF,
+				__('Etat',__FILE__) => self::$_STATE
+			));
 		}
 		return $return;
 	}

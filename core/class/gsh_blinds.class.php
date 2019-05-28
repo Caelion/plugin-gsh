@@ -69,7 +69,12 @@ class gsh_blinds {
 			}
 		}
 		if (count($return['traits']) == 0) {
-			return array();
+			return array('missingGenericType' => array(
+				__('Position',__FILE__) => self::$_SLIDER,
+				__('On',__FILE__) => self::$_ON,
+				__('Off',__FILE__) => self::$_OFF,
+				__('Etat',__FILE__) => self::$_STATE
+			));
 		}
 		$return['attributes']['openDirection'] = array('DOWN');
 		return $return;
