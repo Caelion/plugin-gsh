@@ -71,7 +71,12 @@ class gsh_tv {
 			}
 		}
 		if (count($return['traits']) == 0) {
-			return array();
+			return array('missingGenericType' => array(
+				__('Etat volume',__FILE__) => self::$_VOLUME,
+				__('Volume',__FILE__) => self::$_SET_VOLUME,
+				__('Chaine',__FILE__) => self::$_CHANNEL,
+				__('Etat chaine',__FILE__) => self::$_SET_CHANNEL
+			));
 		}
 		return $return;
 	}

@@ -93,7 +93,15 @@ class gsh_light {
 			}
 		}
 		if (count($return['traits']) == 0) {
-			return array();
+			return array('missingGenericType' => array(
+				__('On',__FILE__) => self::$_ON,
+				__('Off',__FILE__) => self::$_OFF,
+				__('Etat',__FILE__) => self::$_STATE,
+				__('Luminosité',__FILE__) => self::$_BRIGHTNESS,
+				__('Etat luminosité',__FILE__) => self::$_BRIGHTNESS_STATE,
+				__('Couleur',__FILE__) => self::$_COLOR,
+				__('Etat couleur',__FILE__) => self::$_COLOR_STATE,
+			));
 		}
 		return $return;
 	}

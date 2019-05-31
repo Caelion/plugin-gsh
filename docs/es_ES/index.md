@@ -19,6 +19,8 @@ Après l'installation du plugin, il vous suffit d'aller sur la configuration du 
 
 Il vous faut maintenant attendre 24h le temps que votre demande soit prise en compte.
 
+Ensuite dans Jeedom dans Communication/Google Smarthome il faut cliquer sur sauvegarder pour envoyer votre configuration initial (sinon lors de la connexion Google Home <-> Jeedom vous aurez une erreur)
+
 > **IMPORTANT**
 >
 > Suite à l'activation et/ou modification des informations pour Google Smarthome il faut attendre 24h pour que cela soit prise en compte
@@ -232,7 +234,7 @@ Sur les équipements vous pouvez configurer :
   * Transmettre : envoi l'équipement au Google Home pour qu'il puisse le piloter (attention il faut que la configuration des génériques type soient OK)
   * Remonter l'état : envoi toute informations de changement d'état à Google directement (cela évite que lors d'une demande d'information Google Home interroge Jeedom). Voir partie "Configuration JWT"
   * Challenge [Aucun,Code] : si en mode code alors Google vous demandera un Code (celui indiqué juste en dessous) pour chaque action sur l'équipement
-* Status : indique si la transmission est OK, si c'est NOK alors cela vient des Générique type
+* Status : indique si la transmission est OK, si c'est NOK alors cela vient des Générique type. Si vous clicquez sur NOK vous pouvez avoir les informations sur les type générique nécessaire
 * Type : indique le type d'équipements
 * Pseudo : pseudo de l'équipement, si vide alors c'est le nom de l'équipement qui est utilisé
 * Action :

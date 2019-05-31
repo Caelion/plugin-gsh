@@ -52,7 +52,9 @@ class gsh_door {
 			}
 		}
 		if (count($return['traits']) == 0) {
-			return array();
+			return array('missingGenericType' => array(
+				__('Etat',__FILE__) => self::$_STATE
+			));
 		}
 		$return['attributes']['queryOnlyOpenClose'] = true;
 		return $return;

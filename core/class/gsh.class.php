@@ -33,6 +33,7 @@ include_file('core', 'gsh_securitysystem', 'class', 'gsh');
 include_file('core', 'gsh_lock', 'class', 'gsh');
 include_file('core', 'gsh_tv', 'class', 'gsh');
 include_file('core', 'gsh_speaker', 'class', 'gsh');
+include_file('core', 'gsh_valve', 'class', 'gsh');
 
 class gsh extends eqLogic {
 	
@@ -42,11 +43,12 @@ class gsh extends eqLogic {
 		'action.devices.types.LIGHT' => array('class' => 'gsh_light', 'name' => 'Lumière'),
 		'action.devices.types.THERMOSTAT' => array('class' => 'gsh_thermostat', 'name' => 'Thermostat'),
 		'action.devices.types.OUTLET' => array('class' => 'gsh_outlet', 'name' => 'Prise'),
+		'action.devices.types.FAN' => array('class' => 'gsh_light', 'name' => 'Ventilateur'),
 		'action.devices.types.CAMERA' => array('class' => 'gsh_camera', 'name' => 'Caméra'),
 		'action.devices.types.SCENE' => array('class' => 'gsh_scene', 'name' => 'Scene'),
 		'action.devices.types.BLINDS' => array('class' => 'gsh_blinds', 'name' => 'Store'),
 		'action.devices.types.SHUTTER' => array('class' => 'gsh_blinds', 'name' => 'Volet'),
-		'action.devices.types.CURTAIN' => array('class' => 'gsh_curtain', 'name' => 'Rideaux'),
+		'action.devices.types.CURTAIN' => array('class' => 'gsh_blinds', 'name' => 'Rideaux'),
 		'action.devices.types.VALVE' => array('class' => 'gsh_valve', 'name' => 'Vanne'),
 		'action.devices.types.SENSOR' => array('class' => 'gsh_sensor', 'name' => 'Capteur'),
 		'action.devices.types.WINDOW' => array('class' => 'gsh_door', 'name' => 'Fenêtre'),
@@ -108,14 +110,18 @@ class gsh extends eqLogic {
 		$devices = gsh_devices::all(true);
 		foreach ($devices as $device) {
 			$info = $device->buildDevice();
-			if (!is_array($info) || count($info) == 0) {
+			if (!is_array($info) || count($info) == 0 || isset($info['missingGenericType'])) {
 				$device->setOptions('configState', 'NOK');
+				if(isset($info['missingGenericType'])){
+					$device->setOptions('missingGenericType',$info['missingGenericType']);
+				}
 				$device->save();
 				continue;
 			}
 			$return[] = $info;
 			$device->setOptions('configState', 'OK');
 			$device->setOptions('build', json_encode($info));
+			$device->setOptions('missingGenericType','');
 			$device->save();
 			if (isset($info['willReportState']) && $info['willReportState']) {
 				$device->addListner();
@@ -378,6 +384,10 @@ class gsh extends eqLogic {
 				}
 				$class = gsh::$_supportedType[$this->getType()]['class'];
 				if (!class_exists($class)) {
+					return array();
+				}
+				$eqLogic = $this->getLink();
+				if(is_object($eqLogic) && $eqLogic->getIsEnable() == 0){
 					return array();
 				}
 				return $class::buildDevice($this);

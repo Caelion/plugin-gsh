@@ -234,7 +234,7 @@ Sur les équipements vous pouvez configurer :
   * Transmettre : envoi l'équipement au Google Home pour qu'il puisse le piloter (attention il faut que la configuration des génériques type soient OK)
   * Remonter l'état : envoi toute informations de changement d'état à Google directement (cela évite que lors d'une demande d'information Google Home interroge Jeedom). Voir partie "Configuration JWT"
   * Challenge [Aucun,Code] : si en mode code alors Google vous demandera un Code (celui indiqué juste en dessous) pour chaque action sur l'équipement
-* Status : indique si la transmission est OK, si c'est NOK alors cela vient des Générique type
+* Status : indique si la transmission est OK, si c'est NOK alors cela vient des Générique type. Si vous clicquez sur NOK vous pouvez avoir les informations sur les type générique nécessaire
 * Type : indique le type d'équipements
 * Pseudo : pseudo de l'équipement, si vide alors c'est le nom de l'équipement qui est utilisé
 * Action :
@@ -276,6 +276,16 @@ Vous pouvez aussi créer des scènes dans l'onglet scène, avec des actions d'en
 Il ne vous reste plus qu'a faire l'affectation des équipements aux pieces dans l'application Google Home
 
 # FAQ
+
+>**Je n'arrive pas à faire l'association en mode cloud ?**
+>
+> Il faut verifier que :
+> - vous etes bien en https (si vous avez un service pack, utilisez les DNS jeeodm ceux-ci sont sécurisé par defaut)
+> - vous avez bien activé Google assistant sur le market (page profils, onglet mes services puis configuration dans la partie Assistant vocaux)
+> - vous avez bien souscrit à l'abonnement pour les services vocaux et que celui-ci est encore valide (necessaire à partir du 01/06/2019). Cela se voit sur votre page profils du market, onglet mes service
+> - vous avez bien attendu 24h après l'envoi des informations de connexion de votre jeedom à nos serveurs
+> - après ce délai de 24h il faut dans plugin -> communication -> Google Smarthome selectionner "transmettre" des équipements et bien mis le type et enfin sauvegarder
+> - bien utiliser vos identifiants market
 
 >**Quelles sont les commandes possibles ?**
 >

@@ -47,6 +47,11 @@ $('.bt_advanceConfigureEqLogic').on('click',function(){
   $('#md_modal').load('index.php?v=d&plugin=gsh&modal=advanceConfig&eqLogic_id=' + $(this).attr('data-id')).dialog('open');
 });
 
+$('#div_configuration').off('click','.bt_needGenericType').on('click','.bt_needGenericType',function(){
+  $('#md_modal').dialog({title: "{{Information type générique}}"});
+  $('#md_modal').load('index.php?v=d&plugin=gsh&modal=showNeedGenericType&eqLogic_id=' + $(this).closest('tr').attr('data-link_id')).dialog('open');
+});
+
 $('#bt_saveConfiguration').on('click',function(){
   var devices = $('#div_configuration .device[data-link_type=eqLogic]').getValues('.deviceAttr');
   $('#div_scenes .scene').each(function () {
@@ -127,9 +132,9 @@ function loadData(){
         el.setValues(data.result[i], '.deviceAttr');
         if(data.result[i].options && data.result[i].options.configState){
           if(data.result[i].options.configState == 'OK'){
-            el.find('.deviceAttr[data-l2key=configState]').removeClass('label-danger').addClass('label-success');
+            el.find('.deviceAttr[data-l2key=configState]').removeClass('label-danger bt_needGenericType cursor').addClass('label-success');
           }else{
-            el.find('.deviceAttr[data-l2key=configState]').removeClass('label-success').addClass('label-danger');
+            el.find('.deviceAttr[data-l2key=configState]').removeClass('label-success').addClass('label-danger bt_needGenericType cursor');
           }
         }
       }

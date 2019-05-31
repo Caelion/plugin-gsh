@@ -93,7 +93,15 @@ class gsh_speaker {
 			
 		}
 		if (count($return['traits']) == 0) {
-			return array();
+			return array('missingGenericType' => array(
+				__('Etat volume',__FILE__) => self::$_VOLUME,
+				__('Volume',__FILE__) => self::$_SET_VOLUME,
+				__('Pause',__FILE__) => self::$_MEDIA_PAUSE,
+				__('Reprendre',__FILE__) => self::$_MEDIA_RESUME,
+				__('Stop',__FILE__) => self::$_MEDIA_STOP,
+				__('Suivant',__FILE__) => self::$_MEDIA_NEXT,
+				__('Précedent',__FILE__) => self::$_MEDIA_PREVIOUS,
+			));
 		}
 		return $return;
 	}

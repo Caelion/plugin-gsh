@@ -19,7 +19,7 @@
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
-class gsh_curtian {
+class gsh_valve {
 	
 	/*     * *************************Attributs****************************** */
 	
@@ -69,7 +69,12 @@ class gsh_curtian {
 			}
 		}
 		if (count($return['traits']) == 0) {
-			return array();
+			return array('missingGenericType' => array(
+				__('Position',__FILE__) => self::$_SLIDER,
+				__('On',__FILE__) => self::$_ON,
+				__('Off',__FILE__) => self::$_OFF,
+				__('Etat',__FILE__) => self::$_STATE
+			));
 		}
 		return $return;
 	}

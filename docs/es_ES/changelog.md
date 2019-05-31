@@ -1,3 +1,7 @@
+- Corrección de errores
+- Ajout de type
+- Possibilité d'avoir les informations sur les type générique necessaire lors du click sur le label NOK
+
 # 13/05/2019
 
 - Actualización de la documentación
