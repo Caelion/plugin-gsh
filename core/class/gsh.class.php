@@ -124,9 +124,9 @@ class gsh extends eqLogic {
 			$device->setOptions('missingGenericType','');
 			$device->save();
 			if (isset($info['willReportState']) && $info['willReportState']) {
-				$device->addListner();
+				$device->addListener();
 			} else {
-				$device->removeListner();
+				$device->removeListener();
 			}
 		}
 		return $return;
@@ -356,7 +356,7 @@ class gsh extends eqLogic {
 			public function preSave() {
 				if ($this->getEnable() == 0) {
 					$this->setOptions('configState', '');
-					$this->removeListner();
+					$this->removeListener();
 				}
 			}
 			
@@ -386,9 +386,11 @@ class gsh extends eqLogic {
 				if (!class_exists($class)) {
 					return array();
 				}
-				$eqLogic = $this->getLink();
-				if(is_object($eqLogic) && $eqLogic->getIsEnable() == 0){
-					return array();
+				if ($this->getLink_type() == 'eqLogic') {
+					$eqLogic = $this->getLink();
+					if(!is_object($eqLogic) || $eqLogic->getIsEnable() == 0){
+						return array();
+					}
 				}
 				return $class::buildDevice($this);
 			}
@@ -432,7 +434,7 @@ class gsh extends eqLogic {
 				return $pseudo;
 			}
 			
-			public function addListner() {
+			public function addListener() {
 				if ($this->getLink_type() != 'eqLogic') {
 					return;
 				}
@@ -451,12 +453,11 @@ class gsh extends eqLogic {
 				$listener->save();
 			}
 			
-			public function removeListner() {
+			public function removeListener() {
 				if ($this->getLink_type() != 'eqLogic') {
 					return;
 				}
-				$eqLogic = $this->getLink();
-				$listener = listener::byClassAndFunction('gsh', 'reportState', array('eqLogic_id' => intval($eqLogic->getId())));
+				$listener = listener::byClassAndFunction('gsh', 'reportState', array('eqLogic_id' => intval($this->getLink_id())));
 				if (is_object($listener)) {
 					$listener->remove();
 				}
