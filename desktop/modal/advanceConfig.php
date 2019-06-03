@@ -50,7 +50,7 @@ sendVarToJs('device', utils::o2a($device));
 			</fieldset>
 		</form>
 		<?php
-	} else	if(in_array($device->getType(),array('action.devices.types.WINDOW','action.devices.types.DOOR','action.devices.types.GARAGE'))){
+	} else	if(in_array($device->getType(),array('action.devices.types.LOCK'))){
 		?>
 		<a class="btn btn-success pull-right bt_advanceConfigSaveDevice">{{Sauvegarder}}</a>
 		<legend>{{Configuration}}</legend>
