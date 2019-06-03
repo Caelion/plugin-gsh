@@ -91,7 +91,7 @@ class gsh_lock {
 		foreach ($_executions as $execution) {
 			try {
 				switch ($execution['command']) {
-					case 'action.devices.commands.ArmDisarm':
+					case 'action.devices.commands.LockUnlock':
 					if($execution['params']['lock']){
 						if (isset($_infos['customData']['cmd_set_on'])) {
 							$cmd = cmd::byId($_infos['customData']['cmd_set_on']);
