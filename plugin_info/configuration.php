@@ -51,7 +51,7 @@ if (init('result_code') == 'FAILURE') {
 				if(isset($info['limit']) && $info['limit'] != -1 && $info['limit'] != ''){
 					echo '<div>{{Votre abonnement aux services assistant vocaux fini le }}'.$info['limit'].'.';
 					echo ' {{Pour le prolonger, allez}} <a href="https://www.jeedom.com/market/index.php?v=d&p=profils#services" target="_blank">{{ici}}</a>';
-				}else if($info['limit'] != -1){
+				}else if($info['limit'] == -1){
 					echo '<div>{{Votre abonnement aux services assistant vocaux est illimité.}}';
 				}else{
 					echo '<div class="alert alert-warning">{{Votre abonnement aux services assistant vocaux est fini.}}';
