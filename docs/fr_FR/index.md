@@ -9,6 +9,10 @@ Il peut fonctionner suivant 2 manières :
 - Standalone : vous créer les applications en mode dev coté Google puis connectez votre Jeedom au service Google
 - Cloud : en passant par un service cloud mis à disposition par Jeedom
 
+> **Important**
+>
+> Le mode cloud necessite un abonnement (3 mois offert lors de l'achat du plugin). Vous pouvez gérer votre abonnement [ici](https://www.jeedom.com/market/index.php?v=d&p=profils#services)
+
 ## Synchronisation et délai
 
 En mode cloud (et uniquement en mode cloud), il y a des délai de synchronisation lors des actions suivantes :
