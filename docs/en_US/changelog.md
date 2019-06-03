@@ -1,6 +1,10 @@
+# 31/05/2019
+
+- Mise à jour de la doc
 - Correction de bugs
 - Ajout de type
 - Possibilité d'avoir les informations sur les type générique necessaire lors du click sur le label NOK
+- IMPORTANT : a partir du 01/06/2019 les services vocaux deviennent payant, vous pouvez voir votre status sur votre page profils sur le market, onglet mes services
 
 # 13/05/2019
 

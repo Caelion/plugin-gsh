@@ -1,3 +1,9 @@
+# 03/06/2019
+
+- Correction de bugs
+- Mise à jour de la doc
+- Ajout d'information sur le status de l'abonnement aux services vocaux
+
 # 31/05/2019
 
 - Mise à jour de la doc

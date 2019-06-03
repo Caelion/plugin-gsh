@@ -277,6 +277,16 @@ Il ne vous reste plus qu'a faire l'affectation des équipements aux pieces dans 
 
 # FAQ
 
+>**Je n'arrive pas à faire l'association en mode cloud ?**
+>
+> Il faut verifier que :
+> - vous etes bien en https (si vous avez un service pack, utilisez les DNS jeeodm ceux-ci sont sécurisé par defaut)
+> - vous avez bien activé Google assistant sur le market (page profils, onglet mes services puis configuration dans la partie Assistant vocaux)
+> - vous avez bien souscrit à l'abonnement pour les services vocaux et que celui-ci est encore valide (necessaire à partir du 01/06/2019). Cela se voit sur votre page profils du market, onglet mes service
+> - vous avez bien attendu 24h après l'envoi des informations de connexion de votre jeedom à nos serveurs
+> - après ce délai de 24h il faut dans plugin -> communication -> Google Smarthome selectionner "transmettre" des équipements et bien mis le type et enfin sauvegarder
+> - bien utiliser vos identifiants market
+
 >**Quelles sont les commandes possibles ?**
 >
 >Les commandes vocales (ainsi que les retours) sont gérés uniquement pas Google, voila la [documentation](https://support.google.com/googlehome/answer/7073578?hl=fr)
