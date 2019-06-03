@@ -137,8 +137,11 @@ class gsh_lock {
 		} else if ($cmd->getSubtype() == 'binary') {
 			$return['isLocked'] = boolval($value);
 			if ($cmd->getDisplay('invertBinary') == 1) {
-				$return['isLocked'] = ($return['isArmed']) ? false : true;
+				$return['isLocked'] = ($return['isLocked']) ? false : true;
 			}
+		}
+		if($_device->getOptions('lock::invert')){
+			$return['isLocked'] = ($return['isLocked']) ? false : true;
 		}
 		return $return;
 	}

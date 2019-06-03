@@ -59,6 +59,21 @@ sendVarToJs('device', utils::o2a($device));
 				<div class="form-group">
 					<label class="col-sm-3 control-label">{{Inverser}}</label>
 					<div class="col-sm-3">
+						<input type="checkbox" class="deviceAttr" data-l1key="options" data-l2key="lock::invert"></input>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+		<?php
+	} else	if(in_array($device->getType(),array('action.devices.types.WINDOW','action.devices.types.DOOR','action.devices.types.GARAGE'))){
+		?>
+		<a class="btn btn-success pull-right bt_advanceConfigSaveDevice">{{Sauvegarder}}</a>
+		<legend>{{Configuration}}</legend>
+		<form class="form-horizontal">
+			<fieldset>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">{{Inverser}}</label>
+					<div class="col-sm-3">
 						<input type="checkbox" class="deviceAttr" data-l1key="options" data-l2key="door::invert"></input>
 					</div>
 				</div>
