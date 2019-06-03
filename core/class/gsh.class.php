@@ -84,6 +84,14 @@ class gsh extends eqLogic {
 		}
 	}
 	
+	public static function voiceAssistantInfo() {
+		$market = repo_market::getJsonRpc();
+		if (!$market->sendRequest('voiceAssistant::info')) {
+			throw new Exception($market->getError(), $market->getErrorCode());
+		}
+		return $market->getResult();
+	}
+	
 	public static function sendDevices() {
 		if (config::byKey('mode', 'gsh') == 'jeedom') {
 			$request_http = new com_http('https://api-gh.jeedom.com/jeedom/sync');
