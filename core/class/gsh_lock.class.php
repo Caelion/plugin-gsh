@@ -93,8 +93,8 @@ class gsh_lock {
 				switch ($execution['command']) {
 					case 'action.devices.commands.LockUnlock':
 					if($execution['params']['lock']){
-						if (isset($_infos['customData']['cmd_set_on'])) {
-							$cmd = cmd::byId($_infos['customData']['cmd_set_on']);
+						if (isset($_infos['customData']['cmd_set_off'])) {
+							$cmd = cmd::byId($_infos['customData']['cmd_set_off']);
 						}
 						if (!is_object($cmd)) {
 							break;
@@ -102,8 +102,8 @@ class gsh_lock {
 						$cmd->execCmd();
 						$return = array('status' => 'SUCCESS');
 					}else{
-						if (isset($_infos['customData']['cmd_set_off'])) {
-							$cmd = cmd::byId($_infos['customData']['cmd_set_off']);
+						if (isset($_infos['customData']['cmd_set_on'])) {
+							$cmd = cmd::byId($_infos['customData']['cmd_set_on']);
 						}
 						if (!is_object($cmd)) {
 							break;
