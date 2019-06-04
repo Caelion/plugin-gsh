@@ -9,6 +9,22 @@ Il peut fonctionner suivant 2 manières :
 - Standalone : vous créer les applications en mode dev coté Google puis connectez votre Jeedom au service Google
 - Cloud : en passant par un service cloud mis à disposition par Jeedom
 
+> **Important**
+>
+> Le mode cloud necessite un abonnement aux services vocaux (3 mois offert lors de l'achat du plugin). Vous pouvez gérer votre abonnement [ici](https://www.jeedom.com/market/index.php?v=d&p=profils#services)
+
+## Synchronisation et délai
+
+En mode cloud (et uniquement en mode cloud), il y a des délai de synchronisation lors des actions suivantes :
+
+- Activation du compte
+- Achat d'année sur le service Assistant Vocaux
+- Changement de clef api du plugin Google smarthome
+- Changement de l'url du jeedom
+- Changement de mot de passe market
+
+La synchronisation se fait toute les 6h (à 00h10,6h10,12h10,18h10). Cette synchronisation est du a notre volonté de rendre le serveur tierce qui fait le pont entre votre Jeedom et l'infrastructure Google Home independant et autonome (ca évite lors d'un soucis sur le market par exemple de perdre aussi les service Assistant vocaux). Lors de la synchronisation il y a un redemarrage du service (coupure de moins de 1s), ce qui explique la limitation à une fois toute les 6h.
+
 # Mode cloud
 
 > **IMPORTANT**
@@ -20,10 +36,6 @@ Après l'installation du plugin, il vous suffit d'aller sur la configuration du 
 Il vous faut maintenant attendre 24h le temps que votre demande soit prise en compte.
 
 Ensuite dans Jeedom dans Communication/Google Smarthome il faut cliquer sur sauvegarder pour envoyer votre configuration initial (sinon lors de la connexion Google Home <-> Jeedom vous aurez une erreur)
-
-> **IMPORTANT**
->
-> Suite à l'activation et/ou modification des informations pour Google Smarthome il faut attendre 24h pour que cela soit prise en compte
 
 Ensuite sur l'application Google home il faut aller dans le premiere onglet cliquer sur Ajouter (le +) :
 
