@@ -17,6 +17,12 @@ Il peut fonctionner suivant 2 manières :
 >
 > Quelque soit le mode utiliser il faut ABSOLUMENT que votre Jeedom soit accessible en HTTPS (le plugin ne marche pas en HTTP)
 
+
+> **Important**
+>
+> Le plugin ne supporte pas les équipement avec des double fonction (2 sortie comme certain module zwave Fibaro). Il faut absolument passer par 2 virtuels pour le décomposer.
+
+
 ## Synchronisation et délai
 
 En mode cloud (et uniquement en mode cloud), il y a des délai de synchronisation lors des actions suivantes :
