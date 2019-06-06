@@ -13,6 +13,10 @@ Il peut fonctionner suivant 2 manières :
 >
 > Le mode cloud necessite un abonnement aux services vocaux (3 mois offert lors de l'achat du plugin). Vous pouvez gérer votre abonnement [ici](https://www.jeedom.com/market/index.php?v=d&p=profils#services)
 
+> **Important**
+>
+> Quelque soit le mode utiliser il faut ABSOLUMENT que votre Jeedom soit accessible en HTTPS (le plugin ne marche pas en HTTP)
+
 ## Synchronisation et délai
 
 En mode cloud (et uniquement en mode cloud), il y a des délai de synchronisation lors des actions suivantes :
