@@ -94,9 +94,10 @@ class gsh_thermostat {
 		}
 		if (count($return['traits']) == 0) {
 			return array('missingGenericType' => array(
-				__('Themostat',__FILE__) => array('THERMOSTAT_SET_SETPOINT'),
-				__('Etat themostat ',__FILE__) => array('THERMOSTAT_TEMPERATURE'),
-				__('Température',__FILE__) => array('TEMPERATURE'),
+				__('Thermostat',__FILE__) => array('THERMOSTAT_SET_SETPOINT'),
+				__('Etat themostat ',__FILE__) => array('THERMOSTAT_TEMPERATURE','TEMPERATURE'),
+				__('Mode',__FILE__) => array('THERMOSTAT_SET_MODE','THERMOSTAT_MODE'),
+				__('Etat',__FILE__) => array('THERMOSTAT_STATE_NAME'),
 				__('Humidité',__FILE__) => array('HUMIDITY')
 			));
 		}
