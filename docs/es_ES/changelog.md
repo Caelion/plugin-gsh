@@ -1,3 +1,9 @@
+# 03/06/2019
+
+- Corrección de errores
+- Actualización de la documentación
+- Ajout d'information sur le status de l'abonnement aux services vocaux
+
 # 31/05/2019
 
 - Actualización de la documentación

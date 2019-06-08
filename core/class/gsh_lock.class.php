@@ -91,10 +91,10 @@ class gsh_lock {
 		foreach ($_executions as $execution) {
 			try {
 				switch ($execution['command']) {
-					case 'action.devices.commands.ArmDisarm':
+					case 'action.devices.commands.LockUnlock':
 					if($execution['params']['lock']){
-						if (isset($_infos['customData']['cmd_set_on'])) {
-							$cmd = cmd::byId($_infos['customData']['cmd_set_on']);
+						if (isset($_infos['customData']['cmd_set_off'])) {
+							$cmd = cmd::byId($_infos['customData']['cmd_set_off']);
 						}
 						if (!is_object($cmd)) {
 							break;
@@ -102,8 +102,8 @@ class gsh_lock {
 						$cmd->execCmd();
 						$return = array('status' => 'SUCCESS');
 					}else{
-						if (isset($_infos['customData']['cmd_set_off'])) {
-							$cmd = cmd::byId($_infos['customData']['cmd_set_off']);
+						if (isset($_infos['customData']['cmd_set_on'])) {
+							$cmd = cmd::byId($_infos['customData']['cmd_set_on']);
 						}
 						if (!is_object($cmd)) {
 							break;
@@ -137,8 +137,11 @@ class gsh_lock {
 		} else if ($cmd->getSubtype() == 'binary') {
 			$return['isLocked'] = boolval($value);
 			if ($cmd->getDisplay('invertBinary') == 1) {
-				$return['isLocked'] = ($return['isArmed']) ? false : true;
+				$return['isLocked'] = ($return['isLocked']) ? false : true;
 			}
+		}
+		if($_device->getOptions('lock::invert')){
+			$return['isLocked'] = ($return['isLocked']) ? false : true;
 		}
 		return $return;
 	}
