@@ -1,3 +1,7 @@
+# 08/06/2019
+
+- Actualización de la documentación
+
 # 03/06/2019
 
 - Corrección de errores
