@@ -13,6 +13,16 @@ Il peut fonctionner suivant 2 manières :
 >
 > Le mode cloud necessite un abonnement aux services vocaux (3 mois offert lors de l'achat du plugin). Vous pouvez gérer votre abonnement [ici](https://www.jeedom.com/market/index.php?v=d&p=profils#services)
 
+> **Important**
+>
+> Quelque soit le mode utiliser il faut ABSOLUMENT que votre Jeedom soit accessible en HTTPS (le plugin ne marche pas en HTTP)
+
+
+> **Important**
+>
+> Le plugin ne supporte pas les équipement avec des double fonction (2 sortie comme certain module zwave Fibaro). Il faut absolument passer par 2 virtuels pour le décomposer.
+
+
 ## Synchronisation et délai
 
 En mode cloud (et uniquement en mode cloud), il y a des délai de synchronisation lors des actions suivantes :
@@ -33,9 +43,13 @@ La synchronisation se fait toute les 6h (à 00h10,6h10,12h10,18h10). Cette synch
 
 Après l'installation du plugin, il vous suffit d'aller sur la configuration du plugin, de selectionner le mode Cloud puis de cliquer sur "Envoyer" (cela va envoyer les informations de connexion à l'api du plugin sur le market)
 
-Il vous faut maintenant attendre 24h le temps que votre demande soit prise en compte.
+Il vous faut maintenant attendre le delai de synchronisation le temps que votre demande soit prise en compte.
 
-Ensuite dans Jeedom dans Communication/Google Smarthome il faut cliquer sur sauvegarder pour envoyer votre configuration initial (sinon lors de la connexion Google Home <-> Jeedom vous aurez une erreur)
+Ensuite dans Jeedom dans Communication/Google Smarthome il faut cliquer sur sauvegarder pour envoyer votre configuration initial, il faut au moins un équipement en OK (sinon lors de la connexion Google Home <-> Jeedom vous aurez une erreur)
+
+> **IMPORTANT**
+>
+> Cette étape doit absolument etre faite après le délai de synchronisation sinon la sauvegarde sera OK mais il n'y aura aucun configuration disponible pour Google Smarthome et donc vous aurez une erreur à l'association dans Google Home
 
 Ensuite sur l'application Google home il faut aller dans le premiere onglet cliquer sur Ajouter (le +) :
 
