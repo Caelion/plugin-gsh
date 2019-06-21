@@ -89,7 +89,7 @@ if (isset($body['originalDetectIntentRequest']) && isset($body['originalDetectIn
 
 if (init('apikey') != '') {
 	$apikey = init('apikey');
-	if(isset($apikey) && strpos($apikey],'-') !== false){
+	if(isset($apikey) && strpos($apikey,'-') !== false){
 		$apikey = substr($apikey, 0, strpos($apikey, '-'));
 	}
 	if (!jeedom::apiAccess($apikey, 'gsh')) {
