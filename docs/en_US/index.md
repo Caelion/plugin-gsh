@@ -339,3 +339,7 @@ Il ne vous reste plus qu'a faire l'affectation des équipements aux pieces dans 
 >**Vous avez un link error ou Impossible de mettre a jour le paramètre, vérifier votre connexion en mode cloud**
 >
 >Il faut dans jeedom, sur le plugin ajouter des équipements, sauvegarder et refaire l'association de Jeedom Smarthome dans l'application Google Home
+
+>**J'ai l'erreur "Apparemment Jeedom Smart Home est indisponible pour le moment." ou "Pardon je ne peux pas établir la connexion avec Jeedom Smart Home."**
+>
+>Essayez de dé-associé/ré-associé l'application Google smarthome. Attention à bien prendre l'application officiel et non une application [TEST] si vous avez utilisez le mode standalone avant.
