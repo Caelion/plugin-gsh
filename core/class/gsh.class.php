@@ -102,6 +102,20 @@ class gsh extends eqLogic {
 				'data' => json_encode(self::sync())
 			)));
 			$result = $request_http->exec(30);
+			for($i=1;$i<10;$i++){
+				$devices = self::sync($i);
+				if(count($devices['endpoints']) == 0){
+					continue;
+				}
+				$request_http = new com_http('https://api-aa.jeedom.com/jeedom/sync');
+				$request_http->setPost(http_build_query(array(
+					'apikey' =>  jeedom::getApiKey('gsh').'-'.$i,
+					'url' =>  network::getNetworkAccess('external'),
+					'hwkey' =>  jeedom::getHardwareKey(),
+					'data' => json_encode($devices)
+				)));
+				$result = $request_http->exec(30);
+			}
 		} else {
 			$request_http = new com_http('https://homegraph.googleapis.com/v1/devices:requestSync?key=' . config::byKey('gshs::googleapikey', 'gsh'));
 			$request_http->setPost(json_encode(array('agent_user_id' => config::byKey('gshs::useragent', 'gsh'),'async' => true)));
@@ -113,10 +127,13 @@ class gsh extends eqLogic {
 		}
 	}
 	
-	public static function sync() {
+	public static function sync($_group='') {
 		$return = array();
 		$devices = gsh_devices::all(true);
 		foreach ($devices as $device) {
+			if($device->getOptions('group') != '' && $device->getOptions('group') != $_group){
+				continue;
+			}
 			$info = $device->buildDevice();
 			if (!is_array($info) || count($info) == 0 || isset($info['missingGenericType'])) {
 				$device->setOptions('configState', 'NOK');

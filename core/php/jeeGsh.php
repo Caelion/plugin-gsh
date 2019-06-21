@@ -88,7 +88,11 @@ if (isset($body['originalDetectIntentRequest']) && isset($body['originalDetectIn
 }
 
 if (init('apikey') != '') {
-	if (!jeedom::apiAccess(init('apikey'), 'gsh')) {
+	$apikey = init('apikey');
+	if(isset($apikey) && strpos($apikey],'-') !== false){
+		$apikey = substr($apikey, 0, strpos($apikey, '-'));
+	}
+	if (!jeedom::apiAccess($apikey, 'gsh')) {
 		echo __('Vous n\'etes pas autorisé à effectuer cette action. Clef API invalide. Merci de corriger la clef API sur votre page profils du market et d\'attendre 24h avant de réessayer.', __FILE__);
 		die();
 	} else {
@@ -96,8 +100,11 @@ if (init('apikey') != '') {
 		die();
 	}
 }
-log::add('gsh', 'debug', $body['apikey']);
 header('Content-type: application/json');
+$data = json_decode(file_get_contents('php://input'), true);
+if(isset($body['apikey']) && strpos($body['apikey'],'-') !== false){
+	$body['apikey'] = substr($body['apikey'], 0, strpos($body['apikey'], '-'));
+}
 if (!isset($body['apikey']) || !jeedom::apiAccess($body['apikey'], 'gsh')) {
 	echo json_encode(array(
 		'status' => 'ERROR',
