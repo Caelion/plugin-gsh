@@ -116,6 +116,7 @@ class gsh extends eqLogic {
 			$pid = intval(trim(file_get_contents($pid_file)));
 			system::kill($pid);
 		}
+		sleep(2);
 	}
 	
 	public static function cronDaily() {
