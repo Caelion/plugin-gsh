@@ -63,24 +63,24 @@ var proxyHandler = function (request) {
       device: {
         id: "fake-jeedom-local",
       },
-    };
-    console.log('response :')
-    console.log(response)
-    return response;
-  };
-  
-  var executeHandler = function (request) {
-    console.log('executeHandler : '+(new Date().toLocaleString()))
-    console.log('request :')
-    console.log(request)
-  };
-  
-  localHomeApp.onExecute(executeHandler)
-  .onIdentify(identifyHandler)
-  .onReachableDevices(devicesHandler)
-  .onProxySelected(proxyHandler)
-  .listen()
-  .then(function () {
-    console.log('Ready : '+(new Date().toLocaleString()))
-  });
-  
+    }
+  }
+  console.log('response :')
+  console.log(response)
+  return response;
+};
+
+var executeHandler = function (request) {
+  console.log('executeHandler : '+(new Date().toLocaleString()))
+  console.log('request :')
+  console.log(request)
+};
+
+localHomeApp.onExecute(executeHandler)
+.onIdentify(identifyHandler)
+.onReachableDevices(devicesHandler)
+.onProxySelected(proxyHandler)
+.listen()
+.then(function () {
+  console.log('Ready : '+(new Date().toLocaleString()))
+});
