@@ -1,10 +1,18 @@
 var App = smarthome.App;
 var localHomeApp = new App("1.0.1");
+var connexionInfo = null;
 
 var identifyHandler = function (request) {
   console.log('identifyHandler : '+(new Date().toLocaleString()))
   console.log('request :')
   console.log(request)
+  for(var i in request.devices){
+    if(request.devices[i].id == 'fake-jeedom-local'){
+      console.log('Found fake-jeedom-local : ')
+      console.log(connexionInfo)
+      connexionInfo = request.devices[i].customData
+    }
+  }
   var response = {
     intent: 'IDENTIFY',
     requestId: request.requestId,

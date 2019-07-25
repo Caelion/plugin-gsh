@@ -188,22 +188,23 @@ class gsh extends eqLogic {
 		$return = array();
 		if(config::byKey('gshs::allowLocalApi','gsh') == 1){
 			$return[] = array(
-				"id"=> "fake-jeedom-local",
-				"type"=> "action.devices.types.OUTLET",
-				"name"=> array(
-					"name"=> "fake-jeedom-local"
+				'id'=> 'fake-jeedom-local',
+				'type'=> 'action.devices.types.OUTLET',
+				'roomHint' => 'Jeedom',
+				'name'=> array(
+					'name'=> 'fake-jeedom-local'
 				),
-				"traits"=> array(
-					"action.devices.traits.OnOff"
+				'traits'=> array(
+					'action.devices.traits.OnOff'
 				),
-				"customData"=> array(
+				'customData'=> array(
 					'ip' => network::getNetworkAccess('internal'),
 					'apikey' => jeedom::getApiKey('gsh')
 				),
-				"willReportState"=> false,
-				"otherDeviceIds"=> array(
+				'willReportState'=> false,
+				'otherDeviceIds'=> array(
 					array(
-						"deviceId"=> "fake-jeedom-local"
+						'deviceId'=> 'fake-jeedom-local'
 					)
 				)
 			);
