@@ -107,6 +107,7 @@ class gsh extends eqLogic {
 		log::add('gsh', 'info', 'Lancement : '.$cmd);
 		exec($cmd . ' >> ' . log::getPathToLog('gsh') . ' 2>&1 &');
 		log::add('gsh', 'info', 'Démon Google Smarthome local lancé');
+		sleep(5);
 	}
 	
 	public static function deamon_stop() {
