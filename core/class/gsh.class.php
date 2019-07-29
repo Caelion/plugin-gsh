@@ -105,7 +105,7 @@ class gsh extends eqLogic {
 		$cmd .= ' --pid ' . jeedom::getTmpFolder('gsh') . '/deamon.pid';
 		$cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('gsh'));
 		log::add('gsh', 'info', 'Lancement : '.$cmd);
-		exec($cmd . ' >> ' . log::getPathToLog('gsh') . ' 2>&1 &');
+		exec($cmd . ' >> ' . log::getPathToLog('gshd') . ' 2>&1 &');
 		log::add('gsh', 'info', 'Démon Google Smarthome local lancé');
 		sleep(5);
 	}
