@@ -61,28 +61,13 @@ var executeHandler = function (request) {
   console.log('executeHandler : '+(new Date().toLocaleString()))
   console.log('request :')
   console.log(request)
-<<<<<<< HEAD
-=======
-  var proxyDevice = request.inputs[0].payload.device.proxyDevice;
-  var response = {
-    intent: 'PROXY_SELECTED',
-    requestId: request.requestId,
-    payload: {
-      device: {
-        id: "fake-jeedom-local",
-      },
-    }
-  }
-  console.log('response :')
-  console.log(response)
-  return response;
+  return {};
 };
 
 var executeHandler = function (request) {
   console.log('executeHandler : '+(new Date().toLocaleString()))
   console.log('request :')
   console.log(request)
->>>>>>> bba9fcbf80ecdb2090a260c51eeb4edc8d135141
 };
 
 localHomeApp.onExecute(executeHandler)
