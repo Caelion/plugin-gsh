@@ -53,34 +53,21 @@ var devicesHandler = function (request) {
 
 var proxyHandler = function (request) {
   console.log('proxyHandler : '+(new Date().toLocaleString()))
+  console.log('request :',request)
+  return {};
+};
+
+var executeHandler = function (request) {
+  console.log('executeHandler : '+(new Date().toLocaleString()))
   console.log('request :')
   console.log(request)
-  var proxyDevice = request.inputs[0].payload.device.proxyDevice;
-  var response = {
-    intent: 'PROXY_SELECTED',
-    requestId: request.requestId,
-    payload: {
-      device: {
-        id: "fake-jeedom-local",
-      },
-    };
-    console.log('response :')
-    console.log(response)
-    return response;
-  };
-  
-  var executeHandler = function (request) {
-    console.log('executeHandler : '+(new Date().toLocaleString()))
-    console.log('request :')
-    console.log(request)
-  };
-  
-  localHomeApp.onExecute(executeHandler)
-  .onIdentify(identifyHandler)
-  .onReachableDevices(devicesHandler)
-  .onProxySelected(proxyHandler)
-  .listen()
-  .then(function () {
-    console.log('Ready : '+(new Date().toLocaleString()))
-  });
-  
+};
+
+localHomeApp.onExecute(executeHandler)
+.onIdentify(identifyHandler)
+.onReachableDevices(devicesHandler)
+.onProxySelected(proxyHandler)
+.listen()
+.then(function () {
+  console.log('Ready : '+(new Date().toLocaleString()))
+});
