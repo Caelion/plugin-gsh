@@ -3,7 +3,7 @@ var localHomeApp = new App("1.0.1");
 var connexionInfo = null;
 
 var identifyHandler = function (request) {
-  console.log('identifyHandler : '+(new Date().toLocaleString())+' request : '+request);
+  console.log('identifyHandler : '+(new Date().toLocaleString())+' request : ',request);
   for(var i in request.devices){
     if(request.devices[i].id == 'fake-jeedom-local'){
       console.log('Found fake-jeedom-local : ',connexionInfo)
@@ -27,7 +27,7 @@ var identifyHandler = function (request) {
 };
 
 var devicesHandler = function (request) {
-  console.log('devicesHandler : '+(new Date().toLocaleString())+' request : '+request);
+  console.log('devicesHandler : '+(new Date().toLocaleString())+' request : ',request);
   var proxyDevice = request.inputs[0].payload.device.proxyDevice;
   var reachables = [];
   for(var i in request.devices){
@@ -45,13 +45,13 @@ var devicesHandler = function (request) {
 };
 
 var proxyHandler = function (request) {
-  console.log('proxyHandler : '+(new Date().toLocaleString())+' request : '+request);
+  console.log('proxyHandler : '+(new Date().toLocaleString())+' request : ',request);
   console.log('response : {}')
   return {};
 };
 
 var executeHandler = function (request) {
-  console.log('executeHandler : '+(new Date().toLocaleString())+' request : '+request);
+  console.log('executeHandler : '+(new Date().toLocaleString())+' request : ',request);
   console.log('response : {}')
 };
 
