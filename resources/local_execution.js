@@ -6,8 +6,8 @@ var identifyHandler = function (request) {
   console.log('identifyHandler : '+(new Date().toLocaleString())+' request : ',request);
   for(var i in request.devices){
     if(request.devices[i].id == 'fake-jeedom-local'){
-      console.log('Found fake-jeedom-local : ',connexionInfo)
       connexionInfo = request.devices[i].customData
+      console.log('Found fake-jeedom-local : ',connexionInfo);
     }
   }
   var response = {
