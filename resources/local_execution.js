@@ -3,13 +3,10 @@ var localHomeApp = new App("1.0.1");
 var connexionInfo = null;
 
 var identifyHandler = function (request) {
-  console.log('identifyHandler : '+(new Date().toLocaleString()))
-  console.log('request :')
-  console.log(request)
+  console.log('identifyHandler : '+(new Date().toLocaleString())+' request : '+request);
   for(var i in request.devices){
     if(request.devices[i].id == 'fake-jeedom-local'){
-      console.log('Found fake-jeedom-local : ')
-      console.log(connexionInfo)
+      console.log('Found fake-jeedom-local : ',connexionInfo)
       connexionInfo = request.devices[i].customData
     }
   }
@@ -25,15 +22,12 @@ var identifyHandler = function (request) {
       },
     }
   };
-  console.log('response :')
-  console.log(response)
+  console.log('response :',response);
   return response;
 };
 
 var devicesHandler = function (request) {
-  console.log('devicesHandler : '+(new Date().toLocaleString()))
-  console.log('request :')
-  console.log(request)
+  console.log('devicesHandler : '+(new Date().toLocaleString())+' request : '+request);
   var proxyDevice = request.inputs[0].payload.device.proxyDevice;
   var reachables = [];
   for(var i in request.devices){
@@ -46,29 +40,21 @@ var devicesHandler = function (request) {
       devices: reachables
     }
   };
-  console.log('response :')
-  console.log(response)
+  console.log('response :',response)
   return response;
 };
 
 var proxyHandler = function (request) {
-  console.log('proxyHandler : '+(new Date().toLocaleString()))
-  console.log('request :',request)
+  console.log('proxyHandler : '+(new Date().toLocaleString())+' request : '+request);
+  console.log('response : {}')
   return {};
 };
 
 var executeHandler = function (request) {
-  console.log('executeHandler : '+(new Date().toLocaleString()))
-  console.log('request :')
-  console.log(request)
-  return {};
+  console.log('executeHandler : '+(new Date().toLocaleString())+' request : '+request);
+  console.log('response : {}')
 };
 
-var executeHandler = function (request) {
-  console.log('executeHandler : '+(new Date().toLocaleString()))
-  console.log('request :')
-  console.log(request)
-};
 
 localHomeApp.onExecute(executeHandler)
 .onIdentify(identifyHandler)
