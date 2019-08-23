@@ -313,6 +313,10 @@ Il ne vous reste plus qu'a faire l'affectation des équipements aux pieces dans 
 > - après ce délai de 24h il faut dans plugin -> communication -> Google Smarthome selectionner "transmettre" des équipements et bien mis le type et enfin sauvegarder
 > - bien utiliser vos identifiants market
 
+>**Lors de l'association j'ai une erreur (mais pas sur un soucis de mot de passe/nom d'utilisateur)**
+>
+>Si vous avez une erreur lors de l'association avec Jeedom cela vient surement du faite que vous n'avez pas ajouté/transmis d'équipement avant de faire l'association. Pour corriger aller sur Plugins -> Communication -> Alexa puis coché au moins un équipement à transmettre et faite sauvegarder (vérifié que l'équipement est bien en OK, si il est en NOK cliquer sur le NOK pour voir pourquoi ou renseignez vous sur les générique type dans jeedom). Puis refaite l'association
+
 >**Quelles sont les commandes possibles ?**
 >
 >Les commandes vocales (ainsi que les retours) sont gérés uniquement pas Google, voila la [documentation](https://support.google.com/googlehome/answer/7073578?hl=fr)
@@ -339,3 +343,11 @@ Il ne vous reste plus qu'a faire l'affectation des équipements aux pieces dans 
 >**Vous avez un link error ou Impossible de mettre a jour le paramètre, vérifier votre connexion en mode cloud**
 >
 >Il faut dans jeedom, sur le plugin ajouter des équipements, sauvegarder et refaire l'association de Jeedom Smarthome dans l'application Google Home
+
+>**J'ai l'erreur "Apparemment Jeedom Smart Home est indisponible pour le moment." ou "Pardon je ne peux pas établir la connexion avec Jeedom Smart Home."**
+>
+>Essayez de dé-associé/ré-associé l'application Google smarthome. Attention à bien prendre l'application officiel et non une application [TEST] si vous avez utilisez le mode standalone avant.
+
+>**Lors de l'ajout des équipement j'ai des NOK**
+>
+>Cliquez simplement sur le NOK une fenetre vous dira les generique type a avoir sur les commandes de l'équipement pour que cela marche

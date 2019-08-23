@@ -62,6 +62,64 @@ class gsh extends eqLogic {
 	
 	/*     * ***********************Methode static*************************** */
 	
+	public static function dependancy_info() {
+		$return = array();
+		$return['log'] = 'gsh_update';
+		$return['progress_file'] = jeedom::getTmpFolder('gsh') . '/dependance';
+		$return['state'] = 'ok' ;
+		if (file_exists('toto')) {
+			$return['state'] = 'ok';
+		}
+		return $return;
+	}
+	
+	public static function dependancy_install() {
+		log::remove(__CLASS__ . '_update');
+		return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh ' . jeedom::getTmpFolder('gsh') . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
+	}
+	
+	public static function deamon_info() {
+		$return = array();
+		$return['state'] = 'nok';
+		$return['launchable'] = 'ok';
+		$pid_file = jeedom::getTmpFolder('gsh') . '/deamon.pid';
+		if (file_exists($pid_file)) {
+			if (posix_getsid(trim(file_get_contents($pid_file)))) {
+				$return['state'] = 'ok';
+			} else {
+				shell_exec(system::getCmdSudo() . 'rm -rf ' . $pid_file . ' 2>&1 > /dev/null');
+			}
+		}
+		return $return;
+	}
+	
+	public static function deamon_start($_debug = false) {
+		self::deamon_stop();
+		$deamon_info = self::deamon_info();
+		if ($deamon_info['launchable'] != 'ok') {
+			throw new Exception(__('Veuillez vérifier la configuration', __FILE__));
+		}
+		$cmd = 'npm --prefix '.__DIR__.'/../../resources/gshd start -- ';
+		$cmd .= ' --udp_discovery_port 3311';
+		$cmd .= ' --udp_discovery_packet ping';
+		$cmd .= ' --pid ' . jeedom::getTmpFolder('gsh') . '/deamon.pid';
+		$cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('gsh'));
+		log::add('gsh', 'info', 'Lancement : '.$cmd);
+		exec($cmd . ' >> ' . log::getPathToLog('gshd') . ' 2>&1 &');
+		log::add('gsh', 'info', 'Démon Google Smarthome local lancé');
+		sleep(5);
+	}
+	
+	public static function deamon_stop() {
+		$deamon_info = self::deamon_info();
+		$pid_file = jeedom::getTmpFolder('gsh') . '/deamon.pid';
+		if (file_exists($pid_file)) {
+			$pid = intval(trim(file_get_contents($pid_file)));
+			system::kill($pid);
+		}
+		sleep(2);
+	}
+	
 	public static function cronDaily() {
 		shell_exec('sudo rm -rf ' . __DIR__ . '/../../data/*');
 	}
@@ -102,6 +160,20 @@ class gsh extends eqLogic {
 				'data' => json_encode(self::sync())
 			)));
 			$result = $request_http->exec(30);
+			for($i=1;$i<10;$i++){
+				$devices = self::sync($i);
+				if(count($devices['endpoints']) == 0){
+					continue;
+				}
+				$request_http = new com_http('https://api-aa.jeedom.com/jeedom/sync');
+				$request_http->setPost(http_build_query(array(
+					'apikey' =>  jeedom::getApiKey('gsh').'-'.$i,
+					'url' =>  network::getNetworkAccess('external'),
+					'hwkey' =>  jeedom::getHardwareKey(),
+					'data' => json_encode($devices)
+				)));
+				$result = $request_http->exec(30);
+			}
 		} else {
 			$request_http = new com_http('https://homegraph.googleapis.com/v1/devices:requestSync?key=' . config::byKey('gshs::googleapikey', 'gsh'));
 			$request_http->setPost(json_encode(array('agent_user_id' => config::byKey('gshs::useragent', 'gsh'),'async' => true)));
@@ -113,10 +185,36 @@ class gsh extends eqLogic {
 		}
 	}
 	
-	public static function sync() {
+	public static function sync($_group='') {
 		$return = array();
+		if(config::byKey('gshs::allowLocalApi','gsh') == 1){
+			$return[] = array(
+				'id'=> 'fake-jeedom-local',
+				'type'=> 'action.devices.types.OUTLET',
+				'roomHint' => 'Jeedom',
+				'name'=> array(
+					'name'=> 'fake-jeedom-local'
+				),
+				'traits'=> array(
+					'action.devices.traits.OnOff'
+				),
+				'customData'=> array(
+					'ip' => network::getNetworkAccess('internal'),
+					'apikey' => jeedom::getApiKey('gsh')
+				),
+				'willReportState'=> false,
+				'otherDeviceIds'=> array(
+					array(
+						'deviceId'=> 'fake-jeedom-local'
+					)
+				)
+			);
+		}
 		$devices = gsh_devices::all(true);
 		foreach ($devices as $device) {
+			if($device->getOptions('group') != '' && $device->getOptions('group') != $_group){
+				continue;
+			}
 			$info = $device->buildDevice();
 			if (!is_array($info) || count($info) == 0 || isset($info['missingGenericType'])) {
 				$device->setOptions('configState', 'NOK');
@@ -125,6 +223,9 @@ class gsh extends eqLogic {
 				}
 				$device->save();
 				continue;
+			}
+			if(config::byKey('gshs::allowLocalApi','gsh') == 1){
+				$info['otherDeviceIds'] = array(array('deviceId' => $info['id']));
 			}
 			$return[] = $info;
 			$device->setOptions('configState', 'OK');
@@ -144,6 +245,10 @@ class gsh extends eqLogic {
 		$return = array('commands' => array());
 		foreach ($_data['data']['commands'] as $command) {
 			foreach ($command['devices'] as $infos) {
+				if($infos['id'] == 'fake-jeedom-local'){
+					$return['commands'][] = array('ids' => array($infos['id']),'status'=>'SUCCESS','states' => array('on' => true));
+					continue;
+				}
 				if (strpos($infos['id'], 'scene::') !== false) {
 					$device = gsh_devices::byId(str_replace('scene::', '', $infos['id']));
 				} else {
@@ -194,6 +299,10 @@ class gsh extends eqLogic {
 				$return = array('devices' => array());
 				foreach ($_data['devices'] as $infos) {
 					$return['devices'][$infos['id']] = array();
+					if($infos['id'] == 'fake-jeedom-local'){
+						$return['devices'][$infos['id']] = array('on' => true);
+						continue;
+					}
 					$device = gsh_devices::byLinkTypeLinkId('eqLogic', $infos['id']);
 					if (!is_object($device)) {
 						$return['devices'][$infos['id']] = array('status' => 'ERROR');

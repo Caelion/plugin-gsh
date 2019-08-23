@@ -132,16 +132,27 @@ class gsh_securitysystem {
 					}
 					break;
 					case 'action.devices.commands.ArmDisarm':
-					if($execution['params']['arm']){
-						if (isset($_infos['customData']['cmd_set_on'])) {
-							$cmd = cmd::byId($_infos['customData']['cmd_set_on']);
+					if(isset($execution['params']['arm'])){
+						if($execution['params']['arm']){
+							if (isset($_infos['customData']['cmd_set_on'])) {
+								$cmd = cmd::byId($_infos['customData']['cmd_set_on']);
+							}
+							if (!is_object($cmd)) {
+								break;
+							}
+							$cmd->execCmd();
+							$return = array('status' => 'SUCCESS');
+						}else{
+							if (isset($_infos['customData']['cmd_set_off'])) {
+								$cmd = cmd::byId($_infos['customData']['cmd_set_off']);
+							}
+							if (!is_object($cmd)) {
+								break;
+							}
+							$cmd->execCmd();
+							$return = array('status' => 'SUCCESS');
 						}
-						if (!is_object($cmd)) {
-							break;
-						}
-						$cmd->execCmd();
-						$return = array('status' => 'SUCCESS');
-					}else	if($execution['params']['cancel']){{
+					}else if(isset($execution['params']['cancel']) && $execution['params']['cancel']){
 						if (isset($_infos['customData']['cmd_set_off'])) {
 							$cmd = cmd::byId($_infos['customData']['cmd_set_off']);
 						}
@@ -153,63 +164,62 @@ class gsh_securitysystem {
 					}
 					break;
 				}
+			} catch (Exception $e) {
+				log::add('gsh', 'error', $e->getMessage());
+				$return = array('status' => 'ERROR');
 			}
-		} catch (Exception $e) {
-			log::add('gsh', 'error', $e->getMessage());
-			$return = array('status' => 'ERROR');
 		}
-	}
-	$return['states'] = self::getState($_device, $_infos);
-	return $return;
-}
-
-public static function getState($_device, $_infos) {
-	$return = array();
-	$cmd = null;
-	if (isset($_infos['customData']['cmd_get_state'])) {
-		$cmd = cmd::byId($_infos['customData']['cmd_get_state']);
-	}
-	if (!is_object($cmd)) {
+		$return['states'] = self::getState($_device, $_infos);
 		return $return;
 	}
-	$value = $cmd->execCmd();
-	if ($cmd->getSubtype() == 'numeric') {
-		$return['isArmed'] = ($value != 0);
-	} else if ($cmd->getSubtype() == 'binary') {
-		$return['isArmed'] = boolval($value);
-		if ($cmd->getDisplay('invertBinary') == 1) {
-			$return['isArmed'] = ($return['isArmed']) ? false : true;
+	
+	public static function getState($_device, $_infos) {
+		$return = array();
+		$cmd = null;
+		if (isset($_infos['customData']['cmd_get_state'])) {
+			$cmd = cmd::byId($_infos['customData']['cmd_get_state']);
 		}
-	}
-	if(isset($_infos['attributes']['availableModes']) && count($_infos['attributes']['availableModes']) > 0 && isset($_infos['customData']['cmd_get_mode'])){
-		$cmd = cmd::byId($_infos['customData']['cmd_get_mode']);
-		if(is_object($cmd)){
-			$return['currentModeSettings'] = array();
-			$value = $cmd->execCmd();
-			if(isset($_infos['attributes']['availableModes']) && count($_infos['attributes']['availableModes']) > 0){
-				foreach ($_infos['attributes']['availableModes'] as $mode) {
-					if(!isset($mode['name'])){
-						continue;
-					}
-					$found = null;
-					if(isset($mode['settings']) && count($mode['settings']) > 0){
-						foreach ($mode['settings'] as $setting) {
-							if(strtolower($value) == strtolower($setting['setting_values']['setting_synonym'][0])){
-								$found = $setting['setting_name'];
-								break;
-							}
+		if (!is_object($cmd)) {
+			return $return;
+		}
+		$value = $cmd->execCmd();
+		if ($cmd->getSubtype() == 'numeric') {
+			$return['isArmed'] = ($value != 0);
+		} else if ($cmd->getSubtype() == 'binary') {
+			$return['isArmed'] = boolval($value);
+			if ($cmd->getDisplay('invertBinary') == 1) {
+				$return['isArmed'] = ($return['isArmed']) ? false : true;
+			}
+		}
+		if(isset($_infos['attributes']['availableModes']) && count($_infos['attributes']['availableModes']) > 0 && isset($_infos['customData']['cmd_get_mode'])){
+			$cmd = cmd::byId($_infos['customData']['cmd_get_mode']);
+			if(is_object($cmd)){
+				$return['currentModeSettings'] = array();
+				$value = $cmd->execCmd();
+				if(isset($_infos['attributes']['availableModes']) && count($_infos['attributes']['availableModes']) > 0){
+					foreach ($_infos['attributes']['availableModes'] as $mode) {
+						if(!isset($mode['name'])){
+							continue;
 						}
-						$return['currentModeSettings'][$mode['name']] =  $found;
+						$found = null;
+						if(isset($mode['settings']) && count($mode['settings']) > 0){
+							foreach ($mode['settings'] as $setting) {
+								if(strtolower($value) == strtolower($setting['setting_values']['setting_synonym'][0])){
+									$found = $setting['setting_name'];
+									break;
+								}
+							}
+							$return['currentModeSettings'][$mode['name']] =  $found;
+						}
 					}
 				}
 			}
 		}
+		return $return;
 	}
-	return $return;
-}
-
-/*     * *********************Méthodes d'instance************************* */
-
-/*     * **********************Getteur Setteur*************************** */
-
+	
+	/*     * *********************Méthodes d'instance************************* */
+	
+	/*     * **********************Getteur Setteur*************************** */
+	
 }

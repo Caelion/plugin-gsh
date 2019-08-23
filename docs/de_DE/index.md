@@ -43,9 +43,13 @@ La synchronisation se fait toute les 6h (à 00h10,6h10,12h10,18h10). Cette synch
 
 Après l'installation du plugin, il vous suffit d'aller sur la configuration du plugin, de selectionner le mode Cloud puis de cliquer sur "Envoyer" (cela va envoyer les informations de connexion à l'api du plugin sur le market)
 
-Il vous faut maintenant attendre 24h le temps que votre demande soit prise en compte.
+Il vous faut maintenant attendre le delai de synchronisation le temps que votre demande soit prise en compte.
 
-Ensuite dans Jeedom dans Communication/Google Smarthome il faut cliquer sur sauvegarder pour envoyer votre configuration initial (sinon lors de la connexion Google Home <-> Jeedom vous aurez une erreur)
+Ensuite dans Jeedom dans Communication/Google Smarthome il faut cliquer sur sauvegarder pour envoyer votre configuration initial, il faut au moins un équipement en OK (sinon lors de la connexion Google Home <-> Jeedom vous aurez une erreur)
+
+> **IMPORTANT**
+>
+> Cette étape doit absolument etre faite après le délai de synchronisation sinon la sauvegarde sera OK mais il n'y aura aucun configuration disponible pour Google Smarthome et donc vous aurez une erreur à l'association dans Google Home
 
 Ensuite sur l'application Google home il faut aller dans le premiere onglet cliquer sur Ajouter (le +) :
 
@@ -335,3 +339,7 @@ Il ne vous reste plus qu'a faire l'affectation des équipements aux pieces dans 
 >**Vous avez un link error ou Impossible de mettre a jour le paramètre, vérifier votre connexion en mode cloud**
 >
 >Il faut dans jeedom, sur le plugin ajouter des équipements, sauvegarder et refaire l'association de Jeedom Smarthome dans l'application Google Home
+
+>**J'ai l'erreur "Apparemment Jeedom Smart Home est indisponible pour le moment." ou "Pardon je ne peux pas établir la connexion avec Jeedom Smart Home."**
+>
+>Essayez de dé-associé/ré-associé l'application Google smarthome. Attention à bien prendre l'application officiel et non une application [TEST] si vous avez utilisez le mode standalone avant.
