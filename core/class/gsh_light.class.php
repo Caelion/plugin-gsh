@@ -197,8 +197,10 @@ class gsh_light {
 			$value = $cmd->execCmd();
 			if ($cmd->getSubtype() == 'numeric') {
 				$return['brightness'] = round($value / $cmd->getConfiguration('maxValue', 100) * 100);
-				$return['on'] = ($return['brightness'] > 0);
-			} else if ($cmd->getSubtype() == 'binary') {
+				if($key == 'cmd_get_state' || !isset($return['on'])){
+					$return['on'] = ($return['brightness'] > 0);
+				}
+			} else if ($cmd->getSubtype() == 'binary' && ($key == 'cmd_get_state' || !isset($return['on']))) {
 				$return['on'] = boolval($value);
 			} else if ($cmd->getSubtype() == 'string') {
 				$return['color'] = array(
