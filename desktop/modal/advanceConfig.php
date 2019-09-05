@@ -44,10 +44,10 @@ sendVarToJs('device', utils::o2a($device));
 			</div>
 		</fieldset>
 	</form>
+	<a class="btn btn-success pull-right bt_advanceConfigSaveDevice">{{Sauvegarder}}</a>
 	<?php
 	if(in_array($device->getType(),array('action.devices.types.BLINDS','action.devices.types.SHUTTER','action.devices.types.CURTAIN'))){
 		?>
-		<a class="btn btn-success pull-right bt_advanceConfigSaveDevice">{{Sauvegarder}}</a>
 		<legend>{{Configuration}}</legend>
 		<form class="form-horizontal">
 			<fieldset>
@@ -62,7 +62,6 @@ sendVarToJs('device', utils::o2a($device));
 		<?php
 	} else	if(in_array($device->getType(),array('action.devices.types.LOCK'))){
 		?>
-		<a class="btn btn-success pull-right bt_advanceConfigSaveDevice">{{Sauvegarder}}</a>
 		<legend>{{Configuration}}</legend>
 		<form class="form-horizontal">
 			<fieldset>
@@ -77,7 +76,6 @@ sendVarToJs('device', utils::o2a($device));
 		<?php
 	} else	if(in_array($device->getType(),array('action.devices.types.WINDOW','action.devices.types.DOOR','action.devices.types.GARAGE'))){
 		?>
-		<a class="btn btn-success pull-right bt_advanceConfigSaveDevice">{{Sauvegarder}}</a>
 		<legend>{{Configuration}}</legend>
 		<form class="form-horizontal">
 			<fieldset>
@@ -92,7 +90,6 @@ sendVarToJs('device', utils::o2a($device));
 		<?php
 	} else	if(in_array($device->getType(),array('action.devices.types.THERMOSTAT'))){
 		?>
-		<a class="btn btn-success pull-right bt_advanceConfigSaveDevice">{{Sauvegarder}}</a>
 		<legend>{{Configuration du thermostat}}</legend>
 		<form class="form-horizontal">
 			<fieldset>
