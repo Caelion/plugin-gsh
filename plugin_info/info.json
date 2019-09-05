@@ -6,8 +6,8 @@
 	"author" : "Loïc",
 	"require" : "3.2.1",
 	"category" : "communication",
-	"hasDependency" : true,
-	"hasOwnDeamon" : true,
+	"hasDependency" : false,
+	"hasOwnDeamon" : false,
 	"changelog" : "https://jeedom.github.io/plugin-gsh/#language#/changelog",
 	"documentation" : "https://jeedom.github.io/plugin-gsh/#language#/"
 }
