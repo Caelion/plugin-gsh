@@ -318,7 +318,7 @@ function addScene(_scene) {
   div += '</div>';
   div += '</div>';
   div += '<div class="form-group">';
-  div += '<label class="col-sm-2 control-label">{{Nom du scene}}</label>';
+  div += '<label class="col-sm-2 control-label">{{Nom de la scène}}</label>';
   div += '<div class="col-sm-10">';
   div += '<input class="sceneAttr" data-l1key="id" style="display:none;" />';
   div += '<input class="sceneAttr" data-l1key="enable" style="display:none;" value="1" />';
