@@ -1,13 +1,13 @@
 # Description
 
-Ce plugin permet de :
+This plugin allows to:
 
-- utiliser l'implementation native de Google pour la gestion des objets connectés
+- use Google native implementation to manage connected objects
 
-Il peut fonctionner suivant 2 manières :
+It can work in 2 ways:
 
-- Standalone : vous créer les applications en mode dev coté Google puis connectez votre Jeedom au service Google
-- Cloud : en passant par un service cloud mis à disposition par Jeedom
+- Standalone: you can create applications in development mode from Google side and then connect your Jeedom to Google service
+- Cloud: via a cloud service provided by Jeedom
 
 > **Important**
 >
@@ -35,35 +35,35 @@ En mode cloud (et uniquement en mode cloud), il y a des délai de synchronisatio
 
 La synchronisation se fait toute les 6h (à 00h10,6h10,12h10,18h10). Cette synchronisation est du a notre volonté de rendre le serveur tierce qui fait le pont entre votre Jeedom et l'infrastructure Google Home independant et autonome (ca évite lors d'un soucis sur le market par exemple de perdre aussi les service Assistant vocaux). Lors de la synchronisation il y a un redemarrage du service (coupure de moins de 1s), ce qui explique la limitation à une fois toute les 6h.
 
-# Mode cloud
+# Cloud mode
 
 > **IMPORTANT**
 >
 > Il est important de faire les étapes suivantes dans l'ordre indiqué !!!
 
-Après l'installation du plugin, il vous suffit d'aller sur la configuration du plugin, de selectionner le mode Cloud puis de cliquer sur "Envoyer" (cela va envoyer les informations de connexion à l'api du plugin sur le market)
+After installing the plugin, simply go to plugin configuration, select the cloud mode and click on "Send" (this will send the connection information to the plugin API on the market)
 
-Il vous faut maintenant attendre le delai de synchronisation le temps que votre demande soit prise en compte.
+You now have to wait for synchronization time until your request is taken into account.
 
-Ensuite dans Jeedom dans Communication/Google Smarthome il faut cliquer sur sauvegarder pour envoyer votre configuration initial, il faut au moins un équipement en OK (sinon lors de la connexion Google Home <-> Jeedom vous aurez une erreur)
+Then in Jeedom in Communication / Google Smarthome it is needed to click on "Save" to send your initial configuration, it requires at least one equipment in OK (otherwise when connecting Google Home <->Jeedom, you will have an error)
 
-> **IMPORTANT**
+>**IMPORTANT**
 >
-> Cette étape doit absolument etre faite après le délai de synchronisation sinon la sauvegarde sera OK mais il n'y aura aucun configuration disponible pour Google Smarthome et donc vous aurez une erreur à l'association dans Google Home
+>This step must absolutely be done after the synchronization delay otherwise the backup will be OK but there will be no configuration available for Google Smarthome and therefore an error will be appeared during the association in Google Home
 
-Ensuite sur l'application Google home il faut aller dans le premiere onglet cliquer sur Ajouter (le +) :
+Then on the Google home application you have to go to the first tab click on Add (+):
 
 ![gsh](../images/gsh29.png)
 
-Puis configurer un appareil :
+Then configure a device:
 
 ![gsh](../images/gsh30.png)
 
-Sur "Fonctionne avec Google" :
+On "Works with Google":
 
 ![gsh](../images/gsh31.png)
 
-Ensuite dans la liste avec le bouton rechercher (loupe en haut a droite), chercher "Jeedom Smarthome" et cliquez dessus :
+Then in the list with the search button (magnifying glass at the top right), search for "Jeedom Smarthome" and click on it:
 
 ![gsh](../images/gsh32.png)
 
@@ -102,7 +102,7 @@ Dans plugin -> communication -> Google Smarthome vous pouvez configurer vos diff
 
 Pour rappel le plugin permet de :
 
-- utiliser l'implementation native de Google pour la gestion des objets connectés
+- use Google native implementation to manage connected objects
 - utiliser les interactions de jeedom en utilisant "Parler a ..."
 
 Il y a donc 2 applications coté Google : une pour la partie Google Smarthome et une pour la partie intéraction (vous pouvez bien sur n'en faire que une des 2)
