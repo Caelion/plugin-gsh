@@ -1,24 +1,16 @@
 var App = smarthome.App;
 var localHomeApp = new App("1.0.1");
-var connexionInfo = null;
 
 var identifyHandler = function (request) {
   console.log('identifyHandler : '+(new Date().toLocaleString())+' request : ',request);
-  for(var i in request.devices){
-    if(request.devices[i].id == 'fake-jeedom-local'){
-      connexionInfo = request.devices[i].customData
-      console.log('Found fake-jeedom-local : ',connexionInfo);
-    }
-  }
   var response = {
-    intent: 'IDENTIFY',
+    intent: 'action.devices.IDENTIFY',
     requestId: request.requestId,
     payload: {
       device: {
         id: "fake-jeedom-local",
         isProxy: true,
-        isLocalOnly: true,
-        verificationId : 'fake-jeedom-local'
+        isLocalOnly: true
       },
     }
   };
@@ -26,18 +18,21 @@ var identifyHandler = function (request) {
   return response;
 };
 
-var devicesHandler = function (request) {
-  console.log('devicesHandler : '+(new Date().toLocaleString())+' request : ',request);
-  var proxyDevice = request.inputs[0].payload.device.proxyDevice;
-  var reachables = [];
+var reachablesDeviceHandler = function (request) {
+  console.log('reachablesDeviceHandler : '+(new Date().toLocaleString())+' request : ',request);
+  var reachables_devices = [];
   for(var i in request.devices){
-    reachables.push({verificationId: request.devices[i].id})
+    if(request.devices[i].id == 'fake-jeedom-local'){
+      continue;
+    }
+    reachables_devices.push({id: request.devices[i].id});
   }
+  console.log('reachables :',reachables_devices)
   var response = {
-    intent: 'REACHABLE_DEVICES',
+    intent: 'action.devices.REACHABLE_DEVICES',
     requestId: request.requestId,
     payload: {
-      devices: reachables
+      devices: reachables_devices
     }
   };
   console.log('response :',response)
@@ -58,7 +53,7 @@ var executeHandler = function (request) {
 
 localHomeApp.onExecute(executeHandler)
 .onIdentify(identifyHandler)
-.onReachableDevices(devicesHandler)
+.onReachableDevices(reachablesDeviceHandler)
 .onProxySelected(proxyHandler)
 .listen()
 .then(function () {
