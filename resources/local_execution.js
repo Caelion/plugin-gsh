@@ -25,9 +25,10 @@ var reachablesDeviceHandler = function (request) {
     if(request.devices[i].id == 'fake-jeedom-local'){
       continue;
     }
-    reachables_devices.push({id: request.devices[i].id});
+    reachables_devices.push({
+      verificationId: request.devices[i].id
+    });
   }
-  console.log('reachables :',reachables_devices)
   var response = {
     intent: 'action.devices.REACHABLE_DEVICES',
     requestId: request.requestId,
@@ -55,6 +56,7 @@ localHomeApp.onExecute(executeHandler)
 .onIdentify(identifyHandler)
 .onReachableDevices(reachablesDeviceHandler)
 .onProxySelected(proxyHandler)
+.onExecute(executeHandler)
 .listen()
 .then(function () {
   console.log('Ready : '+(new Date().toLocaleString()))
