@@ -102,7 +102,7 @@ class gsh extends eqLogic {
 		}
 		$cmd = 'npm --prefix '.__DIR__.'/../../resources/gshd start -- ';
 		$cmd .= ' --udp_discovery_port 3311';
-		$cmd .= ' --udp_discovery_packet ping';
+		$cmd .= ' --udp_discovery_packet A5A5A5A5';
 		$cmd .= ' --pid ' . jeedom::getTmpFolder('gsh') . '/deamon.pid';
 		$cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('gsh'));
 		log::add('gsh', 'info', 'Lancement : '.$cmd);
@@ -188,29 +188,6 @@ class gsh extends eqLogic {
 	
 	public static function sync($_group='') {
 		$return = array();
-		if(config::byKey('gshs::allowLocalApi','gsh') == 1){
-			$return[] = array(
-				'id'=> 'fake-jeedom-local',
-				'type'=> 'action.devices.types.OUTLET',
-				'roomHint' => 'Jeedom',
-				'name'=> array(
-					'name'=> 'fake-jeedom-local'
-				),
-				'traits'=> array(
-					'action.devices.traits.OnOff'
-				),
-				'customData'=> array(
-					'ip' => network::getNetworkAccess('internal'),
-					'apikey' => jeedom::getApiKey('gsh')
-				),
-				'willReportState'=> false,
-				'otherDeviceIds'=> array(
-					array(
-						'deviceId'=> 'fake-jeedom-local'
-					)
-				)
-			);
-		}
 		$devices = gsh_devices::all(true);
 		foreach ($devices as $device) {
 			if($device->getOptions('group') != '' && $device->getOptions('group') != $_group){
@@ -227,6 +204,11 @@ class gsh extends eqLogic {
 			}
 			if(config::byKey('gshs::allowLocalApi','gsh') == 1){
 				$info['otherDeviceIds'] = array(array('deviceId' => $info['id']));
+				if(!isset($info['customData'])){
+					$info['customData'] = array();
+				}
+				$info['customData']['local_execution::ip'] = network::getNetworkAccess('internal');
+				$info['customData']['local_execution::apikey'] = jeedom::getApiKey('gsh');
 			}
 			$return[] = $info;
 			$device->setOptions('configState', 'OK');

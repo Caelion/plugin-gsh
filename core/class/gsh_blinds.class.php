@@ -155,9 +155,9 @@ class gsh_blinds {
 		} else if ($cmd->getSubtype() == 'binary') {
 			$openState['openPercent'] = boolval($value);
 			if ($cmd->getDisplay('invertBinary') == 0) {
-				$openState['openPercent'] = ($return['openPercent']) ? false : true;
+				$openState['openPercent'] = ($openState['openPercent']) ? false : true;
 			}
-			$openState['openPercent'] = ($return['openPercent']) ? 0 : 100;
+			$openState['openPercent'] = ($openState['openPercent']) ? 0 : 100;
 		}
 		$return['openState'] = array($openState,array('openPercent' => $openState['openPercent']));
 		return $return;

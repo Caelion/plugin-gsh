@@ -55,15 +55,15 @@ if(argv.pid){
 const socket = dgram.createSocket("udp4");
 
 socket.on("message", (msg, rinfo) => {
-  const incomingPacket = msg.toString("utf-8");
-  if (incomingPacket !== argv.udp_discovery_packet) {
+  const discoveryPacket = Buffer.from(argv.udp_discovery_packet, "hex");
+  if (msg.compare(discoveryPacket) !== 0) {
     if(argv.loglevel && argv.loglevel == 'debug'){
       console.warn("received unknown payload:", msg, "from:", rinfo);
     }
     return;
   }
   if(argv.loglevel && argv.loglevel == 'debug'){
-    console.log("received discovery payload:", incomingPacket, "from:", rinfo);
+    console.log("received discovery payload:", discoveryPacket, "from:", rinfo);
   }
   const discoveryData = {
     id: 'fake-jeedom-local',
