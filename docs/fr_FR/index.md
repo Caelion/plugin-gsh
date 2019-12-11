@@ -21,19 +21,6 @@ Il peut fonctionner suivant 2 manières :
 >
 > Le plugin ne supporte pas les équipement avec des double fonction (2 sortie comme certain module zwave Fibaro). Il faut absolument passer par 2 virtuels pour le décomposer.
 
-
-## Synchronisation et délai
-
-En mode cloud (et uniquement en mode cloud), il y a des délai de synchronisation lors des actions suivantes :
-
-- Activation du compte
-- Achat d'année sur le service Assistant Vocaux
-- Changement de clef api du plugin Google smarthome
-- Changement de l'url du jeedom
-- Changement de mot de passe market
-
-La synchronisation se fait toute les 6h (à 00h10,6h10,12h10,18h10). Cette synchronisation est du a notre volonté de rendre le serveur tierce qui fait le pont entre votre Jeedom et l'infrastructure Google Home independant et autonome (ca évite lors d'un soucis sur le market par exemple de perdre aussi les service Assistant vocaux). Lors de la synchronisation il y a un redemarrage du service (coupure de moins de 1s), ce qui explique la limitation à une fois toute les 6h.
-
 # Mode cloud
 
 > **IMPORTANT**
@@ -41,8 +28,6 @@ La synchronisation se fait toute les 6h (à 00h10,6h10,12h10,18h10). Cette synch
 > Il est important de faire les étapes suivantes dans l'ordre indiqué !!!
 
 Après l'installation du plugin, il vous suffit d'aller sur la configuration du plugin, de selectionner le mode Cloud puis de cliquer sur "Envoyer" (cela va envoyer les informations de connexion à l'api du plugin sur le market)
-
-Il vous faut maintenant attendre le delai de synchronisation le temps que votre demande soit prise en compte.
 
 Ensuite dans Jeedom dans Communication/Google Smarthome il faut cliquer sur sauvegarder pour envoyer votre configuration initial, il faut au moins un équipement en OK (sinon lors de la connexion Google Home <-> Jeedom vous aurez une erreur)
 
@@ -317,8 +302,7 @@ Il ne vous reste plus qu'a faire l'affectation des équipements aux pieces dans 
 > - vous etes bien en https (si vous avez un service pack, utilisez les DNS jeeodm ceux-ci sont sécurisé par defaut)
 > - vous avez bien activé Google assistant sur le market (page profils, onglet mes services puis configuration dans la partie Assistant vocaux)
 > - vous avez bien souscrit à l'abonnement pour les services vocaux et que celui-ci est encore valide (necessaire à partir du 01/06/2019). Cela se voit sur votre page profils du market, onglet mes service
-> - vous avez bien attendu 24h après l'envoi des informations de connexion de votre jeedom à nos serveurs
-> - après ce délai de 24h il faut dans plugin -> communication -> Google Smarthome selectionner "transmettre" des équipements et bien mis le type et enfin sauvegarder
+> - il faut dans plugin -> communication -> Google Smarthome selectionner "transmettre" des équipements et bien mis le type et enfin sauvegarder
 > - bien utiliser vos identifiants market
 
 >**Lors de l'association j'ai une erreur (mais pas sur un soucis de mot de passe/nom d'utilisateur)**
