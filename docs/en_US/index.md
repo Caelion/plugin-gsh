@@ -17,7 +17,6 @@ It can work in 2 ways:
 >
 > Quelque soit le mode utiliser il faut ABSOLUMENT que votre Jeedom soit accessible en HTTPS (le plugin ne marche pas en HTTP)
 
-
 > **Important**
 >
 > Le plugin ne supporte pas les équipement avec des double fonction (2 sortie comme certain module zwave Fibaro). Il faut absolument passer par 2 virtuels pour le décomposer.
@@ -81,6 +80,11 @@ Dans plugin -> communication -> Google Smarthome vous pouvez configurer vos diff
 >- dans l'application Google home il faut dissocier testsmarthome (votre application standalone)
 >- dans Communication/Google Smarthome il faut cliquer sur sauvegarder pour envoyer votre configuration initial
 >- Lier Jeedom Smarthome dans Google Home
+
+
+> **IMPORTANT**
+>
+>Toute modification de configuration des équipements transmis à Google Home (ajout d'un équipement, suppression d'un équipement, changement d'un générique type d'une commande) nécessite forcement d'aller dans Plugin -> Communication -> Googme Smarthome puis de faire sauvegarder
 
 # Mode standalone
 

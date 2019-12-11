@@ -1,3 +1,10 @@
+- Amélioration du support des ventilateur (on/off maintenant seulement)
+- Ajout du support des hottes
+
+# 15/10/2019
+
+- Envoi automatique de la configuration au market lors de l'installation
+
 # 26/08/2019
 
 - Fehlerbehebungen
