@@ -30,7 +30,8 @@ Il peut fonctionner suivant 2 manières :
 > **IMPORTANT**
 >
 > Si vous avez un message d'erreur vous indiquants que votre mot de passe ou non d'utilisateur n'est pas bon il faut :
-> - etês vous sur de vos identifiants (attention il faut respecter majuscule/minuscule) ?
+> - vérifier qu'Amazon Alexa est bien en actif sur le market
+> - si c'est bien le cas, etês vous sur de vos identifiants (attention il faut respecter majuscule/minuscule) ?
 > - si c'est le cas changer votre mot de passe sur le market et sur la configuration du service d'assistant vocal (page profils du market onglet mes services) faire sauvegarder
 
 Après l'installation du plugin, il vous suffit d'aller sur la configuration du plugin, de selectionner le mode Cloud puis de cliquer sur "Envoyer" (cela va envoyer les informations de connexion à l'api du plugin sur le market)
