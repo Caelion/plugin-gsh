@@ -31,10 +31,6 @@ Après l'installation du plugin, il vous suffit d'aller sur la configuration du 
 
 Ensuite dans Jeedom dans Communication/Google Smarthome il faut cliquer sur sauvegarder pour envoyer votre configuration initial, il faut au moins un équipement en OK (sinon lors de la connexion Google Home <-> Jeedom vous aurez une erreur)
 
-> **IMPORTANT**
->
-> Cette étape doit absolument etre faite après le délai de synchronisation sinon la sauvegarde sera OK mais il n'y aura aucun configuration disponible pour Google Smarthome et donc vous aurez une erreur à l'association dans Google Home
-
 Ensuite sur l'application Google home il faut aller dans le premiere onglet cliquer sur Ajouter (le +) :
 
 ![gsh](../images/gsh29.png)
