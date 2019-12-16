@@ -16,8 +16,10 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 require_once __DIR__ . "/../../../../core/php/core.inc.php";
+log::add('gsh','debug',"Call me !!!");
 $headers = apache_request_headers();
 $body = json_decode(file_get_contents('php://input'), true);
+log::add('gsh','debug',json_encode($body,true));
 if (isset($body['originalDetectIntentRequest']) && isset($body['originalDetectIntentRequest']['payload']) && isset($body['originalDetectIntentRequest']['payload']['user']) & isset($body['originalDetectIntentRequest']['payload']['user']['accessToken'])) {
 	$plugin = plugin::byId('gsh');
 	if (!$plugin->isActive()) {
