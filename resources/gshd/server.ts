@@ -15,8 +15,11 @@
 // - prints led state on standard output.
 // - responds to UDP broadcast with device information encoded in CBOR
 
+import * as fs from 'fs';
+
 import * as yargs from "yargs";
 const argv = yargs
+
 .usage("Usage: $0 --udp_discovery_port PORT_NUMBER --udp_discovery_packet PACKET_STRING")
 .option("udp_discovery_port", {
   describe: "port to listen on for UDP discovery query",
@@ -40,9 +43,6 @@ const argv = yargs
 })
 .argv;
 
-import * as fs from 'fs';
-import * as cbor from "cbor";
-import * as dgram from "dgram";
 
 if(argv.pid){
   fs.writeFile(argv.pid, process.pid, function(err) {
@@ -51,6 +51,9 @@ if(argv.pid){
     }
   });
 }
+
+import * as cbor from "cbor";
+import * as dgram from "dgram";
 
 const socket = dgram.createSocket("udp4");
 

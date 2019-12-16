@@ -101,13 +101,14 @@ class gsh extends eqLogic {
 		if ($deamon_info['launchable'] != 'ok') {
 			throw new Exception(__('Veuillez vérifier la configuration', __FILE__));
 		}
-		$cmd = 'npm --prefix '.__DIR__.'/../../resources/gshd start -- ';
+		$cmd = 'sudo npm --prefix '.__DIR__.'/../../resources/gshd start -- ';
 		$cmd .= ' --udp_discovery_port 3311';
 		$cmd .= ' --udp_discovery_packet JEEDOMGOOGLE';
 		$cmd .= ' --pid ' . jeedom::getTmpFolder('gsh') . '/deamon.pid';
 		$cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('gsh'));
+		$cmd .= ' >> ' . log::getPathToLog('gshd') . ' 2>&1 &';
 		log::add('gsh', 'info', 'Lancement : '.$cmd);
-		exec($cmd . ' >> ' . log::getPathToLog('gshd') . ' 2>&1 &');
+		exec($cmd);
 		log::add('gsh', 'info', 'Démon Google Smarthome local lancé');
 		sleep(5);
 	}
