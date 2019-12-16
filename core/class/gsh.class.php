@@ -103,7 +103,7 @@ class gsh extends eqLogic {
 		}
 		$cmd = 'sudo npm --prefix '.__DIR__.'/../../resources/gshd start -- ';
 		$cmd .= ' --udp_discovery_port 3311';
-		$cmd .= ' --udp_discovery_packet JEEDOMGOOGLE';
+		$cmd .= ' --udp_discovery_packet 4A6565646F6D';
 		$cmd .= ' --pid ' . jeedom::getTmpFolder('gsh') . '/deamon.pid';
 		$cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('gsh'));
 		$cmd .= ' >> ' . log::getPathToLog('gshd') . ' 2>&1 &';
