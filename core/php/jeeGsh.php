@@ -48,9 +48,9 @@ if (isset($body['originalDetectIntentRequest']) && isset($body['originalDetectIn
 	log::add('gsh', 'debug', json_encode(gsh::buildDialogflowResponse($body, $response)));
 	echo json_encode(gsh::buildDialogflowResponse($body, $response));
 	die();
-} else if (isset($headers['Authorization']) || isset($body['apikey'])) {
+} else if (isset($headers['Authorization']) || (isset($body['apikey']) && isset($body['request']))) {
 	header('Content-type: application/json');
-	if(isset($body['apikey'])){
+	if(isset($body['apikey']) && isset($body['request'])){
 		if (!jeedom::apiAccess($body['apikey'], 'gsh')) {
 			header('HTTP/1.1 401 Unauthorized');
 			echo json_encode(array());
