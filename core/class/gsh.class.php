@@ -103,7 +103,7 @@ class gsh extends eqLogic {
 		}
 		$cmd = 'npm --prefix '.__DIR__.'/../../resources/gshd start -- ';
 		$cmd .= ' --udp_discovery_port 3311';
-		$cmd .= ' --udp_discovery_packet A5A5A5A5';
+		$cmd .= ' --udp_discovery_packet JEEDOMGOOGLE';
 		$cmd .= ' --pid ' . jeedom::getTmpFolder('gsh') . '/deamon.pid';
 		$cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('gsh'));
 		log::add('gsh', 'info', 'Lancement : '.$cmd);
@@ -208,7 +208,6 @@ class gsh extends eqLogic {
 				if(!isset($info['customData'])){
 					$info['customData'] = array();
 				}
-				$info['customData']['local_execution::ip'] = network::getNetworkAccess('internal');
 				$info['customData']['local_execution::apikey'] = jeedom::getApiKey('gsh');
 			}
 			$return[] = $info;

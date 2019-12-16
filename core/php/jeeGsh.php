@@ -16,10 +16,9 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 require_once __DIR__ . "/../../../../core/php/core.inc.php";
-log::add('gsh','debug',"Call me !!!");
 $headers = apache_request_headers();
 $body = json_decode(file_get_contents('php://input'), true);
-log::add('gsh','debug',json_encode($body,true));
+log::add('gsh','debug',getClientIp().' => '.json_encode($body,true));
 if (isset($body['originalDetectIntentRequest']) && isset($body['originalDetectIntentRequest']['payload']) && isset($body['originalDetectIntentRequest']['payload']['user']) & isset($body['originalDetectIntentRequest']['payload']['user']['accessToken'])) {
 	$plugin = plugin::byId('gsh');
 	if (!$plugin->isActive()) {
@@ -49,19 +48,28 @@ if (isset($body['originalDetectIntentRequest']) && isset($body['originalDetectIn
 	log::add('gsh', 'debug', json_encode(gsh::buildDialogflowResponse($body, $response)));
 	echo json_encode(gsh::buildDialogflowResponse($body, $response));
 	die();
-} else if (isset($headers['Authorization'])) {
+} else if (isset($headers['Authorization']) || isset($body['apikey'])) {
 	header('Content-type: application/json');
-	if (config::byKey('gshs::authkey', 'gsh') == '' || init('secure') != config::byKey('gshs::authkey', 'gsh')) {
-		header('HTTP/1.1 401 Unauthorized');
-		echo json_encode(array());
-		die();
-	}
-	$matches = array();
-	preg_match('/Bearer (.*)/', $headers['Authorization'], $matches);
-	if (!isset($matches[1]) || $matches[1] != config::byKey('OAuthAccessTokensh', 'gsh') || config::byKey('OAuthAccessTokensh', 'gsh') == '') {
-		header('HTTP/1.1 401 Unauthorized');
-		echo json_encode(array());
-		die();
+	if(isset($body['apikey'])){
+		if (!jeedom::apiAccess($body['apikey'], 'gsh')) {
+			header('HTTP/1.1 401 Unauthorized');
+			echo json_encode(array());
+			die();
+		}
+		$body = $body['request'];
+	}else{
+		if (config::byKey('gshs::authkey', 'gsh') == '' || init('secure') != config::byKey('gshs::authkey', 'gsh')) {
+			header('HTTP/1.1 401 Unauthorized');
+			echo json_encode(array());
+			die();
+		}
+		$matches = array();
+		preg_match('/Bearer (.*)/', $headers['Authorization'], $matches);
+		if (!isset($matches[1]) || $matches[1] != config::byKey('OAuthAccessTokensh', 'gsh') || config::byKey('OAuthAccessTokensh', 'gsh') == '') {
+			header('HTTP/1.1 401 Unauthorized');
+			echo json_encode(array());
+			die();
+		}
 	}
 	$plugin = plugin::byId('gsh');
 	if (!$plugin->isActive()) {

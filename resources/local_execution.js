@@ -48,38 +48,34 @@ var reachablesDeviceHandler = function (request) {
 
 var executeHandler = function (request) {
   console.log('executeHandler : '+(new Date().toLocaleString())+' request : ',request);
-  console.log('response : {}')
   const command = request.inputs[0].payload.commands[0];
-  const execution = command.execution[0];
   const customData = command.devices[0].customData
   
-  const response = new Execute.Response.Builder().setRequestId(request.requestId);
+  var data = {request : request,apikey : request.inputs[0].payload.commands[0].devices[0].customData['local_execution::apikey']}
   
-  for(var i in command.devices){
-    var device = command.devices[i]
-    const deviceId = device.id;
-    const deviceCommand = new DataFlow.HttpRequestData();
-    deviceCommand.requestId = request.requestId;
-    deviceCommand.method = Constants.HttpOperation.POST;
-    deviceCommand.port = 80;
-    deviceCommand.deviceId = deviceId;
-    deviceCommand.path = '/plugins/gsh/core/php/jeeGSH.php';
-    deviceCommand.dataType = 'application/json';
-    deviceCommand.data = JSON.stringify(device);
-    console.log(localHomeApp.getDeviceManager());
-    return localHomeApp.getDeviceManager().send(deviceCommand)
-    .then((result) => {
-      console.log(result)
-    })
-    .catch((err) => {
-      console.log(err)
-      err.errorCode = err.errorCode || IntentFlow.ErrorCode.INVALID_REQUEST;
-      response.setErrorState(device.id, err.errorCode);
-      return response.build()
-    });
-  }
+  const deviceCommand = new DataFlow.HttpRequestData();
+  deviceCommand.requestId = request.requestId;
+  deviceCommand.method = Constants.HttpOperation.POST;
+  deviceCommand.port = 80;
+  deviceCommand.deviceId = request.inputs[0].payload.commands[0].devices[0].id;
+  deviceCommand.path = '/plugins/gsh/core/php/jeeGsh.php';
+  deviceCommand.dataType = 'application/json';
+  deviceCommand.data = JSON.stringify(data);
   
-  
+  return localHomeApp.getDeviceManager().send(deviceCommand)
+  .then((result) => {
+    console.log('Jeedom return : ')
+    console.log(JSON.parse(result.httpResponse.body));
+    return JSON.parse(result.httpResponse.body);
+  })
+  .catch((err) => {
+    const response = new Execute.Response.Builder().setRequestId(request.requestId);
+    err.errorCode = err.errorCode || IntentFlow.ErrorCode.INVALID_REQUEST;
+    for(var i in command.devices){
+      response.setErrorState(command.devices[i].id, err.errorCode);
+    }
+    return response.build()
+  });
 };
 
 
