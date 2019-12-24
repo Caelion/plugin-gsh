@@ -99,7 +99,7 @@ sendVarToJs('device', utils::o2a($device));
 						<select class="form-control deviceAttr" data-l1key="options" data-l2key="thermostat::heat">
 							<option value="">{{Aucun}}</option>
 							<?php
-							foreach ($eqLogic->getCmd('action', 'modeAction', null, true) as $cmd) {
+							foreach ($eqLogic->getCmd('action', null, null, true) as $cmd) {
 								echo '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
 							}
 							?>
@@ -112,7 +112,20 @@ sendVarToJs('device', utils::o2a($device));
 						<select class="form-control deviceAttr" data-l1key="options" data-l2key="thermostat::cool">
 							<option value="">{{Aucun}}</option>
 							<?php
-							foreach ($eqLogic->getCmd('action', 'modeAction', null, true) as $cmd) {
+							foreach ($eqLogic->getCmd('action', null, null, true) as $cmd) {
+								echo '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
+							}
+							?>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">{{Action pour le mode off}}</label>
+					<div class="col-sm-3">
+						<select class="form-control deviceAttr" data-l1key="options" data-l2key="thermostat::off">
+							<option value="">{{Aucun}}</option>
+							<?php
+							foreach ($eqLogic->getCmd('action', null, null, true) as $cmd) {
 								echo '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
 							}
 							?>
