@@ -13,14 +13,14 @@
   "license": "Apache-2.0",
   "dependencies": {
     "cbor": "^4.1.5",
-    "yargs": "^13.2.4"
+    "yargs": "^13.2.4",
+    "ts-node": "^8.2.0"
   },
   "devDependencies": {
     "@types/cbor": "^2.0.0",
     "@types/node": "^12.0.8",
     "@types/yargs": "^13.0.0",
     "standard": "^12.0.1",
-    "ts-node": "^8.2.0",
     "tslint": "^5.17.0",
     "typescript": "^3.5.1"
   }
