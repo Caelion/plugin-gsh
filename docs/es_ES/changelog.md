@@ -1,3 +1,5 @@
+- Amélioration du support des thermostats (possibilité de choisir n'importe quelle commande chauf/froid/off)
+
 # 11/12/2019
 
 - Amélioration du support des ventilateur (on/off maintenant seulement)
