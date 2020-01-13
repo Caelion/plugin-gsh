@@ -224,6 +224,9 @@ class gsh_light {
 				continue;
 			}
 			$cmd = cmd::byId($_infos['customData'][$key]);
+			if(!is_object($cmd)){
+				continue;
+			}
 			$value = $cmd->execCmd();
 			if ($cmd->getSubtype() == 'numeric') {
 				$return['brightness'] = round($value / $cmd->getConfiguration('maxValue', 100) * 100);
