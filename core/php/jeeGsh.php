@@ -112,8 +112,10 @@ if (init('apikey') != '') {
 }
 header('Content-type: application/json');
 $data = json_decode(file_get_contents('php://input'), true);
+$group = '';
 if(isset($body['apikey']) && strpos($body['apikey'],'-') !== false){
-	$body['apikey'] = substr($body['apikey'], 0, strpos($body['apikey'], '-'));
+	$group = explode('-',$body['apikey'])[1];
+	$body['apikey'] = explode('-',$body['apikey'])[0];
 }
 if (!isset($body['apikey']) || !jeedom::apiAccess($body['apikey'], 'gsh')) {
 	echo json_encode(array(
@@ -143,7 +145,7 @@ if ($body['action'] == 'exec') {
 	echo $result;
 	die();
 }else if ($body['action'] == 'sync') {
-	$result = json_encode(gsh::sync());
+	$result = json_encode(gsh::sync($group));
 	log::add('gsh', 'debug','Sync result : '. $result);
 	echo $result;
 	die();
