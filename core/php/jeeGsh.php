@@ -142,6 +142,11 @@ if ($body['action'] == 'exec') {
 	log::add('gsh', 'debug','Query result : '. $result);
 	echo $result;
 	die();
+}else if ($body['action'] == 'sync') {
+	$result = json_encode(gsh::sync());
+	log::add('gsh', 'debug','Sync result : '. $result);
+	echo $result;
+	die();
 } else if ($body['action'] == 'interact') {
 	if (isset($data['queryResult']['languageCode']) && method_exists('translate', 'setLanguage') && str_replace('_', '-', strtolower(translate::getLanguage())) != $data['queryResult']['languageCode']) {
 		if (strpos($data['queryResult']['languageCode'], 'en-') !== false) {
