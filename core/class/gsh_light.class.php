@@ -27,8 +27,8 @@ class gsh_light {
 	private static $_OFF = array('ENERGY_OFF', 'LIGHT_OFF');
 	private static $_STATE = array('ENERGY_STATE', 'LIGHT_STATE');
 	
-	private static $_BRIGHTNESS = array('LIGHT_SLIDER');
-	private static $_BRIGHTNESS_STATE = array('LIGHT_STATE');
+	private static $_BRIGHTNESS = array('LIGHT_SLIDER','LIGHT_SET_BRIGHTNESS');
+	private static $_BRIGHTNESS_STATE = array('LIGHT_STATE','LIGHT_BRIGHTNESS');
 	
 	private static $_COLOR = array('LIGHT_SET_COLOR');
 	private static $_COLOR_STATE = array('LIGHT_COLOR');
