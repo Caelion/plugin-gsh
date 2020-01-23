@@ -459,9 +459,6 @@ class gsh extends eqLogic {
 					$this->setOptions('configState', '');
 					$this->removeListener();
 				}
-				if(config::byKey('gshs::enableReportState','gsh') != 1 && $this->getOptions('reportState') == 1){
-					$this->setOptions('reportState',0);
-				}
 			}
 			
 			public function save() {
