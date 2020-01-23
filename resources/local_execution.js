@@ -1,4 +1,10 @@
 var App = smarthome.App;
+var DataFlow = smarthome.DataFlow;
+var Intents = smarthome.Intents;
+var Constants = smarthome.Constants;
+var Execute = smarthome.Execute;
+var IntentFlow = smarthome.IntentFlow;
+
 var localHomeApp = new App("1.0.1");
 
 var identifyHandler = function (request) {
@@ -40,22 +46,42 @@ var reachablesDeviceHandler = function (request) {
   return response;
 };
 
-var proxyHandler = function (request) {
-  console.log('proxyHandler : '+(new Date().toLocaleString())+' request : ',request);
-  console.log('response : {}')
-  return {};
-};
-
 var executeHandler = function (request) {
   console.log('executeHandler : '+(new Date().toLocaleString())+' request : ',request);
-  console.log('response : {}')
+  const command = request.inputs[0].payload.commands[0];
+  const customData = command.devices[0].customData
+  
+  var data = {request : request,apikey : request.inputs[0].payload.commands[0].devices[0].customData['local_execution::apikey']}
+  
+  const deviceCommand = new DataFlow.HttpRequestData();
+  deviceCommand.requestId = request.requestId;
+  deviceCommand.method = Constants.HttpOperation.POST;
+  deviceCommand.port = 80;
+  deviceCommand.deviceId = request.inputs[0].payload.commands[0].devices[0].id;
+  deviceCommand.path = '/plugins/gsh/core/php/jeeGsh.php';
+  deviceCommand.dataType = 'application/json';
+  deviceCommand.data = JSON.stringify(data);
+  
+  return localHomeApp.getDeviceManager().send(deviceCommand)
+  .then((result) => {
+    console.log('Jeedom return : ')
+    console.log(JSON.parse(result.httpResponse.body));
+    return JSON.parse(result.httpResponse.body);
+  })
+  .catch((err) => {
+    const response = new Execute.Response.Builder().setRequestId(request.requestId);
+    err.errorCode = err.errorCode || IntentFlow.ErrorCode.INVALID_REQUEST;
+    for(var i in command.devices){
+      response.setErrorState(command.devices[i].id, err.errorCode);
+    }
+    return response.build()
+  });
 };
 
 
 localHomeApp.onExecute(executeHandler)
 .onIdentify(identifyHandler)
 .onReachableDevices(reachablesDeviceHandler)
-.onProxySelected(proxyHandler)
 .onExecute(executeHandler)
 .listen()
 .then(function () {

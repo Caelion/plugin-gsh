@@ -61,6 +61,11 @@ function gsh_update() {
 		config::save('gshs::useragent', 'gsh-' . config::genKey(10), 'gsh');
 	}
 	jeedom::getApiKey('gsh');
+	try {
+		gsh::sendJeedomConfig();
+	} catch (\Exception $e) {
+		
+	}
 }
 
 function gsh_remove() {

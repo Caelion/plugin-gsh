@@ -101,13 +101,14 @@ class gsh extends eqLogic {
 		if ($deamon_info['launchable'] != 'ok') {
 			throw new Exception(__('Veuillez vérifier la configuration', __FILE__));
 		}
-		$cmd = 'npm --prefix '.__DIR__.'/../../resources/gshd start -- ';
+		$cmd = 'sudo npm --prefix '.__DIR__.'/../../resources/gshd start -- ';
 		$cmd .= ' --udp_discovery_port 3311';
-		$cmd .= ' --udp_discovery_packet A5A5A5A5';
+		$cmd .= ' --udp_discovery_packet 4A6565646F6D';
 		$cmd .= ' --pid ' . jeedom::getTmpFolder('gsh') . '/deamon.pid';
 		$cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('gsh'));
+		$cmd .= ' >> ' . log::getPathToLog('gshd') . ' 2>&1 &';
 		log::add('gsh', 'info', 'Lancement : '.$cmd);
-		exec($cmd . ' >> ' . log::getPathToLog('gshd') . ' 2>&1 &');
+		exec($cmd);
 		log::add('gsh', 'info', 'Démon Google Smarthome local lancé');
 		sleep(5);
 	}
@@ -208,7 +209,6 @@ class gsh extends eqLogic {
 				if(!isset($info['customData'])){
 					$info['customData'] = array();
 				}
-				$info['customData']['local_execution::ip'] = network::getNetworkAccess('internal');
 				$info['customData']['local_execution::apikey'] = jeedom::getApiKey('gsh');
 			}
 			$return[] = $info;
@@ -216,7 +216,7 @@ class gsh extends eqLogic {
 			$device->setOptions('build', json_encode($info));
 			$device->setOptions('missingGenericType','');
 			$device->save();
-			if (isset($info['willReportState']) && $info['willReportState']) {
+			if (isset($info['willReportState']) && $info['willReportState'] && config::byKey('gshs::enableReportState','gsh') == 1) {
 				$device->addListener();
 			} else {
 				$device->removeListener();
@@ -458,6 +458,9 @@ class gsh extends eqLogic {
 				if ($this->getEnable() == 0) {
 					$this->setOptions('configState', '');
 					$this->removeListener();
+				}
+				if(config::byKey('gshs::enableReportState','gsh') != 1 && $this->getOptions('reportState') == 1){
+					$this->setOptions('reportState',0);
 				}
 			}
 			

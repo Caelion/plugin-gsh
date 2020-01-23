@@ -1,3 +1,10 @@
+# 23/01/2020
+
+- Désactivation de la remontée d'état automatique par defaut (charge beaucoup trop les jeedoms)
+- Amélioration du support des thermostats (possibilité de choisir n'importe quelle commande chauf/froid/off)
+- Support de la température de couleur
+- Préparation du support de la synchronisation sans cache
+
 # 11/12/2019
 
 - Amélioration du support des ventilateur (on/off maintenant seulement)
