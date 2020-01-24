@@ -1,3 +1,5 @@
+# 23/01/2020
+
 - Amélioration du support des thermostats (possibilité de choisir n'importe quelle commande chauf/froid/off)
 - Support de la température de couleur
 - Préparation du support de la synchronisation sans cache
