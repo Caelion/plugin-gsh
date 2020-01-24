@@ -216,7 +216,7 @@ class gsh extends eqLogic {
 			$device->setOptions('build', json_encode($info));
 			$device->setOptions('missingGenericType','');
 			$device->save();
-			if (isset($info['willReportState']) && $info['willReportState'] && config::byKey('gshs::enableReportState','gsh') == 1) {
+			if (isset($info['willReportState']) && $info['willReportState']) {
 				$device->addListener();
 			} else {
 				$device->removeListener();
@@ -458,9 +458,6 @@ class gsh extends eqLogic {
 				if ($this->getEnable() == 0) {
 					$this->setOptions('configState', '');
 					$this->removeListener();
-				}
-				if(config::byKey('gshs::enableReportState','gsh') != 1 && $this->getOptions('reportState') == 1){
-					$this->setOptions('reportState',0);
 				}
 			}
 			
