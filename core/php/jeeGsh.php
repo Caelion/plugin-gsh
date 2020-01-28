@@ -160,9 +160,7 @@ if ($body['action'] == 'exec') {
 	$query = $body['data']['queryResult']['queryText'];
 	$params = array('plugin' => 'gsh', 'reply_cmd' => null);
 	$response = interactQuery::tryToReply(trim($query), $params);
-	header('Content-type: application/json');
-	log::add('gsh', 'debug', json_encode(gsh::buildDialogflowResponse($body['data'], $response)));
-	echo json_encode(gsh::buildDialogflowResponse($body['data'], $response));
+	echo $response['reply'];
 	die();
 }
 
