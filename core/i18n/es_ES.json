@@ -1,43 +1,78 @@
 {
-    "plugins\/gsh\/plugin_info\/configuration.php": {
+    "plugin_info\/configuration.php": {
+        "Attention votre connexion externe ne semble pas etre en https, ce plugin nécessite ABSOLUMENT une connexion https. Si vous ne savez pas comment faire vous pouvez souscrire à un service pack power pour utiliser le service de DNS Jeedom": "Tenga en cuenta que su conexión externa no parece estar en https, este complemento ABSOLUTAMENTE requiere una conexión https. Si no sabe cómo, puede suscribirse a una fuente de alimentación para usar el servicio DNS de Jeedom",
         "Serveur Google smarthome": "Servidor smarthome de Google",
         "Mode": "Modo",
-        "Cloud": "Cloud",
-        "Standalone": "Standalone",
+        "Cloud": "nube",
+        "Standalone": "independiente",
+        "Abonnement service assistant vocaux": "Suscripción al servicio de asistente de voz",
+        "Votre abonnement aux services assistant vocaux fini le ": "Su suscripción a los servicios de asistente de voz finaliza el ",
+        "Pour le prolonger, allez": "Para ampliarlo, vaya a",
+        "ici": "aquí",
+        "Votre abonnement aux services assistant vocaux est illimité.": "Su suscripción a los servicios de asistente de voz es ilimitada.",
+        "Votre abonnement aux services assistant vocaux est fini.": "Se cancela su suscripción a los servicios de asistente de voz.",
+        "Pour vous réabonner, allez": "Para suscribirse de nuevo, vaya a",
         "Envoyer configuration au market": "Enviar configuración al market",
         "Envoyer": "Enviar",
-        "Information": "Información",
-        "Oauth": "Oauth",
-        "Cient ID": "Cient ID",
-        "Cient Secret": "Cient Secret",
+        "Oauth": "OAuth",
+        "Cient ID": "ID del cliente",
+        "Cient Secret": "Secreto del cliente",
         "Smarthome": "Smarthome",
-        "Fulfillment URL : ": "Fulfillment URL : ",
-        "Authorization URL : ": "Authorization URL : ",
-        "Token URL : ": "Token URL : ",
+        "Fulfillment URL : ": "URL de cumplimiento:",
+        "Authorization URL : ": "URL de autorización:",
+        "Token URL : ": "URL del token:",
         "ID du projet Smarthome": "ID del proyecto Smarthome",
         "Connection": "Conexión",
         "Homegraph API Google": "Homegraph API Google",
-        "Homegraph User Agent": "Homegraph User Agent",
+        "Homegraph User Agent": "Agente de usuario de Homegraph",
         "Clef d'accès sécurisé": "Clave de acceso seguro",
-        "Mail client (JWT)": "Mail client (JWT)",
+        "Mail client (JWT)": "Correo del cliente (JWT)",
         "Clef privé (JWT)": "llave privada (JWT)",
-        "Interaction": "Interacción",
-        "ID du projet Dialogflow": "ID del proyecto Dialogflow",
-        "Clef authentification header (authkey)": "Clave authentification header (authkey)",
-        "Configuration envoyée avec succès": "Configuración enviada correctamente",
-        "Votre abonnement aux services assistant vocaux est illimité": "Su suscripción a los servicios de asistente de voz es ilimitada",
-        "Abonnement service assistant vocaux": "Suscripción al servicio de asistente de voz",
-        "Pour le prolonger ou vous réabonner, allez": "Para ampliar o volver a suscribirse, vaya a",
-        "ici": "aquí",
-        "Votre abonnement aux services assistant vocaux est illimité.": "Su suscripción a los servicios de asistente de voz es ilimitada.",
-        "puis onglet Mes Service": "luego la pestaña Mis servicios",
-        "Votre abonnement aux services assistant vocaux est fini.": "Se cancela su suscripción a los servicios de asistente de voz.",
-        "Pour vous réabonner, allez": "Para suscribirse de nuevo, vaya a",
-        "Votre abonnement aux services assistant vocaux fini le ": "Su suscripción a los servicios de asistente de voz finaliza el ",
-        "Pour le prolonger, allez": "Para ampliarlo, vaya a",
-        "Autoriser la communication local": "Permitir la comunicación local"
+        "Configuration envoyée avec succès": "Configuración enviada correctamente"
     },
-    "plugins\/gsh\/desktop\/php\/gsh.php": {
+    "desktop\/modal\/advanceConfig.php": {
+        "Eqlogic ID non valide : ": "Eqlogic ID no válido : ",
+        "Device non trouvé": "Dispositivo no encontrado",
+        "Aucun type configuré pour ce périphérique": "No hay ningún tipo configurado para este dispositivo",
+        "Groupe objet (option nécéssitant un compte market spécifique)": "Grupo de objetos (opción que requiere una cuenta de mercado específica)",
+        "Sauvegarder": "Guardar",
+        "Configuration": "configuración",
+        "Inverser": "Invertir",
+        "Configuration du thermostat": "Configuración del termostato",
+        "Action pour le mode chaud": "Acción para modo calefacción",
+        "Aucun": "Ninguno",
+        "Action pour le mode froid": "Acción para el modo frío.",
+        "Action pour le mode off": "Acción para el modo apagado",
+        "Il n\\'y a aucune configuration avancée pour ce type": "No hay una configuración avanzada para este tipo",
+        "Sauvegarde réussi, pensez à relancer une synchronisation": "Salvado exitoso, recuerde relanzar una sincronización"
+    },
+    "desktop\/modal\/showNeedGenericType.php": {
+        "Eqlogic ID non valide : ": "Eqlogic ID no válido : ",
+        "Device non trouvé": "Dispositivo no encontrado",
+        "Aucun type configuré pour ce périphérique": "No hay ningún tipo configurado para este dispositivo",
+        "Aucune information disponible": "No hay información disponible",
+        "Voici les générique type qui sont utilisation avec votre type d\\'équipement. Attention il ne faut pas forcement tous les avoir sur l\\'équipement (ou n\\'en avoir aucun)": "Estos son los tipos genéricos que se utilizan con su tipo de equipo. Atención, no es necesario necesariamente tenerlos todos en el equipo (o no tener ninguno)"
+    },
+    "desktop\/js\/gsh.js": {
+        "Configuration de l'équipement": "Configuración del dispositivo",
+        "Configuration avancée": "Configuración avanzada",
+        "Information type générique": "Información tipo genérica ",
+        "Synchronisation réussie. Pour voir le status des equipements à jour, merci de rafraichir la page (F5)": "Sincronización exitosa. Para ver el estado del equipo actualizado, actualice la página (F5)",
+        "Configuration péripheriques": "Configuración de periféricos",
+        "Nom de la scene ?": "¿Nombre de la escena?",
+        "Nouveau nom ?": "¿ Nuevo nombre ?",
+        "Action d\\'entrée": "Acción de entrada",
+        "Action de sortie": "Acción de salida",
+        "Décocher pour desactiver l\\'action": "Desactive la casilla para desactivar la acción",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Compruebe que el comando se ejecuta en paralelo con las otras acciones",
+        "Sélectionner un mot-clé": "Seleccionar una palabra clave",
+        "Supprimer": "Borrar",
+        "Nom de la scène": "Nombre de la escena",
+        "Pièce": "Habitación",
+        "Pseudo": "Apodo"
+    },
+    "desktop\/php\/gsh.php": {
+        "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Voir la configuration": "Ver la configuración",
         "Sauvegarder": "Guardar",
         "Equipement": "Dispositivos",
@@ -50,66 +85,97 @@
         "Action": "Acción",
         "Transmettre": "Transmitir",
         "Aucune": "Ninguno",
+        "Validation": "validación",
         "Code": "Código",
-        "Remonter l'état": "Restaurar el estado",
-        "Code pin": "Code pin",
+        "Remonter l\\'état": "Reensamblar el estado",
+        "Code pin": "Código PIN",
         "Aucun": "Ninguno",
-        "Lumière": "Iluminación",
-        "Thermostat": "Termostato",
-        "Prise": "Enchufe",
-        "Caméra": "Cámara",
-        "Store": "Persiana",
-        "Volet": "Persiana",
-        "Capteur": "Sensor",
-        "Fenêtre": "Ventana",
-        "Porte": "Puerta",
-        "Alarme": "Alarma",
-        "Verrou": "Cerradura",
-        "TV": "Televisión",
-        "Enceinte": "Recinto",
-        "Ajouter scène": "Añadir escena",
-        "Porte Garage": "Puerta Garaje",
-        "Rideaux": "Cortina",
-        "Vanne": "Válvula",
-        "Ventilateur": "Ventilador"
+        " . $value['name'] . ": ". $ valor [&#39;nombre&#39;].",
+        "Ajouter scène": "Añadir escena"
     },
-    "plugins\/gsh\/desktop\/js\/gsh.js": {
-        "Configuration de l'équipement": "Configuración del dispositivo",
-        "Configuration avancée": "Configuración avanzada",
-        "Synchronisation réussie": "Sincronizado con éxito",
-        "Configuration péripheriques": "Configuración de periféricos",
-        "Nom de la scene ?": "¿Nombre de la escena?",
-        "Nouveau nom ?": "¿ Nuevo nombre ?",
-        "Action d\\'entrée": "Acción de entrada",
-        "Action de sortie": "Acción de salida",
-        "Décocher pour desactiver l\\'action": "Desactive la casilla para desactivar la acción",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Compruebe que el comando se ejecuta en paralelo con las otras acciones",
-        "Sélectionner un mot-clé": "Seleccionar una palabra clave",
-        "Nom du scene": "Nombre de la escena",
-        "Supprimer": "Borrar",
-        "Pseudo": "Apodo",
-        "Pièce": "Habitación",
-        "Synchronisation réussie. Pour voir le status des equipements à jour, merci de rafraichir la page (F5)": "Sincronización exitosa. Para ver el estado del equipo actualizado, actualice la página (F5)",
-        "Information type générique": "Información tipo genérica "
+    "core\/ajax\/gsh.ajax.php": {
+        "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Device non trouvé : ": "Dispositivo no encontrado:",
+        "Aucune méthode correspondante à : ": "Ningún método correspondiente a:"
     },
-    "plugins\/gsh\/desktop\/modal\/advanceConfig.php": {
-        "Sauvegarder": "Guardar",
-        "Configuration du volet": "Configuración de persiana",
-        "Inverser": "Invertir",
-        "Sauvegarde réussi, pensez à relancer une synchronisation": "Salvado exitoso, recuerde relanzar una sincronización",
-        "Aucun type configuré pour ce périphérique": "No hay ningún tipo configurado para este dispositivo",
-        "Il n'y a aucune configuration avancée pour ce type": "No hay configuración avanzada para este tipo",
-        "Groupe objet (option nécéssitant un compte market spécifique)": "Grupo de objetos (opción que requiere una cuenta de mercado específica)"
+    "core\/php\/jeeGsh.php": {
+        "Vous n\\'etes pas autorisé à effectuer cette action. Clef API invalide. Merci de corriger la clef API sur votre page profils du market et d\\'attendre 24h avant de réessayer.": "No tiene autorización para realizar esta acción. Clave API no válida Corrija la clave API en su página de perfiles de mercado y espere 24 horas antes de volver a intentarlo.",
+        "Configuration OK": "Configuración OK"
     },
-    "plugins\/gsh\/desktop\/modal\/showNeedGenericType.php": {
-        "Eqlogic ID non valide : ": "Eqlogic ID no válido : ",
-        "Voici les générique type qui sont utilisation avec votre type d'équipement. Attention il ne faut pas forcement tous les avoir sur l'équipement (ou n'en avoir aucun)": "Estos son los tipos genéricos que se utilizan con su tipo de dispositivo. Tenga cuidado de no tenerlos todos sobre el dispositivo (o ninguno en absoluto)",
-        "Aucune information disponible": "No hay información disponible"
+    "core\/class\/gsh_door.class.php": {
+        "Etat": "Estado"
     },
-    "plugins\/gsh\/core\/class\/gsh_light.class.php": {
+    "core\/class\/gsh_blinds.class.php": {
         "Position": "Posición",
-        "On": "On",
-        "Off": "Off",
+        "On": "uno",
+        "Off": "apagado",
+        "Etat": "Estado"
+    },
+    "core\/class\/gsh_thermostat.class.php": {
+        "Thermostat": "Termostato",
+        "Etat themostat ": "Estado del termostato",
+        "Mode": "Modo",
+        "Etat": "Estado",
+        "Humidité": "humedad",
+        "Off": "apagado",
+        "Suspendu": "suspendido"
+    },
+    "core\/class\/gsh_scene.class.php": {
+        "Erreur lors de l\\'éxecution de ": "Error al ejecutar",
+        ". Détails : ": ". Detalles:"
+    },
+    "core\/class\/gsh_lock.class.php": {
+        "On": "uno",
+        "Off": "apagado",
+        "Etat": "Estado"
+    },
+    "core\/class\/gsh_light.class.php": {
+        "On": "uno",
+        "Off": "apagado",
+        "Etat": "Estado",
+        "Luminosité": "Luminosidad",
+        "Etat luminosité": "Estado de luminosidad",
+        "Couleur": "Color",
+        "Etat couleur": "Estado color"
+    },
+    "core\/class\/gsh_tv.class.php": {
+        "Etat volume": "Estado del volumen",
+        "Volume": "volumen",
+        "Chaine": "cadena",
+        "Etat chaine": "Estado del canal"
+    },
+    "core\/class\/gsh_securitysystem.class.php": {
+        "Mode": "Modo",
+        "Etat mode": "Estado del modo",
+        "On": "uno",
+        "Off": "apagado",
+        "Etat": "Estado"
+    },
+    "core\/class\/gsh.class.php": {
+        "Veuillez vérifier la configuration": "Por favor verifique la configuración",
+        "JWT aucun token : ": "JWT sin token:"
+    },
+    "core\/class\/gsh_fan.class.php": {
+        "On": "uno",
+        "Off": "apagado",
+        "Etat": "Estado"
+    },
+    "core\/class\/gsh_valve.class.php": {
+        "Position": "Posición",
+        "On": "uno",
+        "Off": "apagado",
+        "Etat": "Estado"
+    },
+    "core\/class\/gsh_outlet.class.php": {
+        "Position": "Posición",
+        "On": "uno",
+        "Off": "apagado",
+        "Etat": "Estado"
+    },
+    "core\/class\/gsh_speaker.class.php": {
+        "Position": "Posición",
+        "On": "uno",
+        "Off": "apagado",
         "Etat": "Estado",
         "Luminosité": "Luminosidad",
         "Etat luminosité": "Estado de luminosidad",
