@@ -149,8 +149,7 @@ if ($body['action'] == 'exec') {
 	log::add('gsh', 'debug','Sync result : '. $result);
 	echo $result;
 	die();
-}
-
+} 
 echo json_encode(array(
 	'status' => 'SUCCESS',
 ));
