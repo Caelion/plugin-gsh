@@ -1,185 +1,184 @@
 {
-    "plugin_info\/configuration.php": {
-        "Attention votre connexion externe ne semble pas etre en https, ce plugin nécessite ABSOLUMENT une connexion https. Si vous ne savez pas comment faire vous pouvez souscrire à un service pack power pour utiliser le service de DNS Jeedom": "Attention votre connexion externe ne semble pas etre en https, ce plugin nécessite ABSOLUMENT une connexion https. Si vous ne savez pas comment faire vous pouvez souscrire à un service pack power pour utiliser le service de DNS Jeedom",
-        "Serveur Google smarthome": "Serveur Google smarthome",
-        "Mode": "mode",
-        "Cloud": "Cloud",
-        "Standalone": "Standalone",
-        "Abonnement service assistant vocaux": "Abonnement service assistant vocaux",
-        "Votre abonnement aux services assistant vocaux fini le ": "Votre abonnement aux services assistant vocaux fini le ",
-        "Pour le prolonger, allez": "Pour le prolonger, allez",
+    "plugins\/gsh\/plugin_info\/configuration.php": {
+        "Attention votre connexion externe ne semble pas etre en https, ce plugin nécessite ABSOLUMENT une connexion https. Si vous ne savez pas comment faire vous pouvez souscrire à un service pack power pour utiliser le service de DNS Jeedom": "",
+        "Serveur Google smarthome": "",
+        "Mode": "",
+        "Cloud": "",
+        "Standalone": "",
+        "Abonnement service assistant vocaux": "",
+        "Votre abonnement aux services assistant vocaux fini le ": "",
+        "Pour le prolonger, allez": "",
         "ici": "disini",
-        "Votre abonnement aux services assistant vocaux est illimité.": "Votre abonnement aux services assistant vocaux est illimité.",
-        "Votre abonnement aux services assistant vocaux est fini.": "Votre abonnement aux services assistant vocaux est fini.",
-        "Pour vous réabonner, allez": "Pour vous réabonner, allez",
-        "Envoyer configuration au market": "Envoyer configuration au market",
+        "Votre abonnement aux services assistant vocaux est illimité.": "",
+        "Votre abonnement aux services assistant vocaux est fini.": "",
+        "Pour vous réabonner, allez": "",
+        "Envoyer configuration au market": "",
         "Envoyer": "Kirim",
-        "Oauth": "Oauth",
-        "Cient ID": "Cient ID",
-        "Cient Secret": "Cient Secret",
-        "Smarthome": "Smarthome",
-        "Fulfillment URL : ": "Fulfillment URL : ",
-        "Authorization URL : ": "Authorization URL : ",
-        "Token URL : ": "Token URL : ",
-        "ID du projet Smarthome": "ID du projet Smarthome",
-        "Connection": "Connection",
-        "Homegraph API Google": "Homegraph API Google",
-        "Homegraph User Agent": "Homegraph User Agent",
-        "Clef d'accès sécurisé": "Clef d'accès sécurisé",
-        "Mail client (JWT)": "Mail client (JWT)",
-        "Clef privé (JWT)": "Clef privé (JWT)",
-        "Configuration envoyée avec succès": "Configuration envoyée avec succès"
+        "Oauth": "",
+        "Cient ID": "",
+        "Cient Secret": "",
+        "Smarthome": "",
+        "Fulfillment URL : ": "",
+        "Authorization URL : ": "",
+        "Token URL : ": "",
+        "ID du projet Smarthome": "",
+        "Connection": "",
+        "Homegraph API Google": "",
+        "Homegraph User Agent": "",
+        "Clef d'accès sécurisé": "",
+        "Mail client (JWT)": "",
+        "Clef privé (JWT)": "",
+        "Configuration envoyée avec succès": ""
     },
-    "desktop\/modal\/advanceConfig.php": {
-        "Eqlogic ID non valide : ": "Eqlogic ID non valide : ",
-        "Device non trouvé": "Device non trouvé",
-        "Aucun type configuré pour ce périphérique": "Aucun type configuré pour ce périphérique",
-        "Groupe objet (option nécéssitant un compte market spécifique)": "Groupe objet (option nécéssitant un compte market spécifique)",
-        "Sauvegarder": "menyimpan",
-        "Configuration": "Configuration",
+    "plugins\/gsh\/desktop\/modal\/advanceConfig.php": {
+        "Eqlogic ID non valide : ": "",
+        "Device non trouvé": "",
+        "Aucun type configuré pour ce périphérique": "",
+        "Groupe objet (option nécéssitant un compte market spécifique)": "",
+        "Sauvegarder": "Menyimpan",
+        "Configuration": "Konfigurasi",
         "Inverser": "Membalikkan",
-        "Configuration du thermostat": "Configuration du thermostat",
-        "Action pour le mode chaud": "Action pour le mode chaud",
-        "Aucun": "tidak",
-        "Action pour le mode froid": "Action pour le mode froid",
-        "Action pour le mode off": "Action pour le mode off",
-        "Il n\\'y a aucune configuration avancée pour ce type": "Il n\\'y a aucune configuration avancée pour ce type",
-        "Sauvegarde réussi, pensez à relancer une synchronisation": "Sauvegarde réussi, pensez à relancer une synchronisation"
+        "Configuration du thermostat": "",
+        "Action pour le mode chaud": "",
+        "Aucun": "Tak ada",
+        "Action pour le mode froid": "",
+        "Action pour le mode off": "",
+        "Il n\\'y a aucune configuration avancée pour ce type": "",
+        "Sauvegarde réussi, pensez à relancer une synchronisation": ""
     },
-    "desktop\/modal\/showNeedGenericType.php": {
-        "Eqlogic ID non valide : ": "Eqlogic ID non valide : ",
-        "Device non trouvé": "Device non trouvé",
-        "Aucun type configuré pour ce périphérique": "Aucun type configuré pour ce périphérique",
-        "Aucune information disponible": "Aucune information disponible",
-        "Voici les générique type qui sont utilisation avec votre type d\\'équipement. Attention il ne faut pas forcement tous les avoir sur l\\'équipement (ou n\\'en avoir aucun)": "Voici les générique type qui sont utilisation avec votre type d\\'équipement. Attention il ne faut pas forcement tous les avoir sur l\\'équipement (ou n\\'en avoir aucun)"
+    "plugins\/gsh\/desktop\/modal\/showNeedGenericType.php": {
+        "Eqlogic ID non valide : ": "",
+        "Device non trouvé": "",
+        "Aucun type configuré pour ce périphérique": "",
+        "Aucune information disponible": "",
+        "Voici les générique type qui sont utilisation avec votre type d\\'équipement. Attention il ne faut pas forcement tous les avoir sur l\\'équipement (ou n\\'en avoir aucun)": ""
     },
-    "desktop\/js\/gsh.js": {
-        "Configuration de l'équipement": "Konfigurasi peralatan",
-        "Configuration avancée": "konfigurasi lanjutan",
-        "Information type générique": "Information type générique",
-        "Synchronisation réussie. Pour voir le status des equipements à jour, merci de rafraichir la page (F5)": "Synchronisation réussie. Pour voir le status des equipements à jour, merci de rafraichir la page (F5)",
-        "Configuration péripheriques": "Configuration péripheriques",
-        "Nom de la scene ?": "Nom de la scene ?",
-        "Nouveau nom ?": "nama baru?",
-        "Action d\\'entrée": "Action d\\'entrée",
-        "Action de sortie": "Action de sortie",
-        "Décocher pour desactiver l\\'action": "Décocher pour desactiver l\\'action",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxecute en parrallele des autres actions",
-        "Sélectionner un mot-clé": "Pilih kata kunci",
-        "Supprimer": "menghapus",
-        "Nom de la scène": "Nom de la scène",
-        "Pièce": "Pièce",
-        "Pseudo": "Pseudo"
-    },
-    "desktop\/php\/gsh.php": {
-        "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "Voir la configuration": "Voir la configuration",
-        "Sauvegarder": "menyimpan",
+    "plugins\/gsh\/desktop\/php\/gsh.php": {
+        "401 - Accès non autorisé": "401 - Akses tidak sah",
+        "Voir la configuration": "",
+        "Sauvegarder": "Menyimpan",
         "Equipement": "Peralatan",
-        "Scénario": "skenario",
-        "Plugin": "Plugin",
+        "Scénario": "Skenario",
+        "Plugin": "",
         "Options": "Pilihan",
-        "Status": "Status",
+        "Status": "",
         "Type": "Jenis",
-        "Pseudo": "Pseudo",
+        "Pseudo": "",
         "Action": "Tindakan",
-        "Transmettre": "Transmettre",
-        "Aucune": "tidak",
-        "Validation": "Validation",
+        "Transmettre": "",
+        "Aucune": "Tidak",
+        "Validation": "",
         "Code": "Kode",
-        "Remonter l\\'état": "Remonter l\\'état",
-        "Code pin": "Code pin",
-        "Aucun": "tidak",
-        " . $value['name'] . ": " . $value['name'] . ",
-        "Ajouter scène": "Ajouter scène"
+        "Remonter l\\'état": "",
+        "Code pin": "",
+        "Aucun": "Tak ada",
+        " . $value['name'] . ": "",
+        "Ajouter scène": ""
     },
-    "core\/ajax\/gsh.ajax.php": {
-        "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "Device non trouvé : ": "Device non trouvé : ",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+    "plugins\/gsh\/desktop\/js\/gsh.js": {
+        "Configuration de l'équipement": "Konfigurasi peralatan",
+        "Configuration avancée": "Konfigurasi lanjutan",
+        "Information type générique": "",
+        "Synchronisation réussie. Pour voir le status des equipements à jour, merci de rafraichir la page (F5)": "",
+        "Configuration péripheriques": "",
+        "Nom de la scene ?": "",
+        "Nouveau nom ?": "Nama baru?",
+        "Action d\\'entrée": "",
+        "Action de sortie": "",
+        "Décocher pour desactiver l\\'action": "Hapus tanda centang untuk menonaktifkan \\ Aksi",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Periksa untuk urutan \\ 's dieksekusi secara paralel untuk tindakan lainnya",
+        "Sélectionner un mot-clé": "Pilih kata kunci",
+        "Supprimer": "Menghapus",
+        "Nom de la scène": "",
+        "Pièce": "",
+        "Pseudo": ""
     },
-    "core\/php\/jeeGsh.php": {
-        "Vous n\\'etes pas autorisé à effectuer cette action. Clef API invalide. Merci de corriger la clef API sur votre page profils du market et d\\'attendre 24h avant de réessayer.": "Vous n\\'etes pas autorisé à effectuer cette action. Clef API invalide. Merci de corriger la clef API sur votre page profils du market et d\\'attendre 24h avant de réessayer.",
-        "Configuration OK": "Configuration OK"
+    "plugins\/gsh\/core\/php\/jeeGsh.php": {
+        "Vous n\\'etes pas autorisé à effectuer cette action. Clef API invalide. Merci de corriger la clef API sur votre page profils du market et d\\'attendre 24h avant de réessayer.": "",
+        "Configuration OK": ""
     },
-    "core\/class\/gsh_door.class.php": {
-        "Etat": "negara"
+    "plugins\/gsh\/core\/ajax\/gsh.ajax.php": {
+        "401 - Accès non autorisé": "401 - Akses tidak sah",
+        "Device non trouvé : ": "",
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
-    "core\/class\/gsh_blinds.class.php": {
-        "Position": "Position",
-        "On": "satu",
-        "Off": "Off",
-        "Etat": "negara"
+    "plugins\/gsh\/core\/class\/gsh.class.php": {
+        "Veuillez vérifier la configuration": "",
+        "JWT aucun token : ": ""
     },
-    "core\/class\/gsh_thermostat.class.php": {
-        "Thermostat": "Thermostat",
-        "Etat themostat ": "Etat themostat ",
-        "Mode": "mode",
-        "Etat": "negara",
-        "Humidité": "Humidité",
-        "Off": "Off",
-        "Suspendu": "Suspendu"
+    "plugins\/gsh\/core\/class\/gsh_blinds.class.php": {
+        "Position": "Posisi",
+        "On": "",
+        "Off": "",
+        "Etat": "Negara"
     },
-    "core\/class\/gsh_scene.class.php": {
-        "Erreur lors de l\\'éxecution de ": "Erreur lors de l\\'éxecution de ",
-        ". Détails : ": ". Détails : "
+    "plugins\/gsh\/core\/class\/gsh_door.class.php": {
+        "Etat": "Negara"
     },
-    "core\/class\/gsh_lock.class.php": {
-        "On": "satu",
-        "Off": "Off",
-        "Etat": "negara"
+    "plugins\/gsh\/core\/class\/gsh_thermostat.class.php": {
+        "Thermostat": "",
+        "Etat themostat ": "",
+        "Mode": "",
+        "Etat": "Negara",
+        "Humidité": "",
+        "Off": "",
+        "Suspendu": ""
     },
-    "core\/class\/gsh_light.class.php": {
-        "On": "satu",
-        "Off": "Off",
-        "Etat": "negara",
-        "Luminosité": "Kecerahan",
-        "Etat luminosité": "Etat luminosité",
+    "plugins\/gsh\/core\/class\/gsh_speaker.class.php": {
+        "Etat volume": "",
+        "Volume": "",
+        "Pause": "Berhenti Sebentar",
+        "Reprendre": "Ringkasan",
+        "Stop": "",
+        "Suivant": "",
+        "Précedent": "Sebelumnya"
+    },
+    "plugins\/gsh\/core\/class\/gsh_light.class.php": {
+        "On": "",
+        "Off": "",
+        "Etat": "Negara",
+        "Luminosité": "",
+        "Etat luminosité": "",
         "Couleur": "Warna",
-        "Etat couleur": "Etat couleur"
+        "Etat couleur": ""
     },
-    "core\/class\/gsh_tv.class.php": {
-        "Etat volume": "Etat volume",
-        "Volume": "Volume",
-        "Chaine": "Chaine",
-        "Etat chaine": "Etat chaine"
+    "plugins\/gsh\/core\/class\/gsh_securitysystem.class.php": {
+        "Mode": "",
+        "Etat mode": "",
+        "On": "",
+        "Off": "",
+        "Etat": "Negara"
     },
-    "core\/class\/gsh_securitysystem.class.php": {
-        "Mode": "mode",
-        "Etat mode": "Etat mode",
-        "On": "satu",
-        "Off": "Off",
-        "Etat": "negara"
+    "plugins\/gsh\/core\/class\/gsh_lock.class.php": {
+        "On": "",
+        "Off": "",
+        "Etat": "Negara"
     },
-    "core\/class\/gsh.class.php": {
-        "Veuillez vérifier la configuration": "Veuillez vérifier la configuration",
-        "JWT aucun token : ": "JWT aucun token : "
+    "plugins\/gsh\/core\/class\/gsh_tv.class.php": {
+        "Etat volume": "",
+        "Volume": "",
+        "Chaine": "",
+        "Etat chaine": ""
     },
-    "core\/class\/gsh_fan.class.php": {
-        "On": "satu",
-        "Off": "Off",
-        "Etat": "negara"
+    "plugins\/gsh\/core\/class\/gsh_fan.class.php": {
+        "On": "",
+        "Off": "",
+        "Etat": "Negara"
     },
-    "core\/class\/gsh_valve.class.php": {
-        "Position": "Position",
-        "On": "satu",
-        "Off": "Off",
-        "Etat": "negara"
+    "plugins\/gsh\/core\/class\/gsh_outlet.class.php": {
+        "Position": "Posisi",
+        "On": "",
+        "Off": "",
+        "Etat": "Negara"
     },
-    "core\/class\/gsh_outlet.class.php": {
-        "Position": "Position",
-        "On": "satu",
-        "Off": "Off",
-        "Etat": "negara"
+    "plugins\/gsh\/core\/class\/gsh_scene.class.php": {
+        "Erreur lors de l\\'éxecution de ": "",
+        ". Détails : ": ""
     },
-    "core\/class\/gsh_speaker.class.php": {
-        "Position": "Position",
-        "On": "satu",
-        "Off": "Off",
-        "Etat": "negara",
-        "Luminosité": "Kecerahan",
-        "Etat luminosité": "Etat luminosité",
-        "Couleur": "Warna",
-        "Etat couleur": "Etat couleur"
+    "plugins\/gsh\/core\/class\/gsh_valve.class.php": {
+        "Position": "Posisi",
+        "On": "",
+        "Off": "",
+        "Etat": "Negara"
     }
 }
