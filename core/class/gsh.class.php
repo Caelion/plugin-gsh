@@ -155,28 +155,13 @@ class gsh extends eqLogic {
 	
 	public static function sendDevices() {
 		if (config::byKey('mode', 'gsh') == 'jeedom') {
-			$request_http = new com_http('https://api-gh.jeedom.com/jeedom/sync');
-			$request_http->setPost(http_build_query(array(
-				'apikey' =>  jeedom::getApiKey('gsh'),
-				'url' =>  network::getNetworkAccess('external'),
-				'hwkey' =>  jeedom::getHardwareKey(),
-				'data' => json_encode(self::sync())
-			)));
+			$request_http = new com_http('https://cloud.jeedom.com/service/googlehome');
+			$request_http->setHeader(array(
+				'Content-Type: application/json',
+				'Autorization: '.sha512(strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))
+			));
+			$request_http->setPost(json_encode(array('action' => 'sync')));
 			$result = $request_http->exec(30);
-			for($i=1;$i<10;$i++){
-				$devices = self::sync($i);
-				if(!is_array($devices) || !isset($devices['endpoints']) || count($devices['endpoints']) == 0){
-					continue;
-				}
-				$request_http = new com_http('https://api-aa.jeedom.com/jeedom/sync');
-				$request_http->setPost(http_build_query(array(
-					'apikey' =>  jeedom::getApiKey('gsh').'-'.$i,
-					'url' =>  network::getNetworkAccess('external'),
-					'hwkey' =>  jeedom::getHardwareKey(),
-					'data' => json_encode($devices)
-				)));
-				$result = $request_http->exec(30);
-			}
 		} else {
 			$request_http = new com_http('https://homegraph.googleapis.com/v1/devices:requestSync?key=' . config::byKey('gshs::googleapikey', 'gsh'));
 			$request_http->setPost(json_encode(array('agent_user_id' => config::byKey('gshs::useragent', 'gsh'),'async' => true)));
@@ -327,11 +312,12 @@ class gsh extends eqLogic {
 				$device->setCache('lastState', json_encode($return['payload']['devices']['states'][$cmd->getEqLogic_id()]));
 				log::add('gsh', 'debug', 'Report state : ' . json_encode($return));
 				if (config::byKey('mode', 'gsh') == 'jeedom') {
-					$request_http = new com_http('https://api-gh.jeedom.com/jeedom/reportState');
-					$request_http->setPost(http_build_query(array(
-						'apikey' =>  jeedom::getApiKey('gsh'),
-						'data' => json_encode($return)
-					)));
+					$request_http = new com_http('https://cloud.jeedom.com/service/googlehome');
+					$request_http->setHeader(array(
+						'Content-Type: application/json',
+						'Autorization: '.sha512(strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))
+					));
+					$request_http->setPost(json_encode(array('action' => 'reportState','data' => json_encode($return))));
 					$result = $request_http->exec(30);
 				} else {
 					$request_http = new com_http('https://homegraph.googleapis.com/v1/devices:reportStateAndNotification');
