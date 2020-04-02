@@ -149,21 +149,7 @@ if ($body['action'] == 'exec') {
 	log::add('gsh', 'debug','Sync result : '. $result);
 	echo $result;
 	die();
-} else if ($body['action'] == 'interact') {
-	if (isset($data['queryResult']['languageCode']) && method_exists('translate', 'setLanguage') && str_replace('_', '-', strtolower(translate::getLanguage())) != $data['queryResult']['languageCode']) {
-		if (strpos($data['queryResult']['languageCode'], 'en-') !== false) {
-			translate::setLanguage('en_US');
-		} elseif (strpos($data['queryResult']['languageCode'], 'fr-') !== false) {
-			translate::setLanguage('fr_FR');
-		}
-	}
-	$query = $body['data']['queryResult']['queryText'];
-	$params = array('plugin' => 'gsh', 'reply_cmd' => null);
-	$response = interactQuery::tryToReply(trim($query), $params);
-	echo $response['reply'];
-	die();
-}
-
+} 
 echo json_encode(array(
 	'status' => 'SUCCESS',
 ));

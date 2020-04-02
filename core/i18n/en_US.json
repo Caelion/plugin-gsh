@@ -1,43 +1,60 @@
 {
     "plugins\/gsh\/plugin_info\/configuration.php": {
+        "Attention votre connexion externe ne semble pas etre en https, ce plugin nécessite ABSOLUMENT une connexion https. Si vous ne savez pas comment faire vous pouvez souscrire à un service pack power pour utiliser le service de DNS Jeedom": "Please note your external connection does not seem to be in https, this plugin ABSOLUTELY requires an https connection. If you don't know how, you can subscribe to a power pack to use the Jeedom DNS service",
         "Serveur Google smarthome": "Google smarthome server",
-        "Mode": "Mode",
+        "Mode": "Fashion",
         "Cloud": "Cloud",
         "Standalone": "Standalone",
-        "Envoyer configuration au market": "Send configuration to the market",
+        "Abonnement service assistant vocaux": "Voice assistant service subscription",
+        "Votre abonnement aux services assistant vocaux fini le ": "Your subscription to voice assistant services ended on",
+        "Pour le prolonger, allez": "To extend it, go",
+        "ici": "here",
+        "Votre abonnement aux services assistant vocaux est illimité.": "Your subscription to voice assistant services is unlimited.",
+        "Votre abonnement aux services assistant vocaux est fini.": "Your subscription to voice assistant services is finished.",
+        "Pour vous réabonner, allez": "To re-subscribe, go",
+        "Envoyer configuration au market": "Send configuration to market",
         "Envoyer": "Send",
-        "Information": "Information",
         "Oauth": "Oauth",
-        "Cient ID": "Client ID",
-        "Cient Secret": "Client Secret",
+        "Cient ID": "Cient ID",
+        "Cient Secret": "Cient Secret",
         "Smarthome": "Smarthome",
-        "Fulfillment URL : ": "Fulfillment URL : ",
-        "Authorization URL : ": "Authorization URL : ",
-        "Token URL : ": "Token URL : ",
-        "ID du projet Smarthome": "Smarthome project ID",
-        "Connection": "Log In",
-        "Homegraph API Google": "Homegraph Google API",
+        "Fulfillment URL : ": "Fulfillment URL:",
+        "Authorization URL : ": "Authorization URL:",
+        "Token URL : ": "Token URL:",
+        "ID du projet Smarthome": "Smarthome Project ID",
+        "Connection": "Connection",
+        "Homegraph API Google": "Homegraph API Google",
         "Homegraph User Agent": "Homegraph User Agent",
         "Clef d'accès sécurisé": "Secure access key",
-        "Mail client (JWT)": "Mail client (JWT)",
-        "Clef privé (JWT)": "Clef privé (JWT)",
-        "Interaction": "Interaction",
-        "ID du projet Dialogflow": "Dialogflow project ID",
-        "Clef authentification header (authkey)": "Authentication key header (authkey)",
-        "Configuration envoyée avec succès": "Configuration sent successfully",
-        "Votre abonnement aux services assistant vocaux est illimité": "Votre abonnement aux services assistant vocaux est illimité",
-        "Abonnement service assistant vocaux": "Abonnement service assistant vocaux",
-        "Pour le prolonger ou vous réabonner, allez": "Pour le prolonger ou vous réabonner, allez",
-        "ici": "here",
-        "Votre abonnement aux services assistant vocaux est illimité.": "Votre abonnement aux services assistant vocaux est illimité.",
-        "puis onglet Mes Service": "puis onglet Mes Service",
-        "Votre abonnement aux services assistant vocaux est fini.": "Votre abonnement aux services assistant vocaux est fini.",
-        "Pour vous réabonner, allez": "Pour vous réabonner, allez",
-        "Votre abonnement aux services assistant vocaux fini le ": "Votre abonnement aux services assistant vocaux fini le ",
-        "Pour le prolonger, allez": "Pour le prolonger, allez",
-        "Autoriser la communication local": "Autoriser la communication local"
+        "Mail client (JWT)": "Customer Mail (JWT)",
+        "Clef privé (JWT)": "Private key (JWT)",
+        "Configuration envoyée avec succès": "Configuration successfully sent"
+    },
+    "plugins\/gsh\/desktop\/modal\/advanceConfig.php": {
+        "Eqlogic ID non valide : ": "Invalid Eqlogic ID:",
+        "Device non trouvé": "Device not found",
+        "Aucun type configuré pour ce périphérique": "No type configured for this device",
+        "Groupe objet (option nécéssitant un compte market spécifique)": "Object group (option requiring a specific market account)",
+        "Sauvegarder": "Save",
+        "Configuration": "Setup",
+        "Inverser": "Invert",
+        "Configuration du thermostat": "Thermostat configuration",
+        "Action pour le mode chaud": "Action for heating mode",
+        "Aucun": "None",
+        "Action pour le mode froid": "Action for cold mode",
+        "Action pour le mode off": "Action for off mode",
+        "Il n\\'y a aucune configuration avancée pour ce type": "There is no advanced configuration for this type",
+        "Sauvegarde réussi, pensez à relancer une synchronisation": "Backup successful, remember to restart synchronization"
+    },
+    "plugins\/gsh\/desktop\/modal\/showNeedGenericType.php": {
+        "Eqlogic ID non valide : ": "Invalid Eqlogic ID:",
+        "Device non trouvé": "Device not found",
+        "Aucun type configuré pour ce périphérique": "No type configured for this device",
+        "Aucune information disponible": "No available information",
+        "Voici les générique type qui sont utilisation avec votre type d\\'équipement. Attention il ne faut pas forcement tous les avoir sur l\\'équipement (ou n\\'en avoir aucun)": "Here are the generic types that are used with your type of equipment. Attention it is not necessary necessarily to have them all on the equipment (or to have none)"
     },
     "plugins\/gsh\/desktop\/php\/gsh.php": {
+        "401 - Accès non autorisé": "401 - Unauthorized access",
         "Voir la configuration": "View configuration",
         "Sauvegarder": "Save",
         "Equipement": "Device",
@@ -46,74 +63,122 @@
         "Options": "Options",
         "Status": "Status",
         "Type": "Type",
-        "Pseudo": "Alias",
+        "Pseudo": "Pseudo",
         "Action": "Action",
         "Transmettre": "Transmit",
-        "Aucune": "None",
-        "Code": "Code",
-        "Remonter l'état": "Remonter l'état",
-        "Code pin": "Code pin",
+        "Aucune": "Any",
+        "Validation": "Validation",
+        "Code": "CODE",
+        "Remonter l\\'état": "Reassemble the state",
+        "Code pin": "Pin code",
         "Aucun": "None",
-        "Lumière": "Light",
-        "Thermostat": "Thermostat",
-        "Prise": "Plug",
-        "Caméra": "Camera",
-        "Store": "Shutter",
-        "Volet": "Shutter",
-        "Capteur": "Sensor",
-        "Fenêtre": "Window",
-        "Porte": "Door",
-        "Alarme": "Alarm",
-        "Verrou": "Lock",
-        "TV": "TV",
-        "Enceinte": "Enceinte",
-        "Ajouter scène": "Add scene",
-        "Porte Garage": "Porte Garage",
-        "Rideaux": "Rideaux",
-        "Vanne": "Vanne",
-        "Ventilateur": "Fan"
+        " . $value['name'] . ": ". $ value ['name'].",
+        "Ajouter scène": "Add scene"
     },
     "plugins\/gsh\/desktop\/js\/gsh.js": {
-        "Configuration de l'équipement": "Device configuration",
+        "Configuration de l'équipement": "Equipment configuration",
         "Configuration avancée": "Advanced configuration",
-        "Synchronisation réussie": "Synchronisation successful",
-        "Configuration péripheriques": "Devices configuration",
-        "Nom de la scene ?": "Scene name?",
+        "Information type générique": "Generic type information",
+        "Synchronisation réussie. Pour voir le status des equipements à jour, merci de rafraichir la page (F5)": "Synchronization successful. To see the status of the equipment up to date, please refresh the page (F5)",
+        "Configuration péripheriques": "Peripheral configuration",
+        "Nom de la scene ?": "Name of the scene?",
         "Nouveau nom ?": "New name?",
         "Action d\\'entrée": "Input action",
-        "Action de sortie": "Output action",
+        "Action de sortie": "Exit action",
         "Décocher pour desactiver l\\'action": "Uncheck to disable the action",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Check for the command to run in parallel with the other actions",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Check for the command to be executed in parallel with other actions",
         "Sélectionner un mot-clé": "Select a keyword",
-        "Nom du scene": "Scene name",
         "Supprimer": "Delete",
-        "Pseudo": "Alias",
-        "Pièce": "Piece",
-        "Synchronisation réussie. Pour voir le status des equipements à jour, merci de rafraichir la page (F5)": "Synchronisation réussie. Pour voir le status des equipements à jour, merci de rafraichir la page (F5)",
-        "Information type générique": "Information type générique"
+        "Nom de la scène": "Scene name",
+        "Pièce": "Room",
+        "Pseudo": "Pseudo"
     },
-    "plugins\/gsh\/desktop\/modal\/advanceConfig.php": {
-        "Sauvegarder": "Save",
-        "Configuration du volet": "Configuration du volet",
-        "Inverser": "Invert",
-        "Sauvegarde réussi, pensez à relancer une synchronisation": "Sauvegarde réussi, pensez à relancer une synchronisation",
-        "Aucun type configuré pour ce périphérique": "Aucun type configuré pour ce périphérique",
-        "Il n'y a aucune configuration avancée pour ce type": "Il n'y a aucune configuration avancée pour ce type",
-        "Groupe objet (option nécéssitant un compte market spécifique)": "Groupe objet (option nécéssitant un compte market spécifique)"
+    "plugins\/gsh\/core\/php\/jeeGsh.php": {
+        "Vous n\\'etes pas autorisé à effectuer cette action. Clef API invalide. Merci de corriger la clef API sur votre page profils du market et d\\'attendre 24h avant de réessayer.": "You are not authorized to perform this action. Invalid API key. Please correct the API key on your market profiles page and wait 24 hours before trying again.",
+        "Configuration OK": "Configuration OK"
     },
-    "plugins\/gsh\/desktop\/modal\/showNeedGenericType.php": {
-        "Eqlogic ID non valide : ": "Eqlogic ID non valide : ",
-        "Voici les générique type qui sont utilisation avec votre type d'équipement. Attention il ne faut pas forcement tous les avoir sur l'équipement (ou n'en avoir aucun)": "Voici les générique type qui sont utilisation avec votre type d'équipement. Attention il ne faut pas forcement tous les avoir sur l'équipement (ou n'en avoir aucun)",
-        "Aucune information disponible": "Aucune information disponible"
+    "plugins\/gsh\/core\/ajax\/gsh.ajax.php": {
+        "401 - Accès non autorisé": "401 - Unauthorized access",
+        "Device non trouvé : ": "Device not found:",
+        "Aucune méthode correspondante à : ": "No method corresponding to:"
+    },
+    "plugins\/gsh\/core\/class\/gsh.class.php": {
+        "Veuillez vérifier la configuration": "Please check the configuration",
+        "JWT aucun token : ": "JWT no token:"
+    },
+    "plugins\/gsh\/core\/class\/gsh_blinds.class.php": {
+        "Position": "Position",
+        "On": "We",
+        "Off": "Off",
+        "Etat": "State"
+    },
+    "plugins\/gsh\/core\/class\/gsh_door.class.php": {
+        "Etat": "State"
+    },
+    "plugins\/gsh\/core\/class\/gsh_thermostat.class.php": {
+        "Thermostat": "Thermostat",
+        "Etat themostat ": "State themostat",
+        "Mode": "Fashion",
+        "Etat": "State",
+        "Humidité": "Humidity",
+        "Off": "Off",
+        "Suspendu": "Suspended"
+    },
+    "plugins\/gsh\/core\/class\/gsh_speaker.class.php": {
+        "Etat volume": "Volume status",
+        "Volume": "Volume",
+        "Pause": "Pause",
+        "Reprendre": "Resume",
+        "Stop": "STOP",
+        "Suivant": "Next",
+        "Précedent": "Previous"
     },
     "plugins\/gsh\/core\/class\/gsh_light.class.php": {
-        "Position": "Position",
-        "On": "On",
+        "On": "We",
         "Off": "Off",
         "Etat": "State",
-        "Luminosité": "Light",
-        "Etat luminosité": "Etat luminosité",
+        "Luminosité": "Brightness",
+        "Etat luminosité": "Brightness state",
         "Couleur": "Color",
-        "Etat couleur": "Etat couleur"
+        "Etat couleur": "Color status"
+    },
+    "plugins\/gsh\/core\/class\/gsh_securitysystem.class.php": {
+        "Mode": "Fashion",
+        "Etat mode": "Mode state",
+        "On": "We",
+        "Off": "Off",
+        "Etat": "State"
+    },
+    "plugins\/gsh\/core\/class\/gsh_lock.class.php": {
+        "On": "We",
+        "Off": "Off",
+        "Etat": "State"
+    },
+    "plugins\/gsh\/core\/class\/gsh_tv.class.php": {
+        "Etat volume": "Volume status",
+        "Volume": "Volume",
+        "Chaine": "Chain",
+        "Etat chaine": "Channel status"
+    },
+    "plugins\/gsh\/core\/class\/gsh_fan.class.php": {
+        "On": "We",
+        "Off": "Off",
+        "Etat": "State"
+    },
+    "plugins\/gsh\/core\/class\/gsh_outlet.class.php": {
+        "Position": "Position",
+        "On": "We",
+        "Off": "Off",
+        "Etat": "State"
+    },
+    "plugins\/gsh\/core\/class\/gsh_scene.class.php": {
+        "Erreur lors de l\\'éxecution de ": "Error while executing",
+        ". Détails : ": ". Details:"
+    },
+    "plugins\/gsh\/core\/class\/gsh_valve.class.php": {
+        "Position": "Position",
+        "On": "We",
+        "Off": "Off",
+        "Etat": "State"
     }
 }
