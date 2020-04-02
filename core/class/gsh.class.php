@@ -161,7 +161,10 @@ class gsh extends eqLogic {
 				'Autorization: '.sha512(strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))
 			));
 			$request_http->setPost(json_encode(array('action' => 'sync')));
-			$result = $request_http->exec(30);
+			$result = json_decode($request_http->exec(30),true);
+			if(!isset($result['state']) || $result['state'] != 'ok'){
+				throw new \Exception(__('Erreur sur la demande de synchronisation :',__FILE__).' '.json_encode($result));
+			}
 		} else {
 			$request_http = new com_http('https://homegraph.googleapis.com/v1/devices:requestSync?key=' . config::byKey('gshs::googleapikey', 'gsh'));
 			$request_http->setPost(json_encode(array('agent_user_id' => config::byKey('gshs::useragent', 'gsh'),'async' => true)));
@@ -318,7 +321,10 @@ class gsh extends eqLogic {
 						'Autorization: '.sha512(strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))
 					));
 					$request_http->setPost(json_encode(array('action' => 'reportState','data' => json_encode($return))));
-					$result = $request_http->exec(30);
+					$result = json_decode($request_http->exec(30),true);
+					if(!isset($result['state']) || $result['state'] != 'ok'){
+						throw new \Exception(__('Erreur sur la demande de synchronisation :',__FILE__).' '.json_encode($result));
+					}
 				} else {
 					$request_http = new com_http('https://homegraph.googleapis.com/v1/devices:reportStateAndNotification');
 					$request_http->setHeader(array(
