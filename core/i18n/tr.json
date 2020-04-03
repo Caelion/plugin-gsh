@@ -104,6 +104,7 @@
     },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
         "Veuillez vérifier la configuration": "",
+        "Erreur sur la demande de synchronisation :": "",
         "JWT aucun token : ": ""
     },
     "plugins\/gsh\/core\/class\/gsh_blinds.class.php": {
@@ -126,7 +127,7 @@
     },
     "plugins\/gsh\/core\/class\/gsh_speaker.class.php": {
         "Etat volume": "",
-        "Volume": "",
+        "Volume": "Ses",
         "Pause": "Durdur",
         "Reprendre": "Tekrar başla",
         "Stop": "",
@@ -156,7 +157,7 @@
     },
     "plugins\/gsh\/core\/class\/gsh_tv.class.php": {
         "Etat volume": "",
-        "Volume": "",
+        "Volume": "Ses",
         "Chaine": "",
         "Etat chaine": ""
     },

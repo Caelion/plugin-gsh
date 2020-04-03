@@ -14,17 +14,17 @@
         "Pour vous réabonner, allez": "To re-subscribe, go",
         "Envoyer configuration au market": "Send configuration to market",
         "Envoyer": "Send",
-        "Oauth": "Oauth",
-        "Cient ID": "Cient ID",
-        "Cient Secret": "Cient Secret",
-        "Smarthome": "Smarthome",
+        "Oauth": "",
+        "Cient ID": "",
+        "Cient Secret": "",
+        "Smarthome": "",
         "Fulfillment URL : ": "Fulfillment URL:",
         "Authorization URL : ": "Authorization URL:",
         "Token URL : ": "Token URL:",
         "ID du projet Smarthome": "Smarthome Project ID",
-        "Connection": "Connection",
-        "Homegraph API Google": "Homegraph API Google",
-        "Homegraph User Agent": "Homegraph User Agent",
+        "Connection": "",
+        "Homegraph API Google": "",
+        "Homegraph User Agent": "",
         "Clef d'accès sécurisé": "Secure access key",
         "Mail client (JWT)": "Customer Mail (JWT)",
         "Clef privé (JWT)": "Private key (JWT)",
@@ -67,7 +67,7 @@
         "Action": "Action",
         "Transmettre": "Transmit",
         "Aucune": "Any",
-        "Validation": "Validation",
+        "Validation": "",
         "Code": "CODE",
         "Remonter l\\'état": "Reassemble the state",
         "Code pin": "Pin code",
@@ -95,7 +95,7 @@
     },
     "plugins\/gsh\/core\/php\/jeeGsh.php": {
         "Vous n\\'etes pas autorisé à effectuer cette action. Clef API invalide. Merci de corriger la clef API sur votre page profils du market et d\\'attendre 24h avant de réessayer.": "You are not authorized to perform this action. Invalid API key. Please correct the API key on your market profiles page and wait 24 hours before trying again.",
-        "Configuration OK": "Configuration OK"
+        "Configuration OK": ""
     },
     "plugins\/gsh\/core\/ajax\/gsh.ajax.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -104,6 +104,7 @@
     },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
         "Veuillez vérifier la configuration": "Please check the configuration",
+        "Erreur sur la demande de synchronisation :": "",
         "JWT aucun token : ": "JWT no token:"
     },
     "plugins\/gsh\/core\/class\/gsh_blinds.class.php": {
@@ -126,7 +127,7 @@
     },
     "plugins\/gsh\/core\/class\/gsh_speaker.class.php": {
         "Etat volume": "Volume status",
-        "Volume": "Volume",
+        "Volume": "",
         "Pause": "Pause",
         "Reprendre": "Resume",
         "Stop": "STOP",
@@ -156,7 +157,7 @@
     },
     "plugins\/gsh\/core\/class\/gsh_tv.class.php": {
         "Etat volume": "Volume status",
-        "Volume": "Volume",
+        "Volume": "",
         "Chaine": "Chain",
         "Etat chaine": "Channel status"
     },
