@@ -14,16 +14,16 @@
         "Pour vous réabonner, allez": "Para volver a suscribirse, vaya",
         "Envoyer configuration au market": "Enviar configuración al mercado",
         "Envoyer": "Enviar",
-        "Oauth": "Oauth",
+        "Oauth": "",
         "Cient ID": "ID del cliente",
         "Cient Secret": "Secreto del cliente",
-        "Smarthome": "Smarthome",
+        "Smarthome": "",
         "Fulfillment URL : ": "URL de cumplimiento:",
         "Authorization URL : ": "URL de autorización:",
         "Token URL : ": "URL del token:",
         "ID du projet Smarthome": "ID del proyecto Smarthome",
         "Connection": "Conexión",
-        "Homegraph API Google": "Homegraph API Google",
+        "Homegraph API Google": "",
         "Homegraph User Agent": "Agente de usuario de Homegraph",
         "Clef d'accès sécurisé": "Clave de acceso seguro",
         "Mail client (JWT)": "Correo del cliente (JWT)",
@@ -104,6 +104,7 @@
     },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
         "Veuillez vérifier la configuration": "Por favor verifique la configuración",
+        "Erreur sur la demande de synchronisation :": "",
         "JWT aucun token : ": "JWT sin token:"
     },
     "plugins\/gsh\/core\/class\/gsh_blinds.class.php": {
