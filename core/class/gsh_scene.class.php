@@ -1,30 +1,30 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 class gsh_scene {
-
+	
 	/*     * *************************Attributs****************************** */
-
+	
 	/*     * ***********************Methode static*************************** */
-
+	
 	public static function buildDevice($_device) {
 		$return = array();
 		$return['id'] = 'scene::' . $_device->getId();
@@ -36,39 +36,37 @@ class gsh_scene {
 		$return['attributes'] = array('sceneReversible' => (count($_device->getOptions('outAction')) > 0));
 		return $return;
 	}
-
+	
 	public static function query($_device, $_infos) {
 		return self::getState($_device, $_infos);
 	}
-
+	
 	public static function exec($_device, $_executions, $_infos) {
 		$return = array('status' => 'ERROR');
 		foreach ($_executions as $execution) {
 			try {
 				switch ($execution['command']) {
 					case 'action.devices.commands.ActivateScene':
-						if ($execution['params']['deactivate']) {
-							self::doAction($_device, 'outAction');
-						} else {
-							self::doAction($_device, 'inAction');
-						}
-						$return = array('status' => 'SUCCESS');
-						break;
+					if ($execution['params']['deactivate']) {
+						self::doAction($_device, 'outAction');
+					} else {
+						self::doAction($_device, 'inAction');
+					}
+					$return = array('status' => 'SUCCESS');
+					break;
 				}
 			} catch (Exception $e) {
 				$return = array('status' => 'ERROR');
 			}
 		}
-		$return['states'] = self::getState($_device, $_infos);
+		$return['states'] = new stdClass();
 		return $return;
 	}
-
+	
 	public static function getState($_device, $_infos) {
-		$return = array();
-		$return['online'] = true;
-		return $return;
+		return array('online' => true);
 	}
-
+	
 	public function doAction($_device, $_action) {
 		if (!is_array($_device->getOptions($_action))) {
 			return;
@@ -85,9 +83,9 @@ class gsh_scene {
 			}
 		}
 	}
-
+	
 	/*     * *********************Méthodes d'instance************************* */
-
+	
 	/*     * **********************Getteur Setteur*************************** */
-
+	
 }
