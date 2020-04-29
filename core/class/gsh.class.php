@@ -298,6 +298,9 @@ class gsh extends eqLogic {
 				if (!is_object($device)) {
 					return;
 				}
+				if($device->getType() == 'action.devices.types.SENSOR'){
+					return;
+				}
 				$return = array(
 					'requestId' => config::genKey(),
 					'agentUserId' => config::byKey('gshs::useragent', 'gsh'),

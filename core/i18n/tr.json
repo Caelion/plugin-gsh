@@ -2,7 +2,7 @@
     "plugins\/gsh\/plugin_info\/configuration.php": {
         "Attention votre connexion externe ne semble pas etre en https, ce plugin nécessite ABSOLUMENT une connexion https. Si vous ne savez pas comment faire vous pouvez souscrire à un service pack power pour utiliser le service de DNS Jeedom": "",
         "Serveur Google smarthome": "",
-        "Mode": "",
+        "Mode": "Mod",
         "Cloud": "",
         "Standalone": "",
         "Abonnement service assistant vocaux": "",
@@ -119,9 +119,9 @@
     "plugins\/gsh\/core\/class\/gsh_thermostat.class.php": {
         "Thermostat": "",
         "Etat themostat ": "",
-        "Mode": "",
+        "Mode": "Mod",
         "Etat": "Durum",
-        "Humidité": "",
+        "Humidité": "Nem",
         "Off": "",
         "Suspendu": ""
     },
@@ -144,7 +144,7 @@
         "Etat couleur": ""
     },
     "plugins\/gsh\/core\/class\/gsh_securitysystem.class.php": {
-        "Mode": "",
+        "Mode": "Mod",
         "Etat mode": "",
         "On": "",
         "Off": "",
