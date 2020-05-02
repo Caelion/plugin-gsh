@@ -33,7 +33,7 @@ sendVarToJs('device', utils::o2a($device));
 ?>
 <div id="div_alertAdvanceConfigure"></div>
 <div id="div_advanceConfigForm">
-	<a class="btn btn-success pull-right bt_advanceConfigSaveDevice">{{Sauvegarder}}</a>
+	<a class="btn btn-success pull-right bt_advanceConfigSaveDevice"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 	<input type="text" class="deviceAttr form-control" data-l1key="id" style="display : none;" />
 	<form class="form-horizontal">
 		<fieldset>
@@ -44,11 +44,12 @@ sendVarToJs('device', utils::o2a($device));
 				</div>
 			</div>
 			<div class="form-group has-error">
-				<label class="col-sm-3 control-label">{{Pousser l'état}}
-					<sup><i class="fas fa-question-circle" tooltip="{{Attention cela ne change absolument pas le fonctionnement du plugin}} (<?php echo config::byKey('product_name'); ?> {{pousse l'information de l'état des modules au lieu d'attendre la demande de Google) par contre ca peut ralentir votre}} <?php echo config::byKey('product_name'); ?>"></i></sup>
-				</label>
-				<div class="col-sm-3">
+				<label class="col-sm-3 control-label">{{Pousser l'état}}</label>
+				<div class="col-sm-1">
 					<input type="checkbox" class="deviceAttr" data-l1key="options" data-l2key="reportState" />
+				</div>
+				<div class="alert alert-danger col-sm-8">
+					{{Attention cela ne change absolument pas le fonctionnement du plugin}} (<?php echo config::byKey('product_name'); ?> {{pousse l'information de l'état des modules au lieu d'attendre la demande de Google) par contre ca peut ralentir votre}} <?php echo config::byKey('product_name'); ?>
 				</div>
 			</div>
 		</fieldset>
@@ -150,6 +151,7 @@ sendVarToJs('device', utils::o2a($device));
 </div>
 
 <script>
+initTooltips($("#div_advanceConfigForm"))
 $('#div_advanceConfigForm').setValues(device, '.deviceAttr');
 $('.bt_advanceConfigSaveDevice').on('click',function(){
 	var device = $('#div_advanceConfigForm').getValues('.deviceAttr')[0];
