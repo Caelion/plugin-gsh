@@ -53,7 +53,7 @@ if (!isConnect('admin')) {
 							echo '</select>';
 							echo '</div>';
 							echo '<div class="col-lg-6">';
-							echo '<input type="checkbox" class="deviceAttr" data-l1key="options" data-l2key="reportState" /> <label>{{Remonter l\'état}}</label>';
+							
 							echo '</div>';
 							echo '<div class="col-lg-6">';
 							echo '<input class="deviceAttr form-control input-sm challenge pinNeeded" data-l1key="options" data-l2key="challenge_pin" placeholder="{{Code pin}}" />';
