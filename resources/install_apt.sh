@@ -5,6 +5,7 @@ echo "*             Installation des dépendances             *"
 echo "********************************************************"
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 sudo apt update
+sudo apt install -y npm
 cd ${BASEDIR}/gshd
 npm install
 echo 95 > /tmp/dependancy_gsh_in_progress
