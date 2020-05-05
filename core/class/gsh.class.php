@@ -69,8 +69,8 @@ class gsh extends eqLogic {
 		$return['log'] = 'gsh_update';
 		$return['progress_file'] = jeedom::getTmpFolder('gsh') . '/dependance';
 		$return['state'] = 'ok' ;
-		if (file_exists('toto')) {
-			$return['state'] = 'ok';
+		if (exec('which npm | wc -l') == 0) {
+			$return['state'] = 'nok';
 		}
 		return $return;
 	}

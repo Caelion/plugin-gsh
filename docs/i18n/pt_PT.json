@@ -1,5 +1,6 @@
 {
     "changelog.md": {
+        "04\/05\/2020": "05\/04\/2020",
         "30\/04\/2020": "30\/04\/2020",
         "Correction d'un bug sur la synchronisation des équipements": "Correção de um erro na sincronização do equipamento",
         "29\/04\/2020": "29\/04\/2020",
@@ -56,6 +57,11 @@
         "17\/07\/2018": "17\/07\/2018",
         "10\/07\/2018": "10\/07\/2018",
         "06\/07\/2018": "06\/06\/2018",
+        " Optimisations.": " Otimizações.",
+        " Optimisations?": " Otimizações?",
+        "Optimisations ": "Otimizações ",
+        "[Optimisations": "[Otimizações",
+        "Optimisations]": "Otimizações]",
         " IMPORTANT.": " IMPORTANTE.",
         " IMPORTANT?": " IMPORTANTE?",
         "IMPORTANT ": "IMPORTANTE ",
