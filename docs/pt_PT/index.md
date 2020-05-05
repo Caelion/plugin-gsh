@@ -289,7 +289,7 @@ Você também pode criar cenas na guia cena, com ações de entrada e saída.
 
 > **NOTE**
 >
-> Para iniciar um cenário, basta dizer "Ativar # nome do cenário #" ou "Desativar # nome do cenário"#
+> Para iniciar um cenário, basta dizer "Ativo #nom du scénario#" ou "Desativar #nom du scénario#
 
 > **NOTE**
 >

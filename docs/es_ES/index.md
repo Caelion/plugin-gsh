@@ -34,7 +34,7 @@ Puede funcionar de 2 maneras. :
 > - Si este es el caso, asegúrese de sus credenciales (atención debe respetar mayúsculas / minúsculas) ?
 > - si este es el caso, cambie su contraseña en el mercado y en la configuración del servicio de asistente de voz (pestaña de página de perfiles de mercado mis servicios) guarde
 
-Después de instalar el complemento, solo necesita ir a la configuración del complemento, seleccionar el modo Nube y luego hacer clic en "Enviar" (esto enviará la información de conexión a la API del complemento en el mercado)
+Después de instalar el complemento, solo necesita ir a la configuración del complemento, seleccionar el modo Cloud y luego hacer clic en "Enviar" (esto enviará la información de conexión a la API del complemento en el mercado)
 
 Luego, en Jeedom in Communication / Google Smarthome debe hacer clic en Guardar para enviar su configuración inicial, necesita al menos un dispositivo en Aceptar (de lo contrario, al conectar Google Home <-> Jeedom tendrá un error)
 
@@ -289,7 +289,7 @@ También puede crear escenas en la pestaña de escena, con acciones de entrada y
 
 > **NOTE**
 >
-> Para iniciar un escenario, simplemente diga "Activar # nombre del escenario #" o "Desactivar # nombre del escenario"#
+> Para comenzar un escenario simplemente diga "Activo #nom du scénario#" o "Desactivar #nom du scénario#
 
 > **NOTE**
 >

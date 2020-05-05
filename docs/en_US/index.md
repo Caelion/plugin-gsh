@@ -289,7 +289,7 @@ You can also create scenes in the scene tab, with input and output actions.
 
 > **NOTE**
 >
-> To launch a scenario, just say "Activate #name of scenario #" or "Deactivate #name of scenario"#
+> To start a scenario just say "Active #nom du scénario#" or "Disable #nom du scénario#
 
 > **NOTE**
 >
