@@ -272,6 +272,8 @@
         "Essayez de dé-associé\/ré-associé l'application Google smarthome": "Essayez de dé-associé\/ré-associé l'application Google smarthome",
         "Attention à bien prendre l'application officiel et non une application [TEST] si vous avez utilisez le mode standalone avant": "Attention à bien prendre l'application officiel et non une application [TEST] si vous avez utilisez le mode standalone avant",
         "Lors de l'ajout des équipement j'ai des NOK": "Lors de l'ajout des équipement j'ai des NOK",
-        "Cliquez simplement sur le NOK une fenetre vous dira les generique type a avoir sur les commandes de l'équipement pour que cela marche": "Cliquez simplement sur le NOK une fenetre vous dira les generique type a avoir sur les commandes de l'équipement pour que cela marche"
+        "Cliquez simplement sur le NOK une fenetre vous dira les generique type a avoir sur les commandes de l'équipement pour que cela marche": "Cliquez simplement sur le NOK une fenetre vous dira les generique type a avoir sur les commandes de l'équipement pour que cela marche",
+        "Le demon\/les dépendances sont en NOK": "Le demon\/les dépendances sont en NOK",
+        "Ce n'est pas grave il ne faut pas s'en occupe ca ne sert en aucun cas au fonctionnement du plugin pour le moment (ca nous sert en faite juste pour passer la validation Google)": "Ce n'est pas grave il ne faut pas s'en occupe ca ne sert en aucun cas au fonctionnement du plugin pour le moment (ca nous sert en faite juste pour passer la validation Google)"
     }
 }
