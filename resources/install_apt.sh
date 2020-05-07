@@ -15,7 +15,7 @@ else
   actual=0;
   echo "Nodejs non installé"
 fi
-if [ $actual -gt 8 ]; then
+if [ $actual -gt 10 ]; then
   echo "Ok, version suffisante";
 else
   echo "KO, version obsolète à upgrader";
@@ -32,7 +32,7 @@ else
     rm node_latest_armhf.deb
   else
     echo "Utilisation du dépot officiel"
-    curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+    curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
     sudo apt-get install -y nodejs
   fi
   new=`nodejs -v`;
