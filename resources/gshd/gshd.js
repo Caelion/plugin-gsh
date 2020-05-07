@@ -11,11 +11,13 @@
 * limitations under the License.
 */
 
-import * as fs from 'fs';
+const fs = require('fs');
+const yargs = require('yargs');
 
-import * as yargs from "yargs";
+const cbor = require('cbor');
+const dgram = require('dgram');
+
 const argv = yargs
-
 .usage("Usage: $0 --udp_discovery_port PORT_NUMBER --udp_discovery_packet PACKET_STRING")
 .option("udp_discovery_port", {
   describe: "port to listen on for UDP discovery query",
@@ -47,9 +49,6 @@ if(argv.pid){
     }
   });
 }
-
-import * as cbor from "cbor";
-import * as dgram from "dgram";
 
 const socket = dgram.createSocket("udp4");
 
