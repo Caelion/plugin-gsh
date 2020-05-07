@@ -11,10 +11,6 @@
 * limitations under the License.
 */
 
-// Fakecandy is a fake openpixelcontrol server that:
-// - prints led state on standard output.
-// - responds to UDP broadcast with device information encoded in CBOR
-
 import * as fs from 'fs';
 
 import * as yargs from "yargs";
