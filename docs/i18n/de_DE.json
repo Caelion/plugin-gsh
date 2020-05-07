@@ -258,6 +258,8 @@
         "Attention à bien prendre l'application officiel et non une application [TEST] si vous avez utilisez le mode standalone avant": "Achten Sie darauf, dass Sie die offizielle Anwendung und keine [TEST] -Anwendung verwenden, wenn Sie zuvor den Standalone-Modus verwendet haben",
         "Lors de l'ajout des équipement j'ai des NOK": "Beim Hinzufügen von Geräten habe ich NOK",
         "Cliquez simplement sur le NOK une fenetre vous dira les generique type a avoir sur les commandes de l'équipement pour que cela marche": "Klicken Sie einfach auf NOK. In einem Fenster wird der generische Typ angezeigt, den Sie auf den Gerätesteuerungen haben müssen, damit er funktioniert",
+        "Le demon\/les dépendances sont en NOK": "Die Dämonen \/ Abhängigkeiten sind in NOK",
+        "Ce n'est pas grave il ne faut pas s'en occupe ca ne sert en aucun cas au fonctionnement du plugin pour le moment (ca nous sert en faite juste pour passer la validation Google)": "Es spielt keine Rolle, dass nicht darauf geachtet werden sollte, dass es momentan auf keinen Fall für die Funktion des Plugins verwendet wird (es ist nützlich, nur die Google-Validierung zu bestehen).",
         " Description.": " Beschreibung.",
         " Description?": " Beschreibung?",
         "Description ": "Beschreibung ",

@@ -346,3 +346,7 @@ Todo lo que tiene que hacer es asignar el equipo a las habitaciones en la aplica
 >**Cuando agrego equipo tengo NOK**
 >
 >Simplemente haga clic en NOK, una ventana le indicará el tipo genérico que debe tener en los controles del equipo para que funcione
+
+>**El demonio / dependencias están en NOK**
+>
+>No importa que no se deba cuidar, no se usa en ningún caso para el funcionamiento del complemento por el momento (es útil para nosotros solo pasar la validación de Google)
