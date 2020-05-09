@@ -1,3 +1,11 @@
+# 07/05/2020
+
+- Amélioration de l'installation des dependances
+
+# 04/05/2020
+
+- Optimisations
+
 # 30/04/2020
 
 - Correction d'un bug sur la synchronisation des équipements

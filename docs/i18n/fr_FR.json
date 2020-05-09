@@ -1,5 +1,9 @@
 {
     "changelog.md": {
+        "07\/05\/2020": "07\/05\/2020",
+        "Amélioration de l'installation des dependances": "Amélioration de l'installation des dependances",
+        "04\/05\/2020": "04\/05\/2020",
+        "Optimisations": "Optimisations",
         "30\/04\/2020": "30\/04\/2020",
         "Correction d'un bug sur la synchronisation des équipements": "Correction d'un bug sur la synchronisation des équipements",
         "29\/04\/2020": "29\/04\/2020",
@@ -147,10 +151,10 @@
         "com\/u\/0\/project\/monprojet-31023\/overview\", l'id du projet est entre project\/ et \/overview, dans l'exemple ici c'est \"monprojet-31023\", copiez cet id sur la page de gestion du plugin Google Smarthome dans \"ID du projet Smarthome": "com\/u\/0\/project\/monprojet-31023\/overview\", l'id du projet est entre project\/ et \/overview, dans l'exemple ici c'est \"monprojet-31023\", copiez cet id sur la page de gestion du plugin Google Smarthome dans \"ID du projet Smarthome",
         "Voila vous pouvez maintenant cliquez à gauche sur \"Action": "Voila vous pouvez maintenant cliquez à gauche sur \"Action",
         "Puis sur test": "Puis sur test",
-        "Il vous faut ensuite sur un smartphone": "Il vous faut ensuite sur un smartphone",
         "android": "android",
-        "(obligatoirement ne marche pas sur un iphone) vous connecter a votre Jeedom par": "(obligatoirement ne marche pas sur un iphone) vous connecter a votre Jeedom par",
         "l'url externe": "l'url externe",
+        "Il vous faut ensuite sur un smartphone": "Il vous faut ensuite sur un smartphone",
+        "(obligatoirement ne marche pas sur un iphone) vous connecter a votre Jeedom par": "(obligatoirement ne marche pas sur un iphone) vous connecter a votre Jeedom par",
         "de celui-ci": "de celui-ci",
         "Il faut ensuite aller dans l'application home puis \"configurer ou ajouter\" puis \"Configurer un appareil\" et enfin cliquer sur \"Fonctionne avec Google\" et la ajouter votre service crée plus haut (il commence par [test])": "Il faut ensuite aller dans l'application home puis \"configurer ou ajouter\" puis \"Configurer un appareil\" et enfin cliquer sur \"Fonctionne avec Google\" et la ajouter votre service crée plus haut (il commence par [test])",
         "Configuration jwt": "Configuration jwt",
@@ -225,7 +229,8 @@
         "permet de changer le volume et de faire stop,pause,suivant,precedent,reprendre": "permet de changer le volume et de faire stop,pause,suivant,precedent,reprendre",
         "Scénario": "Scénario",
         "Vous pouvez aussi créer des scènes dans l'onglet scène, avec des actions d'entrée et de sortie": "Vous pouvez aussi créer des scènes dans l'onglet scène, avec des actions d'entrée et de sortie",
-        "Pour lancer un scénario il suffit de dire \"Active #nom du scénario#\" ou \"Désactive #nom du scénario": "Pour lancer un scénario il suffit de dire \"Active #nom du scénario#\" ou \"Désactive #nom du scénario",
+        "Pour lancer un scénario il suffit de dire \"Active": "Pour lancer un scénario il suffit de dire \"Active",
+        "ou \"Désactive": "ou \"Désactive",
         "Lors de la sauvegarde Jeedom va automatiquement demander une synchronisation avec Google": "Lors de la sauvegarde Jeedom va automatiquement demander une synchronisation avec Google",
         "Attention en mode standalone si vous avez une erreur (type \"Requested entity was not found\") essayez de réactiver le test de l'application (": "Attention en mode standalone si vous avez une erreur (type \"Requested entity was not found\") essayez de réactiver le test de l'application (",
         ") puis de recliquez sur le bouton de connection sur la page la page de configuration du plugin": ") puis de recliquez sur le bouton de connection sur la page la page de configuration du plugin",
@@ -269,6 +274,8 @@
         "Essayez de dé-associé\/ré-associé l'application Google smarthome": "Essayez de dé-associé\/ré-associé l'application Google smarthome",
         "Attention à bien prendre l'application officiel et non une application [TEST] si vous avez utilisez le mode standalone avant": "Attention à bien prendre l'application officiel et non une application [TEST] si vous avez utilisez le mode standalone avant",
         "Lors de l'ajout des équipement j'ai des NOK": "Lors de l'ajout des équipement j'ai des NOK",
-        "Cliquez simplement sur le NOK une fenetre vous dira les generique type a avoir sur les commandes de l'équipement pour que cela marche": "Cliquez simplement sur le NOK une fenetre vous dira les generique type a avoir sur les commandes de l'équipement pour que cela marche"
+        "Cliquez simplement sur le NOK une fenetre vous dira les generique type a avoir sur les commandes de l'équipement pour que cela marche": "Cliquez simplement sur le NOK une fenetre vous dira les generique type a avoir sur les commandes de l'équipement pour que cela marche",
+        "Le demon\/les dépendances sont en NOK": "Le demon\/les dépendances sont en NOK",
+        "Ce n'est pas grave il ne faut pas s'en occupe ca ne sert en aucun cas au fonctionnement du plugin pour le moment (ca nous sert en faite juste pour passer la validation Google)": "Ce n'est pas grave il ne faut pas s'en occupe ca ne sert en aucun cas au fonctionnement du plugin pour le moment (ca nous sert en faite juste pour passer la validation Google)"
     }
 }

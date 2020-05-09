@@ -1,4 +1,4 @@
-# Descripción
+# Description
 
 Este complemento te permite :
 
@@ -11,7 +11,7 @@ Puede funcionar de 2 maneras. :
 
 > **Important**
 >
-> El modo en la nube requiere una suscripción a los servicios de voz (3 meses gratis al comprar el complemento). Puedes gestionar tu suscripción [aquí](https://www.jeedom.com/market/index.php?v=d&p=profils#services)
+> El modo en la nube requiere una suscripción a los servicios de voz (3 meses gratis al comprar el complemento). Puedes gestionar tu suscripción [aquí](https://market.jeedom.com/index.php?v=d&p=profils#services)
 
 > **Important**
 >
@@ -34,7 +34,7 @@ Puede funcionar de 2 maneras. :
 > - Si este es el caso, asegúrese de sus credenciales (atención debe respetar mayúsculas / minúsculas) ?
 > - si este es el caso, cambie su contraseña en el mercado y en la configuración del servicio de asistente de voz (pestaña de página de perfiles de mercado mis servicios) guarde
 
-Después de instalar el complemento, solo necesita ir a la configuración del complemento, seleccionar el modo Nube y luego hacer clic en "Enviar" (esto enviará la información de conexión a la API del complemento en el mercado)
+Después de instalar el complemento, solo necesita ir a la configuración del complemento, seleccionar el modo Cloud y luego hacer clic en "Enviar" (esto enviará la información de conexión a la API del complemento en el mercado)
 
 Luego, en Jeedom in Communication / Google Smarthome debe hacer clic en Guardar para enviar su configuración inicial, necesita al menos un dispositivo en Aceptar (de lo contrario, al conectar Google Home <-> Jeedom tendrá un error)
 
@@ -244,7 +244,7 @@ En su Jeedom, vaya a Complemento -> Comunicación -> Google Smarthome y en la se
 > Para el tipo de "cámara" debe configurar absolutamente la URL de la transmisión (probamos solo el RTSP) para que funcione.
 > Tenga en cuenta que el soporte de la cámara está actualmente en versión beta y consume muchos recursos
 
-## Dispositivos
+## Equipement
 
 En el equipo puede configurar :
 
@@ -260,7 +260,7 @@ En el equipo puede configurar :
   * Configuración avanzada de equipos, permite el acceso a la configuración avanzada de comandos y, por lo tanto, a modificar tipos genéricos.
   * Le permite ir directamente a la página de configuración del equipo.
 
-### Tipo
+### Type
 
 Los tipos de equipos son importantes, esto le permite a Google reaccionar de acuerdo con las oraciones que dices.
 
@@ -289,7 +289,7 @@ También puede crear escenas en la pestaña de escena, con acciones de entrada y
 
 > **NOTE**
 >
-> Para iniciar un escenario, simplemente diga "Activar # nombre del escenario #" o "Desactivar # nombre del escenario"#
+> Para comenzar un escenario simplemente diga "Activo #nom du scénario#" o "Desactivar #nom du scénario#
 
 > **NOTE**
 >
@@ -297,7 +297,7 @@ También puede crear escenas en la pestaña de escena, con acciones de entrada y
 
 Todo lo que tiene que hacer es asignar el equipo a las habitaciones en la aplicación Google Home
 
-# Preguntas frecuentes
+# FAQ
 
 >**No puedo hacer la asociación en modo nube ?**
 >
@@ -346,3 +346,7 @@ Todo lo que tiene que hacer es asignar el equipo a las habitaciones en la aplica
 >**Cuando agrego equipo tengo NOK**
 >
 >Simplemente haga clic en NOK, una ventana le indicará el tipo genérico que debe tener en los controles del equipo para que funcione
+
+>**El demonio / dependencias están en NOK**
+>
+>No importa que no se deba cuidar, no se usa en ningún caso para el funcionamiento del complemento por el momento (es útil para nosotros solo pasar la validación de Google)

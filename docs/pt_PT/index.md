@@ -1,4 +1,4 @@
-# Descrição
+# Description
 
 Este plugin permite que você :
 
@@ -11,7 +11,7 @@ Pode funcionar de 2 maneiras :
 
 > **Important**
 >
-> O modo de nuvem requer uma assinatura dos serviços de voz (3 meses grátis na compra do plug-in). Você pode gerenciar sua assinatura [aqui](https://www.jeedom.com/market/index.php?v=d&p=profils#services)
+> O modo de nuvem requer uma assinatura dos serviços de voz (3 meses grátis na compra do plug-in). Você pode gerenciar sua assinatura [aqui](https://market.jeedom.com/index.php?v=d&p=profils#services)
 
 > **Important**
 >
@@ -244,7 +244,7 @@ No seu Jeedom, vá para Plugin -> Comunicação -> Google Smarthome e, na seçã
 > Para o tipo "camera", você deve configurar absolutamente o URL do fluxo (testamos apenas o RTSP) para que funcione.
 > Observe que o suporte à câmera está atualmente na versão beta e consome muitos recursos
 
-## Equipamento
+## Equipement
 
 No equipamento você pode configurar :
 
@@ -260,7 +260,7 @@ No equipamento você pode configurar :
   * Configuração avançada de equipamentos, permite acesso à configuração avançada de comandos e, portanto, à modificação de tipos genéricos
   * Permite ir diretamente para a página de configuração do equipamento
 
-### Tipo
+### Type
 
 Os tipos de equipamento são importantes, permitindo que o Google reaja de acordo com as frases que você diz.
 
@@ -289,7 +289,7 @@ Você também pode criar cenas na guia cena, com ações de entrada e saída.
 
 > **NOTE**
 >
-> Para iniciar um cenário, basta dizer "Ativar # nome do cenário #" ou "Desativar # nome do cenário"#
+> Para iniciar um cenário, basta dizer "Ativo #nom du scénario#" ou "Desativar #nom du scénario#
 
 > **NOTE**
 >
@@ -297,7 +297,7 @@ Você também pode criar cenas na guia cena, com ações de entrada e saída.
 
 Tudo o que você precisa fazer é atribuir o equipamento às salas no aplicativo Google Home
 
-# Faq
+# FAQ
 
 >**Não consigo fazer a associação no modo nuvem ?**
 >
@@ -346,3 +346,7 @@ Tudo o que você precisa fazer é atribuir o equipamento às salas no aplicativo
 >**Ao adicionar equipamento, tenho NOK**
 >
 >Basta clicar no NOK, uma janela informará o tipo genérico a ser usado nos controles do equipamento para que funcione
+
+>**Os demônios / dependências estão em NOK**
+>
+>Não importa se não deve ser cuidado, pois não é usado em nenhum caso para o funcionamento do plugin no momento (é útil apenas passarmos na validação do Google)

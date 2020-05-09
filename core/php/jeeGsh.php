@@ -139,6 +139,11 @@ if ($body['action'] == 'exec') {
 	log::add('gsh', 'debug', 'Exec result : '.$result);
 	echo $result;
 	die();
+}else if ($body['action'] == 'sync') {
+	$result = json_encode(gsh::sync($group));
+	log::add('gsh', 'debug','Sync result : '. $result);
+	echo $result;
+	die();
 } else if ($body['action'] == 'query') {
 	$result = json_encode(gsh::query($body));
 	log::add('gsh', 'debug','Query result : '. $result);

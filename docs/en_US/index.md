@@ -11,7 +11,7 @@ It can work in 2 ways :
 
 > **Important**
 >
-> Cloud mode requires a subscription to voice services (3 months free when purchasing the plugin). You can manage your subscription [here](https://www.jeedom.com/market/index.php?v=d&p=profils#services)
+> Cloud mode requires a subscription to voice services (3 months free when purchasing the plugin). You can manage your subscription [here](https://market.jeedom.com/index.php?v=d&p=profils#services)
 
 > **Important**
 >
@@ -244,7 +244,7 @@ On your Jeedom, go to Plugin -> Communication -> Google Smarthome and in the equ
 > For the "camera" type you must absolutely configure the URL of the stream (we tested only the RTSP) so that it works.
 > Note that camera support is currently in beta and consumes a lot of resources
 
-## Device
+## Equipement
 
 On equipment you can configure :
 
@@ -289,7 +289,7 @@ You can also create scenes in the scene tab, with input and output actions.
 
 > **NOTE**
 >
-> To launch a scenario, just say "Activate #name of scenario #" or "Deactivate #name of scenario"#
+> To start a scenario just say "Active #nom du scénario#" or "Disable #nom du scénario#
 
 > **NOTE**
 >
@@ -297,7 +297,7 @@ You can also create scenes in the scene tab, with input and output actions.
 
 All you have to do is assign the equipment to the rooms in the Google Home app
 
-# Faq
+# FAQ
 
 >**I can't make the association in cloud mode ?**
 >
@@ -346,3 +346,7 @@ All you have to do is assign the equipment to the rooms in the Google Home app
 >**When adding equipment I have NOK**
 >
 >Just click on the NOK a window will tell you the generic type to have on the equipment controls for it to work
+
+>**The demon / dependencies are in NOK**
+>
+>It does not matter it should not be taken care of it is not used in any case for the functioning of the plugin for the moment (it is useful for us just to pass the Google validation)
