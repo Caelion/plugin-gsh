@@ -1,3 +1,7 @@
+>**IMPORTANT**
+>
+>Pour rappel si il n'y a pas de d'informations sur la mise à jour c'est que celle-ci ne concerne que de la mise à jour de documentation ou de traduction
+
 # 07/05/2020
 
 - Amélioration de l'installation des dependances
