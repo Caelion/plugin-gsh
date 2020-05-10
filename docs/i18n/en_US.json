@@ -1,5 +1,6 @@
 {
     "changelog.md": {
+        "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text.",
         "07\/05\/2020": "05\/07\/2020",
         "Amélioration de l'installation des dependances": "Improved installation of outbuildings",
         "04\/05\/2020": "05\/04\/2020",
@@ -59,16 +60,16 @@
         "17\/07\/2018": "07\/17\/2018",
         "10\/07\/2018": "07\/10\/2018",
         "06\/07\/2018": "07\/06\/2018",
-        " Optimisations.": " Optimizations.",
-        " Optimisations?": " Optimizations?",
-        "Optimisations ": "Optimizations ",
-        "[Optimisations": "[Optimizations",
-        "Optimisations]": "Optimizations]",
         " IMPORTANT.": " Important.",
         " IMPORTANT?": " Important?",
         "IMPORTANT ": "Important ",
         "[IMPORTANT": "[Important",
-        "IMPORTANT]": "Important]"
+        "IMPORTANT]": "Important]",
+        " Optimisations.": " Optimizations.",
+        " Optimisations?": " Optimizations?",
+        "Optimisations ": "Optimizations ",
+        "[Optimisations": "[Optimizations",
+        "Optimisations]": "Optimizations]"
     },
     "index.md": {
         "Google smarthome": "Google Smarthome",
