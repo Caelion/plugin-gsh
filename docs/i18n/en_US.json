@@ -71,6 +71,7 @@
         "IMPORTANT]": "Important]"
     },
     "index.md": {
+        "Google smarthome": "Google Smarthome",
         "Ce plugin permet de": "This plugin allows you to",
         "utiliser l'implementation native de Google pour la gestion des objets connectés": "use the native implementation of Google for the management of connected objects",
         "Il peut fonctionner suivant 2 manières": "It can work in 2 ways",
@@ -262,11 +263,6 @@
         "Cliquez simplement sur le NOK une fenetre vous dira les generique type a avoir sur les commandes de l'équipement pour que cela marche": "Just click on the NOK a window will tell you the generic type to have on the equipment controls for it to work",
         "Le demon\/les dépendances sont en NOK": "The demon \/ dependencies are in NOK",
         "Ce n'est pas grave il ne faut pas s'en occupe ca ne sert en aucun cas au fonctionnement du plugin pour le moment (ca nous sert en faite juste pour passer la validation Google)": "It does not matter it should not be taken care of it is not used in any case for the functioning of the plugin for the moment (it is useful for us just to pass the Google validation)",
-        " Description.": " Description.",
-        " Description?": " Description?",
-        "Description ": "Description ",
-        "[Description": "[Description",
-        "Description]": "Description]",
         " Standalone.": " Standalone.",
         " Standalone?": " Standalone?",
         "Standalone ": "Standalone ",
