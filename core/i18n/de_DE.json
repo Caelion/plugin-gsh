@@ -9,8 +9,8 @@
         "Votre abonnement aux services assistant vocaux fini le ": "Ihr Abonnement für Sprachassistentendienste endete am",
         "Pour le prolonger, allez": "Um es zu erweitern, gehen Sie",
         "ici": "hier",
-        "Votre abonnement aux services assistant vocaux est illimité.": "Ihr Abonnement für Sprachassistentendienste ist unbegrenzt.",
-        "Votre abonnement aux services assistant vocaux est fini.": "Ihr Abonnement für Sprachassistentendienste ist beendet.",
+        "Votre abonnement aux services assistant vocaux est illimité.": "Ihr Abonnement für Sprachassistentendienste ist unbegrenzt",
+        "Votre abonnement aux services assistant vocaux est fini.": "Ihr Abonnement für Sprachassistentendienste ist beendet",
         "Pour vous réabonner, allez": "Um sich erneut anzumelden, gehen Sie",
         "Envoyer configuration au market": "Konfiguration an den Markt senden",
         "Envoyer": "Senden",
@@ -54,7 +54,7 @@
         "Device non trouvé": "Gerät nicht gefunden",
         "Aucun type configuré pour ce périphérique": "Kein Typ für dieses Gerät konfiguriert",
         "Aucune information disponible": "Keine Informationen verfügbar",
-        "Voici les générique type qui sont utilisation avec votre type d\\'équipement. Attention il ne faut pas forcement tous les avoir sur l\\'équipement (ou n\\'en avoir aucun)": "Hier sind die generischen Typen, die für Ihren Gerätetyp verwendet werden. Achtung, es ist nicht unbedingt notwendig, alle auf dem Gerät zu haben (oder keine zu haben)."
+        "Voici les générique type qui sont utilisation avec votre type d\\'équipement. Attention il ne faut pas forcement tous les avoir sur l\\'équipement (ou n\\'en avoir aucun)": "Hier sind die generischen Typen, die für Ihren Gerätetyp verwendet werden. Achtung, es ist nicht unbedingt notwendig, alle auf dem Gerät zu haben (oder keine zu haben)"
     },
     "plugins\/gsh\/desktop\/php\/gsh.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -74,14 +74,14 @@
         "Code": "Code",
         "Code pin": "PIN-Code",
         "Aucun": "Ohne",
-        " . $value['name'] . ": ". $ value ['name'].",
+        " . $value['name'] . ": "$ value ['name']",
         "Ajouter scène": "Szene hinzufügen"
     },
     "plugins\/gsh\/desktop\/js\/gsh.js": {
         "Configuration de l'équipement": "Gerätekonfiguration",
         "Configuration avancée": "Erweiterte Konfiguration",
         "Information type générique": "Allgemeine Typinformationen",
-        "Synchronisation réussie. Pour voir le status des equipements à jour, merci de rafraichir la page (F5)": "Synchronisation erfolgreich. Aktualisieren Sie die Seite (F5), um den aktuellen Status des Geräts anzuzeigen.",
+        "Synchronisation réussie. Pour voir le status des equipements à jour, merci de rafraichir la page (F5)": "Synchronisation erfolgreich. Aktualisieren Sie die Seite (F5), um den aktuellen Status des Geräts anzuzeigen",
         "Configuration péripheriques": "Peripheriekonfiguration",
         "Nom de la scene ?": "Name der Szene?",
         "Nouveau nom ?": "Neuer Name",
@@ -96,7 +96,7 @@
         "Pseudo": "Spitzname"
     },
     "plugins\/gsh\/core\/php\/jeeGsh.php": {
-        "Vous n\\'etes pas autorisé à effectuer cette action. Clef API invalide. Merci de corriger la clef API sur votre page profils du market et d\\'attendre 24h avant de réessayer.": "Sie sind nicht berechtigt, diese Aktion auszuführen. Ungültiger API-Schlüssel. Bitte korrigieren Sie den API-Schlüssel auf Ihrer Marktprofilseite und warten Sie 24 Stunden, bevor Sie es erneut versuchen.",
+        "Vous n\\'etes pas autorisé à effectuer cette action. Clef API invalide. Merci de corriger la clef API sur votre page profils du market et d\\'attendre 24h avant de réessayer.": "Sie sind nicht berechtigt, diese Aktion auszuführen. Ungültiger API-Schlüssel. Bitte korrigieren Sie den API-Schlüssel auf Ihrer Marktprofilseite und warten Sie 24 Stunden, bevor Sie es erneut versuchen",
         "Configuration OK": "Konfiguration OK"
     },
     "plugins\/gsh\/core\/ajax\/gsh.ajax.php": {
@@ -176,7 +176,7 @@
     },
     "plugins\/gsh\/core\/class\/gsh_scene.class.php": {
         "Erreur lors de l\\'éxecution de ": "Fehler beim Ausführen",
-        ". Détails : ": ". Details:"
+        ". Détails : ": "Details:"
     },
     "plugins\/gsh\/core\/class\/gsh_valve.class.php": {
         "Position": "Position",

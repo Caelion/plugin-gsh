@@ -74,7 +74,7 @@
         "Code": "КОД",
         "Code pin": "",
         "Aucun": "Нет",
-        " . $value['name'] . ": ", $ value ['name'].",
+        " . $value['name'] . ": ", $ value ['name']",
         "Ajouter scène": ""
     },
     "plugins\/gsh\/desktop\/js\/gsh.js": {
@@ -102,7 +102,7 @@
     "plugins\/gsh\/core\/ajax\/gsh.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Device non trouvé : ": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
         "Veuillez vérifier la configuration": "",

@@ -176,7 +176,7 @@
     },
     "plugins\/gsh\/core\/class\/gsh_scene.class.php": {
         "Erreur lors de l\\'éxecution de ": "Yürütülürken hata oluştu",
-        ". Détails : ": ". Detaylar:"
+        ". Détails : ": "Detaylar:"
     },
     "plugins\/gsh\/core\/class\/gsh_valve.class.php": {
         "Position": "Pozisyon",
