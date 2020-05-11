@@ -1,4 +1,4 @@
-# Google Smarthome
+# Google Smarthome Plugin
 
 Dieses Plugin ermöglicht es Ihnen :
 

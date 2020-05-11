@@ -72,7 +72,7 @@
         "Optimisations]": "Optimizations]"
     },
     "index.md": {
-        "Google smarthome": "Google Smarthome",
+        "Plugin Google smarthome": "Google smarthome plugin",
         "Ce plugin permet de": "This plugin allows you to",
         "utiliser l'implementation native de Google pour la gestion des objets connectés": "use the native implementation of Google for the management of connected objects",
         "Il peut fonctionner suivant 2 manières": "It can work in 2 ways",

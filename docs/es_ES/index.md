@@ -1,4 +1,4 @@
-# Google Smarthome
+# Complemento smarthome de Google
 
 Este complemento te permite :
 
