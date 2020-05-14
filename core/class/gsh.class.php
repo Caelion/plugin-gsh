@@ -168,7 +168,7 @@ class gsh extends eqLogic {
 			$result = $request_http->exec(30);
 			for($i=1;$i<10;$i++){
 				$devices = self::sync($i);
-				if(count($devices['endpoints']) == 0){
+				if(!isset($devices['endpoints']) || count($devices['endpoints']) == 0){
 					continue;
 				}
 				$request_http = new com_http('https://api-aa.jeedom.com/jeedom/sync');
