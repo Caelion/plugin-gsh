@@ -326,7 +326,7 @@ Sie müssen die Geräte lediglich den Räumen in der Google Home-App zuweisen
 
 >**Ich erhalte die Fehlermeldung "OpenSSL kann keine Daten signieren"**
 >
->Sie müssen das Kontrollkästchen "Bericht erstellen" aktivieren, ohne die JWT-Konfiguration vorzunehmen
+>Sie müssen das Kontrollkästchen "Push the state" (in der erweiterten Konfiguration grüne Taste mit dem gekerbten Rad) aktivieren, ohne die JWT-Konfiguration vorzunehmen
 
 >**Beim Speichern wird die Fehlermeldung "Ressource 404 kann nicht gefunden werden" angezeigt**
 >

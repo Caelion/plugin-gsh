@@ -326,7 +326,7 @@ All you have to do is assign the equipment to the rooms in the Google Home app
 
 >**I get the error message "OpenSSL unable to sign data"**
 >
->You have to check the "Raise the report" box without doing the JWT configuration
+>You have to check the "Push the state" box (in the advanced configuration, green button with the notched wheel) without doing the JWT configuration
 
 >**I get the error message "Cant find resource 404" when saving**
 >

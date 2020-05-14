@@ -261,7 +261,7 @@
         "Pourquoi faut-il affecter des pièces à chaque équipement": "Pourquoi faut-il affecter des pièces à chaque équipement",
         "Car Google ne permet pas de le faire par l'API vous devez donc absolument le faire manuellement": "Car Google ne permet pas de le faire par l'API vous devez donc absolument le faire manuellement",
         "J'ai le message d'erreur \"OpenSSL unable to sign data": "J'ai le message d'erreur \"OpenSSL unable to sign data",
-        "Vous avez du cocher la case \"Remonter l'état\" sans faire la configuration JWT": "Vous avez du cocher la case \"Remonter l'état\" sans faire la configuration JWT",
+        "Vous avez du cocher la case \"Pousser l'état\" (dans la configuration avancée, bouton vert avec la roue cranté) sans faire la configuration JWT": "Vous avez du cocher la case \"Pousser l'état\" (dans la configuration avancée, bouton vert avec la roue cranté) sans faire la configuration JWT",
         "J'ai le message d'erreur \"Cant find ressource 404\" lors de la sauvegarde": "J'ai le message d'erreur \"Cant find ressource 404\" lors de la sauvegarde",
         "Alors pas de soucis tout est bien sauvé, c'est juste la synchronisation automatique qui n'est pas faites": "Alors pas de soucis tout est bien sauvé, c'est juste la synchronisation automatique qui n'est pas faites",
         "Pour la faire dites \"Synchroniser mes appareils\" à votre assistant": "Pour la faire dites \"Synchroniser mes appareils\" à votre assistant",

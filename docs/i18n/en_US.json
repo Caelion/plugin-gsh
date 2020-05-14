@@ -251,7 +251,7 @@
         "Pourquoi faut-il affecter des pièces à chaque équipement": "Why do you need to assign parts to each piece of equipment",
         "Car Google ne permet pas de le faire par l'API vous devez donc absolument le faire manuellement": "Because Google doesn't allow you to do it through the API so you absolutely must do it manually",
         "J'ai le message d'erreur \"OpenSSL unable to sign data": "I get the error message \"OpenSSL unable to sign data",
-        "Vous avez du cocher la case \"Remonter l'état\" sans faire la configuration JWT": "You have to check the \"Raise the report\" box without doing the JWT configuration",
+        "Vous avez du cocher la case \"Pousser l'état\" (dans la configuration avancée, bouton vert avec la roue cranté) sans faire la configuration JWT": "You have to check the \"Push the state\" box (in the advanced configuration, green button with the notched wheel) without doing the JWT configuration",
         "J'ai le message d'erreur \"Cant find ressource 404\" lors de la sauvegarde": "I get the error message \"Cant find resource 404\" when saving",
         "Alors pas de soucis tout est bien sauvé, c'est juste la synchronisation automatique qui n'est pas faites": "So no worries everything is saved, it's just automatic synchronization that is not done",
         "Pour la faire dites \"Synchroniser mes appareils\" à votre assistant": "To make it say \"Synchronize my devices\" to your assistant",

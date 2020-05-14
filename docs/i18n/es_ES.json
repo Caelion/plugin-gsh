@@ -251,7 +251,7 @@
         "Pourquoi faut-il affecter des pièces à chaque équipement": "¿Por qué necesita asignar partes a cada equipo?",
         "Car Google ne permet pas de le faire par l'API vous devez donc absolument le faire manuellement": "Debido a que Google no le permite hacerlo a través de la API, entonces absolutamente debe hacerlo manualmente",
         "J'ai le message d'erreur \"OpenSSL unable to sign data": "Aparece el mensaje de error \"OpenSSL no puede firmar datos",
-        "Vous avez du cocher la case \"Remonter l'état\" sans faire la configuration JWT": "Debe marcar la casilla \"Volver al estado\" sin hacer la configuración JWT",
+        "Vous avez du cocher la case \"Pousser l'état\" (dans la configuration avancée, bouton vert avec la roue cranté) sans faire la configuration JWT": "Debe marcar la casilla \"Empujar el estado\" (en la configuración avanzada, botón verde con la rueda dentada) sin hacer la configuración JWT",
         "J'ai le message d'erreur \"Cant find ressource 404\" lors de la sauvegarde": "Aparece el mensaje de error \"No puedo encontrar el recurso 404\" al guardar",
         "Alors pas de soucis tout est bien sauvé, c'est juste la synchronisation automatique qui n'est pas faites": "Así que no te preocupes, todo está guardado, es solo una sincronización automática que no se hace",
         "Pour la faire dites \"Synchroniser mes appareils\" à votre assistant": "Para hacerlo, diga \"Sincronizar mis dispositivos\" a su asistente",
