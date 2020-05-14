@@ -326,7 +326,7 @@ Il ne vous reste plus qu'a faire l'affectation des équipements aux pieces dans 
 
 >**J'ai le message d'erreur "OpenSSL unable to sign data"**
 >
->Vous avez du cocher la case "Remonter l'état" sans faire la configuration JWT
+>Vous avez du cocher la case "Pousser l'état" (dans la configuration avancée, bouton vert avec la roue cranté) sans faire la configuration JWT
 
 >**J'ai le message d'erreur "Cant find ressource 404" lors de la sauvegarde**
 >
