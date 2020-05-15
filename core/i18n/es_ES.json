@@ -9,8 +9,8 @@
         "Votre abonnement aux services assistant vocaux fini le ": "Su suscripción a los servicios de asistente de voz finalizó el",
         "Pour le prolonger, allez": "Para extenderlo, ve",
         "ici": "aquí",
-        "Votre abonnement aux services assistant vocaux est illimité.": "Su suscripción a los servicios de asistente de voz es ilimitada.",
-        "Votre abonnement aux services assistant vocaux est fini.": "Su suscripción a los servicios de asistente de voz ha finalizado.",
+        "Votre abonnement aux services assistant vocaux est illimité.": "Su suscripción a los servicios de asistente de voz es ilimitada",
+        "Votre abonnement aux services assistant vocaux est fini.": "Su suscripción a los servicios de asistente de voz ha finalizado",
         "Pour vous réabonner, allez": "Para volver a suscribirse, vaya",
         "Envoyer configuration au market": "Enviar configuración al mercado",
         "Envoyer": "Enviar",
@@ -44,7 +44,7 @@
         "Configuration du thermostat": "Configuración del termostato",
         "Action pour le mode chaud": "Acción para modo calefacción",
         "Aucun": "Ninguna",
-        "Action pour le mode froid": "Acción para el modo frío.",
+        "Action pour le mode froid": "Acción para el modo frío",
         "Action pour le mode off": "Acción para el modo apagado",
         "Il n\\'y a aucune configuration avancée pour ce type": "No hay una configuración avanzada para este tipo",
         "Sauvegarde réussi, pensez à relancer une synchronisation": "Copia de seguridad exitosa, recuerde reiniciar la sincronización"
@@ -53,7 +53,7 @@
         "Eqlogic ID non valide : ": "ID de Eqlogic no válido:",
         "Device non trouvé": "Dispositivo no encontrado",
         "Aucun type configuré pour ce périphérique": "Ningún tipo configurado para este dispositivo",
-        "Aucune information disponible": "No hay información disponible.",
+        "Aucune information disponible": "No hay información disponible",
         "Voici les générique type qui sont utilisation avec votre type d\\'équipement. Attention il ne faut pas forcement tous les avoir sur l\\'équipement (ou n\\'en avoir aucun)": "Estos son los tipos genéricos que se utilizan con su tipo de equipo. Atención, no es necesario necesariamente tenerlos todos en el equipo (o no tener ninguno)"
     },
     "plugins\/gsh\/desktop\/php\/gsh.php": {
@@ -74,7 +74,7 @@
         "Code": "CODIGO",
         "Code pin": "Código PIN",
         "Aucun": "Ninguna",
-        " . $value['name'] . ": ". $ valor ['nombre'].",
+        " . $value['name'] . ": "$ valor ['nombre']",
         "Ajouter scène": "Añadir escena"
     },
     "plugins\/gsh\/desktop\/js\/gsh.js": {
@@ -96,7 +96,7 @@
         "Pseudo": "Apodo"
     },
     "plugins\/gsh\/core\/php\/jeeGsh.php": {
-        "Vous n\\'etes pas autorisé à effectuer cette action. Clef API invalide. Merci de corriger la clef API sur votre page profils du market et d\\'attendre 24h avant de réessayer.": "No tiene autorización para realizar esta acción. Clave API no válida Corrija la clave API en su página de perfiles de mercado y espere 24 horas antes de volver a intentarlo.",
+        "Vous n\\'etes pas autorisé à effectuer cette action. Clef API invalide. Merci de corriger la clef API sur votre page profils du market et d\\'attendre 24h avant de réessayer.": "No tiene autorización para realizar esta acción. Clave API no válida Corrija la clave API en su página de perfiles de mercado y espere 24 horas antes de volver a intentarlo",
         "Configuration OK": "Configuración OK"
     },
     "plugins\/gsh\/core\/ajax\/gsh.ajax.php": {
@@ -107,6 +107,7 @@
     "plugins\/gsh\/core\/class\/gsh.class.php": {
         "Veuillez vérifier la configuration": "Por favor verifique la configuración",
         "Erreur sur la demande de synchronisation :": "Error en la solicitud de sincronización:",
+        "Erreur sur la demande de remonté d\\'état :": "Error en la solicitud de estado:",
         "JWT aucun token : ": "JWT sin token:"
     },
     "plugins\/gsh\/core\/class\/gsh_blinds.class.php": {
@@ -176,7 +177,7 @@
     },
     "plugins\/gsh\/core\/class\/gsh_scene.class.php": {
         "Erreur lors de l\\'éxecution de ": "Error al ejecutar",
-        ". Détails : ": ". Detalles:"
+        ". Détails : ": "Detalles:"
     },
     "plugins\/gsh\/core\/class\/gsh_valve.class.php": {
         "Position": "Posición",

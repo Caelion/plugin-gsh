@@ -102,11 +102,12 @@
     "plugins\/gsh\/core\/ajax\/gsh.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Device non trouvé : ": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
         "Veuillez vérifier la configuration": "",
         "Erreur sur la demande de synchronisation :": "",
+        "Erreur sur la demande de remonté d\\'état :": "",
         "JWT aucun token : ": ""
     },
     "plugins\/gsh\/core\/class\/gsh_blinds.class.php": {

@@ -158,27 +158,31 @@ class gsh extends eqLogic {
 	
 	public static function sendDevices() {
 		if (config::byKey('mode', 'gsh') == 'jeedom') {
-			$request_http = new com_http('https://api-gh.jeedom.com/jeedom/sync');
-			$request_http->setPost(http_build_query(array(
-				'apikey' =>  jeedom::getApiKey('gsh'),
-				'url' =>  network::getNetworkAccess('external'),
-				'hwkey' =>  jeedom::getHardwareKey(),
-				'data' => json_encode(self::sync())
-			)));
-			$result = $request_http->exec(30);
+			$request_http = new com_http('https://cloud.jeedom.com/service/googlehome');
+			$request_http->setHeader(array(
+				'Content-Type: application/json',
+				'Autorization: '.sha512(strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))
+			));
+			$request_http->setPost(json_encode(array('action' => 'sync')));
+			$result = json_decode($request_http->exec(30),true);
+			if(!isset($result['state']) || $result['state'] != 'ok'){
+				throw new \Exception(__('Erreur sur la demande de synchronisation :',__FILE__).' '.json_encode($result));
+			}
 			for($i=1;$i<10;$i++){
 				$devices = self::sync($i);
-				if(count($devices['endpoints']) == 0){
+				if(!isset($devices['endpoints']) || count($devices['endpoints']) == 0){
 					continue;
 				}
-				$request_http = new com_http('https://api-aa.jeedom.com/jeedom/sync');
-				$request_http->setPost(http_build_query(array(
-					'apikey' =>  jeedom::getApiKey('gsh').'-'.$i,
-					'url' =>  network::getNetworkAccess('external'),
-					'hwkey' =>  jeedom::getHardwareKey(),
-					'data' => json_encode($devices)
-				)));
-				$result = $request_http->exec(30);
+				$request_http = new com_http('https://cloud.jeedom.com/service/googlehome');
+				$request_http->setHeader(array(
+					'Content-Type: application/json',
+					'Autorization: '.sha512(strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))
+				));
+				$request_http->setPost(json_encode(array('action' => 'sync')));
+				$result = json_decode($request_http->exec(30),true);
+				if(!isset($result['state']) || $result['state'] != 'ok'){
+					throw new \Exception(__('Erreur sur la demande de synchronisation :',__FILE__).' '.json_encode($result));
+				}
 			}
 		} else {
 			$request_http = new com_http('https://homegraph.googleapis.com/v1/devices:requestSync?key=' . config::byKey('gshs::googleapikey', 'gsh'));
@@ -341,7 +345,7 @@ class gsh extends eqLogic {
 					$request_http->setPost(json_encode(array('action' => 'reportState','data' => json_encode($return))));
 					$result = json_decode($request_http->exec(30),true);
 					if(!isset($result['state']) || $result['state'] != 'ok'){
-						throw new \Exception(__('Erreur sur la demande de synchronisation :',__FILE__).' '.json_encode($result));
+						throw new \Exception(__('Erreur sur la demande de remonté d\'état :',__FILE__).' '.json_encode($result));
 					}
 				} else {
 					$request_http = new com_http('https://homegraph.googleapis.com/v1/devices:reportStateAndNotification');

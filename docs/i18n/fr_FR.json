@@ -1,7 +1,10 @@
 {
     "changelog.md": {
+        "Changelog Google Smarthome": "Changelog Google Smarthome",
         "IMPORTANT": "IMPORTANT",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte",
+        "15\/05\/2020": "15\/05\/2020",
+        "Passage sur les nouveaux serveurs (mise à jour obligatoire pour pouvoir ajouter\/supprimer de nouveaux équipements)": "Passage sur les nouveaux serveurs (mise à jour obligatoire pour pouvoir ajouter\/supprimer de nouveaux équipements)",
         "07\/05\/2020": "07\/05\/2020",
         "Amélioration de l'installation des dependances": "Amélioration de l'installation des dependances",
         "04\/05\/2020": "04\/05\/2020",
@@ -64,7 +67,7 @@
         "06\/07\/2018": "06\/07\/2018"
     },
     "index.md": {
-        "Google smarthome": "Google smarthome",
+        "Plugin Google smarthome": "Plugin Google smarthome",
         "Ce plugin permet de": "Ce plugin permet de",
         "utiliser l'implementation native de Google pour la gestion des objets connectés": "utiliser l'implementation native de Google pour la gestion des objets connectés",
         "Il peut fonctionner suivant 2 manières": "Il peut fonctionner suivant 2 manières",
@@ -83,7 +86,7 @@
         "IMPORTANT": "IMPORTANT",
         "Il est important de faire les étapes suivantes dans l'ordre indiqué": "Il est important de faire les étapes suivantes dans l'ordre indiqué",
         "Si vous avez un message d'erreur vous indiquants que votre mot de passe ou non d'utilisateur n'est pas bon il faut": "Si vous avez un message d'erreur vous indiquants que votre mot de passe ou non d'utilisateur n'est pas bon il faut",
-        "vérifier qu'Amazon Alexa est bien en actif sur le market": "vérifier qu'Amazon Alexa est bien en actif sur le market",
+        "vérifier que Google Home est bien en actif sur le market": "vérifier que Google Home est bien en actif sur le market",
         "si c'est bien le cas, etês vous sur de vos identifiants (attention il faut respecter majuscule\/minuscule)": "si c'est bien le cas, etês vous sur de vos identifiants (attention il faut respecter majuscule\/minuscule)",
         "si c'est le cas changer votre mot de passe sur le market et sur la configuration du service d'assistant vocal (page profils du market onglet mes services) faire sauvegarder": "si c'est le cas changer votre mot de passe sur le market et sur la configuration du service d'assistant vocal (page profils du market onglet mes services) faire sauvegarder",
         "Après l'installation du plugin, il vous suffit d'aller sur la configuration du plugin, de selectionner le mode Cloud puis de cliquer sur \"Envoyer\" (cela va envoyer les informations de connexion à l'api du plugin sur le market)": "Après l'installation du plugin, il vous suffit d'aller sur la configuration du plugin, de selectionner le mode Cloud puis de cliquer sur \"Envoyer\" (cela va envoyer les informations de connexion à l'api du plugin sur le market)",
@@ -260,7 +263,7 @@
         "Pourquoi faut-il affecter des pièces à chaque équipement": "Pourquoi faut-il affecter des pièces à chaque équipement",
         "Car Google ne permet pas de le faire par l'API vous devez donc absolument le faire manuellement": "Car Google ne permet pas de le faire par l'API vous devez donc absolument le faire manuellement",
         "J'ai le message d'erreur \"OpenSSL unable to sign data": "J'ai le message d'erreur \"OpenSSL unable to sign data",
-        "Vous avez du cocher la case \"Remonter l'état\" sans faire la configuration JWT": "Vous avez du cocher la case \"Remonter l'état\" sans faire la configuration JWT",
+        "Vous avez du cocher la case \"Pousser l'état\" (dans la configuration avancée, bouton vert avec la roue cranté) sans faire la configuration JWT": "Vous avez du cocher la case \"Pousser l'état\" (dans la configuration avancée, bouton vert avec la roue cranté) sans faire la configuration JWT",
         "J'ai le message d'erreur \"Cant find ressource 404\" lors de la sauvegarde": "J'ai le message d'erreur \"Cant find ressource 404\" lors de la sauvegarde",
         "Alors pas de soucis tout est bien sauvé, c'est juste la synchronisation automatique qui n'est pas faites": "Alors pas de soucis tout est bien sauvé, c'est juste la synchronisation automatique qui n'est pas faites",
         "Pour la faire dites \"Synchroniser mes appareils\" à votre assistant": "Pour la faire dites \"Synchroniser mes appareils\" à votre assistant",
