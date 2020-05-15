@@ -2,6 +2,8 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Changelog Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Zur Erinnerung: Wenn keine Informationen zum Update vorhanden sind, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt",
+        "15\/05\/2020": "15.05.2020",
+        "Passage sur les nouveaux serveurs (mise à jour obligatoire pour pouvoir ajouter\/supprimer de nouveaux équipements)": "Wechseln zu neuen Servern (Update erforderlich, um neue Geräte hinzufügen \/ entfernen zu können)",
         "07\/05\/2020": "05\/07\/2020",
         "Amélioration de l'installation des dependances": "Verbesserte Installation von Nebengebäuden",
         "04\/05\/2020": "05\/04\/2020",
@@ -91,7 +93,7 @@
         "Mode cloud": "Cloud-Modus",
         "Il est important de faire les étapes suivantes dans l'ordre indiqué": "Es ist wichtig, die folgenden Schritte in der angegebenen Reihenfolge auszuführen",
         "Si vous avez un message d'erreur vous indiquants que votre mot de passe ou non d'utilisateur n'est pas bon il faut": "Wenn Sie eine Fehlermeldung erhalten, die Sie darüber informiert, dass Ihr Benutzerkennwort nicht korrekt ist oder nicht, müssen Sie dies tun",
-        "vérifier qu'Amazon Alexa est bien en actif sur le market": "Überprüfen Sie, ob Amazon Alexa auf dem Markt aktiv ist",
+        "vérifier que Google Home est bien en actif sur le market": "Überprüfen Sie, ob Google Home auf dem Markt aktiv ist",
         "si c'est bien le cas, etês vous sur de vos identifiants (attention il faut respecter majuscule\/minuscule)": "Wenn dies der Fall ist, achten Sie auf Ihre Anmeldeinformationen (Aufmerksamkeit, die Sie in Groß- \/ Kleinschreibung beachten müssen)",
         "si c'est le cas changer votre mot de passe sur le market et sur la configuration du service d'assistant vocal (page profils du market onglet mes services) faire sauvegarder": "Wenn dies der Fall ist, ändern Sie Ihr Passwort auf dem Markt und haben Sie es bei der Konfiguration des Sprachassistenten-Dienstes (Registerkarte Marktprofile Seite Meine Dienste) gespeichert",
         "Après l'installation du plugin, il vous suffit d'aller sur la configuration du plugin, de selectionner le mode Cloud puis de cliquer sur \"Envoyer\" (cela va envoyer les informations de connexion à l'api du plugin sur le market)": "Nach der Installation des Plugins müssen Sie nur noch zur Konfiguration des Plugins gehen, den Cloud-Modus auswählen und dann auf \"Senden\" klicken (dadurch werden die Verbindungsinformationen an die Plugin-API auf dem Markt gesendet)",

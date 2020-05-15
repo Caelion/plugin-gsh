@@ -30,7 +30,7 @@ It can work in 2 ways :
 > **Important**
 >
 > If you have an error message telling you that your user password or not is not correct you must :
-> - check that Amazon Alexa is active in the market
+> - check that Google Home is active on the market
 > - if this is the case, be sure of your credentials (attention you must respect upper / lower case) ?
 > - if this is the case change your password on the market and on the configuration of the voice assistant service (market profiles page tab my services) have it saved
 

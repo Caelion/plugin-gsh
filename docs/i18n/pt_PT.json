@@ -2,6 +2,8 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Changelog Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto",
+        "15\/05\/2020": "15\/05\/2020",
+        "Passage sur les nouveaux serveurs (mise à jour obligatoire pour pouvoir ajouter\/supprimer de nouveaux équipements)": "Mudando para novos servidores (atualização necessária para poder adicionar \/ remover novos equipamentos)",
         "07\/05\/2020": "05\/07\/2020",
         "Amélioration de l'installation des dependances": "Instalação aprimorada de dependências",
         "04\/05\/2020": "05\/04\/2020",
@@ -91,7 +93,7 @@
         "Mode cloud": "Modo de nuvem",
         "Il est important de faire les étapes suivantes dans l'ordre indiqué": "É importante executar as seguintes etapas na ordem listada",
         "Si vous avez un message d'erreur vous indiquants que votre mot de passe ou non d'utilisateur n'est pas bon il faut": "Se houver uma mensagem de erro informando que sua senha de usuário ou não está correta, você deve",
-        "vérifier qu'Amazon Alexa est bien en actif sur le market": "verifique se o Amazon Alexa está ativo no mercado",
+        "vérifier que Google Home est bien en actif sur le market": "verifique se o Google Home está ativo no mercado",
         "si c'est bien le cas, etês vous sur de vos identifiants (attention il faut respecter majuscule\/minuscule)": "se for esse o caso, verifique suas credenciais (atenção: você deve respeitar maiúsculas \/ minúsculas)",
         "si c'est le cas changer votre mot de passe sur le market et sur la configuration du service d'assistant vocal (page profils du market onglet mes services) faire sauvegarder": "se for esse o caso, altere sua senha no mercado e na configuração do serviço de assistente de voz (guia página de perfis de mercado, meus serviços) salvou",
         "Après l'installation du plugin, il vous suffit d'aller sur la configuration du plugin, de selectionner le mode Cloud puis de cliquer sur \"Envoyer\" (cela va envoyer les informations de connexion à l'api du plugin sur le market)": "Depois de instalar o plug-in, basta acessar a configuração do plug-in, selecionar o modo Cloud e clicar em \"Enviar\" (isso enviará as informações de conexão à API do plug-in no mercado)",

@@ -30,7 +30,7 @@ Pode funcionar de 2 maneiras :
 > **Importante**
 >
 > Se houver uma mensagem de erro informando que sua senha de usuário ou não está correta, você deve :
-> - verifique se o Amazon Alexa está ativo no mercado
+> - verifique se o Google Home está ativo no mercado
 > - se for esse o caso, verifique suas credenciais (atenção: você deve respeitar maiúsculas / minúsculas) ?
 > - se for esse o caso, altere sua senha no mercado e na configuração do serviço de assistente de voz (guia página de perfis de mercado, meus serviços) salvou
 
