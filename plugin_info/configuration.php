@@ -71,7 +71,7 @@ if (init('result_code') == 'FAILURE') {
 			</div>
 		</div>
 		<div class="form-group gshmode jeedom">
-			<label class="col-lg-3 control-label">{{Activer "local exexcution"}}</label>
+			<label class="col-lg-3 control-label">{{Activer l'éxecution local}}</label>
 			<div class="col-lg-2">
 				<input type="checkbox" class="configKey" data-l1key="gshs::allowLocalApi" />
 			</div>
