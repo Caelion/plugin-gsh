@@ -326,7 +326,7 @@ Todo lo que tiene que hacer es asignar el equipo a las habitaciones en la aplica
 
 >**Aparece el mensaje de error "OpenSSL no puede firmar datos"**
 >
->Debe marcar la casilla "Volver al estado" sin hacer la configuración JWT
+>Debe marcar la casilla "Empujar el estado" (en la configuración avanzada, botón verde con la rueda dentada) sin hacer la configuración JWT
 
 >**Aparece el mensaje de error "No puedo encontrar el recurso 404" al guardar**
 >

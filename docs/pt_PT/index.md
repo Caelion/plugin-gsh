@@ -326,7 +326,7 @@ Tudo o que você precisa fazer é atribuir o equipamento às salas no aplicativo
 
 >**Recebo a mensagem de erro "OpenSSL incapaz de assinar dados"**
 >
->Você deve marcar a caixa "Voltar ao status" sem fazer a configuração do JWT
+>Você deve marcar a caixa "Push the state" (na configuração avançada, botão verde com a roda dentada) sem fazer a configuração JWT
 
 >**Recebo a mensagem de erro "Não é possível encontrar o recurso 404" ao salvar**
 >

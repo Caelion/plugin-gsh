@@ -251,7 +251,7 @@
         "Pourquoi faut-il affecter des pièces à chaque équipement": "Warum müssen Sie jedem Gerät Teile zuweisen?",
         "Car Google ne permet pas de le faire par l'API vous devez donc absolument le faire manuellement": "Da Google dies nicht über die API zulässt, müssen Sie dies unbedingt manuell tun",
         "J'ai le message d'erreur \"OpenSSL unable to sign data": "Ich erhalte die Fehlermeldung \"OpenSSL kann keine Daten signieren",
-        "Vous avez du cocher la case \"Remonter l'état\" sans faire la configuration JWT": "Sie müssen das Kontrollkästchen \"Bericht erstellen\" aktivieren, ohne die JWT-Konfiguration vorzunehmen",
+        "Vous avez du cocher la case \"Pousser l'état\" (dans la configuration avancée, bouton vert avec la roue cranté) sans faire la configuration JWT": "Sie müssen das Kontrollkästchen \"Push the state\" (in der erweiterten Konfiguration grüne Taste mit dem gekerbten Rad) aktivieren, ohne die JWT-Konfiguration vorzunehmen",
         "J'ai le message d'erreur \"Cant find ressource 404\" lors de la sauvegarde": "Beim Speichern wird die Fehlermeldung \"Ressource 404 kann nicht gefunden werden\" angezeigt",
         "Alors pas de soucis tout est bien sauvé, c'est juste la synchronisation automatique qui n'est pas faites": "Keine Sorge, alles wird gespeichert, es wird nur die automatische Synchronisierung nicht durchgeführt",
         "Pour la faire dites \"Synchroniser mes appareils\" à votre assistant": "Damit Ihr Assistent \"Meine Geräte synchronisieren\" anzeigt",
