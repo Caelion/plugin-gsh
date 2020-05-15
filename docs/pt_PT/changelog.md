@@ -4,6 +4,10 @@
 >
 >Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto
 
+# 15/05/2020
+
+- Mudando para novos servidores (atualização necessária para poder adicionar / remover novos equipamentos)
+
 # 05/07/2020
 
 - Instalação aprimorada de dependências

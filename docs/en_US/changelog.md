@@ -4,6 +4,10 @@
 >
 >As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text
 
+# 05/15/2020
+
+- Switching to new servers (update required to be able to add / remove new equipment)
+
 # 05/07/2020
 
 - Improved installation of outbuildings

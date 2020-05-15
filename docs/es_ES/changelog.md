@@ -4,6 +4,10 @@
 >
 >Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto
 
+# 15/05/2020
+
+- Cambiar a nuevos servidores (se requiere actualización para poder agregar / eliminar nuevos equipos)
+
 # 07/05/2020
 
 - Instalación mejorada de dependencias

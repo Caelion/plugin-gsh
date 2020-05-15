@@ -30,7 +30,7 @@ Es kann auf zwei Arten funktionieren :
 > **Wichtig**
 >
 > Wenn Sie eine Fehlermeldung erhalten, die Sie darüber informiert, dass Ihr Benutzerkennwort nicht korrekt ist oder nicht, müssen Sie dies tun :
-> - Überprüfen Sie, ob Amazon Alexa auf dem Markt aktiv ist
+> - Überprüfen Sie, ob Google Home auf dem Markt aktiv ist
 > - Wenn dies der Fall ist, achten Sie auf Ihre Anmeldeinformationen (Aufmerksamkeit, die Sie in Groß- / Kleinschreibung beachten müssen) ?
 > - Wenn dies der Fall ist, ändern Sie Ihr Passwort auf dem Markt und haben Sie es bei der Konfiguration des Sprachassistenten-Dienstes (Registerkarte Marktprofile Seite Meine Dienste) gespeichert
 

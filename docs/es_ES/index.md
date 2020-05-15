@@ -30,7 +30,7 @@ Puede funcionar de 2 maneras :
 > **Importante**
 >
 > Si tiene un mensaje de error que le indica que su contraseña de usuario o no es correcta, debe :
-> - compruebe que Amazon Alexa esté activa en el mercado
+> - comprobar que Google Home está activo en el mercado
 > - Si este es el caso, asegúrese de sus credenciales (atención debe respetar mayúsculas / minúsculas) ?
 > - si este es el caso, cambie su contraseña en el mercado y en la configuración del servicio de asistente de voz (pestaña de página de perfiles de mercado mis servicios) guarde
 

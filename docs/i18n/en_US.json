@@ -2,6 +2,8 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Changelog Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text",
+        "15\/05\/2020": "05\/15\/2020",
+        "Passage sur les nouveaux serveurs (mise à jour obligatoire pour pouvoir ajouter\/supprimer de nouveaux équipements)": "Switching to new servers (update required to be able to add \/ remove new equipment)",
         "07\/05\/2020": "05\/07\/2020",
         "Amélioration de l'installation des dependances": "Improved installation of outbuildings",
         "04\/05\/2020": "05\/04\/2020",
@@ -91,7 +93,7 @@
         "Mode cloud": "Cloud mode",
         "Il est important de faire les étapes suivantes dans l'ordre indiqué": "It is important to do the following steps in the order listed",
         "Si vous avez un message d'erreur vous indiquants que votre mot de passe ou non d'utilisateur n'est pas bon il faut": "If you have an error message telling you that your user password or not is not correct you must",
-        "vérifier qu'Amazon Alexa est bien en actif sur le market": "check that Amazon Alexa is active in the market",
+        "vérifier que Google Home est bien en actif sur le market": "check that Google Home is active on the market",
         "si c'est bien le cas, etês vous sur de vos identifiants (attention il faut respecter majuscule\/minuscule)": "if this is the case, be sure of your credentials (attention you must respect upper \/ lower case)",
         "si c'est le cas changer votre mot de passe sur le market et sur la configuration du service d'assistant vocal (page profils du market onglet mes services) faire sauvegarder": "if this is the case change your password on the market and on the configuration of the voice assistant service (market profiles page tab my services) have it saved",
         "Après l'installation du plugin, il vous suffit d'aller sur la configuration du plugin, de selectionner le mode Cloud puis de cliquer sur \"Envoyer\" (cela va envoyer les informations de connexion à l'api du plugin sur le market)": "After installing the plugin, you just need to go to the configuration of the plugin, select the Cloud mode then click on \"Send\" (this will send the connection information to the plugin API on the market)",

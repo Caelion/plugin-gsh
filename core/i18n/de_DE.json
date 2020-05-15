@@ -107,6 +107,7 @@
     "plugins\/gsh\/core\/class\/gsh.class.php": {
         "Veuillez vérifier la configuration": "Bitte überprüfen Sie die Konfiguration",
         "Erreur sur la demande de synchronisation :": "Fehler bei Synchronisationsanforderung:",
+        "Erreur sur la demande de remonté d\\'état :": "Fehler bei der Statusanforderung:",
         "JWT aucun token : ": "JWT kein Token:"
     },
     "plugins\/gsh\/core\/class\/gsh_blinds.class.php": {
