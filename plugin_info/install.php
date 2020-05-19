@@ -61,15 +61,6 @@ function gsh_update() {
 		config::save('gshs::useragent', 'gsh-' . config::genKey(10), 'gsh');
 	}
 	jeedom::getApiKey('gsh');
-	$devices = gsh_devices::all(true);
-	foreach ($devices as $device) {
-		try {
-			$device->setOptions('reportState',0);
-			$device->save();
-		} catch (\Exception $e) {
-			
-		}
-	}
 	try {
 		gsh::sendJeedomConfig();
 	} catch (\Exception $e) {

@@ -44,7 +44,7 @@ class gsh_valve {
 		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => $_device->getPseudo());
 		$return['traits'] = array();
 		$return['attributes'] = array();
-		$return['willReportState'] = ($_device->getOptions('reportState') == 1);
+		$return['willReportState'] = ($_device->getOptions('reportState::enable') == 1);
 		foreach ($eqLogic->getCmd() as $cmd) {
 			if (in_array($cmd->getGeneric_type(), self::$_ON)) {
 				if (!in_array('action.devices.traits.OpenClose', $return['traits'])) {

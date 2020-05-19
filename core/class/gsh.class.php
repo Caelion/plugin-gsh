@@ -168,22 +168,6 @@ class gsh extends eqLogic {
 			if(!isset($result['state']) || $result['state'] != 'ok'){
 				throw new \Exception(__('Erreur sur la demande de synchronisation :',__FILE__).' '.json_encode($result));
 			}
-			for($i=1;$i<10;$i++){
-				$devices = self::sync($i);
-				if(!isset($devices['endpoints']) || count($devices['endpoints']) == 0){
-					continue;
-				}
-				$request_http = new com_http('https://cloud.jeedom.com/service/googlehome');
-				$request_http->setHeader(array(
-					'Content-Type: application/json',
-					'Autorization: '.sha512(strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))
-				));
-				$request_http->setPost(json_encode(array('action' => 'sync')));
-				$result = json_decode($request_http->exec(30),true);
-				if(!isset($result['state']) || $result['state'] != 'ok'){
-					throw new \Exception(__('Erreur sur la demande de synchronisation :',__FILE__).' '.json_encode($result));
-				}
-			}
 		} else {
 			$request_http = new com_http('https://homegraph.googleapis.com/v1/devices:requestSync?key=' . config::byKey('gshs::googleapikey', 'gsh'));
 			$request_http->setPost(json_encode(array('agent_user_id' => config::byKey('gshs::useragent', 'gsh'),'async' => true)));

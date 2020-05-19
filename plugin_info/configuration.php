@@ -70,6 +70,12 @@ if (init('result_code') == 'FAILURE') {
 				<a class="btn btn-default" id="bt_sendConfigToMarket"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{Envoyer}}</a>
 			</div>
 		</div>
+		<div class="form-group gshmode jeedom">
+			<label class="col-lg-3 control-label">{{Activer l'éxecution local}}</label>
+			<div class="col-lg-2">
+				<input type="checkbox" class="configKey" data-l1key="gshs::allowLocalApi" />
+			</div>
+		</div>
 	</fieldset>
 </form>
 <div class='row gshmode internal'>
