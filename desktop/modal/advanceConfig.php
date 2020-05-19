@@ -46,7 +46,7 @@ sendVarToJs('device', utils::o2a($device));
 			<div class="form-group has-error">
 				<label class="col-sm-3 control-label">{{Pousser l'état}}</label>
 				<div class="col-sm-1">
-					<input type="checkbox" class="deviceAttr" data-l1key="options" data-l2key="reportState" />
+					<input type="checkbox" class="deviceAttr" data-l1key="options" data-l2key="reportState::enable" />
 				</div>
 				<div class="alert alert-danger col-sm-8">
 					{{Attention cela ne change absolument pas le fonctionnement du plugin}} (<?php echo config::byKey('product_name'); ?> {{pousse l'information de l'état des modules au lieu d'attendre la demande de Google) par contre ca peut ralentir votre}} <?php echo config::byKey('product_name'); ?>

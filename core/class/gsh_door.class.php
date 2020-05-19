@@ -40,7 +40,7 @@ class gsh_door {
 		}
 		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => $_device->getPseudo(), 'defaultNames' => $_device->getPseudo());
 		$return['customData'] = array();
-		$return['willReportState'] = ($_device->getOptions('reportState') == 1);
+		$return['willReportState'] = ($_device->getOptions('reportState::enable') == 1);
 		$return['traits'] = array();
 		$return['attributes'] = array();
 		foreach ($eqLogic->getCmd() as $cmd) {

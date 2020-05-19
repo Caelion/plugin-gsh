@@ -38,7 +38,7 @@ class gsh_thermostat {
 		}
 		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => $_device->getPseudo(), 'defaultNames' => $_device->getPseudo());
 		$return['customData'] = array();
-		$return['willReportState'] = ($_device->getOptions('reportState') == 1);
+		$return['willReportState'] = ($_device->getOptions('reportState::enable') == 1);
 		$return['traits'] = array();
 		$modes = '';
 		if ($_device->getOptions('thermostat::heat') != '') {
