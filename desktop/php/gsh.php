@@ -48,7 +48,7 @@ if (!isConnect('admin')) {
 							echo '<div class="col-lg-6">';
 							echo '<select class="deviceAttr form-control input-sm" data-l1key="options" data-l2key="challenge">';
 							echo '<option value="">{{Aucune}}</option>';
-							//echo '<option value="ackNeeded">{{Validation}}</option>';
+							echo '<option value="ackNeeded">{{Validation}}</option>';
 							echo '<option value="pinNeeded">{{Code}}</option>';
 							echo '</select>';
 							echo '</div>';
