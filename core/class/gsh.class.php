@@ -248,395 +248,404 @@ class gsh extends eqLogic {
 							'type' => 'ackNeeded'
 						)));
 					}else if($device->getOptions('challenge') == 'pinNeeded' && (!isset($command['execution'][0]['challenge']) || !isset($command['execution'][0]['challenge']['pin']) ||  $device->getOptions('challenge_pin')  == '' || $device->getOptions('challenge_pin') != $command['execution'][0]['challenge']['pin'])){
-						if( $device->getOptions('challenge_pin') == ''){
-							$result = array_merge($result,array(
-								'status' => 'ERROR',
-								'errorCode' => 'challengeFailedNotSetup '
-							));
-						}else{
+						if(isset($command['execution'][0]['challenge']) && $device->getOptions('challenge_pin') != $command['execution'][0]['challenge']['pin']){
 							$result = array_merge($result,array(
 								'status' => 'ERROR',
 								'errorCode' => 'challengeNeeded',
 								'challengeNeeded' => array(
-									'type' => 'pinNeeded'
+									'type' => 'challengeFailedPinNeeded'
 								)));
+							}else{
+								if( $device->getOptions('challenge_pin') == ''){
+									$result = array_merge($result,array(
+										'status' => 'ERROR',
+										'errorCode' => 'challengeFailedNotSetup'
+									));
+								}else{
+									$result = array_merge($result,array(
+										'status' => 'ERROR',
+										'errorCode' => 'challengeNeeded',
+										'challengeNeeded' => array(
+											'type' => 'pinNeeded'
+										)));
+									}
+								}
+							}else{
+								$result = array_merge($result, $device->exec($command['execution'], $infos));
 							}
-						}else{
-							$result = array_merge($result, $device->exec($command['execution'], $infos));
+							$return['commands'][] = $result;
 						}
-						$return['commands'][] = $result;
 					}
+					return $return;
 				}
-				return $return;
-			}
-			
-			public static function query($_data) {
-				$return = array('devices' => array());
-				foreach ($_data['devices'] as $infos) {
-					$return['devices'][$infos['id']] = array();
-					if($infos['id'] == 'fake-jeedom-local'){
-						$return['devices'][$infos['id']] = array('on' => true);
-						continue;
+				
+				public static function query($_data) {
+					$return = array('devices' => array());
+					foreach ($_data['devices'] as $infos) {
+						$return['devices'][$infos['id']] = array();
+						if($infos['id'] == 'fake-jeedom-local'){
+							$return['devices'][$infos['id']] = array('on' => true);
+							continue;
+						}
+						$device = gsh_devices::byLinkTypeLinkId('eqLogic', $infos['id']);
+						if (!is_object($device)) {
+							$return['devices'][$infos['id']] = array('status' => 'ERROR');
+							continue;
+						}
+						if ($device->getEnable() == 0) {
+							$return['devices'][$infos['id']] = array('status' => 'OFFLINE');
+							continue;
+						}
+						$return['devices'][$infos['id']] = $device->query($infos);
 					}
-					$device = gsh_devices::byLinkTypeLinkId('eqLogic', $infos['id']);
+					return $return;
+				}
+				
+				public static function reportState($_options) {
+					$cmd = cmd::byId($_options['event_id']);
+					if (!is_object($cmd)) {
+						return;
+					}
+					$device = gsh_devices::byLinkTypeLinkId('eqLogic', $cmd->getEqLogic_id());
 					if (!is_object($device)) {
-						$return['devices'][$infos['id']] = array('status' => 'ERROR');
-						continue;
+						return;
 					}
-					if ($device->getEnable() == 0) {
-						$return['devices'][$infos['id']] = array('status' => 'OFFLINE');
-						continue;
+					if($device->getType() == 'action.devices.types.SENSOR'){
+						return;
 					}
-					$return['devices'][$infos['id']] = $device->query($infos);
-				}
-				return $return;
-			}
-			
-			public static function reportState($_options) {
-				$cmd = cmd::byId($_options['event_id']);
-				if (!is_object($cmd)) {
-					return;
-				}
-				$device = gsh_devices::byLinkTypeLinkId('eqLogic', $cmd->getEqLogic_id());
-				if (!is_object($device)) {
-					return;
-				}
-				if($device->getType() == 'action.devices.types.SENSOR'){
-					return;
-				}
-				$return = array(
-					'requestId' => config::genKey(),
-					'agentUserId' => config::byKey('gshs::useragent', 'gsh'),
-					'payload' => array(
-						'devices' => array(
-							'states' => array(
-								$cmd->getEqLogic_id() => $device->query(json_decode($device->getOptions('build'), true)),
+					$return = array(
+						'requestId' => config::genKey(),
+						'agentUserId' => config::byKey('gshs::useragent', 'gsh'),
+						'payload' => array(
+							'devices' => array(
+								'states' => array(
+									$cmd->getEqLogic_id() => $device->query(json_decode($device->getOptions('build'), true)),
+								),
 							),
 						),
-					),
-				);
-				if ($device->getCache('lastState') == json_encode($return['payload']['devices']['states'][$cmd->getEqLogic_id()])) {
-					return;
-				}
-				$device->setCache('lastState', json_encode($return['payload']['devices']['states'][$cmd->getEqLogic_id()]));
-				log::add('gsh', 'debug', 'Report state : ' . json_encode($return));
-				if (config::byKey('mode', 'gsh') == 'jeedom') {
-					$request_http = new com_http('https://cloud.jeedom.com/service/googlehome');
-					$request_http->setHeader(array(
-						'Content-Type: application/json',
-						'Autorization: '.sha512(strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))
-					));
-					$request_http->setPost(json_encode(array('action' => 'reportState','data' => json_encode($return))));
-					$result = json_decode($request_http->exec(30),true);
-					if(!isset($result['state']) || $result['state'] != 'ok'){
-						throw new \Exception(__('Erreur sur la demande de remonté d\'état :',__FILE__).' '.json_encode($result));
+					);
+					if ($device->getCache('lastState') == json_encode($return['payload']['devices']['states'][$cmd->getEqLogic_id()])) {
+						return;
 					}
-				} else {
-					$request_http = new com_http('https://homegraph.googleapis.com/v1/devices:reportStateAndNotification');
-					$request_http->setHeader(array(
-						'Authorization: Bearer ' . self::jwt(),
-						'X-GFE-SSL: yes',
-						'Content-Type: application/json',
-					));
-					$request_http->setPost(json_encode($return));
-					$result = $request_http->exec(30);
-					
-					if (!is_json($result)) {
-						throw new Exception($result);
-					}
-					$result = json_decode($result, true);
-					if (isset($result['error'])) {
-						throw new Exception($result['error']['message'] . ' => ' . json_encode($return));
-					}
-				}
-			}
-			
-			public static function jwt() {
-				$prevToken = cache::byKey('gsh::jwt:token');
-				if ($prevToken->getValue() != '' && is_array($prevToken->getValue())) {
-					$token = $prevToken->getValue();
-					if (isset($token['token']) && isset($token['exp']) && $token['exp'] > (strtotime('now') + 60)) {
-						return $token['token'];
+					$device->setCache('lastState', json_encode($return['payload']['devices']['states'][$cmd->getEqLogic_id()]));
+					log::add('gsh', 'debug', 'Report state : ' . json_encode($return));
+					if (config::byKey('mode', 'gsh') == 'jeedom') {
+						$request_http = new com_http('https://cloud.jeedom.com/service/googlehome');
+						$request_http->setHeader(array(
+							'Content-Type: application/json',
+							'Autorization: '.sha512(strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))
+						));
+						$request_http->setPost(json_encode(array('action' => 'reportState','data' => json_encode($return))));
+						$result = json_decode($request_http->exec(30),true);
+						if(!isset($result['state']) || $result['state'] != 'ok'){
+							throw new \Exception(__('Erreur sur la demande de remonté d\'état :',__FILE__).' '.json_encode($result));
+						}
+					} else {
+						$request_http = new com_http('https://homegraph.googleapis.com/v1/devices:reportStateAndNotification');
+						$request_http->setHeader(array(
+							'Authorization: Bearer ' . self::jwt(),
+							'X-GFE-SSL: yes',
+							'Content-Type: application/json',
+						));
+						$request_http->setPost(json_encode($return));
+						$result = $request_http->exec(30);
+						
+						if (!is_json($result)) {
+							throw new Exception($result);
+						}
+						$result = json_decode($result, true);
+						if (isset($result['error'])) {
+							throw new Exception($result['error']['message'] . ' => ' . json_encode($return));
+						}
 					}
 				}
-				$now = strtotime('now');
-				$token = array(
-					'iat' => $now,
-					'exp' => $now + 3600,
-					'scope' => 'https://www.googleapis.com/auth/homegraph',
-					'iss' => config::byKey('gshs::jwtclientmail', 'gsh'),
-					'aud' => 'https://accounts.google.com/o/oauth2/token',
-				);
-				$jwt = JWT::encode($token, str_replace('\n', "\n", config::byKey('gshs::jwtprivkey', 'gsh')), 'RS256');
-				$request_http = new com_http('https://accounts.google.com/o/oauth2/token');
-				$request_http->setHeader(array('content-type : application/x-www-form-urlencoded'));
-				$request_http->setPost('grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=' . $jwt);
-				$result = is_json($request_http->exec(30), array());
-				if (!isset($result['access_token'])) {
-					throw new Exception(__('JWT aucun token : ', __FILE__) . json_encode($result));
+				
+				public static function jwt() {
+					$prevToken = cache::byKey('gsh::jwt:token');
+					if ($prevToken->getValue() != '' && is_array($prevToken->getValue())) {
+						$token = $prevToken->getValue();
+						if (isset($token['token']) && isset($token['exp']) && $token['exp'] > (strtotime('now') + 60)) {
+							return $token['token'];
+						}
+					}
+					$now = strtotime('now');
+					$token = array(
+						'iat' => $now,
+						'exp' => $now + 3600,
+						'scope' => 'https://www.googleapis.com/auth/homegraph',
+						'iss' => config::byKey('gshs::jwtclientmail', 'gsh'),
+						'aud' => 'https://accounts.google.com/o/oauth2/token',
+					);
+					$jwt = JWT::encode($token, str_replace('\n', "\n", config::byKey('gshs::jwtprivkey', 'gsh')), 'RS256');
+					$request_http = new com_http('https://accounts.google.com/o/oauth2/token');
+					$request_http->setHeader(array('content-type : application/x-www-form-urlencoded'));
+					$request_http->setPost('grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=' . $jwt);
+					$result = is_json($request_http->exec(30), array());
+					if (!isset($result['access_token'])) {
+						throw new Exception(__('JWT aucun token : ', __FILE__) . json_encode($result));
+					}
+					cache::set('gsh::jwt:token', array('token' => $result['access_token'], 'exp' => $token['exp']));
+					return $result['access_token'];
 				}
-				cache::set('gsh::jwt:token', array('token' => $result['access_token'], 'exp' => $token['exp']));
-				return $result['access_token'];
+				
+				/*     * *********************Méthodes d'instance************************* */
+				
+				/*     * **********************Getteur Setteur*************************** */
 			}
 			
-			/*     * *********************Méthodes d'instance************************* */
+			class gshCmd extends cmd {
+				/*     * *************************Attributs****************************** */
+				
+				/*     * ***********************Methode static*************************** */
+				
+				/*     * *********************Methode d'instance************************* */
+				
+				/*     * **********************Getteur Setteur*************************** */
+			}
 			
-			/*     * **********************Getteur Setteur*************************** */
-		}
-		
-		class gshCmd extends cmd {
-			/*     * *************************Attributs****************************** */
-			
-			/*     * ***********************Methode static*************************** */
-			
-			/*     * *********************Methode d'instance************************* */
-			
-			/*     * **********************Getteur Setteur*************************** */
-		}
-		
-		class gsh_devices {
-			/*     * *************************Attributs****************************** */
-			
-			private $id;
-			private $enable;
-			private $link_type;
-			private $link_id;
-			private $type;
-			private $options;
-			private $_cache = null;
-			private $_link = null;
-			private $_cmds = null;
-			private $_changed = false;
-			
-			/*     * ***********************Methode static*************************** */
-			
-			public static function all($_onlyEnable = false) {
-				$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-				FROM gsh_devices';
-				if ($_onlyEnable) {
-					$sql .= ' WHERE enable=1';
+			class gsh_devices {
+				/*     * *************************Attributs****************************** */
+				
+				private $id;
+				private $enable;
+				private $link_type;
+				private $link_id;
+				private $type;
+				private $options;
+				private $_cache = null;
+				private $_link = null;
+				private $_cmds = null;
+				private $_changed = false;
+				
+				/*     * ***********************Methode static*************************** */
+				
+				public static function all($_onlyEnable = false) {
+					$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+					FROM gsh_devices';
+					if ($_onlyEnable) {
+						$sql .= ' WHERE enable=1';
+					}
+					return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 				}
-				return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-			}
-			
-			public static function byId($_id) {
-				$values = array(
-					'id' => $_id,
-				);
-				$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-				FROM gsh_devices
-				WHERE id=:id';
-				return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-			}
-			
-			public static function byLinkTypeLinkId($_link_type, $_link_id) {
-				$values = array(
-					'link_type' => $_link_type,
-					'link_id' => $_link_id,
-				);
-				$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-				FROM gsh_devices
-				WHERE link_type=:link_type
-				AND link_id=:link_id';
-				return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-			}
-			
-			/*     * ***********************Methode utils*************************** */
-			
-			public function traitsModeBuildSetting($_name,$_synonyms,$_lang = 'fr'){
-				return array(
-					'setting_name'=> $_name,
-					'setting_values' => array(array('setting_synonym'=> $_synonyms,'lang'=> $_lang))
-				);
-			}
-			
-			/*     * *********************Methode d'instance************************* */
-			
-			public function preSave() {
-				if ($this->getEnable() == 0) {
-					$this->setOptions('configState', '');
-					$this->removeListener();
+				
+				public static function byId($_id) {
+					$values = array(
+						'id' => $_id,
+					);
+					$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+					FROM gsh_devices
+					WHERE id=:id';
+					return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 				}
-			}
-			
-			public function save() {
-				return DB::save($this);
-			}
-			
-			public function remove() {
-				DB::remove($this);
-			}
-			
-			public function getLink() {
-				if ($this->_link != null) {
+				
+				public static function byLinkTypeLinkId($_link_type, $_link_id) {
+					$values = array(
+						'link_type' => $_link_type,
+						'link_id' => $_link_id,
+					);
+					$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+					FROM gsh_devices
+					WHERE link_type=:link_type
+					AND link_id=:link_id';
+					return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+				}
+				
+				/*     * ***********************Methode utils*************************** */
+				
+				public function traitsModeBuildSetting($_name,$_synonyms,$_lang = 'fr'){
+					return array(
+						'setting_name'=> $_name,
+						'setting_values' => array(array('setting_synonym'=> $_synonyms,'lang'=> $_lang))
+					);
+				}
+				
+				/*     * *********************Methode d'instance************************* */
+				
+				public function preSave() {
+					if ($this->getEnable() == 0) {
+						$this->setOptions('configState', '');
+						$this->removeListener();
+					}
+				}
+				
+				public function save() {
+					return DB::save($this);
+				}
+				
+				public function remove() {
+					DB::remove($this);
+				}
+				
+				public function getLink() {
+					if ($this->_link != null) {
+						return $this->_link;
+					}
+					if ($this->getLink_type() == 'eqLogic') {
+						$this->_link = eqLogic::byId($this->getLink_id());
+					}
 					return $this->_link;
 				}
-				if ($this->getLink_type() == 'eqLogic') {
-					$this->_link = eqLogic::byId($this->getLink_id());
-				}
-				return $this->_link;
-			}
-			
-			public function buildDevice() {
-				if (!isset(gsh::$_supportedType[$this->getType()])) {
-					return array();
-				}
-				$class = gsh::$_supportedType[$this->getType()]['class'];
-				if (!class_exists($class)) {
-					return array();
-				}
-				if ($this->getLink_type() == 'eqLogic') {
-					$eqLogic = $this->getLink();
-					if(!is_object($eqLogic) || $eqLogic->getIsEnable() == 0){
+				
+				public function buildDevice() {
+					if (!isset(gsh::$_supportedType[$this->getType()])) {
 						return array();
 					}
+					$class = gsh::$_supportedType[$this->getType()]['class'];
+					if (!class_exists($class)) {
+						return array();
+					}
+					if ($this->getLink_type() == 'eqLogic') {
+						$eqLogic = $this->getLink();
+						if(!is_object($eqLogic) || $eqLogic->getIsEnable() == 0){
+							return array();
+						}
+					}
+					return $class::buildDevice($this);
 				}
-				return $class::buildDevice($this);
-			}
-			
-			public function exec($_execution, $_infos) {
-				if (!isset(gsh::$_supportedType[$this->getType()])) {
-					return;
+				
+				public function exec($_execution, $_infos) {
+					if (!isset(gsh::$_supportedType[$this->getType()])) {
+						return;
+					}
+					$class = gsh::$_supportedType[$this->getType()]['class'];
+					if (!class_exists($class)) {
+						return array();
+					}
+					$result = $class::exec($this, $_execution, $_infos);
+					return $result;
 				}
-				$class = gsh::$_supportedType[$this->getType()]['class'];
-				if (!class_exists($class)) {
-					return array();
+				
+				public function query($_infos) {
+					if (!isset(gsh::$_supportedType[$this->getType()])) {
+						return;
+					}
+					$class = gsh::$_supportedType[$this->getType()]['class'];
+					if (!class_exists($class)) {
+						return array();
+					}
+					$result = $class::query($this, $_infos);
+					if (isset($result['status']) && $result['status'] == 'SUCCESS') {
+						$this->setCache('lastState', json_encode($result['state']));
+					}
+					return $result;
 				}
-				$result = $class::exec($this, $_execution, $_infos);
-				return $result;
-			}
-			
-			public function query($_infos) {
-				if (!isset(gsh::$_supportedType[$this->getType()])) {
-					return;
+				
+				public function getPseudo() {
+					$eqLogic = $this->getLink();
+					$pseudo = array(trim($eqLogic->getName()), trim($eqLogic->getName()) . 's');
+					if ($this->getOptions('pseudo') != '') {
+						$pseudo = explode(',', $this->getOptions('pseudo'));
+					}
+					if (is_object($eqLogic->getObject())) {
+						$pseudo[] = $eqLogic->getName().' '.$eqLogic->getObject()->getName();
+					}
+					return $pseudo;
 				}
-				$class = gsh::$_supportedType[$this->getType()]['class'];
-				if (!class_exists($class)) {
-					return array();
+				
+				public function addListener() {
+					if ($this->getLink_type() != 'eqLogic') {
+						return;
+					}
+					$eqLogic = $this->getLink();
+					$listener = listener::byClassAndFunction('gsh', 'reportState', array('eqLogic_id' => intval($eqLogic->getId())));
+					if (!is_object($listener)) {
+						$listener = new listener();
+					}
+					$listener->setClass('gsh');
+					$listener->setFunction('reportState');
+					$listener->setOption(array('eqLogic_id' => intval($eqLogic->getId())));
+					$listener->emptyEvent();
+					foreach ($eqLogic->getCmd('info') as $cmd) {
+						$listener->addEvent($cmd->getId());
+					}
+					$listener->save();
 				}
-				$result = $class::query($this, $_infos);
-				if (isset($result['status']) && $result['status'] == 'SUCCESS') {
-					$this->setCache('lastState', json_encode($result['state']));
+				
+				public function removeListener() {
+					if ($this->getLink_type() != 'eqLogic') {
+						return;
+					}
+					$listener = listener::byClassAndFunction('gsh', 'reportState', array('eqLogic_id' => intval($this->getLink_id())));
+					if (is_object($listener)) {
+						$listener->remove();
+					}
 				}
-				return $result;
-			}
-			
-			public function getPseudo() {
-				$eqLogic = $this->getLink();
-				$pseudo = array(trim($eqLogic->getName()), trim($eqLogic->getName()) . 's');
-				if ($this->getOptions('pseudo') != '') {
-					$pseudo = explode(',', $this->getOptions('pseudo'));
+				
+				/*     * **********************Getteur Setteur*************************** */
+				public function getId() {
+					return $this->id;
 				}
-				if (is_object($eqLogic->getObject())) {
-					$pseudo[] = $eqLogic->getName().' '.$eqLogic->getObject()->getName();
+				
+				public function setId($_id) {
+					$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
+					$this->id = $_id;
 				}
-				return $pseudo;
-			}
-			
-			public function addListener() {
-				if ($this->getLink_type() != 'eqLogic') {
-					return;
+				
+				public function getEnable() {
+					return $this->enable;
 				}
-				$eqLogic = $this->getLink();
-				$listener = listener::byClassAndFunction('gsh', 'reportState', array('eqLogic_id' => intval($eqLogic->getId())));
-				if (!is_object($listener)) {
-					$listener = new listener();
+				
+				public function setEnable($_enable) {
+					$this->_changed = utils::attrChanged($this->_changed,$this->enable,$_enable);
+					$this->enable = $_enable;
 				}
-				$listener->setClass('gsh');
-				$listener->setFunction('reportState');
-				$listener->setOption(array('eqLogic_id' => intval($eqLogic->getId())));
-				$listener->emptyEvent();
-				foreach ($eqLogic->getCmd('info') as $cmd) {
-					$listener->addEvent($cmd->getId());
+				
+				public function getlink_type() {
+					return $this->link_type;
 				}
-				$listener->save();
-			}
-			
-			public function removeListener() {
-				if ($this->getLink_type() != 'eqLogic') {
-					return;
+				
+				public function setLink_type($_link_type) {
+					$this->_changed = utils::attrChanged($this->_changed,$this->link_type,$_link_type);
+					$this->link_type = $_link_type;
 				}
-				$listener = listener::byClassAndFunction('gsh', 'reportState', array('eqLogic_id' => intval($this->getLink_id())));
-				if (is_object($listener)) {
-					$listener->remove();
+				
+				public function getLink_id() {
+					return $this->link_id;
+				}
+				
+				public function setLink_id($_link_id) {
+					$this->_changed = utils::attrChanged($this->_changed,$this->link_id,$_link_id);
+					$this->link_id = $_link_id;
+				}
+				
+				public function getType() {
+					return $this->type;
+				}
+				
+				public function setType($_type) {
+					$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
+					$this->type = $_type;
+				}
+				
+				public function getOptions($_key = '', $_default = '') {
+					return utils::getJsonAttr($this->options, $_key, $_default);
+				}
+				
+				public function setOptions($_key, $_value) {
+					$options = utils::setJsonAttr($this->options, $_key, $_value);
+					$this->_changed = utils::attrChanged($this->_changed,$this->options,$options);
+					$this->options = $options;
+				}
+				
+				public function getCache($_key = '', $_default = '') {
+					if ($this->_cache == null) {
+						$this->_cache = cache::byKey('gshDeviceCache' . $this->getId())->getValue();
+					}
+					return utils::getJsonAttr($this->_cache, $_key, $_default);
+				}
+				
+				public function setCache($_key, $_value = null) {
+					$this->_cache = utils::setJsonAttr(cache::byKey('gshDeviceCache' . $this->getId())->getValue(), $_key, $_value);
+					cache::set('gshDeviceCache' . $this->getId(), $this->_cache);
+				}
+				
+				public function getChanged() {
+					return $this->_changed;
+				}
+				
+				public function setChanged($_changed) {
+					$this->_changed = $_changed;
+					return $this;
 				}
 			}
 			
-			/*     * **********************Getteur Setteur*************************** */
-			public function getId() {
-				return $this->id;
-			}
-			
-			public function setId($_id) {
-				$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
-				$this->id = $_id;
-			}
-			
-			public function getEnable() {
-				return $this->enable;
-			}
-			
-			public function setEnable($_enable) {
-				$this->_changed = utils::attrChanged($this->_changed,$this->enable,$_enable);
-				$this->enable = $_enable;
-			}
-			
-			public function getlink_type() {
-				return $this->link_type;
-			}
-			
-			public function setLink_type($_link_type) {
-				$this->_changed = utils::attrChanged($this->_changed,$this->link_type,$_link_type);
-				$this->link_type = $_link_type;
-			}
-			
-			public function getLink_id() {
-				return $this->link_id;
-			}
-			
-			public function setLink_id($_link_id) {
-				$this->_changed = utils::attrChanged($this->_changed,$this->link_id,$_link_id);
-				$this->link_id = $_link_id;
-			}
-			
-			public function getType() {
-				return $this->type;
-			}
-			
-			public function setType($_type) {
-				$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
-				$this->type = $_type;
-			}
-			
-			public function getOptions($_key = '', $_default = '') {
-				return utils::getJsonAttr($this->options, $_key, $_default);
-			}
-			
-			public function setOptions($_key, $_value) {
-				$options = utils::setJsonAttr($this->options, $_key, $_value);
-				$this->_changed = utils::attrChanged($this->_changed,$this->options,$options);
-				$this->options = $options;
-			}
-			
-			public function getCache($_key = '', $_default = '') {
-				if ($this->_cache == null) {
-					$this->_cache = cache::byKey('gshDeviceCache' . $this->getId())->getValue();
-				}
-				return utils::getJsonAttr($this->_cache, $_key, $_default);
-			}
-			
-			public function setCache($_key, $_value = null) {
-				$this->_cache = utils::setJsonAttr(cache::byKey('gshDeviceCache' . $this->getId())->getValue(), $_key, $_value);
-				cache::set('gshDeviceCache' . $this->getId(), $this->_cache);
-			}
-			
-			public function getChanged() {
-				return $this->_changed;
-			}
-			
-			public function setChanged($_changed) {
-				$this->_changed = $_changed;
-				return $this;
-			}
-		}
-		
