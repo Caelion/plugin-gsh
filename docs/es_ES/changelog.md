@@ -4,8 +4,11 @@
 >
 >Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto
 
+# 25/05/2020
+
 - Corrección de un problema de devolución si hay un código para el pedido y es malo
 - Opción agregada para pedir confirmación a Google al realizar el pedido.
+- Supresión de un mensaje de error falso al guardar
 
 # 15/05/2020
 
