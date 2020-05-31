@@ -4,8 +4,11 @@
 >
 >As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text
 
+# 05/25/2020
+
 - Correction of a return problem if there is a code for the order and it is bad
 - Added option to ask google for confirmation when ordering.
+- Suppression of a false error message when saving
 
 # 05/15/2020
 

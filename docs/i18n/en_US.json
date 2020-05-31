@@ -2,8 +2,10 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Changelog Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text",
+        "25\/05\/2020": "05\/25\/2020",
         "Correction d'un soucis de retour si il y a un code pour la commande et que celui-ci est mauvais": "Correction of a return problem if there is a code for the order and it is bad",
         "Ajout d'une option pour demander à google une confirmation lors d'une commande": "Added option to ask google for confirmation when ordering",
+        "Suppression d'un faux message d'erreur lors de la sauvegarde": "Suppression of a false error message when saving",
         "15\/05\/2020": "05\/15\/2020",
         "Activation par défaut du local home execution": "Default activation of local home execution",
         "Passage sur les nouveaux serveurs (mise à jour obligatoire pour pouvoir ajouter\/supprimer de nouveaux équipements": "Switching to new servers (update required to be able to add \/ remove new equipment",

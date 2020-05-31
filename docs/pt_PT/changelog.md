@@ -4,8 +4,11 @@
 >
 >Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto
 
+# 25/05/2020
+
 - Correção de um problema de devolução se houver um código para o pedido e estiver incorreto
 - Adicionada opção para solicitar ao Google confirmação ao fazer o pedido.
+- Supressão de uma mensagem de erro falsa ao salvar
 
 # 15/05/2020
 

@@ -4,8 +4,11 @@
 >
 >Zur Erinnerung: Wenn keine Informationen zum Update vorhanden sind, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt
 
+# 25.05.2020
+
 - Korrektur eines Rückgabeproblems, wenn es einen Code für die Bestellung gibt und dieser schlecht ist
 - Option hinzugefügt, um Google bei der Bestellung um Bestätigung zu bitten.
+- Unterdrückung einer falschen Fehlermeldung beim Speichern
 
 # 15.05.2020
 
