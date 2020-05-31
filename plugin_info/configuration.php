@@ -34,8 +34,8 @@ if (init('result_code') == 'FAILURE') {
 		?>
 		<legend>{{Serveur Google smarthome}}</legend>
 		<div class="form-group">
-			<label class="col-lg-3 control-label">{{Mode}}</label>
-			<div class="col-lg-2">
+			<label class="col-sm-3 control-label">{{Mode}}</label>
+			<div class="col-sm-2">
 				<select class="form-control configKey" data-l1key="mode">
 					<option value="jeedom">{{Cloud}}</option>
 					<option value="internal">{{Standalone}}</option>
@@ -46,8 +46,8 @@ if (init('result_code') == 'FAILURE') {
 			<?php
 			try {
 				$info =	gsh::voiceAssistantInfo();
-				echo '<label class="col-lg-3 control-label">{{Abonnement service assistant vocaux}}</label>';
-				echo '<div class="col-lg-9">';
+				echo '<label class="col-sm-3 control-label">{{Abonnement service assistant vocaux}}</label>';
+				echo '<div class="col-sm-9">';
 				if(isset($info['limit']) && $info['limit'] != -1 && $info['limit'] != ''){
 					echo '<div>{{Votre abonnement aux services assistant vocaux fini le }}'.$info['limit'].'.';
 					echo ' {{Pour le prolonger, allez}} <a href="https://www.jeedom.com/market/index.php?v=d&p=profils#services" target="_blank">{{ici}}</a>';
@@ -65,14 +65,14 @@ if (init('result_code') == 'FAILURE') {
 			?>
 		</div>
 		<div class="form-group gshmode jeedom">
-			<label class="col-lg-3 control-label">{{Envoyer configuration au market}}</label>
-			<div class="col-lg-2">
+			<label class="col-sm-3 control-label">{{Envoyer configuration au market}}</label>
+			<div class="col-sm-2">
 				<a class="btn btn-default" id="bt_sendConfigToMarket"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{Envoyer}}</a>
 			</div>
 		</div>
 		<div class="form-group gshmode jeedom">
-			<label class="col-lg-3 control-label">{{Activer l'éxecution local}}</label>
-			<div class="col-lg-2">
+			<label class="col-sm-3 control-label">{{Activer l'éxecution local}}</label>
+			<div class="col-sm-2">
 				<input type="checkbox" class="configKey" data-l1key="gshs::allowLocalApi" />
 			</div>
 		</div>
@@ -84,14 +84,14 @@ if (init('result_code') == 'FAILURE') {
 			<fieldset>
 				<legend>{{Oauth}}</legend>
 				<div class="form-group">
-					<label class="col-lg-3 control-label">{{Cient ID}}</label>
-					<div class="col-lg-3">
+					<label class="col-sm-3 control-label">{{Cient ID}}</label>
+					<div class="col-sm-3">
 						<input class="configKey form-control" data-l1key="gshs::clientId" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-3 control-label">{{Cient Secret}}</label>
-					<div class="col-lg-3">
+					<label class="col-sm-3 control-label">{{Cient Secret}}</label>
+					<div class="col-sm-3">
 						<input class="configKey form-control" data-l1key="gshs::clientSecret" />
 					</div>
 				</div>
@@ -102,41 +102,41 @@ if (init('result_code') == 'FAILURE') {
 					{{Token URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGshOauth.php?type=sh' ?>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-3 control-label">{{ID du projet Smarthome}}</label>
-					<div class="col-lg-4">
+					<label class="col-sm-3 control-label">{{ID du projet Smarthome}}</label>
+					<div class="col-sm-4">
 						<input class="configKey form-control" data-l1key="googleSmarthomeProjectId" />
 					</div>
-					<div class="col-lg-2">
+					<div class="col-sm-2">
 						<a class="btn btn-sm btn-success" id="bt_connectGoogleSmarthome"><i class="fa fa-plug" aria-hidden="true"></i> {{Connection}}</a>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-3 control-label">{{Homegraph API Google}}</label>
-					<div class="col-lg-3">
+					<label class="col-sm-3 control-label">{{Homegraph API Google}}</label>
+					<div class="col-sm-3">
 						<input class="configKey form-control" data-l1key="gshs::googleapikey" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-3 control-label">{{Homegraph User Agent}}</label>
-					<div class="col-lg-3">
+					<label class="col-sm-3 control-label">{{Homegraph User Agent}}</label>
+					<div class="col-sm-3">
 						<input class="configKey form-control" data-l1key="gshs::useragent" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-3 control-label">{{Clef d'accès sécurisé}}</label>
-					<div class="col-lg-3">
+					<label class="col-sm-3 control-label">{{Clef d'accès sécurisé}}</label>
+					<div class="col-sm-3">
 						<input class="configKey form-control" data-l1key="gshs::authkey" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-3 control-label">{{Mail client (JWT)}}</label>
-					<div class="col-lg-3">
+					<label class="col-sm-3 control-label">{{Mail client (JWT)}}</label>
+					<div class="col-sm-3">
 						<input class="configKey form-control" data-l1key="gshs::jwtclientmail" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-3 control-label">{{Clef privé (JWT)}}</label>
-					<div class="col-lg-5">
+					<label class="col-sm-3 control-label">{{Clef privé (JWT)}}</label>
+					<div class="col-sm-5">
 						<textarea rows="10" class="configKey form-control" data-l1key="gshs::jwtprivkey"></textarea>
 					</div>
 				</div>
