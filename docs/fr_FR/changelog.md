@@ -6,6 +6,8 @@
 
 
 - Refonte du plugin pour supporté plus de type (attention il peut y avoir des regressions non vues lors de la phase de test)
+- Ajout de nombreux type
+- Ajout de nombreuses actions/infos
 
 # 25/05/2020
 
