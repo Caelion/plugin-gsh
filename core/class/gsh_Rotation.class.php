@@ -92,7 +92,7 @@ class gsh_Rotation {
           if($value == null){
             return;
           }
-          $cmd->execCmd('slider' => $value);
+          $cmd->execCmd(array('slider' => $value));
           break;
         }
       } catch (Exception $e) {

@@ -99,7 +99,7 @@ class gsh_FanSpeed {
     if (isset($_infos['customData']['FanSpeed_cmdGet'])) {
       $cmd = cmd::byId($_infos['customData']['FanSpeed_cmdGet']);
       if (is_object($cmd)) {
-        $return['currentFanSpeedPercent'] = $cmd->execCmd()/ 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0);
+        $return['currentFanSpeedPercent'] = $cmd->execCmd()/ 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0));
       }
     }
     return $return;
