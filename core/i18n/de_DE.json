@@ -105,22 +105,43 @@
         "Device non trouvé : ": "Gerät nicht gefunden:",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
+    "plugins\/gsh\/core\/class\/gsh_Modes.class.php": {
+        "Mode": "Modus",
+        "Etat mode": "Modusstatus"
+    },
+    "plugins\/gsh\/core\/class\/gsh_Brightness.class.php": {
+        "Luminosité": "Helligkeit",
+        "Etat Luminosité": "Helligkeitszustand"
+    },
+    "plugins\/gsh\/core\/class\/gsh_ArmDisarm.class.php": {
+        "On": "Ein",
+        "Off": "Aus",
+        "Etat": "Zustand"
+    },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
         "Veuillez vérifier la configuration": "Bitte überprüfen Sie die Konfiguration",
         "Erreur sur la demande de synchronisation :": "Fehler bei Synchronisationsanforderung:",
         "Erreur sur la demande de remonté d\\'état :": "Fehler bei der Statusanforderung:",
         "JWT aucun token : ": "JWT kein Token:"
     },
-    "plugins\/gsh\/core\/class\/gsh_blinds.class.php": {
-        "Position": "Position",
+    "plugins\/gsh\/core\/class\/gsh_LockUnlock.class.php": {
         "On": "Ein",
         "Off": "Aus",
         "Etat": "Zustand"
     },
-    "plugins\/gsh\/core\/class\/gsh_door.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_MediaState.class.php": {
+        "Pause": "Pause",
+        "Reprendre": "Zusammenfassung",
+        "Stop": "STOP",
+        "Suivant": "Folgende",
+        "Précedent": "Früher"
+    },
+    "plugins\/gsh\/core\/class\/gsh_OnOff.class.php": {
+        "On": "Ein",
+        "Off": "Aus",
         "Etat": "Zustand"
     },
-    "plugins\/gsh\/core\/class\/gsh_thermostat.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_TemperatureSetting.class.php": {
         "Thermostat": "Thermostat",
         "Etat themostat ": "Geben Sie den Status an",
         "Mode": "Modus",
@@ -129,61 +150,26 @@
         "Off": "Aus",
         "Suspendu": "Ausgesetzt"
     },
-    "plugins\/gsh\/core\/class\/gsh_speaker.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_Volume.class.php": {
         "Etat volume": "Lautstärkestatus",
-        "Volume": "Lautstärke",
-        "Pause": "Pause",
-        "Reprendre": "Zusammenfassung",
-        "Stop": "STOP",
-        "Suivant": "Folgende",
-        "Précedent": "Früher"
+        "Volume": "Lautstärke"
     },
-    "plugins\/gsh\/core\/class\/gsh_light.class.php": {
-        "On": "Ein",
-        "Off": "Aus",
-        "Etat": "Zustand",
-        "Luminosité": "Helligkeit",
-        "Etat luminosité": "Helligkeitszustand",
-        "Couleur": "Farbe",
-        "Etat couleur": "Farbstatus"
-    },
-    "plugins\/gsh\/core\/class\/gsh_securitysystem.class.php": {
-        "Mode": "Modus",
-        "Etat mode": "Modusstatus",
-        "On": "Ein",
-        "Off": "Aus",
-        "Etat": "Zustand"
-    },
-    "plugins\/gsh\/core\/class\/gsh_lock.class.php": {
-        "On": "Ein",
-        "Off": "Aus",
-        "Etat": "Zustand"
-    },
-    "plugins\/gsh\/core\/class\/gsh_tv.class.php": {
-        "Etat volume": "Lautstärkestatus",
-        "Volume": "Lautstärke",
+    "plugins\/gsh\/core\/class\/gsh_Channel.class.php": {
         "Chaine": "Kette",
         "Etat chaine": "Kanalstatus"
-    },
-    "plugins\/gsh\/core\/class\/gsh_fan.class.php": {
-        "On": "Ein",
-        "Off": "Aus",
-        "Etat": "Zustand"
-    },
-    "plugins\/gsh\/core\/class\/gsh_outlet.class.php": {
-        "Position": "Position",
-        "On": "Ein",
-        "Off": "Aus",
-        "Etat": "Zustand"
     },
     "plugins\/gsh\/core\/class\/gsh_scene.class.php": {
         "Erreur lors de l\\'éxecution de ": "Fehler beim Ausführen",
         ". Détails : ": "Details:"
     },
-    "plugins\/gsh\/core\/class\/gsh_valve.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_OpenClose.class.php": {
         "Position": "Position",
         "On": "Ein",
         "Off": "Aus",
         "Etat": "Zustand"
+    },
+    "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
+        "Couleur": "Farbe",
+        "Etat couleur": "Farbstatus"
     }
 }

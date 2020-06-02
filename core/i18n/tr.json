@@ -105,22 +105,43 @@
         "Device non trouvé : ": "",
         "Aucune méthode correspondante à : ": "Aşağıdakilere karşılık gelen bir yöntem yok:"
     },
+    "plugins\/gsh\/core\/class\/gsh_Modes.class.php": {
+        "Mode": "Mod",
+        "Etat mode": ""
+    },
+    "plugins\/gsh\/core\/class\/gsh_Brightness.class.php": {
+        "Luminosité": "",
+        "Etat Luminosité": ""
+    },
+    "plugins\/gsh\/core\/class\/gsh_ArmDisarm.class.php": {
+        "On": "",
+        "Off": "",
+        "Etat": "Durum"
+    },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
         "Veuillez vérifier la configuration": "",
         "Erreur sur la demande de synchronisation :": "",
         "Erreur sur la demande de remonté d\\'état :": "",
         "JWT aucun token : ": ""
     },
-    "plugins\/gsh\/core\/class\/gsh_blinds.class.php": {
-        "Position": "Pozisyon",
+    "plugins\/gsh\/core\/class\/gsh_LockUnlock.class.php": {
         "On": "",
         "Off": "",
         "Etat": "Durum"
     },
-    "plugins\/gsh\/core\/class\/gsh_door.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_MediaState.class.php": {
+        "Pause": "Durdur",
+        "Reprendre": "Tekrar başla",
+        "Stop": "",
+        "Suivant": "",
+        "Précedent": "Önceki"
+    },
+    "plugins\/gsh\/core\/class\/gsh_OnOff.class.php": {
+        "On": "",
+        "Off": "",
         "Etat": "Durum"
     },
-    "plugins\/gsh\/core\/class\/gsh_thermostat.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_TemperatureSetting.class.php": {
         "Thermostat": "",
         "Etat themostat ": "",
         "Mode": "Mod",
@@ -129,61 +150,26 @@
         "Off": "",
         "Suspendu": ""
     },
-    "plugins\/gsh\/core\/class\/gsh_speaker.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_Volume.class.php": {
         "Etat volume": "",
-        "Volume": "Ses",
-        "Pause": "Durdur",
-        "Reprendre": "Tekrar başla",
-        "Stop": "",
-        "Suivant": "",
-        "Précedent": "Önceki"
+        "Volume": "Ses"
     },
-    "plugins\/gsh\/core\/class\/gsh_light.class.php": {
-        "On": "",
-        "Off": "",
-        "Etat": "Durum",
-        "Luminosité": "",
-        "Etat luminosité": "",
-        "Couleur": "Renk",
-        "Etat couleur": ""
-    },
-    "plugins\/gsh\/core\/class\/gsh_securitysystem.class.php": {
-        "Mode": "Mod",
-        "Etat mode": "",
-        "On": "",
-        "Off": "",
-        "Etat": "Durum"
-    },
-    "plugins\/gsh\/core\/class\/gsh_lock.class.php": {
-        "On": "",
-        "Off": "",
-        "Etat": "Durum"
-    },
-    "plugins\/gsh\/core\/class\/gsh_tv.class.php": {
-        "Etat volume": "",
-        "Volume": "Ses",
+    "plugins\/gsh\/core\/class\/gsh_Channel.class.php": {
         "Chaine": "",
         "Etat chaine": ""
-    },
-    "plugins\/gsh\/core\/class\/gsh_fan.class.php": {
-        "On": "",
-        "Off": "",
-        "Etat": "Durum"
-    },
-    "plugins\/gsh\/core\/class\/gsh_outlet.class.php": {
-        "Position": "Pozisyon",
-        "On": "",
-        "Off": "",
-        "Etat": "Durum"
     },
     "plugins\/gsh\/core\/class\/gsh_scene.class.php": {
         "Erreur lors de l\\'éxecution de ": "Yürütülürken hata oluştu",
         ". Détails : ": "Detaylar:"
     },
-    "plugins\/gsh\/core\/class\/gsh_valve.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_OpenClose.class.php": {
         "Position": "Pozisyon",
         "On": "",
         "Off": "",
         "Etat": "Durum"
+    },
+    "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
+        "Couleur": "Renk",
+        "Etat couleur": ""
     }
 }

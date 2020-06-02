@@ -105,22 +105,43 @@
         "Device non trouvé : ": "Device not found:",
         "Aucune méthode correspondante à : ": "No method corresponding to:"
     },
+    "plugins\/gsh\/core\/class\/gsh_Modes.class.php": {
+        "Mode": "Fashion",
+        "Etat mode": "Mode state"
+    },
+    "plugins\/gsh\/core\/class\/gsh_Brightness.class.php": {
+        "Luminosité": "Brightness",
+        "Etat Luminosité": "Brightness state"
+    },
+    "plugins\/gsh\/core\/class\/gsh_ArmDisarm.class.php": {
+        "On": "We",
+        "Off": "Off",
+        "Etat": "State"
+    },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
         "Veuillez vérifier la configuration": "Please check the configuration",
         "Erreur sur la demande de synchronisation :": "Error on synchronization request:",
         "Erreur sur la demande de remonté d\\'état :": "Error on the status request:",
         "JWT aucun token : ": "JWT no token:"
     },
-    "plugins\/gsh\/core\/class\/gsh_blinds.class.php": {
-        "Position": "Position",
+    "plugins\/gsh\/core\/class\/gsh_LockUnlock.class.php": {
         "On": "We",
         "Off": "Off",
         "Etat": "State"
     },
-    "plugins\/gsh\/core\/class\/gsh_door.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_MediaState.class.php": {
+        "Pause": "Pause",
+        "Reprendre": "Resume",
+        "Stop": "Stop",
+        "Suivant": "Next",
+        "Précedent": "Previous"
+    },
+    "plugins\/gsh\/core\/class\/gsh_OnOff.class.php": {
+        "On": "We",
+        "Off": "Off",
         "Etat": "State"
     },
-    "plugins\/gsh\/core\/class\/gsh_thermostat.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_TemperatureSetting.class.php": {
         "Thermostat": "Thermostat",
         "Etat themostat ": "State themostat",
         "Mode": "Fashion",
@@ -129,61 +150,26 @@
         "Off": "Off",
         "Suspendu": "Suspended"
     },
-    "plugins\/gsh\/core\/class\/gsh_speaker.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_Volume.class.php": {
         "Etat volume": "Volume status",
-        "Volume": "Volume",
-        "Pause": "Pause",
-        "Reprendre": "Resume",
-        "Stop": "STOP",
-        "Suivant": "Next",
-        "Précedent": "Previous"
+        "Volume": "Volume"
     },
-    "plugins\/gsh\/core\/class\/gsh_light.class.php": {
-        "On": "We",
-        "Off": "Off",
-        "Etat": "State",
-        "Luminosité": "Brightness",
-        "Etat luminosité": "Brightness state",
-        "Couleur": "Color",
-        "Etat couleur": "Color status"
-    },
-    "plugins\/gsh\/core\/class\/gsh_securitysystem.class.php": {
-        "Mode": "Fashion",
-        "Etat mode": "Mode state",
-        "On": "We",
-        "Off": "Off",
-        "Etat": "State"
-    },
-    "plugins\/gsh\/core\/class\/gsh_lock.class.php": {
-        "On": "We",
-        "Off": "Off",
-        "Etat": "State"
-    },
-    "plugins\/gsh\/core\/class\/gsh_tv.class.php": {
-        "Etat volume": "Volume status",
-        "Volume": "Volume",
+    "plugins\/gsh\/core\/class\/gsh_Channel.class.php": {
         "Chaine": "Chain",
         "Etat chaine": "Channel status"
-    },
-    "plugins\/gsh\/core\/class\/gsh_fan.class.php": {
-        "On": "We",
-        "Off": "Off",
-        "Etat": "State"
-    },
-    "plugins\/gsh\/core\/class\/gsh_outlet.class.php": {
-        "Position": "Position",
-        "On": "We",
-        "Off": "Off",
-        "Etat": "State"
     },
     "plugins\/gsh\/core\/class\/gsh_scene.class.php": {
         "Erreur lors de l\\'éxecution de ": "Error while executing",
         ". Détails : ": "Details:"
     },
-    "plugins\/gsh\/core\/class\/gsh_valve.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_OpenClose.class.php": {
         "Position": "Position",
         "On": "We",
         "Off": "Off",
         "Etat": "State"
+    },
+    "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
+        "Couleur": "Color",
+        "Etat couleur": "Color status"
     }
 }

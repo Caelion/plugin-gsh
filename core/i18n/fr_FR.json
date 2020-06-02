@@ -105,22 +105,43 @@
         "Device non trouvé : ": "Device non trouvé : ",
         "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
     },
+    "plugins\/gsh\/core\/class\/gsh_Modes.class.php": {
+        "Mode": "Mode",
+        "Etat mode": "Etat mode"
+    },
+    "plugins\/gsh\/core\/class\/gsh_Brightness.class.php": {
+        "Luminosité": "Luminosité",
+        "Etat Luminosité": "Etat Luminosité"
+    },
+    "plugins\/gsh\/core\/class\/gsh_ArmDisarm.class.php": {
+        "On": "On",
+        "Off": "Off",
+        "Etat": "Etat"
+    },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
         "Veuillez vérifier la configuration": "Veuillez vérifier la configuration",
         "Erreur sur la demande de synchronisation :": "Erreur sur la demande de synchronisation :",
         "Erreur sur la demande de remonté d\\'état :": "Erreur sur la demande de remonté d\\'état :",
         "JWT aucun token : ": "JWT aucun token : "
     },
-    "plugins\/gsh\/core\/class\/gsh_blinds.class.php": {
-        "Position": "Position",
+    "plugins\/gsh\/core\/class\/gsh_LockUnlock.class.php": {
         "On": "On",
         "Off": "Off",
         "Etat": "Etat"
     },
-    "plugins\/gsh\/core\/class\/gsh_door.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_MediaState.class.php": {
+        "Pause": "Pause",
+        "Reprendre": "Reprendre",
+        "Stop": "Stop",
+        "Suivant": "Suivant",
+        "Précedent": "Précedent"
+    },
+    "plugins\/gsh\/core\/class\/gsh_OnOff.class.php": {
+        "On": "On",
+        "Off": "Off",
         "Etat": "Etat"
     },
-    "plugins\/gsh\/core\/class\/gsh_thermostat.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_TemperatureSetting.class.php": {
         "Thermostat": "Thermostat",
         "Etat themostat ": "Etat themostat ",
         "Mode": "Mode",
@@ -129,61 +150,26 @@
         "Off": "Off",
         "Suspendu": "Suspendu"
     },
-    "plugins\/gsh\/core\/class\/gsh_speaker.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_Volume.class.php": {
         "Etat volume": "Etat volume",
-        "Volume": "Volume",
-        "Pause": "Pause",
-        "Reprendre": "Reprendre",
-        "Stop": "Stop",
-        "Suivant": "Suivant",
-        "Précedent": "Précedent"
+        "Volume": "Volume"
     },
-    "plugins\/gsh\/core\/class\/gsh_light.class.php": {
-        "On": "On",
-        "Off": "Off",
-        "Etat": "Etat",
-        "Luminosité": "Luminosité",
-        "Etat luminosité": "Etat luminosité",
-        "Couleur": "Couleur",
-        "Etat couleur": "Etat couleur"
-    },
-    "plugins\/gsh\/core\/class\/gsh_securitysystem.class.php": {
-        "Mode": "Mode",
-        "Etat mode": "Etat mode",
-        "On": "On",
-        "Off": "Off",
-        "Etat": "Etat"
-    },
-    "plugins\/gsh\/core\/class\/gsh_lock.class.php": {
-        "On": "On",
-        "Off": "Off",
-        "Etat": "Etat"
-    },
-    "plugins\/gsh\/core\/class\/gsh_tv.class.php": {
-        "Etat volume": "Etat volume",
-        "Volume": "Volume",
+    "plugins\/gsh\/core\/class\/gsh_Channel.class.php": {
         "Chaine": "Chaine",
         "Etat chaine": "Etat chaine"
-    },
-    "plugins\/gsh\/core\/class\/gsh_fan.class.php": {
-        "On": "On",
-        "Off": "Off",
-        "Etat": "Etat"
-    },
-    "plugins\/gsh\/core\/class\/gsh_outlet.class.php": {
-        "Position": "Position",
-        "On": "On",
-        "Off": "Off",
-        "Etat": "Etat"
     },
     "plugins\/gsh\/core\/class\/gsh_scene.class.php": {
         "Erreur lors de l\\'éxecution de ": "Erreur lors de l\\'éxecution de ",
         ". Détails : ": ". Détails : "
     },
-    "plugins\/gsh\/core\/class\/gsh_valve.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_OpenClose.class.php": {
         "Position": "Position",
         "On": "On",
         "Off": "Off",
         "Etat": "Etat"
+    },
+    "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
+        "Couleur": "Couleur",
+        "Etat couleur": "Etat couleur"
     }
 }
