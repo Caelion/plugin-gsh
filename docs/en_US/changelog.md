@@ -4,6 +4,9 @@
 >
 >As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text
 
+
+- Redesign of the plugin to support more types (be careful there may be regressions not seen during the test phase)
+
 # 05/25/2020
 
 - Correction of a return problem if there is a code for the order and it is bad

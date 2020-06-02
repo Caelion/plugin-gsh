@@ -105,22 +105,43 @@
         "Device non trouvé : ": "Dispositivo não encontrado:",
         "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
+    "plugins\/gsh\/core\/class\/gsh_Modes.class.php": {
+        "Mode": "Modo",
+        "Etat mode": "Estado do modo"
+    },
+    "plugins\/gsh\/core\/class\/gsh_Brightness.class.php": {
+        "Luminosité": "Brilho",
+        "Etat Luminosité": "Estado de brilho"
+    },
+    "plugins\/gsh\/core\/class\/gsh_ArmDisarm.class.php": {
+        "On": "Nós",
+        "Off": "Fora",
+        "Etat": "Estado"
+    },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
         "Veuillez vérifier la configuration": "Por favor, verifique a configuração",
         "Erreur sur la demande de synchronisation :": "Erro no pedido de sincronização:",
         "Erreur sur la demande de remonté d\\'état :": "Erro na solicitação de status:",
         "JWT aucun token : ": "JWT sem token:"
     },
-    "plugins\/gsh\/core\/class\/gsh_blinds.class.php": {
-        "Position": "Posição",
+    "plugins\/gsh\/core\/class\/gsh_LockUnlock.class.php": {
         "On": "Nós",
         "Off": "Fora",
         "Etat": "Estado"
     },
-    "plugins\/gsh\/core\/class\/gsh_door.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_MediaState.class.php": {
+        "Pause": "Pausa",
+        "Reprendre": "Resumo",
+        "Stop": "Pare",
+        "Suivant": "Seguinte",
+        "Précedent": "Anterior"
+    },
+    "plugins\/gsh\/core\/class\/gsh_OnOff.class.php": {
+        "On": "Nós",
+        "Off": "Fora",
         "Etat": "Estado"
     },
-    "plugins\/gsh\/core\/class\/gsh_thermostat.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_TemperatureSetting.class.php": {
         "Thermostat": "Termostato",
         "Etat themostat ": "Estado Estado",
         "Mode": "Modo",
@@ -129,61 +150,26 @@
         "Off": "Fora",
         "Suspendu": "Suspenso"
     },
-    "plugins\/gsh\/core\/class\/gsh_speaker.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_Volume.class.php": {
         "Etat volume": "Status do volume",
-        "Volume": "Volume",
-        "Pause": "Pausa",
-        "Reprendre": "Resumo",
-        "Stop": "Pare",
-        "Suivant": "Seguinte",
-        "Précedent": "Anterior"
+        "Volume": "Volume"
     },
-    "plugins\/gsh\/core\/class\/gsh_light.class.php": {
-        "On": "Nós",
-        "Off": "Fora",
-        "Etat": "Estado",
-        "Luminosité": "Brilho",
-        "Etat luminosité": "Estado de brilho",
-        "Couleur": "Cor",
-        "Etat couleur": "Status da cor"
-    },
-    "plugins\/gsh\/core\/class\/gsh_securitysystem.class.php": {
-        "Mode": "Modo",
-        "Etat mode": "Estado do modo",
-        "On": "Nós",
-        "Off": "Fora",
-        "Etat": "Estado"
-    },
-    "plugins\/gsh\/core\/class\/gsh_lock.class.php": {
-        "On": "Nós",
-        "Off": "Fora",
-        "Etat": "Estado"
-    },
-    "plugins\/gsh\/core\/class\/gsh_tv.class.php": {
-        "Etat volume": "Status do volume",
-        "Volume": "Volume",
+    "plugins\/gsh\/core\/class\/gsh_Channel.class.php": {
         "Chaine": "Cadeia",
         "Etat chaine": "Status do canal"
-    },
-    "plugins\/gsh\/core\/class\/gsh_fan.class.php": {
-        "On": "Nós",
-        "Off": "Fora",
-        "Etat": "Estado"
-    },
-    "plugins\/gsh\/core\/class\/gsh_outlet.class.php": {
-        "Position": "Posição",
-        "On": "Nós",
-        "Off": "Fora",
-        "Etat": "Estado"
     },
     "plugins\/gsh\/core\/class\/gsh_scene.class.php": {
         "Erreur lors de l\\'éxecution de ": "Erro ao executar",
         ". Détails : ": "Detalhes:"
     },
-    "plugins\/gsh\/core\/class\/gsh_valve.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_OpenClose.class.php": {
         "Position": "Posição",
         "On": "Nós",
         "Off": "Fora",
         "Etat": "Estado"
+    },
+    "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
+        "Couleur": "Cor",
+        "Etat couleur": "Status da cor"
     }
 }

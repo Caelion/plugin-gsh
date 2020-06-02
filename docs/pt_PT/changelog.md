@@ -4,6 +4,9 @@
 >
 >Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto
 
+
+- Redesenho do plug-in para suportar mais tipos (tenha cuidado, pode haver regressões não vistas durante a fase de teste)
+
 # 25/05/2020
 
 - Correção de um problema de devolução se houver um código para o pedido e estiver incorreto

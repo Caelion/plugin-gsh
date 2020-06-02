@@ -4,6 +4,9 @@
 >
 >Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto
 
+
+- Rediseño del complemento para admitir más tipos (tenga cuidado porque puede haber regresiones no vistas durante la fase de prueba)
+
 # 25/05/2020
 
 - Corrección de un problema de devolución si hay un código para el pedido y es malo

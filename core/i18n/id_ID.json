@@ -105,22 +105,43 @@
         "Device non trouvé : ": "",
         "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
+    "plugins\/gsh\/core\/class\/gsh_Modes.class.php": {
+        "Mode": "Mode",
+        "Etat mode": ""
+    },
+    "plugins\/gsh\/core\/class\/gsh_Brightness.class.php": {
+        "Luminosité": "",
+        "Etat Luminosité": ""
+    },
+    "plugins\/gsh\/core\/class\/gsh_ArmDisarm.class.php": {
+        "On": "",
+        "Off": "",
+        "Etat": "Negara"
+    },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
         "Veuillez vérifier la configuration": "",
         "Erreur sur la demande de synchronisation :": "",
         "Erreur sur la demande de remonté d\\'état :": "",
         "JWT aucun token : ": ""
     },
-    "plugins\/gsh\/core\/class\/gsh_blinds.class.php": {
-        "Position": "Posisi",
+    "plugins\/gsh\/core\/class\/gsh_LockUnlock.class.php": {
         "On": "",
         "Off": "",
         "Etat": "Negara"
     },
-    "plugins\/gsh\/core\/class\/gsh_door.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_MediaState.class.php": {
+        "Pause": "Berhenti Sebentar",
+        "Reprendre": "Ringkasan",
+        "Stop": "",
+        "Suivant": "",
+        "Précedent": "Sebelumnya"
+    },
+    "plugins\/gsh\/core\/class\/gsh_OnOff.class.php": {
+        "On": "",
+        "Off": "",
         "Etat": "Negara"
     },
-    "plugins\/gsh\/core\/class\/gsh_thermostat.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_TemperatureSetting.class.php": {
         "Thermostat": "",
         "Etat themostat ": "",
         "Mode": "Mode",
@@ -129,61 +150,26 @@
         "Off": "",
         "Suspendu": ""
     },
-    "plugins\/gsh\/core\/class\/gsh_speaker.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_Volume.class.php": {
         "Etat volume": "",
-        "Volume": "Volume",
-        "Pause": "Berhenti Sebentar",
-        "Reprendre": "Ringkasan",
-        "Stop": "",
-        "Suivant": "",
-        "Précedent": "Sebelumnya"
+        "Volume": "Volume"
     },
-    "plugins\/gsh\/core\/class\/gsh_light.class.php": {
-        "On": "",
-        "Off": "",
-        "Etat": "Negara",
-        "Luminosité": "",
-        "Etat luminosité": "",
-        "Couleur": "Warna",
-        "Etat couleur": ""
-    },
-    "plugins\/gsh\/core\/class\/gsh_securitysystem.class.php": {
-        "Mode": "Mode",
-        "Etat mode": "",
-        "On": "",
-        "Off": "",
-        "Etat": "Negara"
-    },
-    "plugins\/gsh\/core\/class\/gsh_lock.class.php": {
-        "On": "",
-        "Off": "",
-        "Etat": "Negara"
-    },
-    "plugins\/gsh\/core\/class\/gsh_tv.class.php": {
-        "Etat volume": "",
-        "Volume": "Volume",
+    "plugins\/gsh\/core\/class\/gsh_Channel.class.php": {
         "Chaine": "",
         "Etat chaine": ""
-    },
-    "plugins\/gsh\/core\/class\/gsh_fan.class.php": {
-        "On": "",
-        "Off": "",
-        "Etat": "Negara"
-    },
-    "plugins\/gsh\/core\/class\/gsh_outlet.class.php": {
-        "Position": "Posisi",
-        "On": "",
-        "Off": "",
-        "Etat": "Negara"
     },
     "plugins\/gsh\/core\/class\/gsh_scene.class.php": {
         "Erreur lors de l\\'éxecution de ": "",
         ". Détails : ": ""
     },
-    "plugins\/gsh\/core\/class\/gsh_valve.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_OpenClose.class.php": {
         "Position": "Posisi",
         "On": "",
         "Off": "",
         "Etat": "Negara"
+    },
+    "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
+        "Couleur": "Warna",
+        "Etat couleur": ""
     }
 }

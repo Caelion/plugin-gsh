@@ -105,22 +105,43 @@
         "Device non trouvé : ": "Dispositivo no encontrado:",
         "Aucune méthode correspondante à : ": "Ningún método correspondiente a:"
     },
+    "plugins\/gsh\/core\/class\/gsh_Modes.class.php": {
+        "Mode": "Modo",
+        "Etat mode": "Estado del modo"
+    },
+    "plugins\/gsh\/core\/class\/gsh_Brightness.class.php": {
+        "Luminosité": "Brillo",
+        "Etat Luminosité": "Estado de brillo"
+    },
+    "plugins\/gsh\/core\/class\/gsh_ArmDisarm.class.php": {
+        "On": "Uno",
+        "Off": "Apagado",
+        "Etat": "Estado"
+    },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
         "Veuillez vérifier la configuration": "Por favor verifique la configuración",
         "Erreur sur la demande de synchronisation :": "Error en la solicitud de sincronización:",
         "Erreur sur la demande de remonté d\\'état :": "Error en la solicitud de estado:",
         "JWT aucun token : ": "JWT sin token:"
     },
-    "plugins\/gsh\/core\/class\/gsh_blinds.class.php": {
-        "Position": "Posición",
+    "plugins\/gsh\/core\/class\/gsh_LockUnlock.class.php": {
         "On": "Uno",
         "Off": "Apagado",
         "Etat": "Estado"
     },
-    "plugins\/gsh\/core\/class\/gsh_door.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_MediaState.class.php": {
+        "Pause": "Pausa",
+        "Reprendre": "Reanudar",
+        "Stop": "Detener",
+        "Suivant": "Próximo",
+        "Précedent": "Anterior"
+    },
+    "plugins\/gsh\/core\/class\/gsh_OnOff.class.php": {
+        "On": "Uno",
+        "Off": "Apagado",
         "Etat": "Estado"
     },
-    "plugins\/gsh\/core\/class\/gsh_thermostat.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_TemperatureSetting.class.php": {
         "Thermostat": "Termostato",
         "Etat themostat ": "Estado del termostato",
         "Mode": "Modo",
@@ -129,61 +150,26 @@
         "Off": "Apagado",
         "Suspendu": "Suspendido"
     },
-    "plugins\/gsh\/core\/class\/gsh_speaker.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_Volume.class.php": {
         "Etat volume": "Estado del volumen",
-        "Volume": "Volumen",
-        "Pause": "Pausa",
-        "Reprendre": "Reanudar",
-        "Stop": "Detener",
-        "Suivant": "Próximo",
-        "Précedent": "Anterior"
+        "Volume": "Volumen"
     },
-    "plugins\/gsh\/core\/class\/gsh_light.class.php": {
-        "On": "Uno",
-        "Off": "Apagado",
-        "Etat": "Estado",
-        "Luminosité": "Brillo",
-        "Etat luminosité": "Estado de brillo",
-        "Couleur": "Color",
-        "Etat couleur": "Estado del color"
-    },
-    "plugins\/gsh\/core\/class\/gsh_securitysystem.class.php": {
-        "Mode": "Modo",
-        "Etat mode": "Estado del modo",
-        "On": "Uno",
-        "Off": "Apagado",
-        "Etat": "Estado"
-    },
-    "plugins\/gsh\/core\/class\/gsh_lock.class.php": {
-        "On": "Uno",
-        "Off": "Apagado",
-        "Etat": "Estado"
-    },
-    "plugins\/gsh\/core\/class\/gsh_tv.class.php": {
-        "Etat volume": "Estado del volumen",
-        "Volume": "Volumen",
+    "plugins\/gsh\/core\/class\/gsh_Channel.class.php": {
         "Chaine": "Cadena",
         "Etat chaine": "Estado del canal"
-    },
-    "plugins\/gsh\/core\/class\/gsh_fan.class.php": {
-        "On": "Uno",
-        "Off": "Apagado",
-        "Etat": "Estado"
-    },
-    "plugins\/gsh\/core\/class\/gsh_outlet.class.php": {
-        "Position": "Posición",
-        "On": "Uno",
-        "Off": "Apagado",
-        "Etat": "Estado"
     },
     "plugins\/gsh\/core\/class\/gsh_scene.class.php": {
         "Erreur lors de l\\'éxecution de ": "Error al ejecutar",
         ". Détails : ": "Detalles:"
     },
-    "plugins\/gsh\/core\/class\/gsh_valve.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_OpenClose.class.php": {
         "Position": "Posición",
         "On": "Uno",
         "Off": "Apagado",
         "Etat": "Estado"
+    },
+    "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
+        "Couleur": "Color",
+        "Etat couleur": "Estado del color"
     }
 }

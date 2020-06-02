@@ -2,6 +2,7 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Changelog Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto",
+        "Refonte du plugin pour supporté plus de type (attention il peut y avoir des regressions non vues lors de la phase de test": "Redesenho do plug-in para suportar mais tipos (tenha cuidado, pode haver regressões não vistas durante a fase de teste",
         "25\/05\/2020": "25\/05\/2020",
         "Correction d'un soucis de retour si il y a un code pour la commande et que celui-ci est mauvais": "Correção de um problema de devolução se houver um código para o pedido e estiver incorreto",
         "Ajout d'une option pour demander à google une confirmation lors d'une commande": "Adicionada opção para solicitar ao Google confirmação ao fazer o pedido",
