@@ -41,20 +41,12 @@
         "Attention cela ne change absolument pas le fonctionnement du plugin": "",
         "pousse l'information de l'état des modules au lieu d'attendre la demande de Google) par contre ca peut ralentir votre": "",
         "Configuration": "Конфигурация",
-        "Inverser": "Обратный",
-        "Configuration du thermostat": "",
-        "Action pour le mode chaud": "",
-        "Aucun": "Нет",
-        "Action pour le mode froid": "",
-        "Action pour le mode off": "",
-        "Il n\\'y a aucune configuration avancée pour ce type": "",
         "Sauvegarde réussi, pensez à relancer une synchronisation": ""
     },
     "plugins\/gsh\/desktop\/modal\/showNeedGenericType.php": {
         "Eqlogic ID non valide : ": "",
         "Device non trouvé": "",
         "Aucun type configuré pour ce périphérique": "",
-        "Aucune information disponible": "",
         "Voici les générique type qui sont utilisation avec votre type d\\'équipement. Attention il ne faut pas forcement tous les avoir sur l\\'équipement (ou n\\'en avoir aucun)": ""
     },
     "plugins\/gsh\/desktop\/php\/gsh.php": {
@@ -119,15 +111,83 @@
         "Etat": "состояние"
     },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
+        "Lumière": "свет",
+        "Thermostat": "термостат",
+        "Prise": "",
+        "Interrupteur": "",
+        "Caméra": "камера",
+        "Scene": "",
+        "Store": "",
+        "Volet": "створка",
+        "Rideaux": "",
+        "Vanne": "",
+        "Capteur": "",
+        "Fenêtre": "",
+        "Porte": "",
+        "Porte Garage": "",
+        "Alarme": "",
+        "Verrou": "",
+        "TV": "",
+        "Ventilateur": "",
+        "Hotte": "",
+        "Climatiseur": "",
+        "Refroidisseur d\\'air": "",
+        "Désodorisant": "",
+        "Purificateur d\\'air": "",
+        "Baignoire": "",
+        "Chaudiere": "",
+        "Detecteur de CO": "",
+        "Placard": "",
+        "Déshumidificateur": "",
+        "Déshydrateur": "",
+        "Lave-vaiselle": "",
+        "Tiroir": "",
+        "Séche linge": "",
+        "Cheminée": "",
+        "Congélateur": "",
+        "Chauffe-eau": "",
+        "Humidificateur": "",
+        "Bouilloire": "",
+        "Télécommande": "",
+        "Tondeuse": "",
+        "Réseaux": "сети",
+        "Pergola": "",
+        "Radiateur": "",
+        "Frigo": "",
+        "Router": "",
+        "Douche": "",
+        "Détecteur de fumée": "",
+        "Pompe à vide": "",
+        "Machine à laver": "",
+        "Purificateur d\\'eau": "",
+        "Adoucisseur d\\'eau": "",
         "Veuillez vérifier la configuration": "",
         "Erreur sur la demande de synchronisation :": "",
         "Erreur sur la demande de remonté d\\'état :": "",
         "JWT aucun token : ": ""
     },
-    "plugins\/gsh\/core\/class\/gsh_LockUnlock.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_Rotation.class.php": {
+        "Rotation": "вращение"
+    },
+    "plugins\/gsh\/core\/class\/gsh_FanSpeed.class.php": {
         "On": "",
         "Off": "Выключить",
         "Etat": "состояние"
+    },
+    "plugins\/gsh\/core\/class\/gsh_Reboot.class.php": {
+        "Redémarrage": ""
+    },
+    "plugins\/gsh\/core\/class\/gsh_LockUnlock.class.php": {
+        "On": "",
+        "Off": "Выключить",
+        "Etat": "состояние",
+        "Inverser l\\'état": ""
+    },
+    "plugins\/gsh\/core\/class\/gsh_SensorState.class.php": {
+        "Fumée": "",
+        "Fuite d\\'eau": "",
+        "Qualité d\\'air": "",
+        "Etat du filtre": ""
     },
     "plugins\/gsh\/core\/class\/gsh_MediaState.class.php": {
         "Pause": "Пауза",
@@ -148,15 +208,32 @@
         "Etat": "состояние",
         "Humidité": "Влажность",
         "Off": "Выключить",
-        "Suspendu": "Приостановлено"
+        "Suspendu": "Приостановлено",
+        "Action pour le mode chaud": "",
+        "Aucun": "Нет",
+        "Action pour le mode froid": "",
+        "Action pour le mode off": ""
+    },
+    "plugins\/gsh\/core\/class\/gsh_Dock.class.php": {
+        "Retour sur sa base": "",
+        "Sur sa base": ""
     },
     "plugins\/gsh\/core\/class\/gsh_Volume.class.php": {
         "Etat volume": "",
         "Volume": "Громкость"
     },
+    "plugins\/gsh\/core\/class\/gsh_TemperatureControl.class.php": {
+        "Thermostat": "термостат",
+        "Etat themostat\/Température": "",
+        "Température": "Температура"
+    },
     "plugins\/gsh\/core\/class\/gsh_Channel.class.php": {
         "Chaine": "",
         "Etat chaine": ""
+    },
+    "plugins\/gsh\/core\/class\/gsh_StartStop.class.php": {
+        "On": "",
+        "Off": "Выключить"
     },
     "plugins\/gsh\/core\/class\/gsh_scene.class.php": {
         "Erreur lors de l\\'éxecution de ": "",
@@ -166,7 +243,9 @@
         "Position": "положение",
         "On": "",
         "Off": "Выключить",
-        "Etat": "состояние"
+        "Etat": "состояние",
+        "Inverser l\\'action": "",
+        "Inverser l\\'état": ""
     },
     "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
         "Couleur": "цвет",

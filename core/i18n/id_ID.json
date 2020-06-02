@@ -41,20 +41,12 @@
         "Attention cela ne change absolument pas le fonctionnement du plugin": "",
         "pousse l'information de l'état des modules au lieu d'attendre la demande de Google) par contre ca peut ralentir votre": "",
         "Configuration": "Konfigurasi",
-        "Inverser": "Membalikkan",
-        "Configuration du thermostat": "",
-        "Action pour le mode chaud": "",
-        "Aucun": "Tak ada",
-        "Action pour le mode froid": "",
-        "Action pour le mode off": "",
-        "Il n\\'y a aucune configuration avancée pour ce type": "",
         "Sauvegarde réussi, pensez à relancer une synchronisation": ""
     },
     "plugins\/gsh\/desktop\/modal\/showNeedGenericType.php": {
         "Eqlogic ID non valide : ": "",
         "Device non trouvé": "",
         "Aucun type configuré pour ce périphérique": "",
-        "Aucune information disponible": "",
         "Voici les générique type qui sont utilisation avec votre type d\\'équipement. Attention il ne faut pas forcement tous les avoir sur l\\'équipement (ou n\\'en avoir aucun)": ""
     },
     "plugins\/gsh\/desktop\/php\/gsh.php": {
@@ -119,15 +111,83 @@
         "Etat": "Negara"
     },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
+        "Lumière": "Cahaya",
+        "Thermostat": "",
+        "Prise": "",
+        "Interrupteur": "",
+        "Caméra": "Kamera",
+        "Scene": "",
+        "Store": "",
+        "Volet": "Penutup",
+        "Rideaux": "",
+        "Vanne": "",
+        "Capteur": "",
+        "Fenêtre": "",
+        "Porte": "",
+        "Porte Garage": "",
+        "Alarme": "",
+        "Verrou": "",
+        "TV": "",
+        "Ventilateur": "",
+        "Hotte": "",
+        "Climatiseur": "",
+        "Refroidisseur d\\'air": "",
+        "Désodorisant": "",
+        "Purificateur d\\'air": "",
+        "Baignoire": "",
+        "Chaudiere": "",
+        "Detecteur de CO": "",
+        "Placard": "",
+        "Déshumidificateur": "",
+        "Déshydrateur": "",
+        "Lave-vaiselle": "",
+        "Tiroir": "",
+        "Séche linge": "",
+        "Cheminée": "",
+        "Congélateur": "",
+        "Chauffe-eau": "",
+        "Humidificateur": "",
+        "Bouilloire": "",
+        "Télécommande": "",
+        "Tondeuse": "",
+        "Réseaux": "Jaringan",
+        "Pergola": "",
+        "Radiateur": "",
+        "Frigo": "",
+        "Router": "",
+        "Douche": "",
+        "Détecteur de fumée": "",
+        "Pompe à vide": "",
+        "Machine à laver": "",
+        "Purificateur d\\'eau": "",
+        "Adoucisseur d\\'eau": "",
         "Veuillez vérifier la configuration": "",
         "Erreur sur la demande de synchronisation :": "",
         "Erreur sur la demande de remonté d\\'état :": "",
         "JWT aucun token : ": ""
     },
-    "plugins\/gsh\/core\/class\/gsh_LockUnlock.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_Rotation.class.php": {
+        "Rotation": ""
+    },
+    "plugins\/gsh\/core\/class\/gsh_FanSpeed.class.php": {
         "On": "",
         "Off": "",
         "Etat": "Negara"
+    },
+    "plugins\/gsh\/core\/class\/gsh_Reboot.class.php": {
+        "Redémarrage": ""
+    },
+    "plugins\/gsh\/core\/class\/gsh_LockUnlock.class.php": {
+        "On": "",
+        "Off": "",
+        "Etat": "Negara",
+        "Inverser l\\'état": ""
+    },
+    "plugins\/gsh\/core\/class\/gsh_SensorState.class.php": {
+        "Fumée": "",
+        "Fuite d\\'eau": "",
+        "Qualité d\\'air": "",
+        "Etat du filtre": ""
     },
     "plugins\/gsh\/core\/class\/gsh_MediaState.class.php": {
         "Pause": "Berhenti Sebentar",
@@ -148,15 +208,32 @@
         "Etat": "Negara",
         "Humidité": "Kelembaban",
         "Off": "",
-        "Suspendu": ""
+        "Suspendu": "",
+        "Action pour le mode chaud": "",
+        "Aucun": "Tak ada",
+        "Action pour le mode froid": "",
+        "Action pour le mode off": ""
+    },
+    "plugins\/gsh\/core\/class\/gsh_Dock.class.php": {
+        "Retour sur sa base": "",
+        "Sur sa base": ""
     },
     "plugins\/gsh\/core\/class\/gsh_Volume.class.php": {
         "Etat volume": "",
         "Volume": "Volume"
     },
+    "plugins\/gsh\/core\/class\/gsh_TemperatureControl.class.php": {
+        "Thermostat": "",
+        "Etat themostat\/Température": "",
+        "Température": "Suhu"
+    },
     "plugins\/gsh\/core\/class\/gsh_Channel.class.php": {
         "Chaine": "",
         "Etat chaine": ""
+    },
+    "plugins\/gsh\/core\/class\/gsh_StartStop.class.php": {
+        "On": "",
+        "Off": ""
     },
     "plugins\/gsh\/core\/class\/gsh_scene.class.php": {
         "Erreur lors de l\\'éxecution de ": "",
@@ -166,7 +243,9 @@
         "Position": "Posisi",
         "On": "",
         "Off": "",
-        "Etat": "Negara"
+        "Etat": "Negara",
+        "Inverser l\\'action": "",
+        "Inverser l\\'état": ""
     },
     "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
         "Couleur": "Warna",

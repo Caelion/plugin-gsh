@@ -6,6 +6,8 @@
 
 
 - Redesenho do plug-in para suportar mais tipos (tenha cuidado, pode haver regressões não vistas durante a fase de teste)
+- Adição de muitos tipos
+- Adicione muitas ações / informações
 
 # 25/05/2020
 

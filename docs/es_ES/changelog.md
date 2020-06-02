@@ -6,6 +6,8 @@
 
 
 - Rediseño del complemento para admitir más tipos (tenga cuidado porque puede haber regresiones no vistas durante la fase de prueba)
+- Adición de muchos tipos
+- Agregar muchas acciones / información
 
 # 25/05/2020
 

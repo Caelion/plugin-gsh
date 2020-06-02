@@ -41,20 +41,12 @@
         "Attention cela ne change absolument pas le fonctionnement du plugin": "Observe que isso não muda a maneira como o plugin funciona",
         "pousse l'information de l'état des modules au lieu d'attendre la demande de Google) par contre ca peut ralentir votre": "envia informações de status do módulo em vez de aguardar a solicitação do Google), mas pode atrasar sua",
         "Configuration": "Configuração",
-        "Inverser": "Inverter",
-        "Configuration du thermostat": "Configuração do termostato",
-        "Action pour le mode chaud": "Ação para o modo de aquecimento",
-        "Aucun": "Nemhum",
-        "Action pour le mode froid": "Ação para o modo frio",
-        "Action pour le mode off": "Ação para o modo desativado",
-        "Il n\\'y a aucune configuration avancée pour ce type": "Não há configuração avançada para este tipo",
         "Sauvegarde réussi, pensez à relancer une synchronisation": "Backup bem-sucedido, lembre-se de reiniciar a sincronização"
     },
     "plugins\/gsh\/desktop\/modal\/showNeedGenericType.php": {
         "Eqlogic ID non valide : ": "ID Eqlogic inválido:",
         "Device non trouvé": "Dispositivo não encontrado",
         "Aucun type configuré pour ce périphérique": "Nenhum tipo configurado para este dispositivo",
-        "Aucune information disponible": "Nenhuma informação disponível",
         "Voici les générique type qui sont utilisation avec votre type d\\'équipement. Attention il ne faut pas forcement tous les avoir sur l\\'équipement (ou n\\'en avoir aucun)": "Aqui estão os tipos genéricos usados com o seu tipo de equipamento. Atenção, não é necessário necessariamente tê-los todos no equipamento (ou não ter nenhum)"
     },
     "plugins\/gsh\/desktop\/php\/gsh.php": {
@@ -119,15 +111,83 @@
         "Etat": "Estado"
     },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
+        "Lumière": "Luz",
+        "Thermostat": "Termostato",
+        "Prise": "Tomada",
+        "Interrupteur": "Switch",
+        "Caméra": "Câmera",
+        "Scene": "Cena",
+        "Store": "Loja",
+        "Volet": "Aba",
+        "Rideaux": "Cortinas",
+        "Vanne": "Válvula",
+        "Capteur": "Sensor",
+        "Fenêtre": "Janela",
+        "Porte": "Porta",
+        "Porte Garage": "Porta da garagem",
+        "Alarme": "Alarme",
+        "Verrou": "Bloquear",
+        "TV": "Televisão",
+        "Ventilateur": "Ventilador",
+        "Hotte": "De capuz",
+        "Climatiseur": "Ar condicionado",
+        "Refroidisseur d\\'air": "Refrigerador de ar",
+        "Désodorisant": "Desodorante",
+        "Purificateur d\\'air": "Purificador de ar",
+        "Baignoire": "Banheira",
+        "Chaudiere": "Caldeira",
+        "Detecteur de CO": "Detector de CO",
+        "Placard": "Armário",
+        "Déshumidificateur": "Desumidificador",
+        "Déshydrateur": "Desidratador",
+        "Lave-vaiselle": "Lava-louças",
+        "Tiroir": "Gaveta",
+        "Séche linge": "Secadora",
+        "Cheminée": "Lareira",
+        "Congélateur": "Congelador",
+        "Chauffe-eau": "Aquecedor de água",
+        "Humidificateur": "Umidificador",
+        "Bouilloire": "Chaleira",
+        "Télécommande": "Controle remoto",
+        "Tondeuse": "Gadanheira",
+        "Réseaux": "Redes",
+        "Pergola": "Pérgola",
+        "Radiateur": "Radiador",
+        "Frigo": "Geladeira",
+        "Router": "Rota",
+        "Douche": "Chuveiro",
+        "Détecteur de fumée": "Detector de fumaça",
+        "Pompe à vide": "Bomba de vácuo",
+        "Machine à laver": "Máquina de lavar",
+        "Purificateur d\\'eau": "Purificador de água",
+        "Adoucisseur d\\'eau": "Abrandador de água",
         "Veuillez vérifier la configuration": "Por favor, verifique a configuração",
         "Erreur sur la demande de synchronisation :": "Erro no pedido de sincronização:",
         "Erreur sur la demande de remonté d\\'état :": "Erro na solicitação de status:",
         "JWT aucun token : ": "JWT sem token:"
     },
-    "plugins\/gsh\/core\/class\/gsh_LockUnlock.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_Rotation.class.php": {
+        "Rotation": "Rotação"
+    },
+    "plugins\/gsh\/core\/class\/gsh_FanSpeed.class.php": {
         "On": "Nós",
         "Off": "Fora",
         "Etat": "Estado"
+    },
+    "plugins\/gsh\/core\/class\/gsh_Reboot.class.php": {
+        "Redémarrage": "Reiniciar"
+    },
+    "plugins\/gsh\/core\/class\/gsh_LockUnlock.class.php": {
+        "On": "Nós",
+        "Off": "Fora",
+        "Etat": "Estado",
+        "Inverser l\\'état": "Estado reverso"
+    },
+    "plugins\/gsh\/core\/class\/gsh_SensorState.class.php": {
+        "Fumée": "Fumaça",
+        "Fuite d\\'eau": "Vazamento de água",
+        "Qualité d\\'air": "Qualidade do ar",
+        "Etat du filtre": "Status do filtro"
     },
     "plugins\/gsh\/core\/class\/gsh_MediaState.class.php": {
         "Pause": "Pausa",
@@ -148,15 +208,32 @@
         "Etat": "Estado",
         "Humidité": "Umidade",
         "Off": "Fora",
-        "Suspendu": "Suspenso"
+        "Suspendu": "Suspenso",
+        "Action pour le mode chaud": "Ação para o modo de aquecimento",
+        "Aucun": "Nemhum",
+        "Action pour le mode froid": "Ação para o modo frio",
+        "Action pour le mode off": "Ação para o modo desativado"
+    },
+    "plugins\/gsh\/core\/class\/gsh_Dock.class.php": {
+        "Retour sur sa base": "De volta à base",
+        "Sur sa base": "Em sua base"
     },
     "plugins\/gsh\/core\/class\/gsh_Volume.class.php": {
         "Etat volume": "Status do volume",
         "Volume": "Volume"
     },
+    "plugins\/gsh\/core\/class\/gsh_TemperatureControl.class.php": {
+        "Thermostat": "Termostato",
+        "Etat themostat\/Température": "Status do termostato \/ temperatura",
+        "Température": "Temperatura"
+    },
     "plugins\/gsh\/core\/class\/gsh_Channel.class.php": {
         "Chaine": "Cadeia",
         "Etat chaine": "Status do canal"
+    },
+    "plugins\/gsh\/core\/class\/gsh_StartStop.class.php": {
+        "On": "Nós",
+        "Off": "Fora"
     },
     "plugins\/gsh\/core\/class\/gsh_scene.class.php": {
         "Erreur lors de l\\'éxecution de ": "Erro ao executar",
@@ -166,7 +243,9 @@
         "Position": "Posição",
         "On": "Nós",
         "Off": "Fora",
-        "Etat": "Estado"
+        "Etat": "Estado",
+        "Inverser l\\'action": "Ação reversa",
+        "Inverser l\\'état": "Estado reverso"
     },
     "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
         "Couleur": "Cor",

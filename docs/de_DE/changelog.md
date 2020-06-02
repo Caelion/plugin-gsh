@@ -6,6 +6,8 @@
 
 
 - Neugestaltung des Plugins zur Unterstützung weiterer Typen (Vorsicht, während der Testphase können keine Regressionen auftreten)
+- Hinzufügung vieler Arten
+- Fügen Sie viele Aktionen / Informationen hinzu
 
 # 25.05.2020
 
