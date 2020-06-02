@@ -19,7 +19,7 @@
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
-class gsh_sensor {
+class gsh_SensorState {
 	
 	/*     * *************************Attributs****************************** */
 	private static $_CONVERSION = array(
@@ -66,90 +66,73 @@ class gsh_sensor {
 	);
 	/*     * ***********************Methode static*************************** */
 	
-	public static function buildDevice($_device) {
-		$eqLogic = $_device->getLink();
-		if (!is_object($eqLogic)) {
-			return 'deviceNotFound';
-		}
-		$return = array();
-		$return['id'] = $eqLogic->getId();
-		$return['type'] = $_device->getType();
-		if (is_object($eqLogic->getObject())) {
-			$return['roomHint'] = $eqLogic->getObject()->getName();
-		}
-		$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => $_device->getPseudo(), 'defaultNames' => $_device->getPseudo());
-		$return['customData'] = array();
-		$return['willReportState'] = ($_device->getOptions('reportState::enable') == 1);
-		$return['traits'] = array();
-		$return['attributes'] = array();
+	public static function discover($_eqLogic) {
+		$return = array('traits' => array(),'customData' => array(),'attributes' => array());
 		$return['attributes']['dataTypesSupported'] = array();
 		$modes = '';
-		foreach ($eqLogic->getCmd() as $cmd) {
+		foreach ($_eqLogic->getCmd() as $cmd) {
 			if (in_array($cmd->getGeneric_type(), array('TEMPERATURE'))) {
-				$return['customData']['cmd_get_temperature'] = $cmd->getId();
+				$return['customData']['SensorState_cmdGetTemperature'] = $cmd->getId();
 				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
-					$return['traits'][] = 'action.devices.traits.Sensor';
+					$return['traits'][] = 'action.devices.traits.SensorState';
 				}
 				$return['attributes']['dataTypesSupported'][] = self::$_CONVERSION['TEMPERATURE'];
 			}
 			if (in_array($cmd->getGeneric_type(), array('HUMIDITY'))) {
-				$return['customData']['cmd_get_humidity'] = $cmd->getId();
+				$return['customData']['SensorState_cmdGetHumidity'] = $cmd->getId();
 				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
-					$return['traits'][] = 'action.devices.traits.Sensor';
+					$return['traits'][] = 'action.devices.traits.SensorState';
 				}
 				$return['attributes']['dataTypesSupported'][] = self::$_CONVERSION['HUMIDITY'];
 			}
 			if (in_array($cmd->getGeneric_type(), array('AIR_QUALITY'))) {
-				$return['customData']['cmd_get_air_quality'] = $cmd->getId();
+				$return['customData']['SensorState_cmdGetAirQuality'] = $cmd->getId();
 				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
-					$return['traits'][] = 'action.devices.traits.Sensor';
+					$return['traits'][] = 'action.devices.traits.SensorState';
 				}
 				$return['attributes']['dataTypesSupported'][] = self::$_CONVERSION['AIR_QUALITY'];
 			}
 			if (in_array($cmd->getGeneric_type(), array('DEPTH'))) {
-				$return['customData']['cmd_get_depth'] = $cmd->getId();
+				$return['customData']['SensorState_cmdGetDepth'] = $cmd->getId();
 				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
-					$return['traits'][] = 'action.devices.traits.Sensor';
+					$return['traits'][] = 'action.devices.traits.SensorState';
 				}
 				$return['attributes']['dataTypesSupported'][] = self::$_CONVERSION['DEPTH'];
 			}
 			if (in_array($cmd->getGeneric_type(), array('WIND_DIRECTION','WEATHER_WIND_DIRECTION'))) {
-				$return['customData']['cmd_get_wind_direction'] = $cmd->getId();
+				$return['customData']['SensorState_cmdGetWindDirection'] = $cmd->getId();
 				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
-					$return['traits'][] = 'action.devices.traits.Sensor';
+					$return['traits'][] = 'action.devices.traits.SensorState';
 				}
 				$return['attributes']['dataTypesSupported'][] = self::$_CONVERSION['WIND_DIRECTION'];
 			}
 			if (in_array($cmd->getGeneric_type(), array('CONSUMPTION'))) {
-				$return['customData']['cmd_get_consumption'] = $cmd->getId();
+				$return['customData']['SensorState_cmdGetConsumption'] = $cmd->getId();
 				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
-					$return['traits'][] = 'action.devices.traits.Sensor';
+					$return['traits'][] = 'action.devices.traits.SensorState';
 				}
 				$return['attributes']['dataTypesSupported'][] = self::$_CONVERSION['CONSUMPTION'];
 			}
 			if (in_array($cmd->getGeneric_type(), array('SPEED','WEATHER_WIND_SPEED'))) {
-				$return['customData']['cmd_get_speed'] = $cmd->getId();
+				$return['customData']['SensorState_cmdGetSpeed'] = $cmd->getId();
 				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
-					$return['traits'][] = 'action.devices.traits.Sensor';
+					$return['traits'][] = 'action.devices.traits.SensorState';
 				}
 				$return['attributes']['dataTypesSupported'][] = self::$_CONVERSION['SPEED'];
 			}
 			if (in_array($cmd->getGeneric_type(), array('DISTANCE'))) {
-				$return['customData']['cmd_get_speed'] = $cmd->getId();
+				$return['customData']['SensorState_cmdGetDistance'] = $cmd->getId();
 				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
-					$return['traits'][] = 'action.devices.traits.Sensor';
+					$return['traits'][] = 'action.devices.traits.SensorState';
 				}
 				$return['attributes']['dataTypesSupported'][] = self::$_CONVERSION['DISTANCE'];
 			}
 		}
-		if (count($return['traits']) == 0) {
-			return array();
-		}
 		return $return;
 	}
 	
-	public static function query($_device, $_infos) {
-		return self::getState($_device, $_infos);
+	public static function needGenericType($_eqLogic){
+		return array();
 	}
 	
 	public static function exec($_device, $_executions, $_infos) {
@@ -157,7 +140,7 @@ class gsh_sensor {
 		return $return;
 	}
 	
-	public static function getState($_device, $_infos) {
+	public static function query($_device, $_infos) {
 		$return = array();
 		$return['online'] = true;
 		$return['on'] = true;
@@ -170,7 +153,7 @@ class gsh_sensor {
 			if(!is_object($cmd)){
 				continue;
 			}
-			$type = str_replace('cmd_get_','',$key);
+			$type = strtolower(str_replace('SensorState_cmdGet','',$key));
 			switch ($type) {
 				case 'temperature':
 				$return['currentSensorData'][] = array(
@@ -224,7 +207,6 @@ class gsh_sensor {
 				break;
 			}
 		}
-		
 		return $return;
 	}
 	

@@ -1,4 +1,5 @@
 <?php
+
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -14,9 +15,11 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
+
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
-class gsh_lock {
+
+class gsh_LockUnlock {
   
   /*     * *************************Attributs****************************** */
   
@@ -26,72 +29,48 @@ class gsh_lock {
   
   /*     * ***********************Methode static*************************** */
   
-  public static function buildDevice($_device) {
-    $eqLogic = $_device->getLink();
-    if (!is_object($eqLogic)) {
-      return 'deviceNotFound';
-    }
-    $return = array();
-    $return['id'] = $eqLogic->getId();
-    $return['type'] = $_device->getType();
-    if (is_object($eqLogic->getObject())) {
-      $return['roomHint'] = $eqLogic->getObject()->getName();
-    }
-    $return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => $_device->getPseudo(), 'defaultNames' => $_device->getPseudo());
-    $return['customData'] = array();
-    $return['willReportState'] = ($_device->getOptions('reportState::enable') == 1);
-    $return['traits'] = array();
-    $modes = '';
-    foreach ($eqLogic->getCmd() as $cmd) {
+  public static function discover($_eqLogic){
+    $return = array('traits' => array(),'customData' => array());
+    foreach ($_eqLogic->getCmd() as $cmd) {
       if (in_array($cmd->getGeneric_type(), self::$_ON)) {
         if (!in_array('action.devices.traits.LockUnlock', $return['traits'])) {
           $return['traits'][] = 'action.devices.traits.LockUnlock';
         }
-        $return['customData']['cmd_set_on'] = $cmd->getId();
+        $return['customData']['LockUnlock_cmdSetOn'] = $cmd->getId();
       }
       if (in_array($cmd->getGeneric_type(), self::$_OFF)) {
         if (!in_array('action.devices.traits.LockUnlock', $return['traits'])) {
           $return['traits'][] = 'action.devices.traits.LockUnlock';
         }
-        $return['customData']['cmd_set_off'] = $cmd->getId();
+        $return['customData']['LockUnlock_cmdSetOff'] = $cmd->getId();
       }
       if (in_array($cmd->getGeneric_type(), self::$_STATE)) {
-        $return['customData']['cmd_get_state'] = $cmd->getId();
+        $return['customData']['LockUnlock_cmdGetState'] = $cmd->getId();
         if (!in_array('action.devices.traits.LockUnlock', $return['traits'])) {
           $return['traits'][] = 'action.devices.traits.LockUnlock';
         }
       }
     }
-    if (count($return['traits']) == 0) {
-      return array('missingGenericType' => array(
-        __('On',__FILE__) => self::$_ON,
-        __('Off',__FILE__) => self::$_OFF,
-        __('Etat',__FILE__) => self::$_STATE
-      ));
-    }
     return $return;
   }
   
-  public static function query($_device, $_infos) {
-    return self::getState($_device, $_infos);
+  public static function needGenericType($_eqLogic){
+    return array(
+      __('On',__FILE__) => self::$_ON,
+      __('Off',__FILE__) => self::$_OFF,
+      __('Etat',__FILE__) => self::$_STATE
+    );
   }
   
-  public static function exec($_device, $_executions, $_infos) {
-    $return = array('status' => 'ERROR');
-    $eqLogic = $_device->getLink();
-    if (!is_object($eqLogic)) {
-      return $return;
-    }
-    if ($eqLogic->getIsEnable() == 0) {
-      return $return;
-    }
+  public static function exec($_device, $_executions, $_infos){
+    $return = array();
     foreach ($_executions as $execution) {
       try {
         switch ($execution['command']) {
           case 'action.devices.commands.LockUnlock':
           if($execution['params']['lock']){
-            if (isset($_infos['customData']['cmd_set_off'])) {
-              $cmd = cmd::byId($_infos['customData']['cmd_set_off']);
+            if (isset($_infos['customData']['LockUnlock_cmdSetOff'])) {
+              $cmd = cmd::byId($_infos['customData']['LockUnlock_cmdSetOff']);
             }
             if (!is_object($cmd)) {
               break;
@@ -99,8 +78,8 @@ class gsh_lock {
             $cmd->execCmd();
             $return = array('status' => 'SUCCESS');
           }else{
-            if (isset($_infos['customData']['cmd_set_on'])) {
-              $cmd = cmd::byId($_infos['customData']['cmd_set_on']);
+            if (isset($_infos['customData']['LockUnlock_cmdSetOn'])) {
+              $cmd = cmd::byId($_infos['customData']['LockUnlock_cmdSetOn']);
             }
             if (!is_object($cmd)) {
               break;
@@ -115,15 +94,14 @@ class gsh_lock {
         $return = array('status' => 'ERROR');
       }
     }
-    $return['states'] = self::getState($_device, $_infos);
     return $return;
   }
   
-  public static function getState($_device, $_infos) {
+  public static function query($_device, $_infos){
     $return = array('isJammed' => false);
     $cmd = null;
-    if (isset($_infos['customData']['cmd_get_state'])) {
-      $cmd = cmd::byId($_infos['customData']['cmd_get_state']);
+    if (isset($_infos['customData']['LockUnlock_cmdGetState'])) {
+      $cmd = cmd::byId($_infos['customData']['LockUnlock_cmdGetState']);
     }
     if (!is_object($cmd)) {
       return $return;
@@ -142,9 +120,5 @@ class gsh_lock {
     }
     return $return;
   }
-  
-  /*     * *********************Méthodes d'instance************************* */
-  
-  /*     * **********************Getteur Setteur*************************** */
   
 }
