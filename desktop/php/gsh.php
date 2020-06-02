@@ -3,6 +3,9 @@ if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 $supportedType = gsh::getSupportedType();
+uasort($supportedType, function ($a, $b) {
+	return strcmp($a['name'], $b['name']);
+});
 ?>
 <div class="row row-overflow">
 	<div class="col-xs-12">
