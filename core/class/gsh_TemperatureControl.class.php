@@ -23,8 +23,9 @@ class gsh_TemperatureControl {
   
   /*     * *************************Attributs****************************** */
   
-  private static $_ROTATION = array('ROTATION');
-  private static $_ROTATION_STATE = array('ROTATION_STATE');
+  $_SET_SETPOINT = array('THERMOSTAT_SET_SETPOINT');
+  $_SETPOINT = array('THERMOSTAT_SETPOINT');
+  $_TEMPERATURE = array('TEMPERATURE','THERMOSTAT_TEMPERATURE');
   
   /*     * ***********************Methode static*************************** */
   
@@ -35,7 +36,7 @@ class gsh_TemperatureControl {
       'commandOnlyTemperatureControl'=>true
     ));
     foreach ($_eqLogic->getCmd() as $cmd) {
-      if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_SET_SETPOINT'))) {
+      if (in_array($cmd->getGeneric_type(), self::$_SET_SETPOINT)) {
         if (!in_array('action.devices.traits.TemperatureControl', $return['traits'])) {
           $return['traits'][] = 'action.devices.traits.TemperatureControl';
         }
@@ -46,11 +47,11 @@ class gsh_TemperatureControl {
           'maxThresholdCelsius' => $cmd->getConfiguration('maxValue')
         );
       }
-      if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_TEMPERATURE'))) {
+      if (in_array($cmd->getGeneric_type(), self::$_SETPOINT)) {
         $return['customData']['TemperatureControl_cmdGetSetpoint'] = $cmd->getId();
         $return['attributes']['commandOnlyTemperatureControl'] = false;
       }
-      if (in_array($cmd->getGeneric_type(), array('TEMPERATURE'))) {
+      if (in_array($cmd->getGeneric_type(), self::$_TEMPERATURE)) {
         $return['customData']['TemperatureControl_cmdGetTemperature'] = $cmd->getId();
         $return['attributes']['commandOnlyTemperatureControl'] = false;
       }
@@ -60,9 +61,9 @@ class gsh_TemperatureControl {
   
   public static function needGenericType(){
     return array(
-      __('Thermostat',__FILE__) => array('THERMOSTAT_SET_SETPOINT'),
-      __('Etat themostat/Température',__FILE__) => array('THERMOSTAT_TEMPERATURE'),
-      __('Température',__FILE__) => array('TEMPERATURE'),
+      __('Thermostat',__FILE__) => self::$_SET_SETPOINT,
+      __('Etat themostat/Température',__FILE__) => self::$_SETPOINT,
+      __('Température',__FILE__) => self::$_TEMPERATURE,
     );
   }
   
