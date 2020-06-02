@@ -23,8 +23,8 @@ class gsh_Modes {
   
   /*     * *************************Attributs****************************** */
   
-  private static $_SET_MODE = array('ALARM_SET_MODE');
-  private static $_GET_MODE = array('ALARM_MODE');
+  private static $_SET_MODE = array('ALARM_SET_MODE','MODE_SET_STATE');
+  private static $_GET_MODE = array('ALARM_MODE','MODE_STATE');
   
   /*     * ***********************Methode static*************************** */
   
