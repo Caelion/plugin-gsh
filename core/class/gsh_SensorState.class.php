@@ -25,6 +25,8 @@ class gsh_SensorState {
 	
 	private $_SMOKE = array('SMOKE');
 	private $_WATER_LEAK = array('WATER_LEAK');
+	private $_AIR_QUALITY = array('AIR_QUALITY');
+	private $_FILTER_CLEANLINESS = array('FILTER_CLEAN_STATE');
 	
 	
 	/*     * ***********************Methode static*************************** */
@@ -33,7 +35,7 @@ class gsh_SensorState {
 		$return = array('traits' => array(),'customData' => array(),'attributes' => array());
 		$return['attributes']['dataTypesSupported'] = array();
 		foreach ($_eqLogic->getCmd() as $cmd) {
-			if (in_array($cmd->getGeneric_type(), $_SMOKE)) {
+			if (in_array($cmd->getGeneric_type(), self::$_SMOKE)) {
 				$return['customData']['SensorState_cmdGetSmokeLevel'] = $cmd->getId();
 				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
 					$return['traits'][] = 'action.devices.traits.SensorState';
@@ -45,7 +47,7 @@ class gsh_SensorState {
 					);
 				}
 			}
-			if (in_array($cmd->getGeneric_type(), $_WATER_LEAK)) {
+			if (in_array($cmd->getGeneric_type(), self::$_WATER_LEAK)) {
 				$return['customData']['SensorState_cmdGetWaterLeak'] = $cmd->getId();
 				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
 					$return['traits'][] = 'action.devices.traits.SensorState';
@@ -57,6 +59,30 @@ class gsh_SensorState {
 					);
 				}
 			}
+			if (in_array($cmd->getGeneric_type(), self::$_AIR_QUALITY)) {
+				$return['customData']['SensorState_cmdGetAirQuality'] = $cmd->getId();
+				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.SensorState';
+					$return['attributes']['sensorStatesSupported'][] = array(
+						'name' => 'AirQuality',
+						'descriptiveCapabilities' => array(
+							'availableStates' => array('healthy','moderate','unhealthy','very unhealthy')
+						)
+					);
+				}
+			}
+			if (in_array($cmd->getGeneric_type(), self::$_FILTER_CLEANLINESS)) {
+				$return['customData']['SensorState_cmdGetFilterCleanliness'] = $cmd->getId();
+				if (!in_array('action.devices.traits.SensorState', $return['traits'])) {
+					$return['traits'][] = 'action.devices.traits.SensorState';
+					$return['attributes']['sensorStatesSupported'][] = array(
+						'name' => 'FilterCleanliness',
+						'descriptiveCapabilities' => array(
+							'availableStates' => array('clean','dirty')
+						)
+					);
+				}
+			}
 		}
 		return $return;
 	}
@@ -64,7 +90,8 @@ class gsh_SensorState {
 	public static function needGenericType(){
 		return array(
 			__('Fumée',__FILE__) => self::$_SMOKE,
-			__('Fuite d\'eau',__FILE__) => self::$_WATER_LEAK
+			__('Fuite d\'eau',__FILE__) => self::$_WATER_LEAK,
+			__('Qualité d\'air',__FILE__) => self::$_AIR_QUALITY
 		);
 	}
 	
@@ -93,6 +120,20 @@ class gsh_SensorState {
 				break;
 				case 'WaterLeak':
 				$value = ($value == 1) ? 'leak'  : 'no leak';
+				break;
+				case 'AirQuality':
+				if($value > 75){
+					$value = 'very unhealthy';
+				}elseif($value > 50){
+					$value = 'unhealthy';
+				}elseif($value > 25){
+					$value = 'moderate';
+				}else{
+					$value = 'healthy';
+				}
+				break;
+				case 'FilterCleanliness':
+				$value = ($value == 1) ? 'dirty'  : 'clean';
 				break;
 			}
 			
