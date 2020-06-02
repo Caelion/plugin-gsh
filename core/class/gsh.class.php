@@ -40,6 +40,7 @@ include_file('core', 'gsh_StartStop', 'class', 'gsh');
 include_file('core', 'gsh_Reboot', 'class', 'gsh');
 include_file('core', 'gsh_Rotation', 'class', 'gsh');
 include_file('core', 'gsh_TemperatureControl', 'class', 'gsh');
+include_file('core', 'gsh_Dock', 'class', 'gsh');
 
 class gsh extends eqLogic {
 	

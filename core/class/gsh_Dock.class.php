@@ -19,22 +19,26 @@
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
-class gsh_Reboot {
+class gsh_Dock {
   
   /*     * *************************Attributs****************************** */
   
-  private static $_REBOOT = array('REBOOT');
+  private static $_DOCK = array('DOCK');
+  private static $_DOCK_STATE = array('DOCK_STATE');
   
   /*     * ***********************Methode static*************************** */
   
   public static function discover($_eqLogic){
     $return = array('traits' => array(),'customData' => array());
     foreach ($_eqLogic->getCmd() as $cmd) {
-      if (in_array($cmd->getGeneric_type(), self::$_REBOOT)) {
-        if (!in_array('action.devices.traits.Reboot', $return['traits'])) {
-          $return['traits'][] = 'action.devices.traits.Reboot';
+      if (in_array($cmd->getGeneric_type(), self::$_DOCK)) {
+        if (!in_array('action.devices.traits.Dock', $return['traits'])) {
+          $return['traits'][] = 'action.devices.traits.Dock';
         }
-        $return['customData']['Reboot_cmdSet'] = $cmd->getId();
+        $return['customData']['Dock_cmdSet'] = $cmd->getId();
+      }
+      if (in_array($cmd->getGeneric_type(), self::$_DOCK_STATE)) {
+        $return['customData']['Dock_cmdGet'] = $cmd->getId();
       }
     }
     return $return;
@@ -42,7 +46,8 @@ class gsh_Reboot {
   
   public static function needGenericType(){
     return array(
-      __('Redémarrage',__FILE__) => self::$_REBOOT
+      __('Retour sur sa base',__FILE__) => self::$_DOCK_STATE,
+      __('Sur sa base',__FILE__) => self::$_DOCK
     );
   }
   
@@ -51,9 +56,9 @@ class gsh_Reboot {
     foreach ($_executions as $execution) {
       try {
         switch ($execution['command']) {
-          case 'action.devices.commands.Reboot':
-          if (isset($_infos['customData']['Reboot_cmdSet'])) {
-            $cmd = cmd::byId($_infos['customData']['Reboot_cmdSet']);
+          case 'action.devices.commands.Dock':
+          if (isset($_infos['customData']['Dock_cmdSet'])) {
+            $cmd = cmd::byId($_infos['customData']['Dock_cmdSet']);
           }
           if (!is_object($cmd)) {
             break;
@@ -70,7 +75,21 @@ class gsh_Reboot {
   }
   
   public static function query($_device, $_infos){
-    return array();
+    $return = array();
+    $cmd = null;
+    if (isset($_infos['customData']['Dock_cmdGet'])) {
+      $cmd = cmd::byId($_infos['customData']['Dock_cmdGet']);
+    }
+    if (!is_object($cmd)) {
+      return $return;
+    }
+    $value = $cmd->execCmd();
+    if ($cmd->getSubtype() == 'numeric') {
+      $return['isDocked'] = ($value > 0);
+    } else if ($cmd->getSubtype() == 'binary') {
+      $return['isDocked'] = boolval($value);
+    }
+    return $return;
   }
   
 }
