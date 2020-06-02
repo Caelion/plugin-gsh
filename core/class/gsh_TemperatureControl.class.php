@@ -23,9 +23,9 @@ class gsh_TemperatureControl {
   
   /*     * *************************Attributs****************************** */
   
-  $_SET_SETPOINT = array('THERMOSTAT_SET_SETPOINT');
-  $_SETPOINT = array('THERMOSTAT_SETPOINT');
-  $_TEMPERATURE = array('TEMPERATURE','THERMOSTAT_TEMPERATURE');
+  private static $_SET_SETPOINT = array('THERMOSTAT_SET_SETPOINT');
+  private static $_SETPOINT = array('THERMOSTAT_SETPOINT');
+  private static $_TEMPERATURE = array('TEMPERATURE','THERMOSTAT_TEMPERATURE');
   
   /*     * ***********************Methode static*************************** */
   
