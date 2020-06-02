@@ -51,7 +51,7 @@ class gsh_OnOff {
     return $return;
   }
   
-  public static function needGenericType($_eqLogic){
+  public static function needGenericType(){
     return array(
       __('On',__FILE__) => self::$_ON,
       __('Off',__FILE__) => self::$_OFF,

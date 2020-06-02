@@ -69,7 +69,7 @@ class gsh_Modes {
     return $return;
   }
   
-  public static function needGenericType($_eqLogic){
+  public static function needGenericType(){
     return array(
       __('Mode',__FILE__) => self::$_SET_MODE,
       __('Etat mode',__FILE__) => self::$_GET_MODE,

@@ -66,7 +66,7 @@ class gsh_ColorSetting {
     return $return;
   }
   
-  public static function needGenericType($_eqLogic){
+  public static function needGenericType(){
     return array(
       __('Couleur',__FILE__) => self::$_COLOR,
       __('Etat couleur',__FILE__) => self::$_COLOR_STATE,

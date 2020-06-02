@@ -84,7 +84,7 @@ class gsh_TemperatureSetting {
     return $return;
   }
   
-  public static function needGenericType($_eqLogic){
+  public static function needGenericType(){
     return array(
       __('Thermostat',__FILE__) => array('THERMOSTAT_SET_SETPOINT'),
       __('Etat themostat ',__FILE__) => array('THERMOSTAT_TEMPERATURE','TEMPERATURE'),

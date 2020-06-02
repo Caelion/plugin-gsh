@@ -131,10 +131,6 @@ class gsh_SensorState {
 		return $return;
 	}
 	
-	public static function needGenericType($_eqLogic){
-		return array();
-	}
-	
 	public static function exec($_device, $_executions, $_infos) {
 		$return = array('status' => 'ERROR');
 		return $return;

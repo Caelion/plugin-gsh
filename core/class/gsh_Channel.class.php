@@ -47,7 +47,7 @@ class gsh_Channel {
     return $return;
   }
   
-  public static function needGenericType($_eqLogic){
+  public static function needGenericType(){
     return array(
       __('Chaine',__FILE__) => self::$_CHANNEL,
       __('Etat chaine',__FILE__) => self::$_SET_CHANNEL

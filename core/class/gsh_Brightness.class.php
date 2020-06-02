@@ -44,7 +44,7 @@ class gsh_Brightness {
     return $return;
   }
   
-  public static function needGenericType($_eqLogic){
+  public static function needGenericType(){
     return array(
       __('Luminosité',__FILE__) => self::$_SLIDER,
       __('Etat Luminosité',__FILE__) => self::$_STATE

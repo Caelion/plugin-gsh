@@ -58,7 +58,7 @@ class gsh_OpenClose {
     return $return;
   }
   
-  public static function needGenericType($_eqLogic){
+  public static function needGenericType(){
     return array(
       __('Position',__FILE__) => self::$_SLIDER,
       __('On',__FILE__) => self::$_ON,

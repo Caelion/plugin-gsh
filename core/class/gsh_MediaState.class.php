@@ -68,7 +68,7 @@ class gsh_MediaState {
     return $return;
   }
   
-  public static function needGenericType($_eqLogic){
+  public static function needGenericType(){
     return array(
       __('Pause',__FILE__) => self::$_MEDIA_PAUSE,
       __('Reprendre',__FILE__) => self::$_MEDIA_RESUME,

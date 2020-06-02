@@ -47,7 +47,7 @@ class gsh_Volume {
     return $return;
   }
   
-  public static function needGenericType($_eqLogic){
+  public static function needGenericType(){
     return array(
       __('Etat volume',__FILE__) => self::$_VOLUME,
       __('Volume',__FILE__) => self::$_SET_VOLUME,
