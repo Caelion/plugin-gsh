@@ -38,6 +38,7 @@ include_file('core', 'gsh_Volume', 'class', 'gsh');
 include_file('core', 'gsh_FanSpeed', 'class', 'gsh');
 include_file('core', 'gsh_StartStop', 'class', 'gsh');
 include_file('core', 'gsh_Reboot', 'class', 'gsh');
+include_file('core', 'gsh_Rotation', 'class', 'gsh');
 
 class gsh extends eqLogic {
 	

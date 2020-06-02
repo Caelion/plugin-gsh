@@ -66,7 +66,8 @@ class gsh_FanSpeed {
             break;
           }
           if ($cmd->getSubtype() == 'slider') {
-            $cmd->execCmd(array('slider' => $execution['params']['fanSpeedPercent']));
+            $value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['fanSpeedPercent'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
+            $cmd->execCmd(array('slider' => $value));
             $return = array('status' => 'SUCCESS');
           }
           break;
@@ -79,7 +80,8 @@ class gsh_FanSpeed {
           if (!is_object($cmd_info)) {
             break;
           }
-          $cmd->execCmd(array('slider'=> $cmd_info->execCmd() + $execution['params']['fanSpeedRelativePercent']));
+          $value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['fanSpeedRelativePercent'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
+          $cmd->execCmd(array('slider'=> $cmd_info->execCmd() + $value));
           $return = array('status' => 'SUCCESS');
           break;
         }
