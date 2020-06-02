@@ -29,6 +29,7 @@ if (!is_object($device)) {
 if ($device->getType() == '') {
 	throw new Exception(__('Aucun type configuré pour ce périphérique', __FILE__));
 }
+$supportedType = gsh::getSupportedType();
 sendVarToJs('device', utils::o2a($device));
 ?>
 <div id="div_alertAdvanceConfigure"></div>
@@ -54,100 +55,21 @@ sendVarToJs('device', utils::o2a($device));
 			</div>
 		</fieldset>
 	</form>
-	<?php
-	if(in_array($device->getType(),array('action.devices.types.BLINDS','action.devices.types.SHUTTER','action.devices.types.CURTAIN'))){
-		?>
-		<legend>{{Configuration}}</legend>
-		<form class="form-horizontal">
-			<fieldset>
-				<div class="form-group">
-					<label class="col-sm-3 control-label">{{Inverser}}</label>
-					<div class="col-sm-3">
-						<input type="checkbox" class="deviceAttr" data-l1key="options" data-l2key="blinds::invert"></input>
-					</div>
-				</div>
-			</fieldset>
-		</form>
-		<?php
-	} else	if(in_array($device->getType(),array('action.devices.types.LOCK'))){
-		?>
-		<legend>{{Configuration}}</legend>
-		<form class="form-horizontal">
-			<fieldset>
-				<div class="form-group">
-					<label class="col-sm-3 control-label">{{Inverser}}</label>
-					<div class="col-sm-3">
-						<input type="checkbox" class="deviceAttr" data-l1key="options" data-l2key="lock::invert"></input>
-					</div>
-				</div>
-			</fieldset>
-		</form>
-		<?php
-	} else	if(in_array($device->getType(),array('action.devices.types.WINDOW','action.devices.types.DOOR','action.devices.types.GARAGE'))){
-		?>
-		<legend>{{Configuration}}</legend>
-		<form class="form-horizontal">
-			<fieldset>
-				<div class="form-group">
-					<label class="col-sm-3 control-label">{{Inverser}}</label>
-					<div class="col-sm-3">
-						<input type="checkbox" class="deviceAttr" data-l1key="options" data-l2key="door::invert"></input>
-					</div>
-				</div>
-			</fieldset>
-		</form>
-		<?php
-	} else	if(in_array($device->getType(),array('action.devices.types.THERMOSTAT'))){
-		?>
-		<legend>{{Configuration du thermostat}}</legend>
-		<form class="form-horizontal">
-			<fieldset>
-				<div class="form-group">
-					<label class="col-sm-3 control-label">{{Action pour le mode chaud}}</label>
-					<div class="col-sm-3">
-						<select class="form-control deviceAttr" data-l1key="options" data-l2key="thermostat::heat">
-							<option value="">{{Aucun}}</option>
-							<?php
-							foreach ($eqLogic->getCmd('action', null, null, true) as $cmd) {
-								echo '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
-							}
-							?>
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label">{{Action pour le mode froid}}</label>
-					<div class="col-sm-3">
-						<select class="form-control deviceAttr" data-l1key="options" data-l2key="thermostat::cool">
-							<option value="">{{Aucun}}</option>
-							<?php
-							foreach ($eqLogic->getCmd('action', null, null, true) as $cmd) {
-								echo '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
-							}
-							?>
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label">{{Action pour le mode off}}</label>
-					<div class="col-sm-3">
-						<select class="form-control deviceAttr" data-l1key="options" data-l2key="thermostat::off">
-							<option value="">{{Aucun}}</option>
-							<?php
-							foreach ($eqLogic->getCmd('action', null, null, true) as $cmd) {
-								echo '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
-							}
-							?>
-						</select>
-					</div>
-				</div>
-			</fieldset>
-		</form>
-		<?php
-	}else{
-		echo '<div class="alert alert-info">{{Il n\'y a aucune configuration avancée pour ce type}}</div>';
-	}
-	?>
+	
+	<form class="form-horizontal">
+		<fieldset>
+			<?php
+			foreach ($supportedType[$device->getType()]['traits'] as $traits) {
+				$class = 'gsh_'.$traits;
+				if (!class_exists($class) || !method_exists($class,'getHtmlConfiguration')) {
+					continue;
+				}
+				echo '<legend>{{Configuration}} '.$traits.'</legend>';
+				$class::getHtmlConfiguration($eqLogic);
+			}
+			?>
+		</fieldset>
+	</form>
 </div>
 
 <script>

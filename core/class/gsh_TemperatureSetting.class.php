@@ -26,7 +26,17 @@ class gsh_TemperatureSetting {
   /*     * ***********************Methode static*************************** */
   
   public static function discover($_eqLogic){
-    $return = array('traits' => array(),'customData' => array(),'attributes' => array('openDirection' => array('DOWN')));
+    $return = array('traits' => array(),'customData' => array(),'attributes' => array());
+    $modes = '';
+    if ($_device->getOptions('TemperatureSetting::heat') != '') {
+      $modes .= 'heat,';
+    }
+    if ($_device->getOptions('TemperatureSetting::cool') != '') {
+      $modes .= 'cool,';
+    }
+    if ($_device->getOptions('TemperatureSetting::off') != '') {
+      $modes .= 'off,';
+    }
     foreach ($_eqLogic->getCmd() as $cmd) {
       if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_SET_SETPOINT'))) {
         if (!in_array('action.devices.traits.TemperatureSetting', $return['traits'])) {
@@ -214,6 +224,43 @@ class gsh_TemperatureSetting {
       $return['thermostatMode'] = 'heat';
     }
     return $return;
+  }
+  
+  
+  public static function getHtmlConfiguration($_eqLogic){
+    echo '<div class="form-group">';
+    echo '<label class="col-sm-3 control-label">{{Action pour le mode chaud}}</label>';
+    echo '<div class="col-sm-3">';
+    echo '<select class="form-control deviceAttr" data-l1key="options" data-l2key="TemperatureSetting::heat">';
+    echo '<option value="">{{Aucun}}</option>';
+    foreach ($eqLogic->getCmd('action', null, null, true) as $cmd) {
+      echo '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
+    }
+    echo '</select>';
+    echo '</div>';
+    echo '</div>';
+    echo '<div class="form-group">';
+    echo '<label class="col-sm-3 control-label">{{Action pour le mode froid}}</label>';
+    echo '<div class="col-sm-3">';
+    echo '<select class="form-control deviceAttr" data-l1key="options" data-l2key="TemperatureSetting::cool">';
+    echo '<option value="">{{Aucun}}</option>';
+    foreach ($eqLogic->getCmd('action', null, null, true) as $cmd) {
+      echo '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
+    }
+    echo '</select>';
+    echo '</div>';
+    echo '</div>';
+    echo '<div class="form-group">';
+    echo '<label class="col-sm-3 control-label">{{Action pour le mode off}}</label>';
+    echo '<div class="col-sm-3">';
+    echo '<select class="form-control deviceAttr" data-l1key="options" data-l2key="TemperatureSetting::off">';
+    echo '<option value="">{{Aucun}}</option>';
+    foreach ($eqLogic->getCmd('action', null, null, true) as $cmd) {
+      echo '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
+    }
+    echo '</select>';
+    echo '</div>';
+    echo '</div>';
   }
   
 }

@@ -40,59 +40,61 @@ class gsh extends eqLogic {
 	
 	/*     * *************************Attributs****************************** */
 	
-	public static $_supportedType = array(
-		'action.devices.types.LIGHT' => array('name' => 'Lumière','traits' =>array('Brightness','ColorSetting','OnOff')),
-		'action.devices.types.THERMOSTAT' => array('name' => 'Thermostat','traits' =>array('TemperatureSetting')),
-		'action.devices.types.OUTLET' => array('name' => 'Prise','traits' =>array('OnOff')),
-		'action.devices.types.SWITCH' => array('name' => 'Interrupteur','traits' =>array('OnOff')),
-		'action.devices.types.CAMERA' => array('name' => 'Caméra','class' => 'gsh_camera'),
-		'action.devices.types.SCENE' => array('name' => 'Scene','class' => 'gsh_scene'),
-		'action.devices.types.BLINDS' => array('name' => 'Store','traits' =>array('Modes','OpenClose')),
-		'action.devices.types.SHUTTER' => array('name' => 'Volet','traits' =>array('Modes','OpenClose','Rotation')),
-		'action.devices.types.CURTAIN' => array('name' => 'Rideaux','traits' =>array('OpenClose')),
-		'action.devices.types.VALVE' => array('name' => 'Vanne','traits' =>array('OpenClose')),
-		'action.devices.types.SENSOR' => array('name' => 'Capteur','traits' =>array('OnOff','SensorState')),
-		'action.devices.types.WINDOW' => array('name' => 'Fenêtre','traits' =>array('OpenClose')),
-		'action.devices.types.DOOR' => array('name' => 'Porte','traits' =>array('OpenClose')),
-		'action.devices.types.GARAGE' => array('name' => 'Porte Garage','traits' =>array('OpenClose')),
-		'action.devices.types.SECURITYSYSTEM' => array('name' => 'Alarme','traits' =>array('ArmDisarm','StatusReport')),
-		'action.devices.types.LOCK' => array('name' => 'Verrou','traits' =>array('LockUnlock')),
-		'action.devices.types.TV' => array('name' => 'TV','traits' =>array('OnOff','MediaState','InputSelector','AppSelector','TransportControl','Volume','Modes')),
-		'action.devices.types.FAN' => array('name' => 'Ventilateur','traits' =>array('OnOff','FanSpeed','Modes','Toggles')),
-		'action.devices.types.HOOD' => array('name' => 'Hotte','traits' =>array('OnOff','FanSpeed','Modes','Toggles')),
-		'action.devices.types.AC_UNIT' => array('name' => 'Climatiseur','traits' =>array('FanSpeed','TemperatureSetting','OnOff')),
-		'action.devices.types.AIRCOOLER' => array('name' => 'Refroidisseur d\'air','traits' =>array('FanSpeed','TemperatureSetting','OnOff','HumiditySetting')),
-		'action.devices.types.AIRFRESHENER' => array('name' => 'Désodorisant','traits' =>array('Modes','Toggles','OnOff')),
-		'action.devices.types.AIRPURIFIER' => array('name' => 'Purificateur d\'air','traits' =>array('FanSpeed','Modes','OnOff','SensorState','Toggles')),
-		'action.devices.types.AWNING' => array('name' => 'Store','traits' =>array('Modes','OpenClose')),
-		'action.devices.types.BATHTUB ' => array('name' => 'Baignoire','traits' =>array('OnOff','Fill')),
-		'action.devices.types.BOILER' => array('name' => 'Chaudiere','traits' =>array('Modes','TemperatureControl','OnOff','Toggles')),
-		'action.devices.types.CARBON_MONOXIDE_DETECTOR' => array('name' => 'Detecteur de CO','traits' =>array('SensorState')),
-		'action.devices.types.CLOSET' => array('name' => 'Placard','traits' =>array('OpenClose')),
-		'action.devices.types.DEHUMIDIFIER' => array('name' => 'Déshumidificateur','traits' =>array('FanSpeed','HumiditySetting','OnOff','Modes','RunCycle','StartStop','Toggles')),
-		'action.devices.types.DEHYDRATOR' => array('name' => 'Déshydrateur','traits' =>array('Cook','Timer','OnOff','Modes','Toggles','StartStop')),
-		'action.devices.types.DISHWASHER' => array('name' => 'Lave-vaiselle','traits' =>array('OnOff','StartStop','Modes','Toggles','RunCycle')),
-		'action.devices.types.DRAWER' => array('name' => 'Tiroir','traits' =>array('OpenClose')),
-		'action.devices.types.DRYER' => array('name' => 'Séche linge','traits' =>array('OnOff','StartStop','Modes','Toggles','RunCycle')),
-		'action.devices.types.FIREPLACE' => array('name' => 'Cheminée','traits' =>array('OnOff','Modes','Toggles')),
-		'action.devices.types.FREEZER' => array('name' => 'Congélateur','traits' =>array('OnOff','Modes','Toggles','TemperatureControl')),
-		'action.devices.types.HEATER' => array('name' => 'Chauffe-eau','traits' =>array('FanSpeed','TemperatureSetting','OnOff')),
-		'action.devices.types.HUMIDIFIER' => array('name' => 'Humidificateur','traits' =>array('FanSpeed','HumiditySetting','OnOff','Modes','StartStop','Toggles')),
-		'action.devices.types.KETTLE' => array('name' => 'Bouilloire','traits' =>array('Modes','TemperatureControl','OnOff','Toggles')),
-		'action.devices.types.REMOTECONTROL' => array('name' => 'Télécommande','traits' =>array('OnOff','MediaState','InputSelector','AppSelector','TransportControl','Volume')),
-		'action.devices.types.MOWER' => array('name' => 'Tondeuse','traits' =>array('Dock','Locator','Modes','OnOff','StartStop','Toggles')),
-		'action.devices.types.NETWORK' => array('name' => 'Réseaux','traits' =>array('Modes','Toggles','Reboot','SoftwareUpdate','NetworkControl')),
-		'action.devices.types.PERGOLA' => array('name' => 'Pergola','traits' =>array('OpenClose','Rotation')),
-		'action.devices.types.RADIATOR' => array('name' => 'Radiateur','traits' =>array('Modes','Toggles','OnOff')),
-		'action.devices.types.REFRIGERATOR' => array('name' => 'Frigo','traits' =>array('Modes','Toggles','OnOff','TemperatureControl')),
-		'action.devices.types.ROUTER' => array('name' => 'Router','traits' =>array('Modes','Toggles','Reboot','SoftwareUpdate','NetworkControl')),
-		'action.devices.types.SHOWER' => array('name' => 'Douche','traits' =>array('Modes','Toggles','OnOff','TemperatureControl')),
-		'action.devices.types.SMOKE_DETECTOR' => array('name' => 'Détecteur de fumée','traits' =>array('SensorState')),
-		'action.devices.types.VACUUM' => array('name' => 'Vide','traits' =>array('Dock','Locator','Modes','OnOff','StartStop','Toggles','RunCycle')),
-		'action.devices.types.WASHER' => array('name' => 'Machine à laver','traits' =>array('Modes','OnOff','StartStop','Toggles','RunCycle')),
-		'action.devices.types.WATERPURIFIER' => array('name' => 'Purificateur d\'eau','traits' =>array('Modes','Toggles','OnOff','TemperatureControl')),
-		'action.devices.types.WATERSOFTENER' => array('name' => 'Adoucisseur d\'eau','traits' =>array('Modes','Toggles','OnOff','SensorState')),
-	);
+	public static function getSupportedType(){
+		return array(
+			'action.devices.types.LIGHT' => array('name' => 'Lumière','traits' =>array('Brightness','ColorSetting','OnOff')),
+			'action.devices.types.THERMOSTAT' => array('name' => 'Thermostat','traits' =>array('TemperatureSetting')),
+			'action.devices.types.OUTLET' => array('name' => 'Prise','traits' =>array('OnOff')),
+			'action.devices.types.SWITCH' => array('name' => 'Interrupteur','traits' =>array('OnOff')),
+			'action.devices.types.CAMERA' => array('name' => 'Caméra','class' => 'gsh_camera'),
+			'action.devices.types.SCENE' => array('name' => 'Scene','class' => 'gsh_scene'),
+			'action.devices.types.BLINDS' => array('name' => 'Store','traits' =>array('Modes','OpenClose')),
+			'action.devices.types.SHUTTER' => array('name' => 'Volet','traits' =>array('Modes','OpenClose','Rotation')),
+			'action.devices.types.CURTAIN' => array('name' => 'Rideaux','traits' =>array('OpenClose')),
+			'action.devices.types.VALVE' => array('name' => 'Vanne','traits' =>array('OpenClose')),
+			'action.devices.types.SENSOR' => array('name' => 'Capteur','traits' =>array('OnOff','SensorState')),
+			'action.devices.types.WINDOW' => array('name' => 'Fenêtre','traits' =>array('OpenClose')),
+			'action.devices.types.DOOR' => array('name' => 'Porte','traits' =>array('OpenClose')),
+			'action.devices.types.GARAGE' => array('name' => 'Porte Garage','traits' =>array('OpenClose')),
+			'action.devices.types.SECURITYSYSTEM' => array('name' => 'Alarme','traits' =>array('ArmDisarm','StatusReport')),
+			'action.devices.types.LOCK' => array('name' => 'Verrou','traits' =>array('LockUnlock')),
+			'action.devices.types.TV' => array('name' => 'TV','traits' =>array('OnOff','MediaState','InputSelector','AppSelector','TransportControl','Volume','Modes')),
+			'action.devices.types.FAN' => array('name' => 'Ventilateur','traits' =>array('OnOff','FanSpeed','Modes','Toggles')),
+			'action.devices.types.HOOD' => array('name' => 'Hotte','traits' =>array('OnOff','FanSpeed','Modes','Toggles')),
+			'action.devices.types.AC_UNIT' => array('name' => 'Climatiseur','traits' =>array('FanSpeed','TemperatureSetting','OnOff')),
+			'action.devices.types.AIRCOOLER' => array('name' => 'Refroidisseur d\'air','traits' =>array('FanSpeed','TemperatureSetting','OnOff','HumiditySetting')),
+			'action.devices.types.AIRFRESHENER' => array('name' => 'Désodorisant','traits' =>array('Modes','Toggles','OnOff')),
+			'action.devices.types.AIRPURIFIER' => array('name' => 'Purificateur d\'air','traits' =>array('FanSpeed','Modes','OnOff','SensorState','Toggles')),
+			'action.devices.types.AWNING' => array('name' => 'Store','traits' =>array('Modes','OpenClose')),
+			'action.devices.types.BATHTUB ' => array('name' => 'Baignoire','traits' =>array('OnOff','Fill')),
+			'action.devices.types.BOILER' => array('name' => 'Chaudiere','traits' =>array('Modes','TemperatureControl','OnOff','Toggles')),
+			'action.devices.types.CARBON_MONOXIDE_DETECTOR' => array('name' => 'Detecteur de CO','traits' =>array('SensorState')),
+			'action.devices.types.CLOSET' => array('name' => 'Placard','traits' =>array('OpenClose')),
+			'action.devices.types.DEHUMIDIFIER' => array('name' => 'Déshumidificateur','traits' =>array('FanSpeed','HumiditySetting','OnOff','Modes','RunCycle','StartStop','Toggles')),
+			'action.devices.types.DEHYDRATOR' => array('name' => 'Déshydrateur','traits' =>array('Cook','Timer','OnOff','Modes','Toggles','StartStop')),
+			'action.devices.types.DISHWASHER' => array('name' => 'Lave-vaiselle','traits' =>array('OnOff','StartStop','Modes','Toggles','RunCycle')),
+			'action.devices.types.DRAWER' => array('name' => 'Tiroir','traits' =>array('OpenClose')),
+			'action.devices.types.DRYER' => array('name' => 'Séche linge','traits' =>array('OnOff','StartStop','Modes','Toggles','RunCycle')),
+			'action.devices.types.FIREPLACE' => array('name' => 'Cheminée','traits' =>array('OnOff','Modes','Toggles')),
+			'action.devices.types.FREEZER' => array('name' => 'Congélateur','traits' =>array('OnOff','Modes','Toggles','TemperatureControl')),
+			'action.devices.types.HEATER' => array('name' => 'Chauffe-eau','traits' =>array('FanSpeed','TemperatureSetting','OnOff')),
+			'action.devices.types.HUMIDIFIER' => array('name' => 'Humidificateur','traits' =>array('FanSpeed','HumiditySetting','OnOff','Modes','StartStop','Toggles')),
+			'action.devices.types.KETTLE' => array('name' => 'Bouilloire','traits' =>array('Modes','TemperatureControl','OnOff','Toggles')),
+			'action.devices.types.REMOTECONTROL' => array('name' => 'Télécommande','traits' =>array('OnOff','MediaState','InputSelector','AppSelector','TransportControl','Volume')),
+			'action.devices.types.MOWER' => array('name' => 'Tondeuse','traits' =>array('Dock','Locator','Modes','OnOff','StartStop','Toggles')),
+			'action.devices.types.NETWORK' => array('name' => 'Réseaux','traits' =>array('Modes','Toggles','Reboot','SoftwareUpdate','NetworkControl')),
+			'action.devices.types.PERGOLA' => array('name' => 'Pergola','traits' =>array('OpenClose','Rotation')),
+			'action.devices.types.RADIATOR' => array('name' => 'Radiateur','traits' =>array('Modes','Toggles','OnOff')),
+			'action.devices.types.REFRIGERATOR' => array('name' => 'Frigo','traits' =>array('Modes','Toggles','OnOff','TemperatureControl')),
+			'action.devices.types.ROUTER' => array('name' => 'Router','traits' =>array('Modes','Toggles','Reboot','SoftwareUpdate','NetworkControl')),
+			'action.devices.types.SHOWER' => array('name' => 'Douche','traits' =>array('Modes','Toggles','OnOff','TemperatureControl')),
+			'action.devices.types.SMOKE_DETECTOR' => array('name' => 'Détecteur de fumée','traits' =>array('SensorState')),
+			'action.devices.types.VACUUM' => array('name' => 'Vide','traits' =>array('Dock','Locator','Modes','OnOff','StartStop','Toggles','RunCycle')),
+			'action.devices.types.WASHER' => array('name' => 'Machine à laver','traits' =>array('Modes','OnOff','StartStop','Toggles','RunCycle')),
+			'action.devices.types.WATERPURIFIER' => array('name' => 'Purificateur d\'eau','traits' =>array('Modes','Toggles','OnOff','TemperatureControl')),
+			'action.devices.types.WATERSOFTENER' => array('name' => 'Adoucisseur d\'eau','traits' =>array('Modes','Toggles','OnOff','SensorState')),
+		);
+	}
 	
 	/*     * ***********************Methode static*************************** */
 	
@@ -510,11 +512,12 @@ class gsh extends eqLogic {
 				}
 				
 				public function buildDevice() {
-					if (!isset(gsh::$_supportedType[$this->getType()])) {
+					$supportedType = gsh::getSupportedType();
+					if (!isset($supportedType[$this->getType()])) {
 						return array();
 					}
-					if(isset(gsh::$_supportedType[$this->getType()]['class'])){
-						$class = gsh::$_supportedType[$this->getType()]['class'];
+					if(isset($supportedType[$this->getType()]['class'])){
+						$class = $supportedType[$this->getType()]['class'];
 						if (!class_exists($class)) {
 							return array();
 						}
@@ -526,7 +529,7 @@ class gsh extends eqLogic {
 						}
 						return $class::buildDevice($this);
 					}
-					if(isset(gsh::$_supportedType[$this->getType()]['traits'])){
+					if(isset($supportedType[$this->getType()]['traits'])){
 						$eqLogic = $this->getLink();
 						if (!is_object($eqLogic)) {
 							return array();
@@ -541,7 +544,7 @@ class gsh extends eqLogic {
 						$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => $this->getPseudo());
 						$return['traits'] = array();
 						$return['willReportState'] = ($this->getOptions('reportState::enable') == 1);
-						foreach (gsh::$_supportedType[$this->getType()]['traits'] as $traits) {
+						foreach ($supportedType[$this->getType()]['traits'] as $traits) {
 							$class = 'gsh_'.$traits;
 							if (!class_exists($class)) {
 								continue;
@@ -556,20 +559,21 @@ class gsh extends eqLogic {
 				}
 				
 				public function exec($_execution, $_infos) {
-					if (!isset(gsh::$_supportedType[$this->getType()])) {
+					$supportedType = gsh::getSupportedType();
+					if (!isset($supportedType[$this->getType()])) {
 						return;
 					}
-					if(isset(gsh::$_supportedType[$this->getType()]['class'])){
-						$class = gsh::$_supportedType[$this->getType()]['class'];
+					if(isset($supportedType[$this->getType()]['class'])){
+						$class = $supportedType[$this->getType()]['class'];
 						if (!class_exists($class)) {
 							return array();
 						}
 						$result = $class::exec($this, $_execution, $_infos);
 						return $result;
 					}
-					if(isset(gsh::$_supportedType[$this->getType()]['traits'])){
+					if(isset($supportedType[$this->getType()]['traits'])){
 						$return = array();
-						foreach (gsh::$_supportedType[$this->getType()]['traits'] as $traits) {
+						foreach ($supportedType[$this->getType()]['traits'] as $traits) {
 							$class = 'gsh_'.$traits;
 							if (!class_exists($class)) {
 								continue;
@@ -581,11 +585,12 @@ class gsh extends eqLogic {
 				}
 				
 				public function query($_infos) {
-					if (!isset(gsh::$_supportedType[$this->getType()])) {
+					$supportedType = gsh::getSupportedType();
+					if (!isset($supportedType[$this->getType()])) {
 						return;
 					}
-					if(isset(gsh::$_supportedType[$this->getType()]['class'])){
-						$class = gsh::$_supportedType[$this->getType()]['class'];
+					if(isset($supportedType[$this->getType()]['class'])){
+						$class = $supportedType[$this->getType()]['class'];
 						if (!class_exists($class)) {
 							return array();
 						}
@@ -595,9 +600,9 @@ class gsh extends eqLogic {
 						}
 						return $result;
 					}
-					if(isset(gsh::$_supportedType[$this->getType()]['traits'])){
+					if(isset($supportedType[$this->getType()]['traits'])){
 						$return = array();
-						foreach (gsh::$_supportedType[$this->getType()]['traits'] as $traits) {
+						foreach ($supportedType[$this->getType()]['traits'] as $traits) {
 							$class = 'gsh_'.$traits;
 							if (!class_exists($class)) {
 								continue;

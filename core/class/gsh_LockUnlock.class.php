@@ -115,10 +115,19 @@ class gsh_LockUnlock {
         $return['isLocked'] = ($return['isLocked']) ? false : true;
       }
     }
-    if($_device->getOptions('lock::invert')){
+    if($_device->getOptions('lock::invertGet')){
       $return['isLocked'] = ($return['isLocked']) ? false : true;
     }
     return $return;
+  }
+  
+  public static function getHtmlConfiguration($_eqLogic){
+    echo '<div class="form-group">';
+    echo '<label class="col-sm-3 control-label">{{Inverser l\'état}}</label>';
+    echo '<div class="col-sm-3">';
+    echo '<input type="checkbox" class="deviceAttr" data-l1key="options" data-l2key="LockUnlock::invertGet"></input>';
+    echo '</div>';
+    echo '</div>';
   }
   
 }

@@ -77,7 +77,7 @@ class gsh_OpenClose {
             $cmd = cmd::byId($_infos['customData']['OpenClose_cmdSetSlider']);
             if (is_object($cmd)) {
               $value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['openPercent'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
-              if($_device->getOptions('blinds::invert',0) == 1){
+              if($_device->getOptions('OpenClose::invertSet',0) == 1){
                 $value = 100 - $value;
               }
               $cmd->execCmd(array('slider' => $value));
@@ -135,7 +135,25 @@ class gsh_OpenClose {
       $openState['openPercent'] = ($openState['openPercent']) ? 0 : 100;
     }
     $return['openState'] = array($openState,array('openPercent' => $openState['openPercent']));
+    if($_device->getOptions('OpenClose::invertGet')){
+      $return['openPercent'] = 100 - $return['openPercent'];
+    }
     return $return;
+  }
+  
+  public static function getHtmlConfiguration($_eqLogic){
+    echo '<div class="form-group">';
+    echo '<label class="col-sm-3 control-label">{{Inverser l\'action}}</label>';
+    echo '<div class="col-sm-3">';
+    echo '<input type="checkbox" class="deviceAttr" data-l1key="options" data-l2key="OpenClose::invertSet"></input>';
+    echo '</div>';
+    echo '</div>';
+    echo '<div class="form-group">';
+    echo '<label class="col-sm-3 control-label">{{Inverser l\'état}}</label>';
+    echo '<div class="col-sm-3">';
+    echo '<input type="checkbox" class="deviceAttr" data-l1key="options" data-l2key="OpenClose::invertGet"></input>';
+    echo '</div>';
+    echo '</div>';
   }
   
 }
