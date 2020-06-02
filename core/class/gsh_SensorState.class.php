@@ -92,6 +92,7 @@ class gsh_SensorState {
 			__('Fumée',__FILE__) => self::$_SMOKE,
 			__('Fuite d\'eau',__FILE__) => self::$_WATER_LEAK,
 			__('Qualité d\'air',__FILE__) => self::$_AIR_QUALITY
+			__('Etat du filtre',__FILE__) => self::$_FILTER_CLEANLINESS
 		);
 	}
 	

@@ -35,6 +35,7 @@ include_file('core', 'gsh_OpenClose', 'class', 'gsh');
 include_file('core', 'gsh_SensorState', 'class', 'gsh');
 include_file('core', 'gsh_TemperatureSetting', 'class', 'gsh');
 include_file('core', 'gsh_Volume', 'class', 'gsh');
+include_file('core', 'gsh_FanSpeed', 'class', 'gsh');
 
 class gsh extends eqLogic {
 	
