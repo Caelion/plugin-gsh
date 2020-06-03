@@ -99,7 +99,9 @@
     },
     "plugins\/gsh\/core\/class\/gsh_Modes.class.php": {
         "Mode": "Modo",
-        "Etat mode": "Estado do modo"
+        "Etat mode": "Estado do modo",
+        "Nom du mode": "Nome do modo",
+        "Nom du mode pour la commande": "Nome do modo para o comando"
     },
     "plugins\/gsh\/core\/class\/gsh_Brightness.class.php": {
         "Luminosité": "Brilho",
@@ -157,7 +159,8 @@
         "Router": "Rota",
         "Douche": "Chuveiro",
         "Détecteur de fumée": "Detector de fumaça",
-        "Pompe à vide": "Bomba de vácuo",
+        "Aspirateur": "Vácuo",
+        "Balai": "Vassoura",
         "Machine à laver": "Máquina de lavar",
         "Purificateur d\\'eau": "Purificador de água",
         "Adoucisseur d\\'eau": "Abrandador de água",

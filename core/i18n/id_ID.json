@@ -99,7 +99,9 @@
     },
     "plugins\/gsh\/core\/class\/gsh_Modes.class.php": {
         "Mode": "Mode",
-        "Etat mode": ""
+        "Etat mode": "",
+        "Nom du mode": "",
+        "Nom du mode pour la commande": ""
     },
     "plugins\/gsh\/core\/class\/gsh_Brightness.class.php": {
         "Luminosité": "",
@@ -157,7 +159,8 @@
         "Router": "",
         "Douche": "",
         "Détecteur de fumée": "",
-        "Pompe à vide": "",
+        "Aspirateur": "",
+        "Balai": "",
         "Machine à laver": "",
         "Purificateur d\\'eau": "",
         "Adoucisseur d\\'eau": "",
