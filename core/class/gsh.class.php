@@ -556,7 +556,11 @@ class gsh extends eqLogic {
 							if (!class_exists($class)) {
 								continue;
 							}
-							$return = array_merge_recursive($return,$class::discover($this,$eqLogic));
+							$infos = $class::discover($this,$eqLogic);
+							if(count($infos['traits']) == 0){
+								continue;
+							}
+							$return = array_merge_recursive($return,$infos);
 						}
 						if(count($return['traits']) == 0){
 							return array();

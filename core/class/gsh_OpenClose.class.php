@@ -31,21 +31,26 @@ class gsh_OpenClose {
   /*     * ***********************Methode static*************************** */
   
   public static function discover($_device,$_eqLogic){
-    $return = array('traits' => array(),'customData' => array(),'attributes' => array('openDirection' => array('DOWN')));
+    $return = array('traits' => array(),'customData' => array(),'attributes' => array('openDirection' => array('DOWN'),'queryOnlyOpenClose' => true,'discreteOnlyOpenClose' => true));
     foreach ($_eqLogic->getCmd() as $cmd) {
       if (in_array($cmd->getGeneric_type(), self::$_ON)) {
         if (!in_array('action.devices.traits.OpenClose', $return['traits'])) {
           $return['traits'][] = 'action.devices.traits.OpenClose';
         }
         $return['customData']['OpenClose_cmdSetOn'] = $cmd->getId();
+        $return['attributes']['queryOnlyOpenClose'] = false;
       }
       if (in_array($cmd->getGeneric_type(), self::$_OFF)) {
         if (!in_array('action.devices.traits.OpenClose', $return['traits'])) {
           $return['traits'][] = 'action.devices.traits.OpenClose';
         }
         $return['customData']['OpenClose_cmdSetOff'] = $cmd->getId();
+        $return['attributes']['queryOnlyOpenClose'] = false;
       }
       if (in_array($cmd->getGeneric_type(), self::$_STATE)) {
+        if (!in_array('action.devices.traits.OpenClose', $return['traits'])) {
+          $return['traits'][] = 'action.devices.traits.OpenClose';
+        }
         $return['customData']['OpenClose_cmdGetState'] = $cmd->getId();
       }
       if (in_array($cmd->getGeneric_type(), self::$_SLIDER)) {
@@ -53,6 +58,8 @@ class gsh_OpenClose {
           $return['traits'][] = 'action.devices.traits.OpenClose';
         }
         $return['customData']['OpenClose_cmdSetSlider'] = $cmd->getId();
+        $return['attributes']['queryOnlyOpenClose'] = false;
+        $return['attributes']['discreteOnlyOpenClose'] = false;
       }
     }
     return $return;
