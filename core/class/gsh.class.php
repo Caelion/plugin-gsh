@@ -62,7 +62,7 @@ class gsh extends eqLogic {
 			'action.devices.types.WINDOW' => array('name' => __('Fenêtre',__FILE__) ,'traits' =>array('OpenClose')),
 			'action.devices.types.DOOR' => array('name' => __('Porte',__FILE__) ,'traits' =>array('OpenClose')),
 			'action.devices.types.GARAGE' => array('name' => __('Porte Garage',__FILE__) ,'traits' =>array('OpenClose')),
-			'action.devices.types.SECURITYSYSTEM' => array('name' => __('Alarme',__FILE__) ,'traits' =>array('ArmDisarm','StatusReport')),
+			'action.devices.types.SECURITYSYSTEM' => array('name' => __('Alarme',__FILE__) ,'traits' =>array('ArmDisarm','StatusReport','Modes')),
 			'action.devices.types.LOCK' => array('name' => __('Verrou',__FILE__) ,'traits' =>array('LockUnlock')),
 			'action.devices.types.TV' => array('name' => __('TV',__FILE__) ,'traits' =>array('OnOff','MediaState','InputSelector','AppSelector','TransportControl','Volume','Modes')),
 			'action.devices.types.FAN' => array('name' => __('Ventilateur',__FILE__) ,'traits' =>array('OnOff','FanSpeed','Modes','Toggles')),
