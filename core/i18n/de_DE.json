@@ -99,7 +99,9 @@
     },
     "plugins\/gsh\/core\/class\/gsh_Modes.class.php": {
         "Mode": "Modus",
-        "Etat mode": "Modusstatus"
+        "Etat mode": "Modusstatus",
+        "Nom du mode": "Modusname",
+        "Nom du mode pour la commande": "Modusname für den Befehl"
     },
     "plugins\/gsh\/core\/class\/gsh_Brightness.class.php": {
         "Luminosité": "Helligkeit",
@@ -157,7 +159,8 @@
         "Router": "Route",
         "Douche": "Dusche",
         "Détecteur de fumée": "Rauchmelder",
-        "Pompe à vide": "Vakuumpumpe",
+        "Aspirateur": "Vakuum",
+        "Balai": "Besen",
         "Machine à laver": "Waschmaschine",
         "Purificateur d\\'eau": "Wasserreiniger",
         "Adoucisseur d\\'eau": "Wasserenthärter",

@@ -99,7 +99,9 @@
     },
     "plugins\/gsh\/core\/class\/gsh_Modes.class.php": {
         "Mode": "Mode",
-        "Etat mode": "Etat mode"
+        "Etat mode": "Etat mode",
+        "Nom du mode": "Nom du mode",
+        "Nom du mode pour la commande": "Nom du mode pour la commande"
     },
     "plugins\/gsh\/core\/class\/gsh_Brightness.class.php": {
         "Luminosité": "Luminosité",
@@ -157,7 +159,8 @@
         "Router": "Router",
         "Douche": "Douche",
         "Détecteur de fumée": "Détecteur de fumée",
-        "Pompe à vide": "Pompe à vide",
+        "Aspirateur": "Aspirateur",
+        "Balai": "Balai",
         "Machine à laver": "Machine à laver",
         "Purificateur d\\'eau": "Purificateur d\\'eau",
         "Adoucisseur d\\'eau": "Adoucisseur d\\'eau",
