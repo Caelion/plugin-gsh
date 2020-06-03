@@ -39,7 +39,7 @@ class gsh_Modes {
     $return = array('traits' => array(),'customData' => array());
     foreach ($_eqLogic->getCmd() as $cmd) {
       if (in_array($cmd->getGeneric_type(), self::$_SET_MODE)) {
-        $settings[] = self::buildSetting($cmd->getId(),array($cmd->getName()),substr(config::byKey('lang'),0,2));
+        $settings[] = self::buildSetting($cmd->getId(),array($cmd->getName()),substr(config::byKey('language'),0,2));
         if (!in_array('action.devices.traits.Modes', $return['traits'])) {
           $return['traits'][] = 'action.devices.traits.Modes';
         }
@@ -59,12 +59,12 @@ class gsh_Modes {
       if (!isset($return['attributes'])) {
         $return['attributes'] = array();
       }
-      $return['attributes']['availableModes'] =  array(
+      $return['attributes']['availableModes'] =  array(array(
         'name' => 'mode',
-        'name_values' => array(array('name_synonym' => array('mode'),'lang' => substr(config::byKey('lang'),0,2))),
+        'name_values' => array(array('name_synonym' => array('mode'),'lang' => substr(config::byKey('language'),0,2))),
         'settings'  => $settings,
         'ordered'=> true
-      );
+      ));
     }
     return $return;
   }
@@ -82,8 +82,8 @@ class gsh_Modes {
       try {
         switch ($execution['command']) {
           case 'action.devices.commands.SetModes':
-          foreach ($execution['params'] as $key => $value) {
-            $cmd = cmd::byId($key);
+          foreach ($execution['params']['updateModeSettings'] as $key => $value) {
+            $cmd = cmd::byId($value);
             if (!is_object($cmd)) {
               continue;
             }
