@@ -29,7 +29,7 @@ class gsh_TemperatureControl {
   
   /*     * ***********************Methode static*************************** */
   
-  public static function discover($_eqLogic){
+  public static function discover($_device,$_eqLogic){
     $return = array('traits' => array(),'customData' => array(),'attributes' => array(
       'temperatureUnitForUX' => 'C',
       'queryOnlyTemperatureControl' => true,

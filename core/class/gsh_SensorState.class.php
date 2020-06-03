@@ -31,7 +31,7 @@ class gsh_SensorState {
 	
 	/*     * ***********************Methode static*************************** */
 	
-	public static function discover($_eqLogic) {
+	public static function discover($_device,$_eqLogic) {
 		$return = array('traits' => array(),'customData' => array(),'attributes' => array());
 		$return['attributes']['dataTypesSupported'] = array();
 		foreach ($_eqLogic->getCmd() as $cmd) {

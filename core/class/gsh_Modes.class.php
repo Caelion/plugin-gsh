@@ -35,11 +35,11 @@ class gsh_Modes {
     );
   }
   
-  public static function discover($_eqLogic){
+  public static function discover($_device,$_eqLogic){
     $return = array('traits' => array(),'customData' => array());
     foreach ($_eqLogic->getCmd() as $cmd) {
       if (in_array($cmd->getGeneric_type(), self::$_SET_MODE)) {
-        $settings[] = self::buildSetting($cmd->getId(),array($cmd->getName()),substr(config::byKey('language'),0,2));
+        $settings[] = self::buildSetting($cmd->getId(),array($cmd->getName(),explode(',',$_device->getOptions('Modes::modename'))),substr(config::byKey('language'),0,2));
         if (!in_array('action.devices.traits.Modes', $return['traits'])) {
           $return['traits'][] = 'action.devices.traits.Modes';
         }
@@ -127,6 +127,16 @@ class gsh_Modes {
       }
     }
     return $return;
+  }
+  
+  public static function getHtmlConfiguration($_eqLogic){
+    echo '<div class="form-group">';
+    echo '<label class="col-sm-3 control-label">{{Nom du mode}}</label>';
+    echo '<div class="col-sm-3">';
+    echo '<input class="deviceAttr form-control" data-l1key="options" data-l2key="Modes::modename"></input>';
+    echo '</div>';
+    echo '</div>';
+    
   }
   
 }
