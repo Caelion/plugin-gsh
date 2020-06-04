@@ -32,6 +32,9 @@ class gsh_OpenClose {
   
   public static function discover($_device,$_eqLogic){
     $return = array('traits' => array(),'customData' => array(),'attributes' => array('openDirection' => array('DOWN'),'queryOnlyOpenClose' => true,'discreteOnlyOpenClose' => true));
+	if ($_device->getOptions('OpenClose::partial')) {
+		$return['attributes']['discreteOnlyOpenClose'] = false;
+	}
     foreach ($_eqLogic->getCmd() as $cmd) {
       if (in_array($cmd->getGeneric_type(), self::$_ON)) {
         if (!in_array('action.devices.traits.OpenClose', $return['traits'])) {
@@ -75,6 +78,7 @@ class gsh_OpenClose {
   }
   
   public static function exec($_device, $_executions, $_infos){
+	log::add('gsh','error',print_r($_executions,true));
     $return = array();
     foreach ($_executions as $execution) {
       try {
@@ -96,6 +100,15 @@ class gsh_OpenClose {
             if (isset($_infos['customData']['OpenClose_cmdSetOn'])) {
               $cmd = cmd::byId($_infos['customData']['OpenClose_cmdSetOn']);
             }
+            if (!is_object($cmd)) {
+              break;
+            }
+            $cmd->execCmd();
+            $return = array('status' => 'SUCCESS');
+          } else if ($execution['params']['openPercent'] > 0 && $execution['params']['openPercent']<100) {
+            if ($_device->getOptions('OpenClose::partialCommand','') != '') {
+				 $cmd = cmd::byId($_device->getOptions('OpenClose::partialCommand',''));
+			}
             if (!is_object($cmd)) {
               break;
             }
@@ -159,6 +172,23 @@ class gsh_OpenClose {
     echo '<label class="col-sm-3 control-label">{{Inverser l\'état}}</label>';
     echo '<div class="col-sm-3">';
     echo '<input type="checkbox" class="deviceAttr" data-l1key="options" data-l2key="OpenClose::invertGet"></input>';
+    echo '</div>';
+    echo '</div>';
+    echo '<div class="form-group">';
+    echo '<label class="col-sm-3 control-label">{{Autoriser ouverture partielle}}</label>';
+    echo '<div class="col-sm-3">';
+    echo '<input type="checkbox" class="deviceAttr" data-l1key="options" data-l2key="OpenClose::partial"></input>';
+    echo '</div>';
+    echo '</div>';
+    echo '<div class="form-group">';
+    echo '<label class="col-sm-3 control-label">{{Commande partielle}}</label>';
+    echo '<div class="col-sm-3">';
+    echo '<select class="form-control deviceAttr" data-l1key="options" data-l2key="OpenClose::partial">';
+    echo '<option value="">{{Aucun}}</option>';
+    foreach ($_eqLogic->getCmd('action', null, null, true) as $cmd) {
+      echo '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
+    }
+    echo '</select>';
     echo '</div>';
     echo '</div>';
   }
