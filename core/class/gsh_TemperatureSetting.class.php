@@ -25,7 +25,7 @@ class gsh_TemperatureSetting {
   
   /*     * ***********************Methode static*************************** */
   
-  public static function discover($_eqLogic){
+  public static function discover($_device,$_eqLogic){
     $return = array('traits' => array(),'customData' => array(),'attributes' => array());
     $modes = '';
     if ($_device->getOptions('TemperatureSetting::heat') != '') {

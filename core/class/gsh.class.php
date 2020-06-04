@@ -62,7 +62,8 @@ class gsh extends eqLogic {
 			'action.devices.types.WINDOW' => array('name' => __('Fenêtre',__FILE__) ,'traits' =>array('OpenClose')),
 			'action.devices.types.DOOR' => array('name' => __('Porte',__FILE__) ,'traits' =>array('OpenClose')),
 			'action.devices.types.GARAGE' => array('name' => __('Porte Garage',__FILE__) ,'traits' =>array('OpenClose')),
-			'action.devices.types.SECURITYSYSTEM' => array('name' => __('Alarme',__FILE__) ,'traits' =>array('ArmDisarm','StatusReport')),
+			'action.devices.types.GATE' => array('name' => __('Portail',__FILE__) ,'traits' =>array('OpenClose')),
+			'action.devices.types.SECURITYSYSTEM' => array('name' => __('Alarme',__FILE__) ,'traits' =>array('ArmDisarm','StatusReport','Modes')),
 			'action.devices.types.LOCK' => array('name' => __('Verrou',__FILE__) ,'traits' =>array('LockUnlock')),
 			'action.devices.types.TV' => array('name' => __('TV',__FILE__) ,'traits' =>array('OnOff','MediaState','InputSelector','AppSelector','TransportControl','Volume','Modes')),
 			'action.devices.types.FAN' => array('name' => __('Ventilateur',__FILE__) ,'traits' =>array('OnOff','FanSpeed','Modes','Toggles')),
@@ -95,7 +96,8 @@ class gsh extends eqLogic {
 			'action.devices.types.ROUTER' => array('name' => __('Router',__FILE__) ,'traits' =>array('Modes','Toggles','Reboot','SoftwareUpdate','NetworkControl')),
 			'action.devices.types.SHOWER' => array('name' => __('Douche',__FILE__) ,'traits' =>array('Modes','Toggles','OnOff','TemperatureControl')),
 			'action.devices.types.SMOKE_DETECTOR' => array('name' => __('Détecteur de fumée',__FILE__) ,'traits' =>array('SensorState')),
-			'action.devices.types.VACUUM' => array('name' => __('Pompe à vide',__FILE__) ,'traits' =>array('Dock','Locator','Modes','OnOff','StartStop','Toggles','RunCycle')),
+			'action.devices.types.VACUUM' => array('name' => __('Aspirateur',__FILE__) ,'traits' =>array('Dock','Locator','Modes','OnOff','StartStop','Toggles','RunCycle')),
+			'action.devices.types.MOP' => array('name' => __('Balai',__FILE__) ,'traits' =>array('Dock','Locator','Modes','OnOff','StartStop','Toggles','RunCycle')),
 			'action.devices.types.WASHER' => array('name' => __('Machine à laver',__FILE__) ,'traits' =>array('Modes','OnOff','StartStop','Toggles','RunCycle')),
 			'action.devices.types.WATERPURIFIER' => array('name' => __('Purificateur d\'eau',__FILE__) ,'traits' =>array('Modes','Toggles','OnOff','TemperatureControl')),
 			'action.devices.types.WATERSOFTENER' => array('name' => __('Adoucisseur d\'eau',__FILE__) ,'traits' =>array('Modes','Toggles','OnOff','SensorState')),
@@ -555,7 +557,11 @@ class gsh extends eqLogic {
 							if (!class_exists($class)) {
 								continue;
 							}
-							$return = array_merge_recursive($return,$class::discover($eqLogic));
+							$infos = $class::discover($this,$eqLogic);
+							if(count($infos['traits']) == 0){
+								continue;
+							}
+							$return = array_merge_recursive($return,$infos);
 						}
 						if(count($return['traits']) == 0){
 							return array();

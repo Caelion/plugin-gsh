@@ -28,7 +28,7 @@ class gsh_FanSpeed {
   
   /*     * ***********************Methode static*************************** */
   
-  public static function discover($_eqLogic){
+  public static function discover($_device,$_eqLogic){
     $return = array('traits' => array(),'customData' => array(),'attributes' => array('commandOnlyFanSpeed' => true,'supportsFanSpeedPercent' => true));
     foreach ($_eqLogic->getCmd() as $cmd) {
       if (in_array($cmd->getGeneric_type(), self::$_FAN_SPEED)) {

@@ -29,7 +29,7 @@ class gsh_OnOff {
   
   /*     * ***********************Methode static*************************** */
   
-  public static function discover($_eqLogic){
+  public static function discover($_device,$_eqLogic){
     $return = array('traits' => array(),'customData' => array());
     foreach ($_eqLogic->getCmd() as $cmd) {
       if (in_array($cmd->getGeneric_type(), self::$_ON)) {

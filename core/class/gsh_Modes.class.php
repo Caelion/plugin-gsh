@@ -31,15 +31,17 @@ class gsh_Modes {
   public function buildSetting($_name,$_synonyms,$_lang = 'fr'){
     return array(
       'setting_name'=> $_name,
-      'setting_values' => array(array('setting_synonym'=> $_synonyms,'lang'=> $_lang))
+      'setting_values' => array(array('setting_synonym'=> array_values(array_filter($_synonyms)),'lang'=> $_lang))
     );
   }
   
-  public static function discover($_eqLogic){
+  public static function discover($_device,$_eqLogic){
     $return = array('traits' => array(),'customData' => array());
     foreach ($_eqLogic->getCmd() as $cmd) {
       if (in_array($cmd->getGeneric_type(), self::$_SET_MODE)) {
-        $settings[] = self::buildSetting($cmd->getId(),array($cmd->getName()),substr(config::byKey('lang'),0,2));
+        $names = explode(',',$_device->getOptions('Modes::'.$cmd->getId().'::name'));
+        $names[] = $cmd->getName();
+        $settings[] = self::buildSetting($cmd->getId(),$names,substr(config::byKey('language'),0,2));
         if (!in_array('action.devices.traits.Modes', $return['traits'])) {
           $return['traits'][] = 'action.devices.traits.Modes';
         }
@@ -59,12 +61,13 @@ class gsh_Modes {
       if (!isset($return['attributes'])) {
         $return['attributes'] = array();
       }
-      $return['attributes']['availableModes'] =  array(
+      $names = array_merge(array('mode'),explode(',',$_device->getOptions('Modes::modename')));
+      $return['attributes']['availableModes'] =  array(array(
         'name' => 'mode',
-        'name_values' => array(array('name_synonym' => array('mode'),'lang' => substr(config::byKey('lang'),0,2))),
+        'name_values' => array(array('name_synonym' => array_values(array_filter($names)),'lang' => substr(config::byKey('language'),0,2))),
         'settings'  => $settings,
         'ordered'=> true
-      );
+      ));
     }
     return $return;
   }
@@ -82,8 +85,8 @@ class gsh_Modes {
       try {
         switch ($execution['command']) {
           case 'action.devices.commands.SetModes':
-          foreach ($execution['params'] as $key => $value) {
-            $cmd = cmd::byId($key);
+          foreach ($execution['params']['updateModeSettings'] as $key => $value) {
+            $cmd = cmd::byId($value);
             if (!is_object($cmd)) {
               continue;
             }
@@ -127,6 +130,25 @@ class gsh_Modes {
       }
     }
     return $return;
+  }
+  
+  public static function getHtmlConfiguration($_eqLogic){
+    echo '<div class="form-group">';
+    echo '<label class="col-sm-3 control-label">{{Nom du mode}}</label>';
+    echo '<div class="col-sm-3">';
+    echo '<input class="deviceAttr form-control" data-l1key="options" data-l2key="Modes::modename"></input>';
+    echo '</div>';
+    echo '</div>';
+    foreach ($_eqLogic->getCmd() as $cmd) {
+      if (in_array($cmd->getGeneric_type(), self::$_SET_MODE)) {
+        echo '<div class="form-group">';
+        echo '<label class="col-sm-3 control-label">{{Nom du mode pour la commande}} : '.$cmd->getName().'</label>';
+        echo '<div class="col-sm-3">';
+        echo '<input class="deviceAttr form-control" data-l1key="options" data-l2key="Modes::'.$cmd->getId().'::name"></input>';
+        echo '</div>';
+        echo '</div>';
+      }
+    }
   }
   
 }
