@@ -249,7 +249,10 @@
         "Off": "",
         "Etat": "Negara",
         "Inverser l\\'action": "",
-        "Inverser l\\'état": ""
+        "Inverser l\\'état": "",
+        "Autoriser ouverture partielle": "",
+        "Commande partielle": "",
+        "Aucun": "Tak ada"
     },
     "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
         "Couleur": "Warna",

@@ -249,7 +249,10 @@
         "Off": "Off",
         "Etat": "State",
         "Inverser l\\'action": "Reverse action",
-        "Inverser l\\'état": "Reverse state"
+        "Inverser l\\'état": "Reverse state",
+        "Autoriser ouverture partielle": "Allow partial opening",
+        "Commande partielle": "Partial order",
+        "Aucun": "None"
     },
     "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
         "Couleur": "Color",
