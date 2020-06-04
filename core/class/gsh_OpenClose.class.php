@@ -78,7 +78,6 @@ class gsh_OpenClose {
   }
   
   public static function exec($_device, $_executions, $_infos){
-	log::add('gsh','error',print_r($_executions,true));
     $return = array();
     foreach ($_executions as $execution) {
       try {
