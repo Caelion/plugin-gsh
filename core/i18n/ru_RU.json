@@ -127,6 +127,7 @@
         "Fenêtre": "",
         "Porte": "",
         "Porte Garage": "",
+        "Portail": "",
         "Alarme": "",
         "Verrou": "",
         "TV": "",
@@ -248,7 +249,10 @@
         "Off": "Выключить",
         "Etat": "состояние",
         "Inverser l\\'action": "",
-        "Inverser l\\'état": ""
+        "Inverser l\\'état": "",
+        "Autoriser ouverture partielle": "",
+        "Commande partielle": "",
+        "Aucun": "Нет"
     },
     "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
         "Couleur": "цвет",

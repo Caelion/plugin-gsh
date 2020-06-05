@@ -127,6 +127,7 @@
         "Fenêtre": "Janela",
         "Porte": "Porta",
         "Porte Garage": "Porta da garagem",
+        "Portail": "Portal",
         "Alarme": "Alarme",
         "Verrou": "Bloquear",
         "TV": "Televisão",
@@ -248,7 +249,10 @@
         "Off": "Fora",
         "Etat": "Estado",
         "Inverser l\\'action": "Ação reversa",
-        "Inverser l\\'état": "Estado reverso"
+        "Inverser l\\'état": "Estado reverso",
+        "Autoriser ouverture partielle": "Permitir abertura parcial",
+        "Commande partielle": "Ordem parcial",
+        "Aucun": "Nemhum"
     },
     "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
         "Couleur": "Cor",

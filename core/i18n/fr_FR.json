@@ -127,6 +127,7 @@
         "Fenêtre": "Fenêtre",
         "Porte": "Porte",
         "Porte Garage": "Porte Garage",
+        "Portail": "Portail",
         "Alarme": "Alarme",
         "Verrou": "Verrou",
         "TV": "TV",
@@ -248,7 +249,10 @@
         "Off": "Off",
         "Etat": "Etat",
         "Inverser l\\'action": "Inverser l\\'action",
-        "Inverser l\\'état": "Inverser l\\'état"
+        "Inverser l\\'état": "Inverser l\\'état",
+        "Autoriser ouverture partielle": "Autoriser ouverture partielle",
+        "Commande partielle": "Commande partielle",
+        "Aucun": "Aucun"
     },
     "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
         "Couleur": "Couleur",

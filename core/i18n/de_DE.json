@@ -127,6 +127,7 @@
         "Fenêtre": "Fenster",
         "Porte": "Tür",
         "Porte Garage": "Garagentor",
+        "Portail": "Portal",
         "Alarme": "Alarm",
         "Verrou": "Sperren",
         "TV": "Fernseher",
@@ -248,7 +249,10 @@
         "Off": "Aus",
         "Etat": "Zustand",
         "Inverser l\\'action": "Rückwärtsbewegung",
-        "Inverser l\\'état": "Umgekehrter Zustand"
+        "Inverser l\\'état": "Umgekehrter Zustand",
+        "Autoriser ouverture partielle": "Teilöffnung zulassen",
+        "Commande partielle": "Teilbestellung",
+        "Aucun": "Ohne"
     },
     "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
         "Couleur": "Farbe",

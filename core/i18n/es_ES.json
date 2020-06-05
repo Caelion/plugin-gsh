@@ -127,6 +127,7 @@
         "Fenêtre": "Ventana",
         "Porte": "Puerta",
         "Porte Garage": "Puerta de la cochera",
+        "Portail": "Portal",
         "Alarme": "Alarma",
         "Verrou": "Bloquear",
         "TV": "Televisión",
@@ -248,7 +249,10 @@
         "Off": "Apagado",
         "Etat": "Estado",
         "Inverser l\\'action": "Acción inversa",
-        "Inverser l\\'état": "Estado inverso"
+        "Inverser l\\'état": "Estado inverso",
+        "Autoriser ouverture partielle": "Permitir apertura parcial",
+        "Commande partielle": "Orden parcial",
+        "Aucun": "Ninguna"
     },
     "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
         "Couleur": "Color",
