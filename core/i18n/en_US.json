@@ -25,7 +25,6 @@
         "ID du projet Smarthome": "Smarthome Project ID",
         "Homegraph API Google": "Homegraph API Google",
         "Homegraph User Agent": "Homegraph User Agent",
-        "Clef d'accès sécurisé": "Secure access key",
         "Mail client (JWT)": "Customer Mail (JWT)",
         "Clef privé (JWT)": "Private key (JWT)",
         "Configuration envoyée avec succès": "Configuration successfully sent"
