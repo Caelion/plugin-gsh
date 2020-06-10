@@ -97,7 +97,7 @@ if (init('result_code') == 'FAILURE') {
 				</div>
 				<legend>{{Smarthome}}</legend>
 				<div class="alert alert-info">
-					{{Fulfillment URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGsh.php?secure=' . config::byKey('gshs::authkey', 'gsh') ?><br/>
+					{{Fulfillment URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGsh.php', 'gsh') ?><br/>
 					{{Authorization URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGshOauth.php?type=sh' ?><br/>
 					{{Token URL : }}<?php echo network::getNetworkAccess('external') . '/plugins/gsh/core/php/jeeGshOauth.php?type=sh' ?>
 				</div>
@@ -117,12 +117,6 @@ if (init('result_code') == 'FAILURE') {
 					<label class="col-sm-3 control-label">{{Homegraph User Agent}}</label>
 					<div class="col-sm-3">
 						<input class="configKey form-control" data-l1key="gshs::useragent" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label">{{Clef d'accès sécurisé}}</label>
-					<div class="col-sm-3">
-						<input class="configKey form-control" data-l1key="gshs::authkey" />
 					</div>
 				</div>
 				<div class="form-group">

@@ -58,11 +58,6 @@ if (isset($body['originalDetectIntentRequest']) && isset($body['originalDetectIn
 		}
 		$body = $body['request'];
 	}else{
-		if (config::byKey('gshs::authkey', 'gsh') == '' || init('secure') != config::byKey('gshs::authkey', 'gsh')) {
-			header('HTTP/1.1 401 Unauthorized');
-			echo json_encode(array());
-			die();
-		}
 		$matches = array();
 		preg_match('/Bearer (.*)/', $headers['Authorization'], $matches);
 		if (!isset($matches[1]) || $matches[1] != config::byKey('OAuthAccessTokensh', 'gsh') || config::byKey('OAuthAccessTokensh', 'gsh') == '') {
@@ -154,7 +149,7 @@ if ($body['action'] == 'exec') {
 	log::add('gsh', 'debug','Sync result : '. $result);
 	echo $result;
 	die();
-} 
+}
 echo json_encode(array(
 	'status' => 'SUCCESS',
 ));
