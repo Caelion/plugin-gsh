@@ -136,7 +136,7 @@ class gsh_OpenClose {
       $openState['openPercent'] = $value;
     } else if ($cmd->getSubtype() == 'binary') {
       $openState['openPercent'] = boolval($value);
-      if ($cmd->getDisplay('invertBinary') == 0) {
+      if ($cmd->getDisplay('invertBinary') == 1) {
         $openState['openPercent'] = ($openState['openPercent']) ? false : true;
       }
       $openState['openPercent'] = ($openState['openPercent']) ? 0 : 100;
