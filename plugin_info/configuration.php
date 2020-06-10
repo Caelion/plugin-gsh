@@ -106,9 +106,6 @@ if (init('result_code') == 'FAILURE') {
 					<div class="col-sm-4">
 						<input class="configKey form-control" data-l1key="googleSmarthomeProjectId" />
 					</div>
-					<div class="col-sm-2">
-						<a class="btn btn-sm btn-success" id="bt_connectGoogleSmarthome"><i class="fa fa-plug" aria-hidden="true"></i> {{Connection}}</a>
-					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label">{{Homegraph API Google}}</label>
@@ -146,21 +143,6 @@ if (init('result_code') == 'FAILURE') {
 </div>
 
 <script type="text/javascript">
-var return_url = window.location.href
-if(getUrlVars('result_code') == 'FAILURE'){
-	return_url = window.location.href.replace('result_code='+getUrlVars('result_code'),'').replace('result_message='+getUrlVars('result_message'),'').replace('id=gsh','').replace('#','');
-	$('#div_alert').showAlert({message: getUrlVars('result_message').replace(/\+/g, ' '), level: 'danger'});
-}
-if(getUrlVars('result_code') == 'SUCCESS'){
-	return_url = window.location.href.replace('result_code='+getUrlVars('result_code'),'').replace('id=gsh','').replace('#','');
-	$('#div_alert').showAlert({message: getUrlVars('result_message').replace(/\+/g, ' '), level: 'success'});
-}
-$('#bt_connectGoogleDialogFlow').off('click').on('click',function(){
-	window.location = 'https://assistant.google.com/services/auth/handoffs/auth/start?provider='+$('.configKey[data-l1key=googleDialogflowProjectId]').value()+'_dev&return_url='+encodeURIComponent(return_url+'&id=gsh');
-});
-$('#bt_connectGoogleSmarthome').off('click').on('click',function(){
-	window.location = 'https://assistant.google.com/services/auth/handoffs/auth/start?provider='+$('.configKey[data-l1key=googleSmarthomeProjectId]').value()+'_dev&return_url='+encodeURIComponent(return_url+'&id=gsh');
-});
 $('.configKey[data-l1key=mode]').on('change',function(){
 	$('.gshmode').hide();
 	$('.gshmode.'+$(this).value()).show();

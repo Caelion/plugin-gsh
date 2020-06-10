@@ -23,10 +23,10 @@ class gsh_SensorState {
 	
 	/*     * *************************Attributs****************************** */
 	
-	private $_SMOKE = array('SMOKE');
-	private $_WATER_LEAK = array('WATER_LEAK');
-	private $_AIR_QUALITY = array('AIR_QUALITY');
-	private $_FILTER_CLEANLINESS = array('FILTER_CLEAN_STATE');
+	private static $_SMOKE = array('SMOKE');
+	private static $_WATER_LEAK = array('WATER_LEAK');
+	private static $_AIR_QUALITY = array('AIR_QUALITY');
+	private static $_FILTER_CLEANLINESS = array('FILTER_CLEAN_STATE');
 	
 	
 	/*     * ***********************Methode static*************************** */

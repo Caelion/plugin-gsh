@@ -233,7 +233,7 @@ class gsh_TemperatureSetting {
     echo '<div class="col-sm-3">';
     echo '<select class="form-control deviceAttr" data-l1key="options" data-l2key="TemperatureSetting::heat">';
     echo '<option value="">{{Aucun}}</option>';
-    foreach ($eqLogic->getCmd('action', null, null, true) as $cmd) {
+    foreach ($_eqLogic->getCmd('action', null, null, true) as $cmd) {
       echo '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
     }
     echo '</select>';
@@ -244,7 +244,7 @@ class gsh_TemperatureSetting {
     echo '<div class="col-sm-3">';
     echo '<select class="form-control deviceAttr" data-l1key="options" data-l2key="TemperatureSetting::cool">';
     echo '<option value="">{{Aucun}}</option>';
-    foreach ($eqLogic->getCmd('action', null, null, true) as $cmd) {
+    foreach ($_eqLogic->getCmd('action', null, null, true) as $cmd) {
       echo '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
     }
     echo '</select>';
@@ -255,7 +255,7 @@ class gsh_TemperatureSetting {
     echo '<div class="col-sm-3">';
     echo '<select class="form-control deviceAttr" data-l1key="options" data-l2key="TemperatureSetting::off">';
     echo '<option value="">{{Aucun}}</option>';
-    foreach ($eqLogic->getCmd('action', null, null, true) as $cmd) {
+    foreach ($_eqLogic->getCmd('action', null, null, true) as $cmd) {
       echo '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
     }
     echo '</select>';

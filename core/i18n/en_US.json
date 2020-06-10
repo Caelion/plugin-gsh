@@ -23,7 +23,6 @@
         "Authorization URL : ": "Authorization URL:",
         "Token URL : ": "Token URL:",
         "ID du projet Smarthome": "Smarthome Project ID",
-        "Connection": "Connection",
         "Homegraph API Google": "Homegraph API Google",
         "Homegraph User Agent": "Homegraph User Agent",
         "Clef d'accès sécurisé": "Secure access key",
@@ -127,6 +126,7 @@
         "Fenêtre": "Window",
         "Porte": "Door",
         "Porte Garage": "Garage door",
+        "Portail": "Portal",
         "Alarme": "Alarm",
         "Verrou": "Lock",
         "TV": "TV",
@@ -136,6 +136,7 @@
         "Refroidisseur d\\'air": "Air cooler",
         "Désodorisant": "Deodorant",
         "Purificateur d\\'air": "Air purifier",
+        "Banne": "Awning",
         "Baignoire": "Bathtub",
         "Chaudiere": "Boiler",
         "Detecteur de CO": "CO detector",
@@ -248,7 +249,10 @@
         "Off": "Off",
         "Etat": "State",
         "Inverser l\\'action": "Reverse action",
-        "Inverser l\\'état": "Reverse state"
+        "Inverser l\\'état": "Reverse state",
+        "Autoriser ouverture partielle": "Allow partial opening",
+        "Commande partielle": "Partial order",
+        "Aucun": "None"
     },
     "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
         "Couleur": "Color",
