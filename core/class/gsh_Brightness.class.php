@@ -23,7 +23,7 @@ class gsh_Brightness {
   
   /*     * *************************Attributs****************************** */
   
-  private static $_SLIDER = array('FLAP_SLIDER', 'ENERGY_SLIDER','LIGHT_SLIDER','LIGHT_SET_BRIGHTNESS');
+  private static $_SLIDER = array('FLAP_SLIDER', 'ENERGY_SLIDER','LIGHT_SLIDER');
   private static $_STATE = array('LIGHT_BRIGHTNESS');
   
   /*     * ***********************Methode static*************************** */

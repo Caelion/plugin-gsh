@@ -48,10 +48,16 @@ class gsh_TemperatureControl {
         );
       }
       if (in_array($cmd->getGeneric_type(), self::$_SETPOINT)) {
+        if (!in_array('action.devices.traits.TemperatureControl', $return['traits'])) {
+          $return['traits'][] = 'action.devices.traits.TemperatureControl';
+        }
         $return['customData']['TemperatureControl_cmdGetSetpoint'] = $cmd->getId();
         $return['attributes']['commandOnlyTemperatureControl'] = false;
       }
       if (in_array($cmd->getGeneric_type(), self::$_TEMPERATURE)) {
+        if (!in_array('action.devices.traits.TemperatureControl', $return['traits'])) {
+          $return['traits'][] = 'action.devices.traits.TemperatureControl';
+        }
         $return['customData']['TemperatureControl_cmdGetTemperature'] = $cmd->getId();
         $return['attributes']['commandOnlyTemperatureControl'] = false;
       }
@@ -62,7 +68,7 @@ class gsh_TemperatureControl {
   public static function needGenericType(){
     return array(
       __('Thermostat',__FILE__) => self::$_SET_SETPOINT,
-      __('Etat themostat/Température',__FILE__) => self::$_SETPOINT,
+      __('Etat thermostat/Température',__FILE__) => self::$_SETPOINT,
       __('Température',__FILE__) => self::$_TEMPERATURE,
     );
   }

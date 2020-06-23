@@ -40,6 +40,7 @@ include_file('core', 'gsh_StartStop', 'class', 'gsh');
 include_file('core', 'gsh_Reboot', 'class', 'gsh');
 include_file('core', 'gsh_Rotation', 'class', 'gsh');
 include_file('core', 'gsh_TemperatureControl', 'class', 'gsh');
+include_file('core', 'gsh_HumiditySetting', 'class', 'gsh');
 include_file('core', 'gsh_Dock', 'class', 'gsh');
 
 class gsh extends eqLogic {
@@ -58,7 +59,7 @@ class gsh extends eqLogic {
 			'action.devices.types.SHUTTER' => array('name' => __('Volet',__FILE__) ,'traits' =>array('Modes','OpenClose','Rotation')),
 			'action.devices.types.CURTAIN' => array('name' => __('Rideaux',__FILE__) ,'traits' =>array('OpenClose')),
 			'action.devices.types.VALVE' => array('name' => __('Vanne',__FILE__) ,'traits' =>array('OpenClose')),
-			'action.devices.types.SENSOR' => array('name' => __('Capteur',__FILE__) ,'traits' =>array('OnOff','SensorState')),
+			'action.devices.types.SENSOR' => array('name' => __('Capteur',__FILE__) ,'traits' =>array('OnOff','SensorState','TemperatureControl','Brightness','HumiditySetting')),
 			'action.devices.types.WINDOW' => array('name' => __('Fenêtre',__FILE__) ,'traits' =>array('OpenClose')),
 			'action.devices.types.DOOR' => array('name' => __('Porte',__FILE__) ,'traits' =>array('OpenClose')),
 			'action.devices.types.GARAGE' => array('name' => __('Porte Garage',__FILE__) ,'traits' =>array('OpenClose')),
@@ -229,11 +230,8 @@ class gsh extends eqLogic {
 				continue;
 			}
 			$info = $device->buildDevice();
-			if (!is_array($info) || count($info) == 0 || isset($info['missingGenericType'])) {
+			if (!is_array($info) || count($info) == 0) {
 				$device->setOptions('configState', 'NOK');
-				if(isset($info['missingGenericType'])){
-					$device->setOptions('missingGenericType',$info['missingGenericType']);
-				}
 				$device->save();
 				continue;
 			}
