@@ -204,6 +204,11 @@
         "Off": "Off",
         "Etat": "State"
     },
+    "plugins\/gsh\/core\/class\/gsh_HumiditySetting.class.php": {
+        "Contrôle humidité": "Humidity control",
+        "Etat contrôle humidité": "Humidity control status",
+        "Humidité": "Humidity"
+    },
     "plugins\/gsh\/core\/class\/gsh_TemperatureSetting.class.php": {
         "Thermostat": "Thermostat",
         "Etat themostat ": "State themostat",
@@ -227,7 +232,7 @@
     },
     "plugins\/gsh\/core\/class\/gsh_TemperatureControl.class.php": {
         "Thermostat": "Thermostat",
-        "Etat themostat\/Température": "Themostat \/ temperature status",
+        "Etat thermostat\/Température": "Thermostat \/ Temperature status",
         "Température": "Temperature"
     },
     "plugins\/gsh\/core\/class\/gsh_Channel.class.php": {

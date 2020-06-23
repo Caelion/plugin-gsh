@@ -204,6 +204,11 @@
         "Off": "Выключить",
         "Etat": "состояние"
     },
+    "plugins\/gsh\/core\/class\/gsh_HumiditySetting.class.php": {
+        "Contrôle humidité": "",
+        "Etat contrôle humidité": "",
+        "Humidité": "Влажность"
+    },
     "plugins\/gsh\/core\/class\/gsh_TemperatureSetting.class.php": {
         "Thermostat": "термостат",
         "Etat themostat ": "",
@@ -227,7 +232,7 @@
     },
     "plugins\/gsh\/core\/class\/gsh_TemperatureControl.class.php": {
         "Thermostat": "термостат",
-        "Etat themostat\/Température": "",
+        "Etat thermostat\/Température": "",
         "Température": "Температура"
     },
     "plugins\/gsh\/core\/class\/gsh_Channel.class.php": {
