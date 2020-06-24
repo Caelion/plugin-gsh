@@ -191,6 +191,9 @@ class gsh_TemperatureSetting {
           case __('Suspendu', __FILE__):
           $return['thermostatMode'] = 'off';
           break;
+          case __('Arrêté', __FILE__):
+          $return['thermostatMode'] = 'off';
+          break;
         }
       }
     }
