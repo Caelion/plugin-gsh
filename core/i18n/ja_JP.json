@@ -204,6 +204,11 @@
         "Off": "オフ",
         "Etat": "状態"
     },
+    "plugins\/gsh\/core\/class\/gsh_HumiditySetting.class.php": {
+        "Contrôle humidité": "",
+        "Etat contrôle humidité": "",
+        "Humidité": "湿度"
+    },
     "plugins\/gsh\/core\/class\/gsh_TemperatureSetting.class.php": {
         "Thermostat": "",
         "Etat themostat ": "",
@@ -227,7 +232,7 @@
     },
     "plugins\/gsh\/core\/class\/gsh_TemperatureControl.class.php": {
         "Thermostat": "",
-        "Etat themostat\/Température": "",
+        "Etat thermostat\/Température": "",
         "Température": "温度"
     },
     "plugins\/gsh\/core\/class\/gsh_Channel.class.php": {

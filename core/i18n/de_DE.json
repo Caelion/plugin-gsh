@@ -204,6 +204,11 @@
         "Off": "Aus",
         "Etat": "Zustand"
     },
+    "plugins\/gsh\/core\/class\/gsh_HumiditySetting.class.php": {
+        "Contrôle humidité": "Feuchtigkeitskontrolle",
+        "Etat contrôle humidité": "Feuchtigkeitskontrollstatus",
+        "Humidité": "Luftfeuchtigkeit"
+    },
     "plugins\/gsh\/core\/class\/gsh_TemperatureSetting.class.php": {
         "Thermostat": "Thermostat",
         "Etat themostat ": "Geben Sie den Status an",
@@ -227,7 +232,7 @@
     },
     "plugins\/gsh\/core\/class\/gsh_TemperatureControl.class.php": {
         "Thermostat": "Thermostat",
-        "Etat themostat\/Température": "Der Status \/ Temperaturstatus",
+        "Etat thermostat\/Température": "Thermostat \/ Temperaturstatus",
         "Température": "Temperatur"
     },
     "plugins\/gsh\/core\/class\/gsh_Channel.class.php": {

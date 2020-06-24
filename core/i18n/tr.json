@@ -204,6 +204,11 @@
         "Off": "",
         "Etat": "Durum"
     },
+    "plugins\/gsh\/core\/class\/gsh_HumiditySetting.class.php": {
+        "Contrôle humidité": "",
+        "Etat contrôle humidité": "",
+        "Humidité": "Nem"
+    },
     "plugins\/gsh\/core\/class\/gsh_TemperatureSetting.class.php": {
         "Thermostat": "",
         "Etat themostat ": "",
@@ -227,7 +232,7 @@
     },
     "plugins\/gsh\/core\/class\/gsh_TemperatureControl.class.php": {
         "Thermostat": "",
-        "Etat themostat\/Température": "",
+        "Etat thermostat\/Température": "",
         "Température": "Sıcaklık"
     },
     "plugins\/gsh\/core\/class\/gsh_Channel.class.php": {
