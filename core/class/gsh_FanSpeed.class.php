@@ -47,9 +47,8 @@ class gsh_FanSpeed {
   
   public static function needGenericType(){
     return array(
-      __('On',__FILE__) => self::$_ON,
-      __('Off',__FILE__) => self::$_OFF,
-      __('Etat',__FILE__) => self::$_STATE
+      __('Ventilateur',__FILE__) => self::$_FAN_SPEED_STATE,
+      __('Etat',__FILE__) => self::$_FAN_SPEED_STATE
     );
   }
   
