@@ -173,8 +173,7 @@
         "Rotation": "вращение"
     },
     "plugins\/gsh\/core\/class\/gsh_FanSpeed.class.php": {
-        "On": "",
-        "Off": "Выключить",
+        "Ventilateur": "",
         "Etat": "состояние"
     },
     "plugins\/gsh\/core\/class\/gsh_Reboot.class.php": {

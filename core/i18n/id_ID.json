@@ -173,8 +173,7 @@
         "Rotation": ""
     },
     "plugins\/gsh\/core\/class\/gsh_FanSpeed.class.php": {
-        "On": "",
-        "Off": "",
+        "Ventilateur": "",
         "Etat": "Negara"
     },
     "plugins\/gsh\/core\/class\/gsh_Reboot.class.php": {
