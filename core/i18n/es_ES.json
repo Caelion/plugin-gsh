@@ -23,10 +23,8 @@
         "Authorization URL : ": "URL de autorización:",
         "Token URL : ": "URL del token:",
         "ID du projet Smarthome": "ID del proyecto Smarthome",
-        "Connection": "Conexión",
         "Homegraph API Google": "Homegraph API Google",
         "Homegraph User Agent": "Agente de usuario de Homegraph",
-        "Clef d'accès sécurisé": "Clave de acceso seguro",
         "Mail client (JWT)": "Correo del cliente (JWT)",
         "Clef privé (JWT)": "Clave privada (JWT)",
         "Configuration envoyée avec succès": "Configuración enviada con éxito"
@@ -41,20 +39,12 @@
         "Attention cela ne change absolument pas le fonctionnement du plugin": "Tenga en cuenta que esto no cambia la forma en que funciona el complemento",
         "pousse l'information de l'état des modules au lieu d'attendre la demande de Google) par contre ca peut ralentir votre": "empuja la información de estado del módulo en lugar de esperar la solicitud de Google) pero puede ralentizar su",
         "Configuration": "Configuración",
-        "Inverser": "Invertir",
-        "Configuration du thermostat": "Configuración del termostato",
-        "Action pour le mode chaud": "Acción para modo calefacción",
-        "Aucun": "Ninguna",
-        "Action pour le mode froid": "Acción para el modo frío",
-        "Action pour le mode off": "Acción para el modo apagado",
-        "Il n\\'y a aucune configuration avancée pour ce type": "No hay una configuración avanzada para este tipo",
         "Sauvegarde réussi, pensez à relancer une synchronisation": "Copia de seguridad exitosa, recuerde reiniciar la sincronización"
     },
     "plugins\/gsh\/desktop\/modal\/showNeedGenericType.php": {
         "Eqlogic ID non valide : ": "ID de Eqlogic no válido:",
         "Device non trouvé": "Dispositivo no encontrado",
         "Aucun type configuré pour ce périphérique": "Ningún tipo configurado para este dispositivo",
-        "Aucune information disponible": "No hay información disponible",
         "Voici les générique type qui sont utilisation avec votre type d\\'équipement. Attention il ne faut pas forcement tous les avoir sur l\\'équipement (ou n\\'en avoir aucun)": "Estos son los tipos genéricos que se utilizan con su tipo de equipo. Atención, no es necesario necesariamente tenerlos todos en el equipo (o no tener ninguno)"
     },
     "plugins\/gsh\/desktop\/php\/gsh.php": {
@@ -105,85 +95,171 @@
         "Device non trouvé : ": "Dispositivo no encontrado:",
         "Aucune méthode correspondante à : ": "Ningún método correspondiente a:"
     },
+    "plugins\/gsh\/core\/class\/gsh_Modes.class.php": {
+        "Mode": "Modo",
+        "Etat mode": "Estado del modo",
+        "Nom du mode": "Nombre del modo",
+        "Nom du mode pour la commande": "Nombre de modo para el comando"
+    },
+    "plugins\/gsh\/core\/class\/gsh_Brightness.class.php": {
+        "Luminosité": "Brillo",
+        "Etat Luminosité": "Estado de brillo"
+    },
+    "plugins\/gsh\/core\/class\/gsh_ArmDisarm.class.php": {
+        "On": "Uno",
+        "Off": "Apagado",
+        "Etat": "Estado"
+    },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
+        "Lumière": "Iluminación",
+        "Thermostat": "Termostato",
+        "Prise": "Salida",
+        "Interrupteur": "Interruptor",
+        "Caméra": "Cámara",
+        "Scene": "Escena",
+        "Store": "Tienda",
+        "Volet": "Persiana",
+        "Rideaux": "Cortinas",
+        "Vanne": "Valvula",
+        "Capteur": "Sensor",
+        "Fenêtre": "Ventana",
+        "Porte": "Puerta",
+        "Porte Garage": "Puerta de la cochera",
+        "Portail": "Portal",
+        "Alarme": "Alarma",
+        "Verrou": "Bloquear",
+        "TV": "Televisión",
+        "Ventilateur": "Ventilador",
+        "Hotte": "Capucha",
+        "Climatiseur": "Aire acondicionado",
+        "Refroidisseur d\\'air": "Aire acondicionado",
+        "Désodorisant": "Desodorante",
+        "Purificateur d\\'air": "Purificador de aire",
+        "Banne": "Toldo",
+        "Baignoire": "Bañera",
+        "Chaudiere": "Caldera",
+        "Detecteur de CO": "Detector de CO",
+        "Placard": "Alacena",
+        "Déshumidificateur": "Deshumidificador",
+        "Déshydrateur": "Deshidratador",
+        "Lave-vaiselle": "Lavavajillas",
+        "Tiroir": "Cajón",
+        "Séche linge": "Secadora de ropa",
+        "Cheminée": "Chimenea",
+        "Congélateur": "Congelador",
+        "Chauffe-eau": "Calentador de agua",
+        "Humidificateur": "Humidificador",
+        "Bouilloire": "Tetera",
+        "Télécommande": "Control remoto",
+        "Tondeuse": "Cortacésped",
+        "Réseaux": "Redes",
+        "Pergola": "Pérgola",
+        "Radiateur": "Radiador",
+        "Frigo": "Nevera",
+        "Router": "Ruta",
+        "Douche": "Ducha",
+        "Détecteur de fumée": "Detector de humo",
+        "Aspirateur": "Vacío",
+        "Balai": "Escoba",
+        "Machine à laver": "Lavadora",
+        "Purificateur d\\'eau": "Purificador de agua",
+        "Adoucisseur d\\'eau": "Descalcificador de agua",
         "Veuillez vérifier la configuration": "Por favor verifique la configuración",
         "Erreur sur la demande de synchronisation :": "Error en la solicitud de sincronización:",
         "Erreur sur la demande de remonté d\\'état :": "Error en la solicitud de estado:",
         "JWT aucun token : ": "JWT sin token:"
     },
-    "plugins\/gsh\/core\/class\/gsh_blinds.class.php": {
-        "Position": "Posición",
+    "plugins\/gsh\/core\/class\/gsh_Rotation.class.php": {
+        "Rotation": "Rotación"
+    },
+    "plugins\/gsh\/core\/class\/gsh_FanSpeed.class.php": {
+        "Ventilateur": "Ventilador",
+        "Etat": "Estado"
+    },
+    "plugins\/gsh\/core\/class\/gsh_Reboot.class.php": {
+        "Redémarrage": "Reanudar"
+    },
+    "plugins\/gsh\/core\/class\/gsh_LockUnlock.class.php": {
         "On": "Uno",
         "Off": "Apagado",
-        "Etat": "Estado"
-    },
-    "plugins\/gsh\/core\/class\/gsh_door.class.php": {
-        "Etat": "Estado"
-    },
-    "plugins\/gsh\/core\/class\/gsh_thermostat.class.php": {
-        "Thermostat": "Termostato",
-        "Etat themostat ": "Estado del termostato",
-        "Mode": "Modo",
         "Etat": "Estado",
-        "Humidité": "Humedad",
-        "Off": "Apagado",
-        "Suspendu": "Suspendido"
+        "Inverser l\\'état": "Estado inverso"
     },
-    "plugins\/gsh\/core\/class\/gsh_speaker.class.php": {
-        "Etat volume": "Estado del volumen",
-        "Volume": "Volumen",
+    "plugins\/gsh\/core\/class\/gsh_SensorState.class.php": {
+        "Fumée": "Humo",
+        "Fuite d\\'eau": "Fuga de agua",
+        "Qualité d\\'air": "Calidad del aire",
+        "Etat du filtre": "Estado del filtro"
+    },
+    "plugins\/gsh\/core\/class\/gsh_MediaState.class.php": {
         "Pause": "Pausa",
         "Reprendre": "Reanudar",
         "Stop": "Detener",
         "Suivant": "Próximo",
         "Précedent": "Anterior"
     },
-    "plugins\/gsh\/core\/class\/gsh_light.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_OnOff.class.php": {
         "On": "Uno",
         "Off": "Apagado",
-        "Etat": "Estado",
-        "Luminosité": "Brillo",
-        "Etat luminosité": "Estado de brillo",
-        "Couleur": "Color",
-        "Etat couleur": "Estado del color"
+        "Etat": "Estado"
     },
-    "plugins\/gsh\/core\/class\/gsh_securitysystem.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_HumiditySetting.class.php": {
+        "Contrôle humidité": "Control de humedad",
+        "Etat contrôle humidité": "Estado de control de humedad",
+        "Humidité": "Humedad"
+    },
+    "plugins\/gsh\/core\/class\/gsh_TemperatureSetting.class.php": {
+        "Thermostat": "Termostato",
+        "Etat themostat ": "Estado del termostato",
         "Mode": "Modo",
-        "Etat mode": "Estado del modo",
-        "On": "Uno",
+        "Etat": "Estado",
+        "Humidité": "Humedad",
         "Off": "Apagado",
-        "Etat": "Estado"
+        "Suspendu": "Suspendido",
+        "Arrêté": "Detenido",
+        "Action pour le mode chaud": "Acción para modo calefacción",
+        "Aucun": "Ninguna",
+        "Action pour le mode froid": "Acción para el modo frío",
+        "Action pour le mode off": "Acción para el modo apagado"
     },
-    "plugins\/gsh\/core\/class\/gsh_lock.class.php": {
-        "On": "Uno",
-        "Off": "Apagado",
-        "Etat": "Estado"
+    "plugins\/gsh\/core\/class\/gsh_Dock.class.php": {
+        "Retour sur sa base": "De regreso a la base",
+        "Sur sa base": "Sobre su base"
     },
-    "plugins\/gsh\/core\/class\/gsh_tv.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_Volume.class.php": {
         "Etat volume": "Estado del volumen",
-        "Volume": "Volumen",
+        "Volume": "Volumen"
+    },
+    "plugins\/gsh\/core\/class\/gsh_TemperatureControl.class.php": {
+        "Thermostat": "Termostato",
+        "Etat thermostat\/Température": "Estado del termostato \/ temperatura",
+        "Température": "Temperatura"
+    },
+    "plugins\/gsh\/core\/class\/gsh_Channel.class.php": {
         "Chaine": "Cadena",
         "Etat chaine": "Estado del canal"
     },
-    "plugins\/gsh\/core\/class\/gsh_fan.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_StartStop.class.php": {
         "On": "Uno",
-        "Off": "Apagado",
-        "Etat": "Estado"
-    },
-    "plugins\/gsh\/core\/class\/gsh_outlet.class.php": {
-        "Position": "Posición",
-        "On": "Uno",
-        "Off": "Apagado",
-        "Etat": "Estado"
+        "Off": "Apagado"
     },
     "plugins\/gsh\/core\/class\/gsh_scene.class.php": {
         "Erreur lors de l\\'éxecution de ": "Error al ejecutar",
         ". Détails : ": "Detalles:"
     },
-    "plugins\/gsh\/core\/class\/gsh_valve.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_OpenClose.class.php": {
         "Position": "Posición",
         "On": "Uno",
         "Off": "Apagado",
-        "Etat": "Estado"
+        "Etat": "Estado",
+        "Inverser l\\'action": "Acción inversa",
+        "Inverser l\\'état": "Estado inverso",
+        "Autoriser ouverture partielle": "Permitir apertura parcial",
+        "Commande partielle": "Orden parcial",
+        "Aucun": "Ninguna"
+    },
+    "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
+        "Couleur": "Color",
+        "Etat couleur": "Estado del color"
     }
 }

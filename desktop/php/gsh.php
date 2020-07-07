@@ -2,6 +2,10 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+$supportedType = gsh::getSupportedType();
+uasort($supportedType, function ($a, $b) {
+	return strcmp($a['name'], $b['name']);
+});
 ?>
 <div class="row row-overflow">
 	<div class="col-xs-12">
@@ -66,7 +70,7 @@ if (!isConnect('admin')) {
 							echo '<td style="width:150px;">';
 							echo '<select class="deviceAttr form-control input-sm" data-l1key="type">';
 							echo '<option value="">{{Aucun}}</option>';
-							foreach (gsh::$_supportedType as $key => $value) {
+							foreach ($supportedType as $key => $value) {
 								if ($key == 'action.devices.types.SCENE') {
 									continue;
 								}

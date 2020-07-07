@@ -23,10 +23,8 @@
         "Authorization URL : ": "",
         "Token URL : ": "",
         "ID du projet Smarthome": "",
-        "Connection": "",
         "Homegraph API Google": "",
         "Homegraph User Agent": "",
-        "Clef d'accès sécurisé": "",
         "Mail client (JWT)": "",
         "Clef privé (JWT)": "",
         "Configuration envoyée avec succès": ""
@@ -41,20 +39,12 @@
         "Attention cela ne change absolument pas le fonctionnement du plugin": "",
         "pousse l'information de l'état des modules au lieu d'attendre la demande de Google) par contre ca peut ralentir votre": "",
         "Configuration": "Ayar",
-        "Inverser": "Ters çevir",
-        "Configuration du thermostat": "",
-        "Action pour le mode chaud": "",
-        "Aucun": "Hiçbir",
-        "Action pour le mode froid": "",
-        "Action pour le mode off": "",
-        "Il n\\'y a aucune configuration avancée pour ce type": "",
         "Sauvegarde réussi, pensez à relancer une synchronisation": ""
     },
     "plugins\/gsh\/desktop\/modal\/showNeedGenericType.php": {
         "Eqlogic ID non valide : ": "",
         "Device non trouvé": "",
         "Aucun type configuré pour ce périphérique": "",
-        "Aucune information disponible": "",
         "Voici les générique type qui sont utilisation avec votre type d\\'équipement. Attention il ne faut pas forcement tous les avoir sur l\\'équipement (ou n\\'en avoir aucun)": ""
     },
     "plugins\/gsh\/desktop\/php\/gsh.php": {
@@ -105,85 +95,171 @@
         "Device non trouvé : ": "",
         "Aucune méthode correspondante à : ": "Aşağıdakilere karşılık gelen bir yöntem yok:"
     },
+    "plugins\/gsh\/core\/class\/gsh_Modes.class.php": {
+        "Mode": "Mod",
+        "Etat mode": "",
+        "Nom du mode": "",
+        "Nom du mode pour la commande": ""
+    },
+    "plugins\/gsh\/core\/class\/gsh_Brightness.class.php": {
+        "Luminosité": "",
+        "Etat Luminosité": ""
+    },
+    "plugins\/gsh\/core\/class\/gsh_ArmDisarm.class.php": {
+        "On": "",
+        "Off": "",
+        "Etat": "Durum"
+    },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
+        "Lumière": "Işık",
+        "Thermostat": "",
+        "Prise": "",
+        "Interrupteur": "",
+        "Caméra": "Kamera",
+        "Scene": "",
+        "Store": "",
+        "Volet": "Kepenek",
+        "Rideaux": "",
+        "Vanne": "",
+        "Capteur": "",
+        "Fenêtre": "",
+        "Porte": "",
+        "Porte Garage": "",
+        "Portail": "",
+        "Alarme": "",
+        "Verrou": "",
+        "TV": "",
+        "Ventilateur": "",
+        "Hotte": "",
+        "Climatiseur": "",
+        "Refroidisseur d\\'air": "",
+        "Désodorisant": "",
+        "Purificateur d\\'air": "",
+        "Banne": "",
+        "Baignoire": "",
+        "Chaudiere": "",
+        "Detecteur de CO": "",
+        "Placard": "",
+        "Déshumidificateur": "",
+        "Déshydrateur": "",
+        "Lave-vaiselle": "",
+        "Tiroir": "",
+        "Séche linge": "",
+        "Cheminée": "",
+        "Congélateur": "",
+        "Chauffe-eau": "",
+        "Humidificateur": "",
+        "Bouilloire": "",
+        "Télécommande": "",
+        "Tondeuse": "",
+        "Réseaux": "Ağlar",
+        "Pergola": "",
+        "Radiateur": "",
+        "Frigo": "",
+        "Router": "",
+        "Douche": "",
+        "Détecteur de fumée": "",
+        "Aspirateur": "",
+        "Balai": "",
+        "Machine à laver": "",
+        "Purificateur d\\'eau": "",
+        "Adoucisseur d\\'eau": "",
         "Veuillez vérifier la configuration": "",
         "Erreur sur la demande de synchronisation :": "",
         "Erreur sur la demande de remonté d\\'état :": "",
         "JWT aucun token : ": ""
     },
-    "plugins\/gsh\/core\/class\/gsh_blinds.class.php": {
-        "Position": "Pozisyon",
+    "plugins\/gsh\/core\/class\/gsh_Rotation.class.php": {
+        "Rotation": ""
+    },
+    "plugins\/gsh\/core\/class\/gsh_FanSpeed.class.php": {
+        "Ventilateur": "",
+        "Etat": "Durum"
+    },
+    "plugins\/gsh\/core\/class\/gsh_Reboot.class.php": {
+        "Redémarrage": ""
+    },
+    "plugins\/gsh\/core\/class\/gsh_LockUnlock.class.php": {
         "On": "",
         "Off": "",
-        "Etat": "Durum"
-    },
-    "plugins\/gsh\/core\/class\/gsh_door.class.php": {
-        "Etat": "Durum"
-    },
-    "plugins\/gsh\/core\/class\/gsh_thermostat.class.php": {
-        "Thermostat": "",
-        "Etat themostat ": "",
-        "Mode": "Mod",
         "Etat": "Durum",
-        "Humidité": "Nem",
-        "Off": "",
-        "Suspendu": ""
+        "Inverser l\\'état": ""
     },
-    "plugins\/gsh\/core\/class\/gsh_speaker.class.php": {
-        "Etat volume": "",
-        "Volume": "Ses",
+    "plugins\/gsh\/core\/class\/gsh_SensorState.class.php": {
+        "Fumée": "",
+        "Fuite d\\'eau": "",
+        "Qualité d\\'air": "",
+        "Etat du filtre": ""
+    },
+    "plugins\/gsh\/core\/class\/gsh_MediaState.class.php": {
         "Pause": "Durdur",
         "Reprendre": "Tekrar başla",
         "Stop": "",
         "Suivant": "",
         "Précedent": "Önceki"
     },
-    "plugins\/gsh\/core\/class\/gsh_light.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_OnOff.class.php": {
         "On": "",
         "Off": "",
-        "Etat": "Durum",
-        "Luminosité": "",
-        "Etat luminosité": "",
-        "Couleur": "Renk",
-        "Etat couleur": ""
+        "Etat": "Durum"
     },
-    "plugins\/gsh\/core\/class\/gsh_securitysystem.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_HumiditySetting.class.php": {
+        "Contrôle humidité": "",
+        "Etat contrôle humidité": "",
+        "Humidité": "Nem"
+    },
+    "plugins\/gsh\/core\/class\/gsh_TemperatureSetting.class.php": {
+        "Thermostat": "",
+        "Etat themostat ": "",
         "Mode": "Mod",
-        "Etat mode": "",
-        "On": "",
+        "Etat": "Durum",
+        "Humidité": "Nem",
         "Off": "",
-        "Etat": "Durum"
+        "Suspendu": "",
+        "Arrêté": "Durduruldu",
+        "Action pour le mode chaud": "",
+        "Aucun": "Hiçbir",
+        "Action pour le mode froid": "",
+        "Action pour le mode off": ""
     },
-    "plugins\/gsh\/core\/class\/gsh_lock.class.php": {
-        "On": "",
-        "Off": "",
-        "Etat": "Durum"
+    "plugins\/gsh\/core\/class\/gsh_Dock.class.php": {
+        "Retour sur sa base": "",
+        "Sur sa base": ""
     },
-    "plugins\/gsh\/core\/class\/gsh_tv.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_Volume.class.php": {
         "Etat volume": "",
-        "Volume": "Ses",
+        "Volume": "Ses"
+    },
+    "plugins\/gsh\/core\/class\/gsh_TemperatureControl.class.php": {
+        "Thermostat": "",
+        "Etat thermostat\/Température": "",
+        "Température": "Sıcaklık"
+    },
+    "plugins\/gsh\/core\/class\/gsh_Channel.class.php": {
         "Chaine": "",
         "Etat chaine": ""
     },
-    "plugins\/gsh\/core\/class\/gsh_fan.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_StartStop.class.php": {
         "On": "",
-        "Off": "",
-        "Etat": "Durum"
-    },
-    "plugins\/gsh\/core\/class\/gsh_outlet.class.php": {
-        "Position": "Pozisyon",
-        "On": "",
-        "Off": "",
-        "Etat": "Durum"
+        "Off": ""
     },
     "plugins\/gsh\/core\/class\/gsh_scene.class.php": {
         "Erreur lors de l\\'éxecution de ": "Yürütülürken hata oluştu",
         ". Détails : ": "Detaylar:"
     },
-    "plugins\/gsh\/core\/class\/gsh_valve.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_OpenClose.class.php": {
         "Position": "Pozisyon",
         "On": "",
         "Off": "",
-        "Etat": "Durum"
+        "Etat": "Durum",
+        "Inverser l\\'action": "",
+        "Inverser l\\'état": "",
+        "Autoriser ouverture partielle": "",
+        "Commande partielle": "",
+        "Aucun": "Hiçbir"
+    },
+    "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
+        "Couleur": "Renk",
+        "Etat couleur": ""
     }
 }

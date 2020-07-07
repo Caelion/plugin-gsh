@@ -23,10 +23,8 @@
         "Authorization URL : ": "",
         "Token URL : ": "",
         "ID du projet Smarthome": "",
-        "Connection": "",
         "Homegraph API Google": "",
         "Homegraph User Agent": "",
-        "Clef d'accès sécurisé": "",
         "Mail client (JWT)": "",
         "Clef privé (JWT)": "",
         "Configuration envoyée avec succès": ""
@@ -41,20 +39,12 @@
         "Attention cela ne change absolument pas le fonctionnement du plugin": "",
         "pousse l'information de l'état des modules au lieu d'attendre la demande de Google) par contre ca peut ralentir votre": "",
         "Configuration": "コンフィギュレーション",
-        "Inverser": "逆",
-        "Configuration du thermostat": "",
-        "Action pour le mode chaud": "",
-        "Aucun": "何でもありません",
-        "Action pour le mode froid": "",
-        "Action pour le mode off": "",
-        "Il n\\'y a aucune configuration avancée pour ce type": "",
         "Sauvegarde réussi, pensez à relancer une synchronisation": ""
     },
     "plugins\/gsh\/desktop\/modal\/showNeedGenericType.php": {
         "Eqlogic ID non valide : ": "",
         "Device non trouvé": "",
         "Aucun type configuré pour ce périphérique": "",
-        "Aucune information disponible": "",
         "Voici les générique type qui sont utilisation avec votre type d\\'équipement. Attention il ne faut pas forcement tous les avoir sur l\\'équipement (ou n\\'en avoir aucun)": ""
     },
     "plugins\/gsh\/desktop\/php\/gsh.php": {
@@ -105,85 +95,171 @@
         "Device non trouvé : ": "",
         "Aucune méthode correspondante à : ": "以下に対応するメソッドはありません："
     },
+    "plugins\/gsh\/core\/class\/gsh_Modes.class.php": {
+        "Mode": "モード",
+        "Etat mode": "",
+        "Nom du mode": "",
+        "Nom du mode pour la commande": ""
+    },
+    "plugins\/gsh\/core\/class\/gsh_Brightness.class.php": {
+        "Luminosité": "",
+        "Etat Luminosité": ""
+    },
+    "plugins\/gsh\/core\/class\/gsh_ArmDisarm.class.php": {
+        "On": "",
+        "Off": "オフ",
+        "Etat": "状態"
+    },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
+        "Lumière": "ライト",
+        "Thermostat": "",
+        "Prise": "",
+        "Interrupteur": "",
+        "Caméra": "カメラ",
+        "Scene": "",
+        "Store": "",
+        "Volet": "フラップ",
+        "Rideaux": "",
+        "Vanne": "",
+        "Capteur": "",
+        "Fenêtre": "",
+        "Porte": "",
+        "Porte Garage": "",
+        "Portail": "",
+        "Alarme": "",
+        "Verrou": "",
+        "TV": "",
+        "Ventilateur": "",
+        "Hotte": "",
+        "Climatiseur": "",
+        "Refroidisseur d\\'air": "",
+        "Désodorisant": "",
+        "Purificateur d\\'air": "",
+        "Banne": "",
+        "Baignoire": "",
+        "Chaudiere": "",
+        "Detecteur de CO": "",
+        "Placard": "",
+        "Déshumidificateur": "",
+        "Déshydrateur": "",
+        "Lave-vaiselle": "",
+        "Tiroir": "",
+        "Séche linge": "",
+        "Cheminée": "",
+        "Congélateur": "",
+        "Chauffe-eau": "",
+        "Humidificateur": "",
+        "Bouilloire": "",
+        "Télécommande": "",
+        "Tondeuse": "",
+        "Réseaux": "ネットワーク",
+        "Pergola": "",
+        "Radiateur": "",
+        "Frigo": "",
+        "Router": "",
+        "Douche": "",
+        "Détecteur de fumée": "",
+        "Aspirateur": "",
+        "Balai": "",
+        "Machine à laver": "",
+        "Purificateur d\\'eau": "",
+        "Adoucisseur d\\'eau": "",
         "Veuillez vérifier la configuration": "",
         "Erreur sur la demande de synchronisation :": "",
         "Erreur sur la demande de remonté d\\'état :": "",
         "JWT aucun token : ": ""
     },
-    "plugins\/gsh\/core\/class\/gsh_blinds.class.php": {
-        "Position": "位置",
+    "plugins\/gsh\/core\/class\/gsh_Rotation.class.php": {
+        "Rotation": "回転"
+    },
+    "plugins\/gsh\/core\/class\/gsh_FanSpeed.class.php": {
+        "Ventilateur": "",
+        "Etat": "状態"
+    },
+    "plugins\/gsh\/core\/class\/gsh_Reboot.class.php": {
+        "Redémarrage": "再起動"
+    },
+    "plugins\/gsh\/core\/class\/gsh_LockUnlock.class.php": {
         "On": "",
         "Off": "オフ",
-        "Etat": "状態"
-    },
-    "plugins\/gsh\/core\/class\/gsh_door.class.php": {
-        "Etat": "状態"
-    },
-    "plugins\/gsh\/core\/class\/gsh_thermostat.class.php": {
-        "Thermostat": "",
-        "Etat themostat ": "",
-        "Mode": "モード",
         "Etat": "状態",
-        "Humidité": "湿度",
-        "Off": "オフ",
-        "Suspendu": ""
+        "Inverser l\\'état": ""
     },
-    "plugins\/gsh\/core\/class\/gsh_speaker.class.php": {
-        "Etat volume": "",
-        "Volume": "ボリューム",
+    "plugins\/gsh\/core\/class\/gsh_SensorState.class.php": {
+        "Fumée": "",
+        "Fuite d\\'eau": "",
+        "Qualité d\\'air": "",
+        "Etat du filtre": ""
+    },
+    "plugins\/gsh\/core\/class\/gsh_MediaState.class.php": {
         "Pause": "休止",
         "Reprendre": "履歴書",
         "Stop": "ストップ",
         "Suivant": "",
         "Précedent": "前"
     },
-    "plugins\/gsh\/core\/class\/gsh_light.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_OnOff.class.php": {
         "On": "",
         "Off": "オフ",
-        "Etat": "状態",
-        "Luminosité": "",
-        "Etat luminosité": "",
-        "Couleur": "カラー",
-        "Etat couleur": ""
+        "Etat": "状態"
     },
-    "plugins\/gsh\/core\/class\/gsh_securitysystem.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_HumiditySetting.class.php": {
+        "Contrôle humidité": "",
+        "Etat contrôle humidité": "",
+        "Humidité": "湿度"
+    },
+    "plugins\/gsh\/core\/class\/gsh_TemperatureSetting.class.php": {
+        "Thermostat": "",
+        "Etat themostat ": "",
         "Mode": "モード",
-        "Etat mode": "",
-        "On": "",
+        "Etat": "状態",
+        "Humidité": "湿度",
         "Off": "オフ",
-        "Etat": "状態"
+        "Suspendu": "",
+        "Arrêté": "逮捕",
+        "Action pour le mode chaud": "",
+        "Aucun": "何でもありません",
+        "Action pour le mode froid": "",
+        "Action pour le mode off": ""
     },
-    "plugins\/gsh\/core\/class\/gsh_lock.class.php": {
-        "On": "",
-        "Off": "オフ",
-        "Etat": "状態"
+    "plugins\/gsh\/core\/class\/gsh_Dock.class.php": {
+        "Retour sur sa base": "",
+        "Sur sa base": ""
     },
-    "plugins\/gsh\/core\/class\/gsh_tv.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_Volume.class.php": {
         "Etat volume": "",
-        "Volume": "ボリューム",
+        "Volume": "ボリューム"
+    },
+    "plugins\/gsh\/core\/class\/gsh_TemperatureControl.class.php": {
+        "Thermostat": "",
+        "Etat thermostat\/Température": "",
+        "Température": "温度"
+    },
+    "plugins\/gsh\/core\/class\/gsh_Channel.class.php": {
         "Chaine": "",
         "Etat chaine": ""
     },
-    "plugins\/gsh\/core\/class\/gsh_fan.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_StartStop.class.php": {
         "On": "",
-        "Off": "オフ",
-        "Etat": "状態"
-    },
-    "plugins\/gsh\/core\/class\/gsh_outlet.class.php": {
-        "Position": "位置",
-        "On": "",
-        "Off": "オフ",
-        "Etat": "状態"
+        "Off": "オフ"
     },
     "plugins\/gsh\/core\/class\/gsh_scene.class.php": {
         "Erreur lors de l\\'éxecution de ": "",
         ". Détails : ": ""
     },
-    "plugins\/gsh\/core\/class\/gsh_valve.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_OpenClose.class.php": {
         "Position": "位置",
         "On": "",
         "Off": "オフ",
-        "Etat": "状態"
+        "Etat": "状態",
+        "Inverser l\\'action": "",
+        "Inverser l\\'état": "",
+        "Autoriser ouverture partielle": "",
+        "Commande partielle": "",
+        "Aucun": "何でもありません"
+    },
+    "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
+        "Couleur": "カラー",
+        "Etat couleur": ""
     }
 }

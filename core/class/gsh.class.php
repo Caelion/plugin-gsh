@@ -21,46 +21,89 @@ require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 require_once dirname(__FILE__) . '/../../vendor/autoload.php';
 use \Firebase\JWT\JWT;
 
-include_file('core', 'gsh_light', 'class', 'gsh');
-include_file('core', 'gsh_thermostat', 'class', 'gsh');
-include_file('core', 'gsh_outlet', 'class', 'gsh');
-include_file('core', 'gsh_camera', 'class', 'gsh');
 include_file('core', 'gsh_scene', 'class', 'gsh');
-include_file('core', 'gsh_blinds', 'class', 'gsh');
-include_file('core', 'gsh_sensor', 'class', 'gsh');
-include_file('core', 'gsh_door', 'class', 'gsh');
-include_file('core', 'gsh_securitysystem', 'class', 'gsh');
-include_file('core', 'gsh_lock', 'class', 'gsh');
-include_file('core', 'gsh_tv', 'class', 'gsh');
-include_file('core', 'gsh_speaker', 'class', 'gsh');
-include_file('core', 'gsh_valve', 'class', 'gsh');
+include_file('core', 'gsh_camera', 'class', 'gsh');
+include_file('core', 'gsh_ArmDisarm', 'class', 'gsh');
+include_file('core', 'gsh_Brightness', 'class', 'gsh');
+include_file('core', 'gsh_Channel', 'class', 'gsh');
+include_file('core', 'gsh_ColorSetting', 'class', 'gsh');
+include_file('core', 'gsh_LockUnlock', 'class', 'gsh');
+include_file('core', 'gsh_MediaState', 'class', 'gsh');
+include_file('core', 'gsh_Modes', 'class', 'gsh');
+include_file('core', 'gsh_OnOff', 'class', 'gsh');
+include_file('core', 'gsh_OpenClose', 'class', 'gsh');
+include_file('core', 'gsh_SensorState', 'class', 'gsh');
+include_file('core', 'gsh_TemperatureSetting', 'class', 'gsh');
+include_file('core', 'gsh_Volume', 'class', 'gsh');
+include_file('core', 'gsh_FanSpeed', 'class', 'gsh');
+include_file('core', 'gsh_StartStop', 'class', 'gsh');
+include_file('core', 'gsh_Reboot', 'class', 'gsh');
+include_file('core', 'gsh_Rotation', 'class', 'gsh');
+include_file('core', 'gsh_TemperatureControl', 'class', 'gsh');
+include_file('core', 'gsh_HumiditySetting', 'class', 'gsh');
+include_file('core', 'gsh_Dock', 'class', 'gsh');
 
 class gsh extends eqLogic {
 	
 	/*     * *************************Attributs****************************** */
 	
-	public static $_supportedType = array(
-		'action.devices.types.LIGHT' => array('class' => 'gsh_light', 'name' => 'Lumière'),
-		'action.devices.types.THERMOSTAT' => array('class' => 'gsh_thermostat', 'name' => 'Thermostat'),
-		'action.devices.types.OUTLET' => array('class' => 'gsh_outlet', 'name' => 'Prise'),
-		'action.devices.types.SWITCH' => array('class' => 'gsh_outlet', 'name' => 'Interrupteur'),
-		'action.devices.types.CAMERA' => array('class' => 'gsh_camera', 'name' => 'Caméra'),
-		'action.devices.types.SCENE' => array('class' => 'gsh_scene', 'name' => 'Scene'),
-		'action.devices.types.BLINDS' => array('class' => 'gsh_blinds', 'name' => 'Store'),
-		'action.devices.types.SHUTTER' => array('class' => 'gsh_blinds', 'name' => 'Volet'),
-		'action.devices.types.CURTAIN' => array('class' => 'gsh_blinds', 'name' => 'Rideaux'),
-		'action.devices.types.VALVE' => array('class' => 'gsh_valve', 'name' => 'Vanne'),
-		'action.devices.types.SENSOR' => array('class' => 'gsh_sensor', 'name' => 'Capteur'),
-		'action.devices.types.WINDOW' => array('class' => 'gsh_door', 'name' => 'Fenêtre'),
-		'action.devices.types.DOOR' => array('class' => 'gsh_door', 'name' => 'Porte'),
-		'action.devices.types.GARAGE' => array('class' => 'gsh_door', 'name' => 'Porte Garage'),
-		'action.devices.types.SECURITYSYSTEM' => array('class' => 'gsh_securitysystem', 'name' => 'Alarme'),
-		'action.devices.types.LOCK' => array('class' => 'gsh_lock', 'name' => 'Verrou'),
-		'action.devices.types.TV' => array('class' => 'gsh_tv', 'name' => 'TV'),
-		'action.devices.types.SPEAKER' => array('class' => 'gsh_speaker', 'name' => 'Enceinte'),
-		'action.devices.types.FAN' => array('class' => 'gsh_fan', 'name' => 'Ventilateur'),
-		'action.devices.types.HOOD' => array('class' => 'gsh_fan', 'name' => 'Hotte'),
-	);
+	public static function getSupportedType(){
+		return array(
+			'action.devices.types.LIGHT' => array('name' => __('Lumière',__FILE__) ,'traits' =>array('Brightness','ColorSetting','OnOff')),
+			'action.devices.types.THERMOSTAT' => array('name' => __('Thermostat',__FILE__) ,'traits' =>array('TemperatureSetting')),
+			'action.devices.types.OUTLET' => array('name' => __('Prise',__FILE__) ,'traits' =>array('OnOff')),
+			'action.devices.types.SWITCH' => array('name' => __('Interrupteur',__FILE__) ,'traits' =>array('OnOff')),
+			'action.devices.types.CAMERA' => array('name' => __('Caméra',__FILE__),'class' => 'gsh_camera'),
+			'action.devices.types.SCENE' => array('name' => __('Scene',__FILE__),'class' => 'gsh_scene'),
+			'action.devices.types.BLINDS' => array('name' => __('Store',__FILE__) ,'traits' =>array('Modes','OpenClose')),
+			'action.devices.types.SHUTTER' => array('name' => __('Volet',__FILE__) ,'traits' =>array('Modes','OpenClose','Rotation')),
+			'action.devices.types.CURTAIN' => array('name' => __('Rideaux',__FILE__) ,'traits' =>array('OpenClose')),
+			'action.devices.types.VALVE' => array('name' => __('Vanne',__FILE__) ,'traits' =>array('OpenClose')),
+			'action.devices.types.SENSOR' => array('name' => __('Capteur',__FILE__) ,'traits' =>array('OnOff','SensorState','TemperatureControl','Brightness','HumiditySetting')),
+			'action.devices.types.WINDOW' => array('name' => __('Fenêtre',__FILE__) ,'traits' =>array('OpenClose')),
+			'action.devices.types.DOOR' => array('name' => __('Porte',__FILE__) ,'traits' =>array('OpenClose')),
+			'action.devices.types.GARAGE' => array('name' => __('Porte Garage',__FILE__) ,'traits' =>array('OpenClose')),
+			'action.devices.types.GATE' => array('name' => __('Portail',__FILE__) ,'traits' =>array('OpenClose')),
+			'action.devices.types.SECURITYSYSTEM' => array('name' => __('Alarme',__FILE__) ,'traits' =>array('ArmDisarm','StatusReport','Modes')),
+			'action.devices.types.LOCK' => array('name' => __('Verrou',__FILE__) ,'traits' =>array('LockUnlock')),
+			'action.devices.types.TV' => array('name' => __('TV',__FILE__) ,'traits' =>array('OnOff','MediaState','InputSelector','AppSelector','TransportControl','Volume','Modes')),
+			'action.devices.types.FAN' => array('name' => __('Ventilateur',__FILE__) ,'traits' =>array('OnOff','FanSpeed','Modes','Toggles')),
+			'action.devices.types.HOOD' => array('name' => __('Hotte',__FILE__) ,'traits' =>array('OnOff','FanSpeed','Modes','Toggles')),
+			'action.devices.types.AC_UNIT' => array('name' => __('Climatiseur',__FILE__) ,'traits' =>array('FanSpeed','TemperatureSetting','OnOff')),
+			'action.devices.types.AIRCOOLER' => array('name' => __('Refroidisseur d\'air',__FILE__) ,'traits' =>array('FanSpeed','TemperatureSetting','OnOff','HumiditySetting')),
+			'action.devices.types.AIRFRESHENER' => array('name' => __('Désodorisant',__FILE__) ,'traits' =>array('Modes','Toggles','OnOff')),
+			'action.devices.types.AIRPURIFIER' => array('name' => __('Purificateur d\'air',__FILE__) ,'traits' =>array('FanSpeed','Modes','OnOff','SensorState','Toggles')),
+			'action.devices.types.AWNING' => array('name' => __('Banne',__FILE__) ,'traits' =>array('Modes','OpenClose')),
+			'action.devices.types.BATHTUB ' => array('name' => __('Baignoire',__FILE__) ,'traits' =>array('OnOff','Fill')),
+			'action.devices.types.BOILER' => array('name' => __('Chaudiere',__FILE__) ,'traits' =>array('Modes','TemperatureControl','OnOff','Toggles')),
+			'action.devices.types.CARBON_MONOXIDE_DETECTOR' => array('name' => __('Detecteur de CO',__FILE__) ,'traits' =>array('SensorState')),
+			'action.devices.types.CLOSET' => array('name' => __('Placard',__FILE__) ,'traits' =>array('OpenClose')),
+			'action.devices.types.DEHUMIDIFIER' => array('name' => __('Déshumidificateur',__FILE__) ,'traits' =>array('FanSpeed','HumiditySetting','OnOff','Modes','RunCycle','StartStop','Toggles')),
+			'action.devices.types.DEHYDRATOR' => array('name' => __('Déshydrateur',__FILE__) ,'traits' =>array('Cook','Timer','OnOff','Modes','Toggles','StartStop')),
+			'action.devices.types.DISHWASHER' => array('name' => __('Lave-vaiselle',__FILE__) ,'traits' =>array('OnOff','StartStop','Modes','Toggles','RunCycle')),
+			'action.devices.types.DRAWER' => array('name' => __('Tiroir',__FILE__) ,'traits' =>array('OpenClose')),
+			'action.devices.types.DRYER' => array('name' => __('Séche linge',__FILE__) ,'traits' =>array('OnOff','StartStop','Modes','Toggles','RunCycle')),
+			'action.devices.types.FIREPLACE' => array('name' => __('Cheminée',__FILE__) ,'traits' =>array('OnOff','Modes','Toggles')),
+			'action.devices.types.FREEZER' => array('name' => __('Congélateur',__FILE__) ,'traits' =>array('OnOff','Modes','Toggles','TemperatureControl')),
+			'action.devices.types.HEATER' => array('name' => __('Chauffe-eau',__FILE__) ,'traits' =>array('FanSpeed','TemperatureSetting','OnOff')),
+			'action.devices.types.HUMIDIFIER' => array('name' => __('Humidificateur',__FILE__) ,'traits' =>array('FanSpeed','HumiditySetting','OnOff','Modes','StartStop','Toggles')),
+			'action.devices.types.KETTLE' => array('name' => __('Bouilloire',__FILE__) ,'traits' =>array('Modes','TemperatureControl','OnOff','Toggles')),
+			'action.devices.types.REMOTECONTROL' => array('name' => __('Télécommande',__FILE__) ,'traits' =>array('OnOff','MediaState','InputSelector','AppSelector','TransportControl','Volume')),
+			'action.devices.types.MOWER' => array('name' => __('Tondeuse',__FILE__) ,'traits' =>array('Dock','Locator','Modes','OnOff','StartStop','Toggles')),
+			'action.devices.types.NETWORK' => array('name' => __('Réseaux',__FILE__) ,'traits' =>array('Modes','Toggles','Reboot','SoftwareUpdate','NetworkControl')),
+			'action.devices.types.PERGOLA' => array('name' => __('Pergola',__FILE__) ,'traits' =>array('OpenClose','Rotation')),
+			'action.devices.types.RADIATOR' => array('name' => __('Radiateur',__FILE__) ,'traits' =>array('Modes','Toggles','OnOff')),
+			'action.devices.types.REFRIGERATOR' => array('name' => __('Frigo',__FILE__) ,'traits' =>array('Modes','Toggles','OnOff','TemperatureControl')),
+			'action.devices.types.ROUTER' => array('name' => __('Router',__FILE__) ,'traits' =>array('Modes','Toggles','Reboot','SoftwareUpdate','NetworkControl')),
+			'action.devices.types.SHOWER' => array('name' => __('Douche',__FILE__) ,'traits' =>array('Modes','Toggles','OnOff','TemperatureControl')),
+			'action.devices.types.SMOKE_DETECTOR' => array('name' => __('Détecteur de fumée',__FILE__) ,'traits' =>array('SensorState')),
+			'action.devices.types.VACUUM' => array('name' => __('Aspirateur',__FILE__) ,'traits' =>array('Dock','Locator','Modes','OnOff','StartStop','Toggles','RunCycle')),
+			'action.devices.types.MOP' => array('name' => __('Balai',__FILE__) ,'traits' =>array('Dock','Locator','Modes','OnOff','StartStop','Toggles','RunCycle')),
+			'action.devices.types.WASHER' => array('name' => __('Machine à laver',__FILE__) ,'traits' =>array('Modes','OnOff','StartStop','Toggles','RunCycle')),
+			'action.devices.types.WATERPURIFIER' => array('name' => __('Purificateur d\'eau',__FILE__) ,'traits' =>array('Modes','Toggles','OnOff','TemperatureControl')),
+			'action.devices.types.WATERSOFTENER' => array('name' => __('Adoucisseur d\'eau',__FILE__) ,'traits' =>array('Modes','Toggles','OnOff','SensorState')),
+		);
+	}
 	
 	/*     * ***********************Methode static*************************** */
 	
@@ -187,11 +230,8 @@ class gsh extends eqLogic {
 				continue;
 			}
 			$info = $device->buildDevice();
-			if (!is_array($info) || count($info) == 0 || isset($info['missingGenericType'])) {
+			if (!is_array($info) || count($info) == 0) {
 				$device->setOptions('configState', 'NOK');
-				if(isset($info['missingGenericType'])){
-					$device->setOptions('missingGenericType',$info['missingGenericType']);
-				}
 				$device->save();
 				continue;
 			}
@@ -450,15 +490,6 @@ class gsh extends eqLogic {
 					return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 				}
 				
-				/*     * ***********************Methode utils*************************** */
-				
-				public function traitsModeBuildSetting($_name,$_synonyms,$_lang = 'fr'){
-					return array(
-						'setting_name'=> $_name,
-						'setting_values' => array(array('setting_synonym'=> $_synonyms,'lang'=> $_lang))
-					);
-				}
-				
 				/*     * *********************Methode d'instance************************* */
 				
 				public function preSave() {
@@ -487,47 +518,109 @@ class gsh extends eqLogic {
 				}
 				
 				public function buildDevice() {
-					if (!isset(gsh::$_supportedType[$this->getType()])) {
+					$supportedType = gsh::getSupportedType();
+					if (!isset($supportedType[$this->getType()])) {
 						return array();
 					}
-					$class = gsh::$_supportedType[$this->getType()]['class'];
-					if (!class_exists($class)) {
-						return array();
-					}
-					if ($this->getLink_type() == 'eqLogic') {
-						$eqLogic = $this->getLink();
-						if(!is_object($eqLogic) || $eqLogic->getIsEnable() == 0){
+					if(isset($supportedType[$this->getType()]['class'])){
+						$class = $supportedType[$this->getType()]['class'];
+						if (!class_exists($class)) {
 							return array();
 						}
+						if ($this->getLink_type() == 'eqLogic') {
+							$eqLogic = $this->getLink();
+							if(!is_object($eqLogic) || $eqLogic->getIsEnable() == 0){
+								return array();
+							}
+						}
+						return $class::buildDevice($this);
 					}
-					return $class::buildDevice($this);
+					if(isset($supportedType[$this->getType()]['traits'])){
+						$eqLogic = $this->getLink();
+						if (!is_object($eqLogic)) {
+							return array();
+						}
+						
+						$return = array();
+						$return['id'] = $eqLogic->getId();
+						$return['type'] = $this->getType();
+						if (is_object($eqLogic->getObject())) {
+							$return['roomHint'] = $eqLogic->getObject()->getName();
+						}
+						$return['name'] = array('name' => $eqLogic->getHumanName(), 'nicknames' => $this->getPseudo());
+						$return['traits'] = array();
+						$return['willReportState'] = ($this->getOptions('reportState::enable') == 1);
+						foreach ($supportedType[$this->getType()]['traits'] as $traits) {
+							$class = 'gsh_'.$traits;
+							if (!class_exists($class)) {
+								continue;
+							}
+							$infos = $class::discover($this,$eqLogic);
+							if(count($infos['traits']) == 0){
+								continue;
+							}
+							$return = array_merge_recursive($return,$infos);
+						}
+						if(count($return['traits']) == 0){
+							return array();
+						}
+						return $return;
+					}
 				}
 				
 				public function exec($_execution, $_infos) {
-					if (!isset(gsh::$_supportedType[$this->getType()])) {
+					$supportedType = gsh::getSupportedType();
+					if (!isset($supportedType[$this->getType()])) {
 						return;
 					}
-					$class = gsh::$_supportedType[$this->getType()]['class'];
-					if (!class_exists($class)) {
-						return array();
+					if(isset($supportedType[$this->getType()]['class'])){
+						$class = $supportedType[$this->getType()]['class'];
+						if (!class_exists($class)) {
+							return array();
+						}
+						$result = $class::exec($this, $_execution, $_infos);
+						return $result;
 					}
-					$result = $class::exec($this, $_execution, $_infos);
-					return $result;
+					if(isset($supportedType[$this->getType()]['traits'])){
+						$return = array();
+						foreach ($supportedType[$this->getType()]['traits'] as $traits) {
+							$class = 'gsh_'.$traits;
+							if (!class_exists($class)) {
+								continue;
+							}
+							$return = array_merge_recursive($return,$class::exec($this, $_execution, $_infos));
+						}
+						return $return;
+					}
 				}
 				
 				public function query($_infos) {
-					if (!isset(gsh::$_supportedType[$this->getType()])) {
+					$supportedType = gsh::getSupportedType();
+					if (!isset($supportedType[$this->getType()])) {
 						return;
 					}
-					$class = gsh::$_supportedType[$this->getType()]['class'];
-					if (!class_exists($class)) {
-						return array();
+					if(isset($supportedType[$this->getType()]['class'])){
+						$class = $supportedType[$this->getType()]['class'];
+						if (!class_exists($class)) {
+							return array();
+						}
+						$result = $class::query($this, $_infos);
+						if (isset($result['status']) && $result['status'] == 'SUCCESS') {
+							$this->setCache('lastState', json_encode($result['state']));
+						}
+						return $result;
 					}
-					$result = $class::query($this, $_infos);
-					if (isset($result['status']) && $result['status'] == 'SUCCESS') {
-						$this->setCache('lastState', json_encode($result['state']));
+					if(isset($supportedType[$this->getType()]['traits'])){
+						$return = array();
+						foreach ($supportedType[$this->getType()]['traits'] as $traits) {
+							$class = 'gsh_'.$traits;
+							if (!class_exists($class)) {
+								continue;
+							}
+							$return = array_merge_recursive($return,$class::query($this, $_infos));
+						}
+						return $return;
 					}
-					return $result;
 				}
 				
 				public function getPseudo() {

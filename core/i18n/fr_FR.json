@@ -23,10 +23,8 @@
         "Authorization URL : ": "Authorization URL : ",
         "Token URL : ": "Token URL : ",
         "ID du projet Smarthome": "ID du projet Smarthome",
-        "Connection": "Connection",
         "Homegraph API Google": "Homegraph API Google",
         "Homegraph User Agent": "Homegraph User Agent",
-        "Clef d'accès sécurisé": "Clef d'accès sécurisé",
         "Mail client (JWT)": "Mail client (JWT)",
         "Clef privé (JWT)": "Clef privé (JWT)",
         "Configuration envoyée avec succès": "Configuration envoyée avec succès"
@@ -41,20 +39,12 @@
         "Attention cela ne change absolument pas le fonctionnement du plugin": "Attention cela ne change absolument pas le fonctionnement du plugin",
         "pousse l'information de l'état des modules au lieu d'attendre la demande de Google) par contre ca peut ralentir votre": "pousse l'information de l'état des modules au lieu d'attendre la demande de Google) par contre ca peut ralentir votre",
         "Configuration": "Configuration",
-        "Inverser": "Inverser",
-        "Configuration du thermostat": "Configuration du thermostat",
-        "Action pour le mode chaud": "Action pour le mode chaud",
-        "Aucun": "Aucun",
-        "Action pour le mode froid": "Action pour le mode froid",
-        "Action pour le mode off": "Action pour le mode off",
-        "Il n\\'y a aucune configuration avancée pour ce type": "Il n\\'y a aucune configuration avancée pour ce type",
         "Sauvegarde réussi, pensez à relancer une synchronisation": "Sauvegarde réussi, pensez à relancer une synchronisation"
     },
     "plugins\/gsh\/desktop\/modal\/showNeedGenericType.php": {
         "Eqlogic ID non valide : ": "Eqlogic ID non valide : ",
         "Device non trouvé": "Device non trouvé",
         "Aucun type configuré pour ce périphérique": "Aucun type configuré pour ce périphérique",
-        "Aucune information disponible": "Aucune information disponible",
         "Voici les générique type qui sont utilisation avec votre type d\\'équipement. Attention il ne faut pas forcement tous les avoir sur l\\'équipement (ou n\\'en avoir aucun)": "Voici les générique type qui sont utilisation avec votre type d\\'équipement. Attention il ne faut pas forcement tous les avoir sur l\\'équipement (ou n\\'en avoir aucun)"
     },
     "plugins\/gsh\/desktop\/php\/gsh.php": {
@@ -105,85 +95,171 @@
         "Device non trouvé : ": "Device non trouvé : ",
         "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
     },
+    "plugins\/gsh\/core\/class\/gsh_Modes.class.php": {
+        "Mode": "Mode",
+        "Etat mode": "Etat mode",
+        "Nom du mode": "Nom du mode",
+        "Nom du mode pour la commande": "Nom du mode pour la commande"
+    },
+    "plugins\/gsh\/core\/class\/gsh_Brightness.class.php": {
+        "Luminosité": "Luminosité",
+        "Etat Luminosité": "Etat Luminosité"
+    },
+    "plugins\/gsh\/core\/class\/gsh_ArmDisarm.class.php": {
+        "On": "On",
+        "Off": "Off",
+        "Etat": "Etat"
+    },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
+        "Lumière": "Lumière",
+        "Thermostat": "Thermostat",
+        "Prise": "Prise",
+        "Interrupteur": "Interrupteur",
+        "Caméra": "Caméra",
+        "Scene": "Scene",
+        "Store": "Store",
+        "Volet": "Volet",
+        "Rideaux": "Rideaux",
+        "Vanne": "Vanne",
+        "Capteur": "Capteur",
+        "Fenêtre": "Fenêtre",
+        "Porte": "Porte",
+        "Porte Garage": "Porte Garage",
+        "Portail": "Portail",
+        "Alarme": "Alarme",
+        "Verrou": "Verrou",
+        "TV": "TV",
+        "Ventilateur": "Ventilateur",
+        "Hotte": "Hotte",
+        "Climatiseur": "Climatiseur",
+        "Refroidisseur d\\'air": "Refroidisseur d\\'air",
+        "Désodorisant": "Désodorisant",
+        "Purificateur d\\'air": "Purificateur d\\'air",
+        "Banne": "Banne",
+        "Baignoire": "Baignoire",
+        "Chaudiere": "Chaudiere",
+        "Detecteur de CO": "Detecteur de CO",
+        "Placard": "Placard",
+        "Déshumidificateur": "Déshumidificateur",
+        "Déshydrateur": "Déshydrateur",
+        "Lave-vaiselle": "Lave-vaiselle",
+        "Tiroir": "Tiroir",
+        "Séche linge": "Séche linge",
+        "Cheminée": "Cheminée",
+        "Congélateur": "Congélateur",
+        "Chauffe-eau": "Chauffe-eau",
+        "Humidificateur": "Humidificateur",
+        "Bouilloire": "Bouilloire",
+        "Télécommande": "Télécommande",
+        "Tondeuse": "Tondeuse",
+        "Réseaux": "Réseaux",
+        "Pergola": "Pergola",
+        "Radiateur": "Radiateur",
+        "Frigo": "Frigo",
+        "Router": "Router",
+        "Douche": "Douche",
+        "Détecteur de fumée": "Détecteur de fumée",
+        "Aspirateur": "Aspirateur",
+        "Balai": "Balai",
+        "Machine à laver": "Machine à laver",
+        "Purificateur d\\'eau": "Purificateur d\\'eau",
+        "Adoucisseur d\\'eau": "Adoucisseur d\\'eau",
         "Veuillez vérifier la configuration": "Veuillez vérifier la configuration",
         "Erreur sur la demande de synchronisation :": "Erreur sur la demande de synchronisation :",
         "Erreur sur la demande de remonté d\\'état :": "Erreur sur la demande de remonté d\\'état :",
         "JWT aucun token : ": "JWT aucun token : "
     },
-    "plugins\/gsh\/core\/class\/gsh_blinds.class.php": {
-        "Position": "Position",
+    "plugins\/gsh\/core\/class\/gsh_Rotation.class.php": {
+        "Rotation": "Rotation"
+    },
+    "plugins\/gsh\/core\/class\/gsh_FanSpeed.class.php": {
+        "Ventilateur": "Ventilateur",
+        "Etat": "Etat"
+    },
+    "plugins\/gsh\/core\/class\/gsh_Reboot.class.php": {
+        "Redémarrage": "Redémarrage"
+    },
+    "plugins\/gsh\/core\/class\/gsh_LockUnlock.class.php": {
         "On": "On",
         "Off": "Off",
-        "Etat": "Etat"
-    },
-    "plugins\/gsh\/core\/class\/gsh_door.class.php": {
-        "Etat": "Etat"
-    },
-    "plugins\/gsh\/core\/class\/gsh_thermostat.class.php": {
-        "Thermostat": "Thermostat",
-        "Etat themostat ": "Etat themostat ",
-        "Mode": "Mode",
         "Etat": "Etat",
-        "Humidité": "Humidité",
-        "Off": "Off",
-        "Suspendu": "Suspendu"
+        "Inverser l\\'état": "Inverser l\\'état"
     },
-    "plugins\/gsh\/core\/class\/gsh_speaker.class.php": {
-        "Etat volume": "Etat volume",
-        "Volume": "Volume",
+    "plugins\/gsh\/core\/class\/gsh_SensorState.class.php": {
+        "Fumée": "Fumée",
+        "Fuite d\\'eau": "Fuite d\\'eau",
+        "Qualité d\\'air": "Qualité d\\'air",
+        "Etat du filtre": "Etat du filtre"
+    },
+    "plugins\/gsh\/core\/class\/gsh_MediaState.class.php": {
         "Pause": "Pause",
         "Reprendre": "Reprendre",
         "Stop": "Stop",
         "Suivant": "Suivant",
         "Précedent": "Précedent"
     },
-    "plugins\/gsh\/core\/class\/gsh_light.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_OnOff.class.php": {
         "On": "On",
         "Off": "Off",
-        "Etat": "Etat",
-        "Luminosité": "Luminosité",
-        "Etat luminosité": "Etat luminosité",
-        "Couleur": "Couleur",
-        "Etat couleur": "Etat couleur"
+        "Etat": "Etat"
     },
-    "plugins\/gsh\/core\/class\/gsh_securitysystem.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_HumiditySetting.class.php": {
+        "Contrôle humidité": "Contrôle humidité",
+        "Etat contrôle humidité": "Etat contrôle humidité",
+        "Humidité": "Humidité"
+    },
+    "plugins\/gsh\/core\/class\/gsh_TemperatureSetting.class.php": {
+        "Thermostat": "Thermostat",
+        "Etat themostat ": "Etat themostat ",
         "Mode": "Mode",
-        "Etat mode": "Etat mode",
-        "On": "On",
+        "Etat": "Etat",
+        "Humidité": "Humidité",
         "Off": "Off",
-        "Etat": "Etat"
+        "Suspendu": "Suspendu",
+        "Arrêté": "Arrêté",
+        "Action pour le mode chaud": "Action pour le mode chaud",
+        "Aucun": "Aucun",
+        "Action pour le mode froid": "Action pour le mode froid",
+        "Action pour le mode off": "Action pour le mode off"
     },
-    "plugins\/gsh\/core\/class\/gsh_lock.class.php": {
-        "On": "On",
-        "Off": "Off",
-        "Etat": "Etat"
+    "plugins\/gsh\/core\/class\/gsh_Dock.class.php": {
+        "Retour sur sa base": "Retour sur sa base",
+        "Sur sa base": "Sur sa base"
     },
-    "plugins\/gsh\/core\/class\/gsh_tv.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_Volume.class.php": {
         "Etat volume": "Etat volume",
-        "Volume": "Volume",
+        "Volume": "Volume"
+    },
+    "plugins\/gsh\/core\/class\/gsh_TemperatureControl.class.php": {
+        "Thermostat": "Thermostat",
+        "Etat thermostat\/Température": "Etat thermostat\/Température",
+        "Température": "Température"
+    },
+    "plugins\/gsh\/core\/class\/gsh_Channel.class.php": {
         "Chaine": "Chaine",
         "Etat chaine": "Etat chaine"
     },
-    "plugins\/gsh\/core\/class\/gsh_fan.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_StartStop.class.php": {
         "On": "On",
-        "Off": "Off",
-        "Etat": "Etat"
-    },
-    "plugins\/gsh\/core\/class\/gsh_outlet.class.php": {
-        "Position": "Position",
-        "On": "On",
-        "Off": "Off",
-        "Etat": "Etat"
+        "Off": "Off"
     },
     "plugins\/gsh\/core\/class\/gsh_scene.class.php": {
         "Erreur lors de l\\'éxecution de ": "Erreur lors de l\\'éxecution de ",
         ". Détails : ": ". Détails : "
     },
-    "plugins\/gsh\/core\/class\/gsh_valve.class.php": {
+    "plugins\/gsh\/core\/class\/gsh_OpenClose.class.php": {
         "Position": "Position",
         "On": "On",
         "Off": "Off",
-        "Etat": "Etat"
+        "Etat": "Etat",
+        "Inverser l\\'action": "Inverser l\\'action",
+        "Inverser l\\'état": "Inverser l\\'état",
+        "Autoriser ouverture partielle": "Autoriser ouverture partielle",
+        "Commande partielle": "Commande partielle",
+        "Aucun": "Aucun"
+    },
+    "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
+        "Couleur": "Couleur",
+        "Etat couleur": "Etat couleur"
     }
 }
