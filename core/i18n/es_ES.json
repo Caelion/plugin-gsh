@@ -173,8 +173,7 @@
         "Rotation": "Rotación"
     },
     "plugins\/gsh\/core\/class\/gsh_FanSpeed.class.php": {
-        "On": "Uno",
-        "Off": "Apagado",
+        "Ventilateur": "Ventilador",
         "Etat": "Estado"
     },
     "plugins\/gsh\/core\/class\/gsh_Reboot.class.php": {
