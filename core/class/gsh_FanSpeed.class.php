@@ -35,73 +35,112 @@ class gsh_FanSpeed {
         if (!in_array('action.devices.traits.FanSpeed', $return['traits'])) {
           $return['traits'][] = 'action.devices.traits.FanSpeed';
         }
-        $return['customData']['FanSpeed_cmdSet'] = $cmd->getId();
-      }
-      if (in_array($cmd->getGeneric_type(), self::$_FAN_SPEED_STATE)) {
-        $return['customData']['FanSpeed_cmdGet'] = $cmd->getId();
-        $return['attributes']['commandOnlyFanSpeed'] = true;
-      }
+        $return['attributes']['availableFanSpeeds'] = array(
+          "speeds" => array(
+            array(
+              "speed_name"=> "S1",
+              "speed_values"=> array(
+                array(
+                  "speed_synonym"=> array("low", "speed 1"),
+                  "lang"=> substr(config::byKey('language'),0,2)
+                )
+              )
+            ),
+            array(
+              "speed_name"=> "S2",
+              "speed_values"=> array(array(
+                "speed_synonym"=> array("high", "speed 2"),
+                "lang"=> substr(config::byKey('language'),0,2)
+              )
+            )
+          ),
+        ),
+        "ordered"=> true
+      );
+      $return['customData']['FanSpeed_cmdSet'] = $cmd->getId();
     }
-    return $return;
+    if (in_array($cmd->getGeneric_type(), self::$_FAN_SPEED_STATE)) {
+      $return['customData']['FanSpeed_cmdGet'] = $cmd->getId();
+      $return['attributes']['commandOnlyFanSpeed'] = true;
+    }
   }
-  
-  public static function needGenericType(){
-    return array(
-      __('Ventilateur',__FILE__) => self::$_FAN_SPEED_STATE,
-      __('Etat',__FILE__) => self::$_FAN_SPEED_STATE
-    );
-  }
-  
-  public static function exec($_device, $_executions, $_infos){
-    $return = array();
-    foreach ($_executions as $execution) {
-      try {
-        switch ($execution['command']) {
-          case 'action.devices.commands.SetFanSpeed':
-          if (isset($_infos['customData']['FanSpeed_cmdSet'])) {
-            $cmd = cmd::byId($_infos['customData']['FanSpeed_cmdSet']);
+  return $return;
+}
+
+public static function needGenericType(){
+  return array(
+    __('Ventilateur',__FILE__) => self::$_FAN_SPEED_STATE,
+    __('Etat',__FILE__) => self::$_FAN_SPEED_STATE
+  );
+}
+
+public static function exec($_device, $_executions, $_infos){
+  $return = array();
+  foreach ($_executions as $execution) {
+    try {
+      switch ($execution['command']) {
+        case 'action.devices.commands.SetFanSpeed':
+        if (isset($_infos['customData']['FanSpeed_cmdSet'])) {
+          $cmd = cmd::byId($_infos['customData']['FanSpeed_cmdSet']);
+        }
+        if (!is_object($cmd)) {
+          break;
+        }
+        if(isset($execution['params']['fanSpeed'])){
+          if ($cmd->getSubtype() == 'slider') {
+            if($execution['params']['fanSpeed'] == 'S1'){
+              $value = $cmd->getConfiguration('minValue', 0) + (25 / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
+            }else{
+              $value = $cmd->getConfiguration('minValue', 0) + (75 / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
+            }
+            $cmd->execCmd(array('slider' => $value));
+            $return = array('status' => 'SUCCESS');
           }
-          if (!is_object($cmd)) {
-            break;
-          }
+        }else{
           if ($cmd->getSubtype() == 'slider') {
             $value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['fanSpeedPercent'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
             $cmd->execCmd(array('slider' => $value));
             $return = array('status' => 'SUCCESS');
           }
-          break;
-          case 'action.devices.commands.SetFanSpeedRelativeSpeed':
-          $cmd = cmd::byId($_infos['customData']['FanSpeed_cmdSet']);
-          if (!is_object($cmd)) {
-            break;
-          }
-          $cmd_info = cmd::byId($_infos['customData']['FanSpeed_cmdGet']);
-          if (!is_object($cmd_info)) {
-            break;
-          }
-          $value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['fanSpeedRelativePercent'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
-          $cmd->execCmd(array('slider'=> $cmd_info->execCmd() + $value));
-          $return = array('status' => 'SUCCESS');
+        }
+        break;
+        case 'action.devices.commands.SetFanSpeedRelativeSpeed':
+        $cmd = cmd::byId($_infos['customData']['FanSpeed_cmdSet']);
+        if (!is_object($cmd)) {
           break;
         }
-      } catch (Exception $e) {
-        log::add('gsh', 'error', $e->getMessage());
-        $return = array('status' => 'ERROR');
+        $cmd_info = cmd::byId($_infos['customData']['FanSpeed_cmdGet']);
+        if (!is_object($cmd_info)) {
+          break;
+        }
+        $value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['fanSpeedRelativePercent'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
+        $cmd->execCmd(array('slider'=> $cmd_info->execCmd() + $value));
+        $return = array('status' => 'SUCCESS');
+        break;
+      }
+    } catch (Exception $e) {
+      log::add('gsh', 'error', $e->getMessage());
+      $return = array('status' => 'ERROR');
+    }
+  }
+  return $return;
+}
+
+public static function query($_device, $_infos){
+  $return = array();
+  $cmd = null;
+  if (isset($_infos['customData']['FanSpeed_cmdGet'])) {
+    $cmd = cmd::byId($_infos['customData']['FanSpeed_cmdGet']);
+    if (is_object($cmd)) {
+      $return['currentFanSpeedPercent'] = $cmd->execCmd()/ 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0));
+      if($return['currentFanSpeedPercent'] > 50){
+        $return['currentFanSpeedSetting'] = 'S1';
+      }else{
+        $return['currentFanSpeedSetting'] = 'S2';
       }
     }
-    return $return;
   }
-  
-  public static function query($_device, $_infos){
-    $return = array();
-    $cmd = null;
-    if (isset($_infos['customData']['FanSpeed_cmdGet'])) {
-      $cmd = cmd::byId($_infos['customData']['FanSpeed_cmdGet']);
-      if (is_object($cmd)) {
-        $return['currentFanSpeedPercent'] = $cmd->execCmd()/ 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0));
-      }
-    }
-    return $return;
-  }
-  
+  return $return;
+}
+
 }
