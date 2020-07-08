@@ -4,6 +4,11 @@
 >
 >As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text
 
+# 07/07/2020
+
+>**Important**
+>
+>This update is major and may have bugs despite the many tests performed. We will do everything to correct them as quickly as possible
 
 - Redesign of the plugin to support more types (be careful there may be regressions not seen during the test phase)
 - Addition of many types

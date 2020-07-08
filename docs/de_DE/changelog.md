@@ -4,6 +4,11 @@
 >
 >Zur Erinnerung: Wenn keine Informationen zum Update vorhanden sind, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt
 
+# 07/07/2020
+
+>**Wichtig**
+>
+>Dieses Update ist schwerwiegend und kann trotz der vielen durchgeführten Tests Fehler aufweisen. Wir werden alles tun, um sie so schnell wie möglich zu korrigieren
 
 - Neugestaltung des Plugins zur Unterstützung weiterer Typen (Vorsicht, während der Testphase können keine Regressionen auftreten)
 - Hinzufügung vieler Arten

@@ -2,6 +2,9 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Changelog Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Zur Erinnerung: Wenn keine Informationen zum Update vorhanden sind, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt",
+        "07\/07\/2020": "07\/07\/2020",
+        "Cette mise à jour est majeur et peux avoir des bugs malgrès les nombreux test effectués": "Dieses Update ist schwerwiegend und kann trotz der vielen durchgeführten Tests Fehler aufweisen",
+        "Nous ferons tout pour les corriger le plus rapidement possible": "Wir werden alles tun, um sie so schnell wie möglich zu korrigieren",
         "Refonte du plugin pour supporté plus de type (attention il peut y avoir des regressions non vues lors de la phase de test": "Neugestaltung des Plugins zur Unterstützung weiterer Typen (Vorsicht, während der Testphase können keine Regressionen auftreten",
         "Ajout de nombreux type": "Hinzufügung vieler Arten",
         "Ajout de nombreuses actions\/infos": "Fügen Sie viele Aktionen \/ Informationen hinzu",
