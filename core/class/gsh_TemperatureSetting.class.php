@@ -165,13 +165,8 @@ class gsh_TemperatureSetting {
       $cmd = cmd::byId($_infos['customData']['TemperatureSetting_cmdGetMode']);
       if (is_object($cmd)) {
         $mode = $cmd->execCmd();
-        /* On teste le mode OFF */
-        if ($mode == 'Off') {
-          $return['activeThermostatMode'] = 'none';
-          $return['thermostatMode'] = 'off';
-        }
-        foreach ($eqLogic->getCmd(null, 'modeAction', null, true) as $cmd_found) {
-          if ($mode == $cmd_found->getName()) {
+        foreach ($eqLogic->getCmd('action') as $cmd_found) {
+          if (mb_strtolower($mode) == mb_strtolower($cmd_found->getName())) {
             switch ($cmd_found->getId()) {
               case $_device->getOptions('thermostat::heat'):
               $return['thermostatMode'] = 'heat';
@@ -179,7 +174,6 @@ class gsh_TemperatureSetting {
               case $_device->getOptions('thermostat::cool'):
               $return['thermostatMode'] = 'cool';
               break;
-              /* On test si c'est le mode Off, alors on renvoi un mode off mais ca ne marche pas, d'ou le test du dessus*/
               case $_device->getOptions('thermostat::off'):
               $return['activeThermostatMode'] = 'none';
               $return['thermostatMode'] = 'off';
