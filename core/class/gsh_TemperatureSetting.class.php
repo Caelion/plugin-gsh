@@ -165,14 +165,18 @@ class gsh_TemperatureSetting {
       $cmd = cmd::byId($_infos['customData']['TemperatureSetting_cmdGetMode']);
       if (is_object($cmd)) {
         $mode = $cmd->execCmd();
-        foreach ($eqLogic->getCmd(null, 'modeAction', null, true) as $cmd_found) {
-          if ($mode == $cmd_found->getName()) {
+        foreach ($eqLogic->getCmd('action') as $cmd_found) {
+          if (mb_strtolower($mode) == mb_strtolower($cmd_found->getName())) {
             switch ($cmd_found->getId()) {
               case $_device->getOptions('thermostat::heat'):
               $return['thermostatMode'] = 'heat';
               break;
               case $_device->getOptions('thermostat::cool'):
               $return['thermostatMode'] = 'cool';
+              break;
+              case $_device->getOptions('thermostat::off'):
+              $return['activeThermostatMode'] = 'none';
+              $return['thermostatMode'] = 'off';
               break;
             }
           }
@@ -184,15 +188,22 @@ class gsh_TemperatureSetting {
       $cmd = cmd::byId($_infos['customData']['TemperatureSetting_cmdGetState']);
       if (is_object($cmd)) {
         $state = $cmd->execCmd();
+        /* Selon le state renvoyé (Chauffage ou Climatisation), on sait déjà si le thermostat est en heat ou cool.
+        Si le state est Suspendu ou Arrêté, on dit juste que le mode ACTIF est none, mais on ne sait pas si le thermostatMode est en heat ou cool. */
         switch ($state) {
-          case __('Off', __FILE__):
-          $return['thermostatMode'] = 'off';
+          case __('Chauffage', __FILE__);
+          $return['activeThermostatMode'] = 'heat';
+          $return['thermostatMode'] = 'heat';
+          break;
+          case __('Climatisation', __FILE__);
+          $return['activeThermostatMode'] = 'cool';
+          $return['thermostatMode'] = 'cool';
           break;
           case __('Suspendu', __FILE__):
-          $return['thermostatMode'] = 'off';
+          $return['activeThermostatMode'] = 'none';
           break;
           case __('Arrêté', __FILE__):
-          $return['thermostatMode'] = 'off';
+          $return['activeThermostatMode'] = 'none';
           break;
         }
       }
@@ -224,7 +235,12 @@ class gsh_TemperatureSetting {
       $return['thermostatTemperatureSetpoint'] = 0;
     }
     if (!isset($return['thermostatMode'])) {
-      $return['thermostatMode'] = 'heat';
+      /* On teste la présence du mode Heat, si il apparait pas, alors le mode est forcément cool et sinon par défaut, on renvoi un heat*/
+      if (strpos($_infos['attributes']['availableThermostatModes'],'heat') === false) {
+        $return['thermostatMode'] = 'cool';
+      } else {
+        $return['thermostatMode'] = 'heat';
+      }
     }
     return $return;
   }
