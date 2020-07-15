@@ -89,7 +89,7 @@ class gsh_FanSpeed {
       }
       if (in_array($cmd->getGeneric_type(), self::$_FAN_SPEED_STATE)) {
         $return['customData']['FanSpeed_cmdGet'] = $cmd->getId();
-        $return['attributes']['commandOnlyFanSpeed'] = true;
+        $return['attributes']['commandOnlyFanSpeed'] = false;
       }
     }
     return $return;
