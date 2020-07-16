@@ -221,7 +221,10 @@
         "Action pour le mode chaud": "Aktion für Heizmodus",
         "Aucun": "Ohne",
         "Action pour le mode froid": "Aktion für den Kaltmodus",
-        "Action pour le mode off": "Aktion für Aus-Modus"
+        "Action pour le mode off": "Aktion für Aus-Modus",
+        "Action pour le mode Auto(chaud et froid)": "Aktion für den Auto-Modus (heiß und kalt)",
+        "Action pour le mode Eco": "Aktion für den Eco-Modus",
+        "Action pour le mode Autre (non sélectionnable)": "Aktion für anderen Modus (nicht auswählbar)"
     },
     "plugins\/gsh\/core\/class\/gsh_Dock.class.php": {
         "Retour sur sa base": "Zurück zur basis",
