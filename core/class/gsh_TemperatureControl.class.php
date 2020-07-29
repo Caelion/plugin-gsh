@@ -99,13 +99,16 @@ class gsh_TemperatureControl {
   public static function query($_device, $_infos){
     $return = array();
     $cmd = null;
-    if (isset($_infos['customData']['TemperatureControl_cmdGetSetpoint'])) {
-      $cmd = cmd::byId($_infos['customData']['TemperatureControl_cmdGetSetpoint']);
-      $return['temperatureSetpointCelsius'] = $cmd->execCmd();
-    }
     if (isset($_infos['customData']['TemperatureControl_cmdGetTemperature'])) {
       $cmd = cmd::byId($_infos['customData']['TemperatureControl_cmdGetTemperature']);
       $return['temperatureAmbientCelsius'] = $cmd->execCmd();
+    }
+    if (isset($_infos['customData']['TemperatureControl_cmdGetSetpoint'])) {
+      $cmd = cmd::byId($_infos['customData']['TemperatureControl_cmdGetSetpoint']);
+      $return['temperatureSetpointCelsius'] = $cmd->execCmd();
+    } else if (isset($_infos['customData']['TemperatureControl_cmdGetTemperature'])) {
+      $cmd = cmd::byId($_infos['customData']['TemperatureControl_cmdGetTemperature']);
+      $return['temperatureSetpointCelsius'] = $cmd->execCmd();
     }
     return $return;
   }
