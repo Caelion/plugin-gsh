@@ -111,6 +111,7 @@
         "Etat": "Estado"
     },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
+        "Ampli AV": "Amplificador AV",
         "Lumière": "Iluminación",
         "Thermostat": "Termostato",
         "Prise": "Salida",

@@ -23,7 +23,7 @@
         "Authorization URL : ": "Autorisierungs-URL:",
         "Token URL : ": "Token-URL:",
         "ID du projet Smarthome": "Smarthome-Projekt-ID",
-        "Homegraph API Google": "Homegraph API Google",
+        "Homegraph API Google": "Google API Homegraph",
         "Homegraph User Agent": "Homegraph User Agent",
         "Mail client (JWT)": "Kundenpost (JWT)",
         "Clef privé (JWT)": "Privater Schlüssel (JWT)",
@@ -111,6 +111,7 @@
         "Etat": "Zustand"
     },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
+        "Ampli AV": "AV-Verstärker",
         "Lumière": "Licht",
         "Thermostat": "Thermostat",
         "Prise": "Steckdose",
