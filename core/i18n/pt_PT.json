@@ -221,7 +221,10 @@
         "Action pour le mode chaud": "Ação para o modo de aquecimento",
         "Aucun": "Nemhum",
         "Action pour le mode froid": "Ação para o modo frio",
-        "Action pour le mode off": "Ação para o modo desativado"
+        "Action pour le mode off": "Ação para o modo desativado",
+        "Action pour le mode Auto(chaud et froid)": "Ação no modo Automático (quente e frio)",
+        "Action pour le mode Eco": "Ação para o modo econômico",
+        "Action pour le mode Autre (non sélectionnable)": "Ação para o modo Outro (não selecionável)"
     },
     "plugins\/gsh\/core\/class\/gsh_Dock.class.php": {
         "Retour sur sa base": "De volta à base",

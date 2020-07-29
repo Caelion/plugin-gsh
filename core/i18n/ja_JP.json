@@ -221,7 +221,10 @@
         "Action pour le mode chaud": "",
         "Aucun": "何でもありません",
         "Action pour le mode froid": "",
-        "Action pour le mode off": ""
+        "Action pour le mode off": "",
+        "Action pour le mode Auto(chaud et froid)": "",
+        "Action pour le mode Eco": "",
+        "Action pour le mode Autre (non sélectionnable)": ""
     },
     "plugins\/gsh\/core\/class\/gsh_Dock.class.php": {
         "Retour sur sa base": "",
