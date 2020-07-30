@@ -266,5 +266,8 @@
     "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
         "Couleur": "Farbe",
         "Etat couleur": "Farbstatus"
+    },
+    "info.json": {
+        "Plugin pour piloter Jeedom avec un Google Home. Important : le plugin nécessite un abonnement aux services vocaux (3 mois offerts lors de l’achat du plugin) pour une configuration facile. Pour gérer cet abonnement : https:\/\/www.jeedom.com\/market\/index.php?v=d&p=profils#services Vous pouvez utiliser aussi le mode standalone mais sa configuration est plus complexe, nous vous conseillons vivement de lire la documentation avant tout achat si vous souhaitez utiliser ce mode.": "Plugin zur Steuerung von Jeedom mit einem Google Home. Wichtig: Für die einfache Konfiguration des Plugins ist ein Abonnement für Sprachdienste erforderlich (3 Monate kostenlos beim Kauf des Plugins). So verwalten Sie dieses Abonnement: https:\/\/www.jeedom.com\/market\/index.php?v=d&p=profils#services Sie können auch den Standalone-Modus verwenden, die Konfiguration ist jedoch komplexer. Wir empfehlen Ihnen dringend, die Dokumentation zu lesen vor jedem Kauf, wenn Sie diesen Modus verwenden möchten"
     }
 }
