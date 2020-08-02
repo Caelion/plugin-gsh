@@ -32,9 +32,9 @@ class gsh_OpenClose {
   
   public static function discover($_device,$_eqLogic){
     $return = array('traits' => array(),'customData' => array(),'attributes' => array('openDirection' => array('DOWN'),'queryOnlyOpenClose' => true,'discreteOnlyOpenClose' => true));
-	if ($_device->getOptions('OpenClose::partial')) {
-		$return['attributes']['discreteOnlyOpenClose'] = false;
-	}
+    if ($_device->getOptions('OpenClose::partial')) {
+      $return['attributes']['discreteOnlyOpenClose'] = false;
+    }
     foreach ($_eqLogic->getCmd() as $cmd) {
       if (in_array($cmd->getGeneric_type(), self::$_ON)) {
         if (!in_array('action.devices.traits.OpenClose', $return['traits'])) {
@@ -106,8 +106,8 @@ class gsh_OpenClose {
             $return = array('status' => 'SUCCESS');
           } else if ($execution['params']['openPercent'] > 0 && $execution['params']['openPercent']<100) {
             if ($_device->getOptions('OpenClose::partialCommand','') != '') {
-				 $cmd = cmd::byId($_device->getOptions('OpenClose::partialCommand',''));
-			}
+              $cmd = cmd::byId($_device->getOptions('OpenClose::partialCommand',''));
+            }
             if (!is_object($cmd)) {
               break;
             }
@@ -153,10 +153,10 @@ class gsh_OpenClose {
       }
       $openState['openPercent'] = ($openState['openPercent']) ? 0 : 100;
     }
-    $return['openState'] = array($openState,array('openPercent' => $openState['openPercent']));
     if($_device->getOptions('OpenClose::invertGet')){
-      $return['openPercent'] = 100 - $return['openPercent'];
+      $openState['openPercent'] = 100 - $openState['openPercent'];
     }
+    $return['openState'] = array($openState,array('openPercent' => $openState['openPercent']));
     return $return;
   }
   
