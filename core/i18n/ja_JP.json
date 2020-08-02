@@ -111,6 +111,7 @@
         "Etat": "状態"
     },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
+        "Ampli AV": "",
         "Lumière": "ライト",
         "Thermostat": "",
         "Prise": "",
@@ -214,13 +215,17 @@
         "Mode": "モード",
         "Etat": "状態",
         "Humidité": "湿度",
-        "Off": "オフ",
+        "Chauffage": "加熱",
+        "Climatisation": "",
         "Suspendu": "",
         "Arrêté": "逮捕",
         "Action pour le mode chaud": "",
         "Aucun": "何でもありません",
         "Action pour le mode froid": "",
-        "Action pour le mode off": ""
+        "Action pour le mode off": "",
+        "Action pour le mode Auto(chaud et froid)": "",
+        "Action pour le mode Eco": "",
+        "Action pour le mode Autre (non sélectionnable)": ""
     },
     "plugins\/gsh\/core\/class\/gsh_Dock.class.php": {
         "Retour sur sa base": "",
@@ -261,5 +266,8 @@
     "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
         "Couleur": "カラー",
         "Etat couleur": ""
+    },
+    "info.json": {
+        "Plugin pour piloter Jeedom avec un Google Home. Important : le plugin nécessite un abonnement aux services vocaux (3 mois offerts lors de l’achat du plugin) pour une configuration facile. Pour gérer cet abonnement : https:\/\/www.jeedom.com\/market\/index.php?v=d&p=profils#services Vous pouvez utiliser aussi le mode standalone mais sa configuration est plus complexe, nous vous conseillons vivement de lire la documentation avant tout achat si vous souhaitez utiliser ce mode.": ""
     }
 }

@@ -2,6 +2,8 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Changelog Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Zur Erinnerung: Wenn keine Informationen zum Update vorhanden sind, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt",
+        "02\/08\/2020": "08\/02\/2020",
+        "Correction de bugs": "Fehlerbehebungen",
         "07\/07\/2020": "07\/07\/2020",
         "Il faut ABSOLUMENT redemander une synchronisation des équipements et renvoyer la configuration au market depuis Jeedom pour que le plugin marche": "Sie MÜSSEN ABSOLUT die Synchronisierung der Geräte anfordern und die Konfiguration von Jeedom an den Markt zurücksenden, damit das Plugin funktioniert",
         "Cette mise à jour est majeur et peux avoir des bugs malgrès les nombreux test effectués": "Dieses Update ist schwerwiegend und kann trotz der vielen durchgeführten Tests Fehler aufweisen",
@@ -22,7 +24,6 @@
         "30\/04\/2020": "30.04.2020",
         "Correction d'un bug sur la synchronisation des équipements": "Behebung eines Fehlers bei der Gerätesynchronisation",
         "29\/04\/2020": "29.04.2020",
-        "Correction de bugs": "Fehlerbehebungen",
         "28\/04\/2020": "28.04.2020",
         "Optimisation diverse": "Sonstige Optimierung",
         "23\/01\/2020": "23.01.2020",

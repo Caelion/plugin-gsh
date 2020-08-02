@@ -111,6 +111,7 @@
         "Etat": "Estado"
     },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
+        "Ampli AV": "Amplificador AV",
         "Lumière": "Iluminación",
         "Thermostat": "Termostato",
         "Prise": "Salida",
@@ -214,13 +215,17 @@
         "Mode": "Modo",
         "Etat": "Estado",
         "Humidité": "Humedad",
-        "Off": "Apagado",
+        "Chauffage": "Calefacción",
+        "Climatisation": "Climatización",
         "Suspendu": "Suspendido",
         "Arrêté": "Detenido",
         "Action pour le mode chaud": "Acción para modo calefacción",
         "Aucun": "Ninguna",
         "Action pour le mode froid": "Acción para el modo frío",
-        "Action pour le mode off": "Acción para el modo apagado"
+        "Action pour le mode off": "Acción para el modo apagado",
+        "Action pour le mode Auto(chaud et froid)": "Acción para el modo automático (frío y calor)",
+        "Action pour le mode Eco": "Acción para el modo Eco",
+        "Action pour le mode Autre (non sélectionnable)": "Acción para otro modo (no seleccionable)"
     },
     "plugins\/gsh\/core\/class\/gsh_Dock.class.php": {
         "Retour sur sa base": "De regreso a la base",
@@ -261,5 +266,8 @@
     "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
         "Couleur": "Color",
         "Etat couleur": "Estado del color"
+    },
+    "info.json": {
+        "Plugin pour piloter Jeedom avec un Google Home. Important : le plugin nécessite un abonnement aux services vocaux (3 mois offerts lors de l’achat du plugin) pour une configuration facile. Pour gérer cet abonnement : https:\/\/www.jeedom.com\/market\/index.php?v=d&p=profils#services Vous pouvez utiliser aussi le mode standalone mais sa configuration est plus complexe, nous vous conseillons vivement de lire la documentation avant tout achat si vous souhaitez utiliser ce mode.": "Complemento para controlar Jeedom con un Google Home. Importante: el complemento requiere una suscripción a los servicios de voz (3 meses gratis al comprar el complemento) para una fácil configuración. Para administrar esta suscripción: https:\/\/www.jeedom.com\/market\/index.php?v=d&p=profils#services También puede usar el modo independiente pero su configuración es más compleja, le recomendamos encarecidamente que lea la documentación antes de cualquier compra si desea utilizar este modo"
     }
 }

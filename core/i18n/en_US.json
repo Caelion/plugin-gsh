@@ -111,6 +111,7 @@
         "Etat": "State"
     },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
+        "Ampli AV": "AV amplifier",
         "Lumière": "Light",
         "Thermostat": "Thermostat",
         "Prise": "Outlet",
@@ -214,13 +215,17 @@
         "Mode": "Fashion",
         "Etat": "State",
         "Humidité": "Humidity",
-        "Off": "Off",
+        "Chauffage": "Heating",
+        "Climatisation": "Air conditioning",
         "Suspendu": "Suspended",
         "Arrêté": "Stopped",
         "Action pour le mode chaud": "Action for heating mode",
         "Aucun": "None",
         "Action pour le mode froid": "Action for cold mode",
-        "Action pour le mode off": "Action for off mode"
+        "Action pour le mode off": "Action for off mode",
+        "Action pour le mode Auto(chaud et froid)": "Action for Auto mode (hot and cold)",
+        "Action pour le mode Eco": "Action for Eco mode",
+        "Action pour le mode Autre (non sélectionnable)": "Action for Other mode (not selectable)"
     },
     "plugins\/gsh\/core\/class\/gsh_Dock.class.php": {
         "Retour sur sa base": "Back to base",
@@ -261,5 +266,8 @@
     "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
         "Couleur": "Color",
         "Etat couleur": "Color status"
+    },
+    "info.json": {
+        "Plugin pour piloter Jeedom avec un Google Home. Important : le plugin nécessite un abonnement aux services vocaux (3 mois offerts lors de l’achat du plugin) pour une configuration facile. Pour gérer cet abonnement : https:\/\/www.jeedom.com\/market\/index.php?v=d&p=profils#services Vous pouvez utiliser aussi le mode standalone mais sa configuration est plus complexe, nous vous conseillons vivement de lire la documentation avant tout achat si vous souhaitez utiliser ce mode.": "Plugin to control Jeedom with a Google Home. Important: the plugin requires a subscription to voice services (3 months free when purchasing the plugin) for easy configuration. To manage this subscription: https:\/\/www.jeedom.com\/market\/index.php?v=d&p=profils#services You can also use the standalone mode but its configuration is more complex, we strongly advise you to read the documentation before any purchase if you want to use this mode"
     }
 }

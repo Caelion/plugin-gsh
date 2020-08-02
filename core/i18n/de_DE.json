@@ -23,7 +23,7 @@
         "Authorization URL : ": "Autorisierungs-URL:",
         "Token URL : ": "Token-URL:",
         "ID du projet Smarthome": "Smarthome-Projekt-ID",
-        "Homegraph API Google": "Homegraph API Google",
+        "Homegraph API Google": "Google API Homegraph",
         "Homegraph User Agent": "Homegraph User Agent",
         "Mail client (JWT)": "Kundenpost (JWT)",
         "Clef privé (JWT)": "Privater Schlüssel (JWT)",
@@ -111,6 +111,7 @@
         "Etat": "Zustand"
     },
     "plugins\/gsh\/core\/class\/gsh.class.php": {
+        "Ampli AV": "AV-Verstärker",
         "Lumière": "Licht",
         "Thermostat": "Thermostat",
         "Prise": "Steckdose",
@@ -214,13 +215,17 @@
         "Mode": "Modus",
         "Etat": "Zustand",
         "Humidité": "Luftfeuchtigkeit",
-        "Off": "Aus",
+        "Chauffage": "Heizung",
+        "Climatisation": "Klimaanlage",
         "Suspendu": "Ausgesetzt",
         "Arrêté": "Verhaftet",
         "Action pour le mode chaud": "Aktion für Heizmodus",
         "Aucun": "Ohne",
         "Action pour le mode froid": "Aktion für den Kaltmodus",
-        "Action pour le mode off": "Aktion für Aus-Modus"
+        "Action pour le mode off": "Aktion für Aus-Modus",
+        "Action pour le mode Auto(chaud et froid)": "Aktion für den Auto-Modus (heiß und kalt)",
+        "Action pour le mode Eco": "Aktion für den Eco-Modus",
+        "Action pour le mode Autre (non sélectionnable)": "Aktion für anderen Modus (nicht auswählbar)"
     },
     "plugins\/gsh\/core\/class\/gsh_Dock.class.php": {
         "Retour sur sa base": "Zurück zur basis",
@@ -261,5 +266,8 @@
     "plugins\/gsh\/core\/class\/gsh_ColorSetting.class.php": {
         "Couleur": "Farbe",
         "Etat couleur": "Farbstatus"
+    },
+    "info.json": {
+        "Plugin pour piloter Jeedom avec un Google Home. Important : le plugin nécessite un abonnement aux services vocaux (3 mois offerts lors de l’achat du plugin) pour une configuration facile. Pour gérer cet abonnement : https:\/\/www.jeedom.com\/market\/index.php?v=d&p=profils#services Vous pouvez utiliser aussi le mode standalone mais sa configuration est plus complexe, nous vous conseillons vivement de lire la documentation avant tout achat si vous souhaitez utiliser ce mode.": "Plugin zur Steuerung von Jeedom mit einem Google Home. Wichtig: Für die einfache Konfiguration des Plugins ist ein Abonnement für Sprachdienste erforderlich (3 Monate kostenlos beim Kauf des Plugins). So verwalten Sie dieses Abonnement: https:\/\/www.jeedom.com\/market\/index.php?v=d&p=profils#services Sie können auch den Standalone-Modus verwenden, die Konfiguration ist jedoch komplexer. Wir empfehlen Ihnen dringend, die Dokumentation zu lesen vor jedem Kauf, wenn Sie diesen Modus verwenden möchten"
     }
 }
