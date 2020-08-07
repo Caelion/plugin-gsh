@@ -125,6 +125,8 @@
         "Lier Jeedom Smarthome dans Google Home": "Link Jeedom Smarthome in Google Home",
         "Toute modification de configuration des équipements transmis à Google Home (ajout d'un équipement, suppression d'un équipement, changement d'un générique type d'une commande) nécessite forcement d'aller dans Plugin -> Communication -> Googme Smarthome puis de faire sauvegarder": "Any modification to the configuration of the equipment sent to Google Home (addition of equipment, deletion of equipment, change of a generic order type) necessarily requires going to Plugin -> Communication -> Googme Smarthome then save",
         "Mode standalone": "Standalone mode",
+        "Google modifiant (très) souvent l'interface nous n'avons pas les reeousrces humaine pour refaire toute les captures à chaque fois": "Google modifying (very) often the interface we do not have the human resources to redo all the captures each time",
+        "Il peut donc y avoir de grosse differences entre les captures et la réalité": "There can therefore be big differences between the captures and the reality",
         "Si vous avez utilisé le mode cloud il ne faut surtout pas faire cette partie": "If you have used cloud mode you should not do this part",
         "Passer directement au chapitre \"Configuration du plugin": "Go directly to the chapter \"Plugin configuration",
         "Le mode standalone est une \"arnaque\" car cela vous fait créer une application chez Google en mode développement qui ne permet la synchronisation que pendant 3 jours après activation du mode test": "Standalone mode is a \"scam\" because it makes you create an application at Google in development mode which allows synchronization only for 3 days after activation of test mode",
