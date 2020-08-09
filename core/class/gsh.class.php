@@ -103,6 +103,7 @@ class gsh extends eqLogic {
 			'action.devices.types.WASHER' => array('name' => __('Machine à laver',__FILE__) ,'traits' =>array('Modes','OnOff','StartStop','Toggles','RunCycle')),
 			'action.devices.types.WATERPURIFIER' => array('name' => __('Purificateur d\'eau',__FILE__) ,'traits' =>array('Modes','Toggles','OnOff','TemperatureControl')),
 			'action.devices.types.WATERSOFTENER' => array('name' => __('Adoucisseur d\'eau',__FILE__) ,'traits' =>array('Modes','Toggles','OnOff','SensorState')),
+			'action.devices.types.SPRINKLER' => array('name' => __('Arrosage',__FILE__) ,'traits' =>array('StartStop')),
 		);
 	}
 	
