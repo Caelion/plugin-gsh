@@ -77,7 +77,7 @@ class gsh_ArmDisarm {
                 break;
               }
               $cmd->execCmd();
-              $return = array('status' => 'SUCCESS');
+              $return = array('status' => 'SUCCESS','states' => self::query($_device,$_infos));
             }else{
               if (isset($_infos['customData']['ArmDisarm_cmdSetOff'])) {
                 $cmd = cmd::byId($_infos['customData']['ArmDisarm_cmdSetOff']);
@@ -96,7 +96,7 @@ class gsh_ArmDisarm {
               break;
             }
             $cmd->execCmd();
-            $return = array('status' => 'SUCCESS');
+            $return = array('status' => 'SUCCESS','states' => self::query($_device,$_infos));
           }
           break;
         }
