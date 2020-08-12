@@ -38,7 +38,7 @@ else
   new=`nodejs -v`;
   echo "Version actuelle : ${new}"
 fi
-echo 45 > ${PROGRESS_FILE}
+echo 45 > /tmp/dependancy_gsh_in_progress
 sudo apt-get -y install npm
 cd ${BASEDIR}/gshd
 sudo npm install
