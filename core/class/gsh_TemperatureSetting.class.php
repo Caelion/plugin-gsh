@@ -276,11 +276,7 @@ class gsh_TemperatureSetting {
       $return['thermostatTemperatureSetpoint'] = 0;
     }
     if (!isset($return['thermostatMode'])) {
-      if (strpos($_infos['attributes']['availableThermostatModes'],'heat') === false) {
-        $return['thermostatMode'] = 'cool';
-      } else {
-        $return['thermostatMode'] = 'heat';
-      }
+      $return['thermostatMode'] = ($_device->getOptions('TemperatureSetting::heat') == '') ? 'cool' : 'heat';
     }
     return $return;
   }
