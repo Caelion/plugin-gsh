@@ -186,7 +186,7 @@ class gsh_TemperatureSetting {
       if (is_object($cmd)) {
         $mode = $cmd->execCmd();
         $cmd_off = $eqLogic->getCmd('action', 'off');
-        if ($mode == $cmd_off->getName()) {
+        if (is_object($cmd_off) && $mode == $cmd_off->getName()) {
           $return['activeThermostatMode'] = 'none';
           $return['thermostatMode'] = 'off';
         }
