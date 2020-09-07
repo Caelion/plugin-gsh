@@ -34,12 +34,20 @@
         "Device non trouvé": "Dispositivo no encontrado",
         "Aucun type configuré pour ce périphérique": "Ningún tipo configurado para este dispositivo",
         "Sauvegarder": "Guardar",
+        "Général": "Principal",
         "Groupe objet (option nécéssitant un compte market spécifique)": "Grupo de objetos (opción que requiere una cuenta de mercado específica)",
         "Pousser l'état": "Empujar el estado",
         "Attention cela ne change absolument pas le fonctionnement du plugin": "Tenga en cuenta que esto no cambia la forma en que funciona el complemento",
         "pousse l'information de l'état des modules au lieu d'attendre la demande de Google) par contre ca peut ralentir votre": "empuja la información de estado del módulo en lugar de esperar la solicitud de Google) pero puede ralentizar su",
+        "Commandes": "Comandos",
+        "Nom": "Nombre",
+        "Type": "Tipo",
+        "Sous-type": "Sub-tipo",
+        "Type générique": "Tipo genérico",
+        "Action": "Acción",
         "Configuration": "Configuración",
-        "Sauvegarde réussi, pensez à relancer une synchronisation": "Copia de seguridad exitosa, recuerde reiniciar la sincronización"
+        "Sauvegarde réussi, pensez à relancer une synchronisation": "Copia de seguridad exitosa, recuerde reiniciar la sincronización",
+        "Configuration de la commande": "Configuración del comando"
     },
     "plugins\/gsh\/desktop\/modal\/showNeedGenericType.php": {
         "Eqlogic ID non valide : ": "ID de Eqlogic no válido:",

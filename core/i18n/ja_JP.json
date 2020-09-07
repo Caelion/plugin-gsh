@@ -34,12 +34,20 @@
         "Device non trouvé": "",
         "Aucun type configuré pour ce périphérique": "",
         "Sauvegarder": "セーブ",
+        "Général": "コモン",
         "Groupe objet (option nécéssitant un compte market spécifique)": "",
         "Pousser l'état": "",
         "Attention cela ne change absolument pas le fonctionnement du plugin": "",
         "pousse l'information de l'état des modules au lieu d'attendre la demande de Google) par contre ca peut ralentir votre": "",
+        "Commandes": "コマンド",
+        "Nom": "表題",
+        "Type": "タイプ",
+        "Sous-type": "サブタイプ",
+        "Type générique": "ジェネリック型",
+        "Action": "アクション",
         "Configuration": "コンフィギュレーション",
-        "Sauvegarde réussi, pensez à relancer une synchronisation": ""
+        "Sauvegarde réussi, pensez à relancer une synchronisation": "",
+        "Configuration de la commande": "設定された制御"
     },
     "plugins\/gsh\/desktop\/modal\/showNeedGenericType.php": {
         "Eqlogic ID non valide : ": "",

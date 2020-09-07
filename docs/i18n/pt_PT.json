@@ -2,6 +2,8 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Changelog Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto",
+        "Amélioration du support des thermostats (ne venant pas du plugin thermostat": "Suporte aprimorado de termostatos (não vindo do plug-in de termostato",
+        "Amélioration de la fenetre de configuration des équipements Google Smarthome": "Melhoria da janela de configuração para dispositivos Google Smarthome",
         "02\/08\/2020": "08\/02\/2020",
         "Correction de bugs": "Correções de bugs",
         "07\/07\/2020": "07\/07\/2020",

@@ -34,12 +34,20 @@
         "Device non trouvé": "",
         "Aucun type configuré pour ce périphérique": "",
         "Sauvegarder": "Kaydet",
+        "Général": "Genel",
         "Groupe objet (option nécéssitant un compte market spécifique)": "",
         "Pousser l'état": "",
         "Attention cela ne change absolument pas le fonctionnement du plugin": "",
         "pousse l'information de l'état des modules au lieu d'attendre la demande de Google) par contre ca peut ralentir votre": "",
+        "Commandes": "Komutalar",
+        "Nom": "İsim",
+        "Type": "Çeşit",
+        "Sous-type": "Alt türü(tipi)",
+        "Type générique": "Genel tip",
+        "Action": "Eylem",
         "Configuration": "Ayar",
-        "Sauvegarde réussi, pensez à relancer une synchronisation": ""
+        "Sauvegarde réussi, pensez à relancer une synchronisation": "",
+        "Configuration de la commande": "Komutanın ayarları"
     },
     "plugins\/gsh\/desktop\/modal\/showNeedGenericType.php": {
         "Eqlogic ID non valide : ": "",
