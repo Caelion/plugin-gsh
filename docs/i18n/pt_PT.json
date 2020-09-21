@@ -2,6 +2,8 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Changelog Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto",
+        "Amélioration du support des thermostats (ne venant pas du plugin thermostat": "Suporte aprimorado de termostatos (não vindo do plug-in de termostato",
+        "Amélioration de la fenetre de configuration des équipements Google Smarthome": "Melhoria da janela de configuração para dispositivos Google Smarthome",
         "02\/08\/2020": "08\/02\/2020",
         "Correction de bugs": "Correções de bugs",
         "07\/07\/2020": "07\/07\/2020",
@@ -125,6 +127,8 @@
         "Lier Jeedom Smarthome dans Google Home": "Link Jeedom Smarthome na Página inicial do Google",
         "Toute modification de configuration des équipements transmis à Google Home (ajout d'un équipement, suppression d'un équipement, changement d'un générique type d'une commande) nécessite forcement d'aller dans Plugin -> Communication -> Googme Smarthome puis de faire sauvegarder": "Qualquer modificação na configuração do equipamento enviado para a Página inicial do Google (adição de equipamento, exclusão de equipamento, alteração de um tipo de pedido genérico) requer necessariamente acessar Plugin -> Comunicação -> Googme Smarthome e, em seguida, salvar",
         "Mode standalone": "Modo autônomo",
+        "Google modifiant (très) souvent l'interface nous n'avons pas les reeousrces humaine pour refaire toute les captures à chaque fois": "Modificando (muito) frequentemente a interface do Google, não temos recursos humanos para refazer todas as capturas a cada vez",
+        "Il peut donc y avoir de grosse differences entre les captures et la réalité": "Portanto, pode haver grandes diferenças entre as capturas e a realidade",
         "Si vous avez utilisé le mode cloud il ne faut surtout pas faire cette partie": "Se você usou o modo nuvem, não deve fazer esta parte",
         "Passer directement au chapitre \"Configuration du plugin": "Vá diretamente para o capítulo \"Configuração do plug-in",
         "Le mode standalone est une \"arnaque\" car cela vous fait créer une application chez Google en mode développement qui ne permet la synchronisation que pendant 3 jours après activation du mode test": "O modo autônomo é uma \"farsa\" porque faz com que você crie um aplicativo no Google no modo de desenvolvimento, que permite a sincronização apenas por 3 dias após a ativação do modo de teste",

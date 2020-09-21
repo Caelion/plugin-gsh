@@ -79,34 +79,31 @@ class gsh_OpenClose {
   
   public static function exec($_device, $_executions, $_infos){
     $return = array();
-    foreach ($_executions as $execution) {
+    foreach ($_executions as &$execution) {
       try {
         switch ($execution['command']) {
           case 'action.devices.commands.OpenClose':
+          if($_device->getOptions('OpenClose::invertSet',0) == 1){
+            $execution['params']['openPercent'] = 100 - $execution['params']['openPercent'];
+          }
           if (isset($_infos['customData']['OpenClose_cmdSetSlider'])) {
             $cmd = cmd::byId($_infos['customData']['OpenClose_cmdSetSlider']);
-            if (is_object($cmd)) {
-              $value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['openPercent'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
-              if($_device->getOptions('OpenClose::invertSet',0) == 1){
-                $value = 100 - $value;
-              }
-              $cmd->execCmd(array('slider' => $value));
-              $return = array('status' => 'SUCCESS');
+            if (!is_object($cmd)) {
+              break;
             }
-            break;
-          }
-          if ($execution['params']['openPercent'] > 50) {
-            if (isset($_infos['customData']['OpenClose_cmdSetOn'])) {
-              $cmd = cmd::byId($_infos['customData']['OpenClose_cmdSetOn']);
-            }
+            $value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['openPercent'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
+            $cmd->execCmd(array('slider' => $value));
+            $return = array('status' => 'SUCCESS');
+          } else if ($execution['params']['openPercent'] > 0 && $execution['params']['openPercent'] < 100 && $_device->getOptions('OpenClose::partialCommand','') != '') {
+            $cmd = cmd::byId($_device->getOptions('OpenClose::partialCommand',''));
             if (!is_object($cmd)) {
               break;
             }
             $cmd->execCmd();
             $return = array('status' => 'SUCCESS');
-          } else if ($execution['params']['openPercent'] > 0 && $execution['params']['openPercent']<100) {
-            if ($_device->getOptions('OpenClose::partialCommand','') != '') {
-              $cmd = cmd::byId($_device->getOptions('OpenClose::partialCommand',''));
+          }else if ($execution['params']['openPercent'] > 50) {
+            if (isset($_infos['customData']['OpenClose_cmdSetOn'])) {
+              $cmd = cmd::byId($_infos['customData']['OpenClose_cmdSetOn']);
             }
             if (!is_object($cmd)) {
               break;
