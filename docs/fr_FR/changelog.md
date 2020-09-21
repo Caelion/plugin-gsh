@@ -8,7 +8,7 @@
 
 - Amélioration du support des thermostats (ne venant pas du plugin thermostat)
 - Amélioration de la fenetre de configuration des équipements Google Smarthome
-- correction de bugs
+- Correction de bugs
 
 # 02/08/2020
 
