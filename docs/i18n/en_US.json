@@ -2,10 +2,11 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Changelog Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text",
+        "21\/09\/20": "09\/21\/20",
         "Amélioration du support des thermostats (ne venant pas du plugin thermostat": "Improved thermostats support (not coming from the thermostat plugin",
         "Amélioration de la fenetre de configuration des équipements Google Smarthome": "Improvement of the configuration window for Google Smarthome devices",
-        "02\/08\/2020": "08\/02\/2020",
         "Correction de bugs": "Bugfix",
+        "02\/08\/2020": "08\/02\/2020",
         "07\/07\/2020": "07\/07\/2020",
         "Il faut ABSOLUMENT redemander une synchronisation des équipements et renvoyer la configuration au market depuis Jeedom pour que le plugin marche": "You MUST ABSOLUTELY request equipment synchronization and send the configuration back to the market from Jeedom for the plugin to work",
         "Cette mise à jour est majeur et peux avoir des bugs malgrès les nombreux test effectués": "This update is major and may have bugs despite the many tests performed",
