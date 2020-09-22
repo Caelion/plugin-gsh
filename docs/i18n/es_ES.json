@@ -221,6 +221,7 @@
         "Permet d'aller directement sur la page de configuration de l'équipement": "Le permite ir directamente a la página de configuración del equipo",
         "Les types d'équipements sont important cela permet à Google de réagir en fonction des phrases que vous dite": "Los tipos de equipos son importantes, esto le permite a Google reaccionar de acuerdo con las oraciones que dices",
         "Jeedom support des types \"beta\" non encore documenté chez Google donc qui peuvent marcher ou non en fonction des mises à jour chez google": "El soporte de Jeedom para los tipos \"beta\" aún no está documentado en Google, por lo que puede o no funcionar dependiendo de las actualizaciones en Google",
+        "Le type thermostat n'est pleinement supporté qu'à travers un équipement venant du plugin thermostat, dans le cas contrainre la gestion des modes risque de ne pas marcher": "El tipo de termostato solo es totalmente compatible a través de un dispositivo proveniente del complemento de termostato, en caso de que la gestión de los modos no funcione",
         "Scénario": "Escenario",
         "Vous pouvez aussi créer des scènes dans l'onglet scène, avec des actions d'entrée et de sortie": "También puede crear escenas en la pestaña de escena, con acciones de entrada y salida",
         "Pour lancer un scénario il suffit de dire \"Active": "Para comenzar un escenario simplemente diga \"Activo",
