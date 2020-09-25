@@ -2,7 +2,9 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Registro de cambios de Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto",
-        "21\/09\/20": "21\/09\/20",
+        "25\/09\/2020": "25\/09\/2020",
+        "Correction de bugs sur le retour d'activation de l'alarme": "Errores corregidos en la retroalimentación de activación de alarma",
+        "21\/09\/2020": "21\/09\/2020",
         "Amélioration du support des thermostats (ne venant pas du plugin thermostat": "Compatibilidad con termostatos mejorada (que no proviene del complemento de termostato",
         "Amélioration de la fenetre de configuration des équipements Google Smarthome": "Mejora de la ventana de configuración para dispositivos Google Smarthome",
         "Correction de bugs": "Correcciones de errores",

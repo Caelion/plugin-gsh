@@ -4,7 +4,11 @@
 >
 >Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto
 
-# 21/09/20
+# 25/09/2020
+
+- Errores corregidos en la retroalimentación de activación de alarma
+
+# 21/09/2020
 
 - Compatibilidad con termostatos mejorada (que no proviene del complemento de termostato)
 - Mejora de la ventana de configuración para dispositivos Google Smarthome
