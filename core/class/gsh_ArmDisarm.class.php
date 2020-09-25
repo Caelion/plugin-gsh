@@ -86,7 +86,7 @@ class gsh_ArmDisarm {
                 break;
               }
               $cmd->execCmd();
-              $return = array('status' => 'SUCCESS');
+              $return = array('status' => 'SUCCESS','states' => self::query($_device,$_infos));
             }
           }else if(isset($execution['params']['cancel']) && $execution['params']['cancel']){
             if (isset($_infos['customData']['ArmDisarm_cmdSetOff'])) {
@@ -109,7 +109,7 @@ class gsh_ArmDisarm {
   }
   
   public static function query($_device, $_infos){
-    $return = array('isJammed' => false);
+    $return = array();
     $cmd = null;
     if (isset($_infos['customData']['ArmDisarm_cmdGetState'])) {
       $cmd = cmd::byId($_infos['customData']['ArmDisarm_cmdGetState']);
