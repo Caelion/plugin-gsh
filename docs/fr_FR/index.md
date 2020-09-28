@@ -241,7 +241,7 @@ Sur votre Jeedom, allez sur Plugin -> Communication -> Google Smarthome et dans 
 
 > **IMPORTANT**
 >
-> Le plugin se base sur les types génériques de Jeedom des commandes pour piloter votre domotique. Il est donc très important de configurer ceux-ci correctement.
+> Le plugin se base sur les types génériques de Jeedom des commandes pour piloter votre domotique. Il est donc très important de configurer ceux-ci correctement.Vous pouvez voir [ici](https://doc.jeedom.com/fr_FR/concept/generic_type) la documentation sur les générique type
 
 > **NOTE**
 >
@@ -340,7 +340,7 @@ Il ne vous reste plus qu'a faire l'affectation des équipements aux pieces dans 
 
 >**Lors de l'ajout des équipement j'ai des NOK**
 >
->Cliquez simplement sur le NOK une fenetre vous dira les generique type a avoir sur les commandes de l'équipement pour que cela marche
+>Cliquez simplement sur le NOK une fenetre vous dira les generique type à avoir sur les commandes de l'équipement pour que cela marche. Vous pouvez voir [ici](https://doc.jeedom.com/fr_FR/concept/generic_type) la documentation sur les générique type
 
 >**Le changement de vitesse sur un ventilateur ne marche pas**
 >
