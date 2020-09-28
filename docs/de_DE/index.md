@@ -241,7 +241,7 @@ Gehen Sie auf Ihrem Jeedom zu Plugin -> Kommunikation -> Google Smarthome und w�
 
 > **Wichtig**
 >
-> Das Plugin basiert auf den generischen Jeedom-Befehlen zur Steuerung Ihrer Hausautomation. Es ist daher sehr wichtig, diese korrekt zu konfigurieren.
+> Das Plugin basiert auf den generischen Jeedom-Befehlen zur Steuerung Ihrer Hausautomation. Es ist daher sehr wichtig, diese korrekt zu konfigurieren.Sie können sehen [hier](https://doc.jeedom.com/de_DE/concept/generic_type) die Dokumentation zum generischen Typ
 
 > **Notiz**
 >
@@ -340,7 +340,7 @@ Sie müssen die Geräte lediglich den Räumen in der Google Home-App zuweisen
 
 >**Beim Hinzufügen von Geräten habe ich NOK**
 >
->Klicken Sie einfach auf NOK. In einem Fenster wird der generische Typ angezeigt, den Sie auf den Gerätesteuerungen haben müssen, damit er funktioniert
+>Klicken Sie einfach auf NOK. In einem Fenster wird der generische Typ angezeigt, den Sie auf den Gerätesteuerungen haben müssen, damit er funktioniert. Sie können sehen [hier](https://doc.jeedom.com/de_DE/concept/generic_type) die Dokumentation zum generischen Typ
 
 >**Das Ändern der Drehzahl eines Lüfters funktioniert nicht**
 >

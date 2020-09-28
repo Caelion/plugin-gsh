@@ -241,7 +241,7 @@ En su Jeedom, vaya a Complemento -> Comunicación -> Google Smarthome y en la se
 
 > **Importante**
 >
-> El complemento se basa en los tipos genéricos de comandos Jeedom para controlar la automatización de su hogar. Por lo tanto, es muy importante configurarlos correctamente.
+> El complemento se basa en los tipos genéricos de comandos Jeedom para controlar la automatización de su hogar. Por lo tanto, es muy importante configurarlos correctamente.Podéis ver [aquí](https://doc.jeedom.com/es_ES/concept/generic_type) la documentación sobre tipo genérico
 
 > **Nota**
 >
@@ -340,7 +340,7 @@ Todo lo que tiene que hacer es asignar el equipo a las habitaciones en la aplica
 
 >**Cuando agrego equipo tengo NOK**
 >
->Simplemente haga clic en NOK, una ventana le indicará el tipo genérico que debe tener en los controles del equipo para que funcione
+>Simplemente haga clic en NOK, una ventana le indicará el tipo genérico que debe tener en los controles del equipo para que funcione. Podéis ver [aquí](https://doc.jeedom.com/es_ES/concept/generic_type) la documentación sobre tipo genérico
 
 >**Cambiar la velocidad de un ventilador no funciona**
 >

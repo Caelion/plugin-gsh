@@ -241,7 +241,7 @@ No seu Jeedom, vá para Plugin -> Comunicação -> Google Smarthome e, na seçã
 
 > **Importante**
 >
-> O plug-in é baseado nos tipos genéricos de comandos Jeedom para controlar sua automação residencial. Portanto, é muito importante configurá-los corretamente.
+> O plug-in é baseado nos tipos genéricos de comandos Jeedom para controlar sua automação residencial. Portanto, é muito importante configurá-los corretamente.Você pode ver [aqui](https://doc.jeedom.com/pt_PT/concept/generic_type) a documentação sobre tipo genérico
 
 > **NOTA**
 >
@@ -340,7 +340,7 @@ Tudo o que você precisa fazer é atribuir o equipamento às salas no aplicativo
 
 >**Ao adicionar equipamento, tenho NOK**
 >
->Basta clicar no NOK, uma janela informará o tipo genérico a ser usado nos controles do equipamento para que funcione
+>Basta clicar no NOK, uma janela informará o tipo genérico a ser usado nos controles do equipamento para que funcione. Você pode ver [aqui](https://doc.jeedom.com/pt_PT/concept/generic_type) a documentação sobre tipo genérico
 
 >**Alterar a velocidade de um ventilador não funciona**
 >
