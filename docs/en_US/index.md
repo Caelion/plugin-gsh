@@ -241,7 +241,7 @@ On your Jeedom, go to Plugin -> Communication -> Google Smarthome and in the equ
 
 > **Important**
 >
-> The plugin is based on the generic Jeedom types of commands to control your home automation. It is therefore very important to configure these correctly.
+> The plugin is based on the generic Jeedom types of commands to control your home automation. It is therefore very important to configure these correctly.You can see [here](https://doc.jeedom.com/en_US/concept/generic_type) the documentation on generic type
 
 > **NOTE**
 >
@@ -340,7 +340,7 @@ All you have to do is assign the equipment to the rooms in the Google Home app
 
 >**When adding equipment I have NOK**
 >
->Just click on the NOK a window will tell you the generic type to have on the equipment controls for it to work
+>Just click on the NOK a window will tell you the generic type to have on the equipment controls for it to work. You can see [here](https://doc.jeedom.com/en_US/concept/generic_type) the documentation on generic type
 
 >**Changing the speed on a fan does not work**
 >
