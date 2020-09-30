@@ -27,7 +27,7 @@ class gsh_TemperatureSetting {
   
   public static function discover($_device,$_eqLogic){
     $return = array('traits' => array(),'customData' => array(),'attributes' => array());
-    $modes = '';
+    $modes = 'on,';
     if ($_device->getOptions('TemperatureSetting::heat') != '') {
       $modes .= 'heat,';
     }
@@ -238,10 +238,10 @@ class gsh_TemperatureSetting {
           break;
           case __('Suspendu', __FILE__):
           $return['activeThermostatMode'] = 'none';
-          $return['thermostatMode'] = 'off';
+          $return['thermostatMode'] = 'on';
           break;
           case __('Arrêté', __FILE__):
-          $return['thermostatMode'] = 'off';
+          $return['thermostatMode'] = 'on';
           break;
           case __('Off', __FILE__):
           $return['activeThermostatMode'] = 'none';
