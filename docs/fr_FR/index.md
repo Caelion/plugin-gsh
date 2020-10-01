@@ -274,7 +274,7 @@ Les types d'équipements sont important cela permet à Google de réagir en fonc
 
 > **IMPORTANT**
 >
-> Le type thermostat n'est pleinement supporté qu'à travers un équipement venant du plugin thermostat, dans le cas contrainre la gestion des modes risque de ne pas marcher
+> Le type thermostat n'est pleinement supporté qu'à travers un équipement venant du plugin thermostat, dans le cas contraire la gestion des modes risque de ne pas marcher
 
 ## Scénario
 
