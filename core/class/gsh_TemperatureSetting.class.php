@@ -190,7 +190,6 @@ class gsh_TemperatureSetting {
           $cmd_off = cmd::byId($_device->getOptions('TemperatureSetting::off'));
         }
         if (is_object($cmd_off) && $mode == $cmd_off->getName()) {
-          $return['activeThermostatMode'] = 'none';
           $return['thermostatMode'] = 'off';
         }
         $cmds_action = $eqLogic->getCmd(null, 'modeAction', null, true);
@@ -216,7 +215,6 @@ class gsh_TemperatureSetting {
               $return['thermostatMode'] = 'heatcool';
               break;
               case $_device->getOptions('TemperatureSetting::off'):
-              $return['activeThermostatMode'] = 'none';
               $return['thermostatMode'] = 'off';
               break;
             }
@@ -231,20 +229,18 @@ class gsh_TemperatureSetting {
         $state = $cmd->execCmd();
         switch ($state) {
           case __('Chauffage', __FILE__);
-          $return['activeThermostatMode'] = 'heat';
+          $return['thermostatMode'] = 'heat';
           break;
           case __('Climatisation', __FILE__);
-          $return['activeThermostatMode'] = 'cool';
+          $return['thermostatMode'] = 'cool';
           break;
           case __('Suspendu', __FILE__):
-          $return['activeThermostatMode'] = 'none';
           $return['thermostatMode'] = 'on';
           break;
           case __('Arrêté', __FILE__):
           $return['thermostatMode'] = 'on';
           break;
           case __('Off', __FILE__):
-          $return['activeThermostatMode'] = 'none';
           $return['thermostatMode'] = 'off';
           break;
         }
@@ -289,6 +285,10 @@ class gsh_TemperatureSetting {
     }
     if (!isset($return['thermostatMode'])) {
       $return['thermostatMode'] = ($_device->getOptions('TemperatureSetting::heat') == '') ? 'cool' : 'heat';
+    }
+    $return['activeThermostatMode'] = $return['thermostatMode'];
+    if($return['activeThermostatMode'] == 'off'){
+      $return['activeThermostatMode'] = 'none';
     }
     return $return;
   }
