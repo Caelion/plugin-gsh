@@ -225,7 +225,7 @@
         "Permet d'aller directement sur la page de configuration de l'équipement": "Allows you to go directly to the equipment configuration page",
         "Les types d'équipements sont important cela permet à Google de réagir en fonction des phrases que vous dite": "The types of equipment are important this allows Google to react according to the sentences you say",
         "Jeedom support des types \"beta\" non encore documenté chez Google donc qui peuvent marcher ou non en fonction des mises à jour chez google": "Jeedom support for \"beta\" types not yet documented at Google so that may or may not work depending on updates at google",
-        "Le type thermostat n'est pleinement supporté qu'à travers un équipement venant du plugin thermostat, dans le cas contrainre la gestion des modes risque de ne pas marcher": "The thermostat type is only fully supported through equipment coming from the thermostat plugin, otherwise the management of the modes may not work",
+        "Le type thermostat n'est pleinement supporté qu'à travers un équipement venant du plugin thermostat, dans le cas contraire la gestion des modes risque de ne pas marcher": "The thermostat type is only fully supported through equipment coming from the thermostat plugin, otherwise the management of the modes may not work",
         "Scénario": "Scenario",
         "Vous pouvez aussi créer des scènes dans l'onglet scène, avec des actions d'entrée et de sortie": "You can also create scenes in the scene tab, with input and output actions",
         "Pour lancer un scénario il suffit de dire \"Active": "To start a scenario just say \"Active",

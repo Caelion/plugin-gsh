@@ -274,7 +274,7 @@ Die Arten der Ausrüstung sind wichtig, damit Google entsprechend den von Ihnen 
 
 > **Wichtig**
 >
-> Der Thermostat-Typ wird nur durch Geräte unterstützt, die vom Thermostat-Plugin stammen, falls die Verwaltung der Modi möglicherweise nicht funktioniert
+> Der Thermostat-Typ wird nur durch Geräte unterstützt, die vom Thermostat-Plugin stammen. Andernfalls funktioniert die Verwaltung der Modi möglicherweise nicht
 
 ## Szenario
 

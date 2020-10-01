@@ -274,7 +274,7 @@ Os tipos de equipamento são importantes, permitindo que o Google reaja de acord
 
 > **Importante**
 >
-> O tipo de termostato só é totalmente compatível com o equipamento proveniente do plug-in do termostato, caso contrário, o gerenciamento dos modos pode não funcionar
+> O tipo de termostato só é totalmente compatível com o equipamento proveniente do plugin do termostato, caso contrário, o gerenciamento dos modos pode não funcionar
 
 ## Cenas
 

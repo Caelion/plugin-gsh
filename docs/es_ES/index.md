@@ -274,7 +274,7 @@ Los tipos de equipos son importantes, esto le permite a Google reaccionar de acu
 
 > **Importante**
 >
-> El tipo de termostato solo es totalmente compatible a través de un dispositivo proveniente del complemento de termostato, en caso de que la gestión de los modos no funcione
+> El tipo de termostato solo es totalmente compatible a través de equipos que provienen del complemento de termostato; de lo contrario, es posible que la administración de los modos no funcione
 
 ## Escenario
 
