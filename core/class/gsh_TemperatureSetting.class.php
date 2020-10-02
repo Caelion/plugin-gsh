@@ -223,7 +223,7 @@ class gsh_TemperatureSetting {
       }
     }
     
-    if (isset($_infos['customData']['TemperatureSetting_cmdGetState'])) {
+    if (!isset($return['thermostatMode']) && isset($_infos['customData']['TemperatureSetting_cmdGetState'])) {
       $cmd = cmd::byId($_infos['customData']['TemperatureSetting_cmdGetState']);
       if (is_object($cmd)) {
         $state = $cmd->execCmd();
