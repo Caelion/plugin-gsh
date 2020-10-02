@@ -31,7 +31,7 @@ if ($device->getType() == '') {
 }
 global $JEEDOM_INTERNAL_CONFIG;
 $supportedType = gsh::getSupportedType();
-echo '<div class="alert alert-info">{{Voici les générique type qui sont utilisation avec votre type d\'équipement. Attention il ne faut pas forcement tous les avoir sur l\'équipement (ou n\'en avoir aucun)}}</div>';
+echo '<div class="alert alert-info">{{Voici les types génériques utilisés pour le genre d\'équipement choisi. Attention il ne faut pas forcément les avoir tous sur l\'équipement (ou n’en avoir aucun)}}</div>';
 
 foreach ($supportedType[$device->getType()]['traits'] as $traits) {
   $class = 'gsh_'.$traits;
