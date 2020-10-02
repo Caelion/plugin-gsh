@@ -179,7 +179,7 @@ class gsh_OpenClose {
     echo '<div class="form-group">';
     echo '<label class="col-sm-3 control-label">{{Commande partielle}}</label>';
     echo '<div class="col-sm-3">';
-    echo '<select class="form-control deviceAttr" data-l1key="options" data-l2key="OpenClose::partial">';
+    echo '<select class="form-control deviceAttr" data-l1key="options" data-l2key="OpenClose::partialCommand">';
     echo '<option value="">{{Aucun}}</option>';
     foreach ($_eqLogic->getCmd('action', null, null, true) as $cmd) {
       echo '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
