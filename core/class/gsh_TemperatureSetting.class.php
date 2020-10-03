@@ -238,7 +238,7 @@ class gsh_TemperatureSetting {
           $return['thermostatMode'] = 'auto';
           break;
           case __('Arrêté', __FILE__):
-          $return['thermostatMode'] = 'auto';
+          #$return['thermostatMode'] = 'auto';
           break;
           case __('Off', __FILE__):
           $return['thermostatMode'] = 'off';
