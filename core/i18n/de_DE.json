@@ -53,7 +53,7 @@
         "Eqlogic ID non valide : ": "Ungültige Eqlogic ID:",
         "Device non trouvé": "Gerät nicht gefunden",
         "Aucun type configuré pour ce périphérique": "Kein Typ für dieses Gerät konfiguriert",
-        "Voici les générique type qui sont utilisation avec votre type d\\'équipement. Attention il ne faut pas forcement tous les avoir sur l\\'équipement (ou n\\'en avoir aucun)": "Hier sind die generischen Typen, die für Ihren Gerätetyp verwendet werden. Achtung, es ist nicht unbedingt notwendig, alle auf dem Gerät zu haben (oder keine zu haben)"
+        "Voici les types génériques utilisés pour le genre d\\'équipement choisi. Attention il ne faut pas forcément les avoir tous sur l\\'équipement (ou n’en avoir aucun)": "Hier sind die generischen Typen aufgeführt, die für den ausgewählten Gerätetyp verwendet werden. Bitte beachten Sie, dass Sie nicht unbedingt alle auf dem Gerät haben müssen (oder keine)"
     },
     "plugins\/gsh\/desktop\/php\/gsh.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
