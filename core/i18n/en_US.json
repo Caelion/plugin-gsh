@@ -15,6 +15,7 @@
         "Envoyer configuration au market": "Send configuration to market",
         "Envoyer": "Send",
         "Activer l'éxecution local": "Activate local execution",
+        "Activer la rotation de la clef api": "Activate the rotation of the api key",
         "Oauth": "Oauth",
         "Cient ID": "Cient ID",
         "Cient Secret": "Cient Secret",
