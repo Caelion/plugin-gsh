@@ -76,6 +76,12 @@ if (init('result_code') == 'FAILURE') {
 				<input type="checkbox" class="configKey" data-l1key="gshs::allowLocalApi" />
 			</div>
 		</div>
+		<div class="form-group gshmode jeedom">
+			<label class="col-sm-3 control-label">{{Activer la rotation de la clef api}}</label>
+			<div class="col-sm-2">
+				<input type="checkbox" class="configKey" data-l1key="gshs::enableApikeyRotate" />
+			</div>
+		</div>
 	</fieldset>
 </form>
 <div class='row gshmode internal'>

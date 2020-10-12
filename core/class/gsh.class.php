@@ -109,6 +109,36 @@ class gsh extends eqLogic {
 	
 	/*     * ***********************Methode static*************************** */
 	
+	public static function postConfig_gshs_enableApikeyRotate($_value){
+		$cron = cron::byClassAndFunction('gsh', 'rotateApiKey');
+		if($_value == 1){
+			if(!is_object($cron)){
+				$cron = new cron();
+			}
+			$cron->setClass('gsh');
+			$cron->setFunction('rotateApiKey');
+			$cron->setLastRun(date('Y-m-d H:i:s'));
+			$cron->setSchedule(rand(0,59).' '.rand(0,23).' * * *');
+			$cron->save();
+		}else{
+			if(is_object($cron)){
+				$cron->remove();
+			}
+		}
+	}
+	
+	public static function rotateApiKey($_option = array()){
+		config::save('api', config::genKey(), 'gsh');
+		self::sendJeedomConfig();
+		if(config::byKey('gshs::allowLocalApi','gsh') == 1){
+			try {
+				self::sendDevices();
+			} catch (\Exception $e) {
+				
+			}
+		}
+	}
+	
 	public static function dependancy_info() {
 		$return = array();
 		$return['log'] = 'gsh_update';
