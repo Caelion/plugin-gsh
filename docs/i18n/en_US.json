@@ -2,6 +2,7 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Changelog Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text",
+        "Possibilité d'activer la rotation automatique de la clef api": "Possibility of activating the automatic rotation of the API key",
         "25\/09\/2020": "09\/25\/2020",
         "Correction de bugs sur le retour d'activation de l'alarme": "Fixed bugs on alarm activation feedback",
         "21\/09\/2020": "09\/21\/2020",

@@ -4,6 +4,9 @@
 >
 >Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto
 
+
+- Posibilidad de activar la rotación automática de la clave API
+
 # 25/09/2020
 
 - Errores corregidos en la retroalimentación de activación de alarma
