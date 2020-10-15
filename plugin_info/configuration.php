@@ -143,7 +143,7 @@ if (init('result_code') == 'FAILURE') {
 </div>
 
 <script type="text/javascript">
-$('.configKey[data-l1key=mode]').on('change',function(){
+$('.configKey[data-l1key=mode]').off('change').on('change',function(){
 	$('.gshmode').hide();
 	$('.gshmode.'+$(this).value()).show();
 });
