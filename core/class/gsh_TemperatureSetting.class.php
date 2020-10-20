@@ -148,9 +148,9 @@ class gsh_TemperatureSetting {
             $cmds = array($cmds);
           }
           if ($execution['params']['thermostatMode'] == 'off') {
-            $cmd = $eqLogic->getCmd('action', 'off');
+            $cmd = cmd::byId($_device->getOptions('TemperatureSetting::off'));
             if(!is_object($cmd)){
-              $cmd = cmd::byId($_device->getOptions('TemperatureSetting::off'));
+              $cmd = $eqLogic->getCmd('action', 'off');
             }
           } elseif ($execution['params']['thermostatMode'] == 'heat') {
             $cmd = cmd::byId($_device->getOptions('TemperatureSetting::heat'));
