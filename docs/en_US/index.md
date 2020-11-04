@@ -15,7 +15,10 @@ It can work in 2 ways :
 
 > **Important**
 >
-> Whatever mode you use, you MUST ABSOLUTELY have your Jeedom accessible in HTTPS (the plugin does not work in HTTP)
+> GOOGLE requires that your Jeedom be accessible in HTTPS (the plugin does not work in HTTP) with a valid certificate (therefore no self-signed certificate)
+>
+> Thanks to the Power or Ultimate Service Packs, your Jeedom is accessible via HTTPS.
+> If you have a Community Service Pack, you must install yourself an SSL certificate issued by a certification authority (ex: Let's encrypt, ...).
 
 > **Important**
 >
