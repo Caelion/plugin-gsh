@@ -250,7 +250,7 @@ class gsh_TemperatureSetting {
       $cmd = cmd::byId($_infos['customData']['TemperatureSetting_cmdGetSetpoint']);
       if (is_object($cmd)) {
         $value = $cmd->execCmd();
-        if ($return['thermostatMode'] == 'heatcool') {
+        if (isset($return['thermostatMode']) && $return['thermostatMode'] == 'heatcool') {
           $return['thermostatTemperatureSetpointHigh'] = $value + 2;
           $return['thermostatTemperatureSetpointLow'] = $value - 2;
         } else {
