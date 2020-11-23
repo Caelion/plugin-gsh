@@ -657,7 +657,7 @@ class gsh extends eqLogic {
 				
 				public function getPseudo() {
 					$eqLogic = $this->getLink();
-					$pseudo = array(trim($eqLogic->getName()), trim($eqLogic->getName()) . 's');
+					$pseudo = array(trim($eqLogic->getName()));
 					if ($this->getOptions('pseudo') != '') {
 						$pseudo = explode(',', $this->getOptions('pseudo'));
 					}
