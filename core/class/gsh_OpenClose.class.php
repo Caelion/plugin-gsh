@@ -94,32 +94,21 @@ class gsh_OpenClose {
             $value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['openPercent'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
             $cmd->execCmd(array('slider' => $value));
             $return = array('status' => 'SUCCESS');
+            continue;
           } else if ($execution['params']['openPercent'] > 0 && $execution['params']['openPercent'] < 100 && $_device->getOptions('OpenClose::partialCommand','') != '') {
             $cmd = cmd::byId($_device->getOptions('OpenClose::partialCommand',''));
-            if (!is_object($cmd)) {
-              break;
-            }
-            $cmd->execCmd();
-            $return = array('status' => 'SUCCESS');
           }else if ($execution['params']['openPercent'] > 50) {
             if (isset($_infos['customData']['OpenClose_cmdSetOn'])) {
               $cmd = cmd::byId($_infos['customData']['OpenClose_cmdSetOn']);
             }
-            if (!is_object($cmd)) {
-              break;
-            }
-            $cmd->execCmd();
-            $return = array('status' => 'SUCCESS');
-          } else {
-            if (isset($_infos['customData']['OpenClose_cmdSetOff'])) {
-              $cmd = cmd::byId($_infos['customData']['OpenClose_cmdSetOff']);
-            }
-            if (!is_object($cmd)) {
-              break;
-            }
-            $cmd->execCmd();
-            $return = array('status' => 'SUCCESS');
+          } else if (isset($_infos['customData']['OpenClose_cmdSetOff'])) {
+            $cmd = cmd::byId($_infos['customData']['OpenClose_cmdSetOff']);
           }
+          if (!isset($cmd) || !is_object($cmd)) {
+            break;
+          }
+          $cmd->execCmd();
+          $return = array('status' => 'SUCCESS');
           break;
         }
       } catch (Exception $e) {
