@@ -94,7 +94,7 @@ class gsh_OpenClose {
             $value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['openPercent'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
             $cmd->execCmd(array('slider' => $value));
             $return = array('status' => 'SUCCESS');
-            continue;
+            break;
           } else if ($execution['params']['openPercent'] > 0 && $execution['params']['openPercent'] < 100 && $_device->getOptions('OpenClose::partialCommand','') != '') {
             $cmd = cmd::byId($_device->getOptions('OpenClose::partialCommand',''));
           }else if ($execution['params']['openPercent'] > 50) {
