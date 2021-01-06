@@ -274,6 +274,7 @@
         "J'ai l'erreur \"Apparemment Jeedom Smart Home est indisponible pour le moment.\" ou \"Pardon je ne peux pas établir la connexion avec Jeedom Smart Home": "Recebo o erro \"Aparentemente, o Jeedom Smart Home não está disponível no momento.\" ou \"Desculpe, não consigo me conectar ao Jeedom Smart Home",
         "Essayez de dé-associé\/ré-associé l'application Google smarthome": "Tente desassociar \/ associar novamente o aplicativo smarthome do Google",
         "Attention à bien prendre l'application officiel et non une application [TEST] si vous avez utilisez le mode standalone avant": "Tenha cuidado ao aceitar o aplicativo oficial e não o [TEST] se você já usou o modo autônomo antes",
+        "Si le probleme persiste regarder (en particulier dans une scene) que le temps d'éxecution reste inferieure à 2s (maximum autorisé par Google": "Se o problema persistir observe (especialmente em uma cena) se o tempo de execução permanece inferior a 2s (máximo permitido pelo Google",
         "Lors de l'ajout des équipement j'ai des NOK": "Ao adicionar equipamento, tenho NOK",
         "Cliquez simplement sur le NOK une fenetre vous dira les generique type à avoir sur les commandes de l'équipement pour que cela marche": "Basta clicar no NOK, uma janela informará o tipo genérico a ser usado nos controles do equipamento para que funcione",
         "Le changement de vitesse sur un ventilateur ne marche pas": "Alterar a velocidade de um ventilador não funciona",

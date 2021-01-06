@@ -339,7 +339,7 @@ Todo lo que tiene que hacer es asignar el equipo a las habitaciones en la aplica
 
 >**Aparece el error "Aparentemente, Jeedom Smart Home no está disponible en este momento". o "Lo siento, no puedo conectarme a Jeedom Smart Home."**
 >
->Intente desasociar / volver a asociar la aplicación Google smarthome. Tenga cuidado de tomar la aplicación oficial y no una aplicación [TEST] si ha utilizado el modo independiente antes.
+>Intente desasociar / volver a asociar la aplicación Google smarthome. Tenga cuidado de tomar la aplicación oficial y no una aplicación [TEST] si ha utilizado el modo independiente antes. Si el problema persiste, observe (especialmente en una escena) que el tiempo de ejecución sigue siendo inferior a 2 s (máximo permitido por Google)
 
 >**Cuando agrego equipo tengo NOK**
 >

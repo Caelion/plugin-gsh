@@ -339,7 +339,7 @@ All you have to do is assign the equipment to the rooms in the Google Home app
 
 >**I get the error "Apparently Jeedom Smart Home is unavailable at the moment." or "Sorry I can't connect to Jeedom Smart Home."**
 >
->Try to un-associate / re-associate the Google smarthome app. Be careful to take the official application and not a [TEST] application if you have used standalone mode before.
+>Try to un-associate / re-associate the Google smarthome app. Be careful to take the official application and not a [TEST] application if you have used standalone mode before. If the problem persists watch (especially in a scene) that the execution time remains less than 2s (maximum allowed by Google)
 
 >**When adding equipment I have NOK**
 >

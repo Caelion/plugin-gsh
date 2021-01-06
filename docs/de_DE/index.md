@@ -339,7 +339,7 @@ Sie müssen die Geräte lediglich den Räumen in der Google Home-App zuweisen
 
 >**Ich erhalte die Fehlermeldung "Anscheinend ist Jeedom Smart Home derzeit nicht verfügbar." oder "Entschuldigung, ich kann keine Verbindung zu Jeedom Smart Home herstellen."**
 >
->Versuchen Sie, die Zuordnung der Google Smarthome-App aufzuheben oder erneut aufzuheben. Achten Sie darauf, dass Sie die offizielle Anwendung und keine [TEST] -Anwendung verwenden, wenn Sie zuvor den Standalone-Modus verwendet haben.
+>Versuchen Sie, die Zuordnung der Google Smarthome-App aufzuheben oder erneut aufzuheben. Achten Sie darauf, dass Sie die offizielle Anwendung und keine [TEST] -Anwendung verwenden, wenn Sie zuvor den Standalone-Modus verwendet haben. Wenn das Problem weiterhin besteht, beobachten Sie (insbesondere in einer Szene), dass die Ausführungszeit weniger als 2 Sekunden beträgt (von Google maximal zulässig))
 
 >**Beim Hinzufügen von Geräten habe ich NOK**
 >

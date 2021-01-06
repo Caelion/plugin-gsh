@@ -339,7 +339,7 @@ Tudo o que você precisa fazer é atribuir o equipamento às salas no aplicativo
 
 >**Recebo o erro "Aparentemente, o Jeedom Smart Home não está disponível no momento." ou "Desculpe, não consigo me conectar ao Jeedom Smart Home."**
 >
->Tente desassociar / associar novamente o aplicativo smarthome do Google. Tenha cuidado ao aceitar o aplicativo oficial e não o [TEST] se você já usou o modo autônomo antes.
+>Tente desassociar / associar novamente o aplicativo smarthome do Google. Tenha cuidado ao aceitar o aplicativo oficial e não o [TEST] se você já usou o modo autônomo antes. Se o problema persistir observe (especialmente em uma cena) se o tempo de execução permanece inferior a 2s (máximo permitido pelo Google)
 
 >**Ao adicionar equipamento, tenho NOK**
 >
