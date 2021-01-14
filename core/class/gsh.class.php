@@ -79,6 +79,7 @@ class gsh extends eqLogic {
 			'action.devices.types.BOILER' => array('name' => __('Chaudiere',__FILE__) ,'traits' =>array('Modes','TemperatureControl','OnOff','Toggles')),
 			'action.devices.types.CARBON_MONOXIDE_DETECTOR' => array('name' => __('Detecteur de CO',__FILE__) ,'traits' =>array('SensorState')),
 			'action.devices.types.CLOSET' => array('name' => __('Placard',__FILE__) ,'traits' =>array('OpenClose')),
+			'action.devices.types.COFFEE_MAKER' => array('name' => __('Machine à café',__FILE__) ,'traits' =>array('Cook','OnOff','TemperatureControl')),
 			'action.devices.types.DEHUMIDIFIER' => array('name' => __('Déshumidificateur',__FILE__) ,'traits' =>array('FanSpeed','HumiditySetting','OnOff','Modes','RunCycle','StartStop','Toggles')),
 			'action.devices.types.DEHYDRATOR' => array('name' => __('Déshydrateur',__FILE__) ,'traits' =>array('Cook','Timer','OnOff','Modes','Toggles','StartStop')),
 			'action.devices.types.DISHWASHER' => array('name' => __('Lave-vaiselle',__FILE__) ,'traits' =>array('OnOff','StartStop','Modes','Toggles','RunCycle')),
@@ -86,6 +87,8 @@ class gsh extends eqLogic {
 			'action.devices.types.DRYER' => array('name' => __('Séche linge',__FILE__) ,'traits' =>array('OnOff','StartStop','Modes','Toggles','RunCycle')),
 			'action.devices.types.FIREPLACE' => array('name' => __('Cheminée',__FILE__) ,'traits' =>array('OnOff','Modes','Toggles')),
 			'action.devices.types.FREEZER' => array('name' => __('Congélateur',__FILE__) ,'traits' =>array('OnOff','Modes','Toggles','TemperatureControl')),
+			'action.devices.types.FRYER' => array('name' => __('Friteuse',__FILE__) ,'traits' =>array('Cook','Timer','OnOff','StartStop')),
+			'action.devices.types.GRILL' => array('name' => __('Grill',__FILE__) ,'traits' =>array('Cook','Timer','OnOff','StartStop')),
 			'action.devices.types.HEATER' => array('name' => __('Chauffe-eau',__FILE__) ,'traits' =>array('FanSpeed','TemperatureSetting','OnOff')),
 			'action.devices.types.HUMIDIFIER' => array('name' => __('Humidificateur',__FILE__) ,'traits' =>array('FanSpeed','HumiditySetting','OnOff','Modes','StartStop','Toggles')),
 			'action.devices.types.KETTLE' => array('name' => __('Bouilloire',__FILE__) ,'traits' =>array('Modes','TemperatureControl','OnOff','Toggles')),
@@ -104,6 +107,7 @@ class gsh extends eqLogic {
 			'action.devices.types.WATERPURIFIER' => array('name' => __('Purificateur d\'eau',__FILE__) ,'traits' =>array('Modes','Toggles','OnOff','TemperatureControl')),
 			'action.devices.types.WATERSOFTENER' => array('name' => __('Adoucisseur d\'eau',__FILE__) ,'traits' =>array('Modes','Toggles','OnOff','SensorState')),
 			'action.devices.types.SPRINKLER' => array('name' => __('Arrosage',__FILE__) ,'traits' =>array('StartStop')),
+			'action.devices.types.YOGURTMAKER' => array('name' => __('Yaourtiere',__FILE__) ,'traits' =>array('Cook','Timer','OnOff','StartStop')),
 		);
 	}
 	
