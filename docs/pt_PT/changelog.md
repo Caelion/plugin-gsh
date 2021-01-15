@@ -5,6 +5,7 @@
 >Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto
 
 
+- Adição de novo tipo de equipamento
 - Possibilidade de ativar a rotação automática da chave API
 
 # 25/09/2020

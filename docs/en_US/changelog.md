@@ -5,6 +5,7 @@
 >As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text
 
 
+- Addition of new type of equipment
 - Possibility of activating the automatic rotation of the API key
 
 # 09/25/2020
