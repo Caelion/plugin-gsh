@@ -230,6 +230,10 @@
         "Etat contrôle humidité": "Status de controle de umidade",
         "Humidité": "Umidade"
     },
+    "plugins\/gsh\/core\/class\/gsh_Timer.class.php": {
+        "Etat Timer": "Estado do temporizador",
+        "Timer": "Cronômetro"
+    },
     "plugins\/gsh\/core\/class\/gsh_TemperatureSetting.class.php": {
         "Thermostat": "Termostato",
         "Etat themostat ": "Estado Estado",

@@ -230,6 +230,10 @@
         "Etat contrôle humidité": "Etat contrôle humidité",
         "Humidité": "Kelembaban"
     },
+    "plugins\/gsh\/core\/class\/gsh_Timer.class.php": {
+        "Etat Timer": "Etat Timer",
+        "Timer": "Timer"
+    },
     "plugins\/gsh\/core\/class\/gsh_TemperatureSetting.class.php": {
         "Thermostat": "Thermostat",
         "Etat themostat ": "Etat themostat",
