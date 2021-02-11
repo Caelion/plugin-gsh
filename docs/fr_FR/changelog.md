@@ -7,6 +7,7 @@
 
 - Ajout de nouveay type d'équipement
 - Possibilité d'activer la rotation automatique de la clef api
+- Correction de bugs
 
 # 25/09/2020
 
