@@ -245,7 +245,7 @@ class gsh extends eqLogic {
 	
 	public static function sendDevices() {
 		if (config::byKey('mode', 'gsh') == 'jeedom') {
-			$request_http = new com_http('https://cloud.jeedom.com/service/googlehome');
+			$request_http = new com_http(config::byKey('service::cloud::url').'/service/googlehome');
 			$request_http->setHeader(array(
 				'Content-Type: application/json',
 				'Autorization: '.sha512(strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))
@@ -414,7 +414,7 @@ class gsh extends eqLogic {
 					$device->setCache('lastState', json_encode($return['payload']['devices']['states'][$cmd->getEqLogic_id()]));
 					log::add('gsh', 'debug', 'Report state : ' . json_encode($return));
 					if (config::byKey('mode', 'gsh') == 'jeedom') {
-						$request_http = new com_http('https://cloud.jeedom.com/service/googlehome');
+						$request_http = new com_http(config::byKey('service::cloud::url').'/service/googlehome');
 						$request_http->setHeader(array(
 							'Content-Type: application/json',
 							'Autorization: '.sha512(strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))
