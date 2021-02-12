@@ -7,6 +7,7 @@
 
 - Adição de novo tipo de equipamento
 - Possibilidade de ativar a rotação automática da chave API
+- Correções de bugs
 
 # 25/09/2020
 

@@ -7,6 +7,7 @@
 
 - Adición de nuevo tipo de equipo
 - Posibilidad de activar la rotación automática de la clave API
+- Correcciones de errores
 
 # 25/09/2020
 

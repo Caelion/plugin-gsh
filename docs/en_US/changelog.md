@@ -7,6 +7,7 @@
 
 - Addition of new type of equipment
 - Possibility of activating the automatic rotation of the API key
+- Bugfix
 
 # 09/25/2020
 

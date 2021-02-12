@@ -7,6 +7,7 @@
 
 - Hinzufügung neuer Art von Ausrüstung
 - Möglichkeit der Aktivierung der automatischen Drehung des API-Schlüssels
+- Fehlerbehebungen
 
 # 25.09.2020
 
