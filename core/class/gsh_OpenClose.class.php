@@ -94,32 +94,21 @@ class gsh_OpenClose {
             $value = $cmd->getConfiguration('minValue', 0) + ($execution['params']['openPercent'] / 100 * ($cmd->getConfiguration('maxValue', 100) - $cmd->getConfiguration('minValue', 0)));
             $cmd->execCmd(array('slider' => $value));
             $return = array('status' => 'SUCCESS');
+            break;
           } else if ($execution['params']['openPercent'] > 0 && $execution['params']['openPercent'] < 100 && $_device->getOptions('OpenClose::partialCommand','') != '') {
             $cmd = cmd::byId($_device->getOptions('OpenClose::partialCommand',''));
-            if (!is_object($cmd)) {
-              break;
-            }
-            $cmd->execCmd();
-            $return = array('status' => 'SUCCESS');
           }else if ($execution['params']['openPercent'] > 50) {
             if (isset($_infos['customData']['OpenClose_cmdSetOn'])) {
               $cmd = cmd::byId($_infos['customData']['OpenClose_cmdSetOn']);
             }
-            if (!is_object($cmd)) {
-              break;
-            }
-            $cmd->execCmd();
-            $return = array('status' => 'SUCCESS');
-          } else {
-            if (isset($_infos['customData']['OpenClose_cmdSetOff'])) {
-              $cmd = cmd::byId($_infos['customData']['OpenClose_cmdSetOff']);
-            }
-            if (!is_object($cmd)) {
-              break;
-            }
-            $cmd->execCmd();
-            $return = array('status' => 'SUCCESS');
+          } else if (isset($_infos['customData']['OpenClose_cmdSetOff'])) {
+            $cmd = cmd::byId($_infos['customData']['OpenClose_cmdSetOff']);
           }
+          if (!isset($cmd) || !is_object($cmd)) {
+            break;
+          }
+          $cmd->execCmd();
+          $return = array('status' => 'SUCCESS');
           break;
         }
       } catch (Exception $e) {
@@ -179,7 +168,7 @@ class gsh_OpenClose {
     echo '<div class="form-group">';
     echo '<label class="col-sm-3 control-label">{{Commande partielle}}</label>';
     echo '<div class="col-sm-3">';
-    echo '<select class="form-control deviceAttr" data-l1key="options" data-l2key="OpenClose::partial">';
+    echo '<select class="form-control deviceAttr" data-l1key="options" data-l2key="OpenClose::partialCommand">';
     echo '<option value="">{{Aucun}}</option>';
     foreach ($_eqLogic->getCmd('action', null, null, true) as $cmd) {
       echo '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';

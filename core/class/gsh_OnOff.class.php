@@ -83,6 +83,8 @@ class gsh_OnOff {
               $value = (in_array($cmd->getGeneric_type(), array('FLAP_SLIDER'))) ? 0 : 100;
               $cmd->execCmd(array('slider' => $value));
               $return = array('status' => 'SUCCESS');
+            }else{
+              $return = array('status' => 'ERROR');
             }
           } else {
             if ($_infos['customData']['OnOff_cmdSetOff'] == 'fake') {
@@ -102,6 +104,8 @@ class gsh_OnOff {
               $value = (in_array($cmd->getGeneric_type(), array('FLAP_SLIDER'))) ? 100 : 0;
               $cmd->execCmd(array('slider' => $value));
               $return = array('status' => 'SUCCESS');
+            }else{
+              $return = array('status' => 'ERROR');
             }
           }
           break;

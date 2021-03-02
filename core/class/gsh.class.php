@@ -77,8 +77,11 @@ class gsh extends eqLogic {
 			'action.devices.types.AWNING' => array('name' => __('Banne',__FILE__) ,'traits' =>array('Modes','OpenClose')),
 			'action.devices.types.BATHTUB ' => array('name' => __('Baignoire',__FILE__) ,'traits' =>array('OnOff','Fill')),
 			'action.devices.types.BOILER' => array('name' => __('Chaudiere',__FILE__) ,'traits' =>array('Modes','TemperatureControl','OnOff','Toggles')),
+			'action.devices.types.BLENDER' => array('name' => __('Mixeur',__FILE__) ,'traits' =>array('Cook','Timer','OnOff','StartStop')),
 			'action.devices.types.CARBON_MONOXIDE_DETECTOR' => array('name' => __('Detecteur de CO',__FILE__) ,'traits' =>array('SensorState')),
 			'action.devices.types.CLOSET' => array('name' => __('Placard',__FILE__) ,'traits' =>array('OpenClose')),
+			'action.devices.types.COFFEE_MAKER' => array('name' => __('Machine à café',__FILE__) ,'traits' =>array('Cook','OnOff','TemperatureControl')),
+			'action.devices.types.COOKTOP' => array('name' => __('Cuisine',__FILE__) ,'traits' =>array('Cook','Timer','OnOff','StartStop')),
 			'action.devices.types.DEHUMIDIFIER' => array('name' => __('Déshumidificateur',__FILE__) ,'traits' =>array('FanSpeed','HumiditySetting','OnOff','Modes','RunCycle','StartStop','Toggles')),
 			'action.devices.types.DEHYDRATOR' => array('name' => __('Déshydrateur',__FILE__) ,'traits' =>array('Cook','Timer','OnOff','Modes','Toggles','StartStop')),
 			'action.devices.types.DISHWASHER' => array('name' => __('Lave-vaiselle',__FILE__) ,'traits' =>array('OnOff','StartStop','Modes','Toggles','RunCycle')),
@@ -86,17 +89,25 @@ class gsh extends eqLogic {
 			'action.devices.types.DRYER' => array('name' => __('Séche linge',__FILE__) ,'traits' =>array('OnOff','StartStop','Modes','Toggles','RunCycle')),
 			'action.devices.types.FIREPLACE' => array('name' => __('Cheminée',__FILE__) ,'traits' =>array('OnOff','Modes','Toggles')),
 			'action.devices.types.FREEZER' => array('name' => __('Congélateur',__FILE__) ,'traits' =>array('OnOff','Modes','Toggles','TemperatureControl')),
+			'action.devices.types.FRYER' => array('name' => __('Friteuse',__FILE__) ,'traits' =>array('Cook','Timer','OnOff','StartStop')),
+			'action.devices.types.GRILL' => array('name' => __('Grill',__FILE__) ,'traits' =>array('Cook','Timer','OnOff','StartStop')),
 			'action.devices.types.HEATER' => array('name' => __('Chauffe-eau',__FILE__) ,'traits' =>array('FanSpeed','TemperatureSetting','OnOff')),
 			'action.devices.types.HUMIDIFIER' => array('name' => __('Humidificateur',__FILE__) ,'traits' =>array('FanSpeed','HumiditySetting','OnOff','Modes','StartStop','Toggles')),
 			'action.devices.types.KETTLE' => array('name' => __('Bouilloire',__FILE__) ,'traits' =>array('Modes','TemperatureControl','OnOff','Toggles')),
 			'action.devices.types.REMOTECONTROL' => array('name' => __('Télécommande',__FILE__) ,'traits' =>array('OnOff','MediaState','InputSelector','AppSelector','TransportControl','Volume')),
 			'action.devices.types.MOWER' => array('name' => __('Tondeuse',__FILE__) ,'traits' =>array('Dock','Locator','Modes','OnOff','StartStop','Toggles')),
+			'action.devices.types.MICROWAVE' => array('name' => __('Micro-onde',__FILE__) ,'traits' =>array('Cook','Timer','StartStop')),
+			'action.devices.types.MULTICOOKER' => array('name' => __('Multi-cuiseur',__FILE__) ,'traits' =>array('Cook','Timer','OnOff','StartStop')),
 			'action.devices.types.NETWORK' => array('name' => __('Réseaux',__FILE__) ,'traits' =>array('Modes','Toggles','Reboot','SoftwareUpdate','NetworkControl')),
 			'action.devices.types.PERGOLA' => array('name' => __('Pergola',__FILE__) ,'traits' =>array('OpenClose','Rotation')),
+			'action.devices.types.PETFEEDER' => array('name' => __('Distributeur de nourriture pour animaux',__FILE__) ,'traits' =>array('Dispense','OnOff','StartStop')),
+			'action.devices.types.PRESSURECOOKER' => array('name' => __('Cuiseur vapeur',__FILE__) ,'traits' =>array('Cook','Timer','OnOff','StartStop')),
 			'action.devices.types.RADIATOR' => array('name' => __('Radiateur',__FILE__) ,'traits' =>array('Modes','Toggles','OnOff')),
 			'action.devices.types.REFRIGERATOR' => array('name' => __('Frigo',__FILE__) ,'traits' =>array('Modes','Toggles','OnOff','TemperatureControl')),
 			'action.devices.types.ROUTER' => array('name' => __('Router',__FILE__) ,'traits' =>array('Modes','Toggles','Reboot','SoftwareUpdate','NetworkControl')),
 			'action.devices.types.SHOWER' => array('name' => __('Douche',__FILE__) ,'traits' =>array('Modes','Toggles','OnOff','TemperatureControl')),
+			'action.devices.types.SOUSVIDE' => array('name' => __('Sous vide',__FILE__) ,'traits' =>array('Cook','Timer','OnOff','StartStop')),
+			'action.devices.types.STANDMIXER' => array('name' => __('Mixeur',__FILE__) ,'traits' =>array('Cook','OnOff','StartStop')),
 			'action.devices.types.SMOKE_DETECTOR' => array('name' => __('Détecteur de fumée',__FILE__) ,'traits' =>array('SensorState')),
 			'action.devices.types.VACUUM' => array('name' => __('Aspirateur',__FILE__) ,'traits' =>array('Dock','Locator','Modes','OnOff','StartStop','Toggles','RunCycle')),
 			'action.devices.types.MOP' => array('name' => __('Balai',__FILE__) ,'traits' =>array('Dock','Locator','Modes','OnOff','StartStop','Toggles','RunCycle')),
@@ -104,10 +115,41 @@ class gsh extends eqLogic {
 			'action.devices.types.WATERPURIFIER' => array('name' => __('Purificateur d\'eau',__FILE__) ,'traits' =>array('Modes','Toggles','OnOff','TemperatureControl')),
 			'action.devices.types.WATERSOFTENER' => array('name' => __('Adoucisseur d\'eau',__FILE__) ,'traits' =>array('Modes','Toggles','OnOff','SensorState')),
 			'action.devices.types.SPRINKLER' => array('name' => __('Arrosage',__FILE__) ,'traits' =>array('StartStop')),
+			'action.devices.types.YOGURTMAKER' => array('name' => __('Yaourtiere',__FILE__) ,'traits' =>array('Cook','Timer','OnOff','StartStop')),
 		);
 	}
 	
 	/*     * ***********************Methode static*************************** */
+	
+	public static function postConfig_gshs_enableApikeyRotate($_value){
+		$cron = cron::byClassAndFunction('gsh', 'rotateApiKey');
+		if($_value == 1){
+			if(!is_object($cron)){
+				$cron = new cron();
+			}
+			$cron->setClass('gsh');
+			$cron->setFunction('rotateApiKey');
+			$cron->setLastRun(date('Y-m-d H:i:s'));
+			$cron->setSchedule(rand(0,59).' '.rand(0,23).' * * *');
+			$cron->save();
+		}else{
+			if(is_object($cron)){
+				$cron->remove();
+			}
+		}
+	}
+	
+	public static function rotateApiKey($_option = array()){
+		config::save('api', config::genKey(), 'gsh');
+		self::sendJeedomConfig();
+		if(config::byKey('gshs::allowLocalApi','gsh') == 1){
+			try {
+				self::sendDevices();
+			} catch (\Exception $e) {
+				
+			}
+		}
+	}
 	
 	public static function dependancy_info() {
 		$return = array();
@@ -203,7 +245,7 @@ class gsh extends eqLogic {
 	
 	public static function sendDevices() {
 		if (config::byKey('mode', 'gsh') == 'jeedom') {
-			$request_http = new com_http('https://cloud.jeedom.com/service/googlehome');
+			$request_http = new com_http(config::byKey('service::cloud::url').'/service/googlehome');
 			$request_http->setHeader(array(
 				'Content-Type: application/json',
 				'Autorization: '.sha512(strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))
@@ -372,7 +414,7 @@ class gsh extends eqLogic {
 					$device->setCache('lastState', json_encode($return['payload']['devices']['states'][$cmd->getEqLogic_id()]));
 					log::add('gsh', 'debug', 'Report state : ' . json_encode($return));
 					if (config::byKey('mode', 'gsh') == 'jeedom') {
-						$request_http = new com_http('https://cloud.jeedom.com/service/googlehome');
+						$request_http = new com_http(config::byKey('service::cloud::url').'/service/googlehome');
 						$request_http->setHeader(array(
 							'Content-Type: application/json',
 							'Autorization: '.sha512(strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))
@@ -627,7 +669,7 @@ class gsh extends eqLogic {
 				
 				public function getPseudo() {
 					$eqLogic = $this->getLink();
-					$pseudo = array(trim($eqLogic->getName()), trim($eqLogic->getName()) . 's');
+					$pseudo = array(trim($eqLogic->getName()));
 					if ($this->getOptions('pseudo') != '') {
 						$pseudo = explode(',', $this->getOptions('pseudo'));
 					}

@@ -46,15 +46,15 @@ if (init('result_code') == 'FAILURE') {
 			<?php
 			try {
 				$info =	gsh::voiceAssistantInfo();
-				echo '<label class="col-sm-3 control-label">{{Abonnement service assistant vocaux}}</label>';
+				echo '<label class="col-sm-3 control-label">{{Abonnement aux services assistants vocaux}}</label>';
 				echo '<div class="col-sm-9">';
 				if(isset($info['limit']) && $info['limit'] != -1 && $info['limit'] != ''){
-					echo '<div>{{Votre abonnement aux services assistant vocaux fini le }}'.$info['limit'].'.';
+					echo '<div>{{Votre abonnement aux services assistants vocaux finit le }}'.$info['limit'].'.';
 					echo ' {{Pour le prolonger, allez}} <a href="https://www.jeedom.com/market/index.php?v=d&p=profils#services" target="_blank">{{ici}}</a>';
 				}else if($info['limit'] == -1){
-					echo '<div>{{Votre abonnement aux services assistant vocaux est illimité.}}';
+					echo '<div>{{Votre abonnement aux services assistants vocaux est illimité.}}';
 				}else{
-					echo '<div class="alert alert-warning">{{Votre abonnement aux services assistant vocaux est fini.}}';
+					echo '<div class="alert alert-warning">{{Votre abonnement aux services assistants vocaux est finit.}}';
 					echo ' {{Pour vous réabonner, allez}} <a href="https://www.jeedom.com/market/index.php?v=d&p=profils#services" target="_blank">{{ici}}</a>';
 				}
 				echo '</div>';
@@ -74,6 +74,12 @@ if (init('result_code') == 'FAILURE') {
 			<label class="col-sm-3 control-label">{{Activer l'éxecution local}}</label>
 			<div class="col-sm-2">
 				<input type="checkbox" class="configKey" data-l1key="gshs::allowLocalApi" />
+			</div>
+		</div>
+		<div class="form-group gshmode jeedom">
+			<label class="col-sm-3 control-label">{{Activer la rotation de la clef api}}</label>
+			<div class="col-sm-2">
+				<input type="checkbox" class="configKey" data-l1key="gshs::enableApikeyRotate" />
 			</div>
 		</div>
 	</fieldset>
@@ -137,7 +143,7 @@ if (init('result_code') == 'FAILURE') {
 </div>
 
 <script type="text/javascript">
-$('.configKey[data-l1key=mode]').on('change',function(){
+$('.configKey[data-l1key=mode]').off('change').on('change',function(){
 	$('.gshmode').hide();
 	$('.gshmode.'+$(this).value()).show();
 });

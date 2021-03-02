@@ -35,13 +35,13 @@ class gsh_Channel {
         if (!in_array('action.devices.traits.Channel', $return['traits'])) {
           $return['traits'][] = 'action.devices.traits.Channel';
         }
-        $return['customData']['cmd_get_channel'] = $cmd->getId();
+        $return['customData']['channel_cmdGet'] = $cmd->getId();
       }
       if (in_array($cmd->getGeneric_type(), self::$_SET_CHANNEL)) {
         if (!in_array('action.devices.traits.Channel', $return['traits'])) {
           $return['traits'][] = 'action.devices.traits.Channel';
         }
-        $return['customData']['cmd_set_channel'] = $cmd->getId();
+        $return['customData']['channel_cmdSet'] = $cmd->getId();
       }
     }
     return $return;
@@ -60,7 +60,7 @@ class gsh_Channel {
       try {
         switch ($execution['command']) {
           case 'action.devices.commands.selectChannel':
-          $cmd = cmd::byId($_infos['customData']['cmd_set_channel']);
+          $cmd = cmd::byId($_infos['customData']['channel_cmdSet']);
           if (!is_object($cmd)) {
             break;
           }
@@ -68,11 +68,11 @@ class gsh_Channel {
           $return = array('status' => 'SUCCESS');
           break;
           case 'action.devices.commands.relativeChannel':
-          $cmd = cmd::byId($_infos['customData']['cmd_set_channel']);
+          $cmd = cmd::byId($_infos['customData']['channel_cmdSet']);
           if (!is_object($cmd)) {
             break;
           }
-          $cmd_info = cmd::byId($_infos['customData']['cmd_get_channel']);
+          $cmd_info = cmd::byId($_infos['customData']['channel_cmdGet']);
           if (!is_object($cmd_info)) {
             break;
           }
@@ -91,8 +91,8 @@ class gsh_Channel {
   public static function query($_device, $_infos){
     $return = array();
     $cmd = null;
-    if (isset($_infos['customData']['cmd_get_channel'])) {
-      $cmd = cmd::byId($_infos['customData']['cmd_get_channel']);
+    if (isset($_infos['customData']['channel_cmdGet'])) {
+      $cmd = cmd::byId($_infos['customData']['channel_cmdGet']);
       if (is_object($cmd)) {
         $return['currentChannel'] = $cmd->execCmd();
       }
