@@ -43,7 +43,7 @@ const argv = yargs
 
 
 if(argv.pid){
-  fs.writeFile(argv.pid, process.pid, function(err) {
+  fs.writeFile(argv.pid, process.pid.toString(), function(err) {
     if(err) {
       process.exit()
     }
