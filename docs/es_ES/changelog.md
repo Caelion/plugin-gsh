@@ -5,6 +5,10 @@
 >Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto
 
 
+# 05/04/2021 
+
+- Cambiando a nodejs 14
+
 # 02/03/2021
 
 - Adición de nuevo tipo de equipo
