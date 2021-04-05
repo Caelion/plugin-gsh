@@ -2,6 +2,8 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Registro de cambios de Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto",
+        "05\/04\/2021": "05\/04\/2021",
+        "Passage a nodejs 14": "Cambiando a nodejs 14",
         "02\/03\/2021": "02\/03\/2021",
         "Ajout de nouveay type d'équipement": "Adición de nuevo tipo de equipo",
         "Possibilité d'activer la rotation automatique de la clef api": "Posibilidad de activar la rotación automática de la clave API",
