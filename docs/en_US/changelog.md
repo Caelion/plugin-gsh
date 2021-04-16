@@ -5,6 +5,10 @@
 >As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text
 
 
+# 04/05/2021 
+
+- Switching to nodejs 14
+
 # 03/02/2021
 
 - Addition of new type of equipment
