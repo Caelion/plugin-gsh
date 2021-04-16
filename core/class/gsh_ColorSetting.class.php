@@ -55,7 +55,6 @@ class gsh_ColorSetting {
           'temperatureMinK' => $cmd->getConfiguration('minValue'),
           'temperatureMaxK' => $cmd->getConfiguration('maxValue')
         );
-        $return['attributes']['colorModel'] = 'rgb';
       }
       if (in_array($cmd->getGeneric_type(), self::$_COLOR_STATE)) {
         $return['customData']['ColorSetting_cmdGetColor'] = $cmd->getId();
