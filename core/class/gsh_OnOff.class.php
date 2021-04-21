@@ -23,9 +23,9 @@ class gsh_OnOff {
   
   /*     * *************************Attributs****************************** */
   
-  private static $_ON = array('FLAP_BSO_UP', 'FLAP_UP', 'ENERGY_ON', 'HEATING_ON', 'LOCK_OPEN', 'SIREN_ON', 'GB_OPEN', 'GB_TOGGLE','ENERGY_ON', 'LIGHT_ON');
-  private static $_OFF = array('FLAP_BSO_DOWN', 'FLAP_DOWN', 'ENERGY_OFF', 'HEATING_OFF', 'LOCK_CLOSE', 'SIREN_OFF', 'GB_CLOSE', 'GB_TOGGLE','ENERGY_OFF', 'LIGHT_OFF');
-  private static $_STATE = array('ENERGY_STATE', 'FLAP_STATE', 'FLAP_BSO_STATE', 'HEATING_STATE', 'LOCK_STATE', 'SIREN_STATE', 'GARAGE_STATE', 'BARRIER_STATE', 'OPENING', 'OPENING_WINDOW','ENERGY_STATE', 'LIGHT_STATE');
+  private static $_ON = array('FLAP_BSO_UP', 'FLAP_UP', 'ENERGY_ON', 'HEATING_ON', 'LOCK_OPEN', 'SIREN_ON', 'GB_OPEN', 'GB_TOGGLE','ENERGY_ON', 'LIGHT_ON', 'MEDIA_ON');
+  private static $_OFF = array('FLAP_BSO_DOWN', 'FLAP_DOWN', 'ENERGY_OFF', 'HEATING_OFF', 'LOCK_CLOSE', 'SIREN_OFF', 'GB_CLOSE', 'GB_TOGGLE','ENERGY_OFF', 'LIGHT_OFF', 'MEDIA_OFF');
+  private static $_STATE = array('ENERGY_STATE', 'FLAP_STATE', 'FLAP_BSO_STATE', 'HEATING_STATE', 'LOCK_STATE', 'SIREN_STATE', 'GARAGE_STATE', 'BARRIER_STATE', 'OPENING', 'OPENING_WINDOW','ENERGY_STATE', 'LIGHT_STATE', 'MEDIA_STATE');
   
   /*     * ***********************Methode static*************************** */
   

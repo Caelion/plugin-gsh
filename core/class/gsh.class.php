@@ -67,7 +67,7 @@ class gsh extends eqLogic {
 			'action.devices.types.GATE' => array('name' => __('Portail',__FILE__) ,'traits' =>array('OpenClose')),
 			'action.devices.types.SECURITYSYSTEM' => array('name' => __('Alarme',__FILE__) ,'traits' =>array('ArmDisarm','StatusReport','Modes')),
 			'action.devices.types.LOCK' => array('name' => __('Verrou',__FILE__) ,'traits' =>array('LockUnlock')),
-			'action.devices.types.TV' => array('name' => __('TV',__FILE__) ,'traits' =>array('OnOff','MediaState','InputSelector','AppSelector','TransportControl','Volume','Modes')),
+			'action.devices.types.TV' => array('name' => __('TV',__FILE__) ,'traits' =>array('OnOff','MediaState','InputSelector','AppSelector','TransportControl','Volume','Modes','Channel')),
 			'action.devices.types.FAN' => array('name' => __('Ventilateur',__FILE__) ,'traits' =>array('OnOff','FanSpeed','Modes','Toggles')),
 			'action.devices.types.HOOD' => array('name' => __('Hotte',__FILE__) ,'traits' =>array('OnOff','FanSpeed','Modes','Toggles')),
 			'action.devices.types.AC_UNIT' => array('name' => __('Climatiseur',__FILE__) ,'traits' =>array('FanSpeed','TemperatureSetting','OnOff')),
