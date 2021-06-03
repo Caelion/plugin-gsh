@@ -69,7 +69,10 @@ function gsh_update() {
 }
 
 function gsh_remove() {
-	
+	$cron = cron::byClassAndFunction('gsh', 'rotateApiKey');
+	if (is_object($cron)) {
+		$cron->remove();
+	}
 }
 
 ?>
