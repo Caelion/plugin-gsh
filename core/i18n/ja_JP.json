@@ -205,7 +205,8 @@
         "On": "On",
         "Off": "オフ",
         "Etat": "状態",
-        "Inverser l\\'état": "Inverser l\\'état"
+        "Inverser l\\'état": "Inverser l\\'état",
+        "Ne pas demander de code\/confirmation pour la fermeture": "Ne pas demander de code\/confirmation pour la fermeture"
     },
     "plugins\/gsh\/core\/class\/gsh_SensorState.class.php": {
         "Fumée": "Fumée",

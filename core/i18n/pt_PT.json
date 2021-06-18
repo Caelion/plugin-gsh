@@ -205,7 +205,8 @@
         "On": "Nós",
         "Off": "Fora",
         "Etat": "Estado",
-        "Inverser l\\'état": "Estado reverso"
+        "Inverser l\\'état": "Estado reverso",
+        "Ne pas demander de code\/confirmation pour la fermeture": "Não peça código \/ confirmação de fechamento"
     },
     "plugins\/gsh\/core\/class\/gsh_SensorState.class.php": {
         "Fumée": "Fumaça",

@@ -205,7 +205,8 @@
         "On": "Ein",
         "Off": "Aus",
         "Etat": "Zustand",
-        "Inverser l\\'état": "Umgekehrter Zustand"
+        "Inverser l\\'état": "Umgekehrter Zustand",
+        "Ne pas demander de code\/confirmation pour la fermeture": "Fragen Sie nicht nach einem Code \/ einer Bestätigung für die Schließung"
     },
     "plugins\/gsh\/core\/class\/gsh_SensorState.class.php": {
         "Fumée": "Rauch",
