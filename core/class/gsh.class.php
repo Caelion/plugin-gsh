@@ -324,14 +324,14 @@ class gsh extends eqLogic {
 					$return['commands'][] = $result;
 					continue;
 				}
-				if($device->getOptions('challenge') == 'ackNeeded' && (!isset($command['execution'][0]['challenge']) || !isset($command['execution'][0]['challenge']['ack']) || !$command['execution'][0]['challenge']['ack'])){
+				if($device->getOptions('challenge') == 'ackNeeded' && !$device->noCodeOrChallenge($command['execution']) && (!isset($command['execution'][0]['challenge']) || !isset($command['execution'][0]['challenge']['ack']) || !$command['execution'][0]['challenge']['ack'])){
 					$result = array_merge($result,array(
 						'status' => 'ERROR',
 						'errorCode' => 'challengeNeeded',
 						'challengeNeeded' => array(
 							'type' => 'ackNeeded'
 						)));
-					}else if($device->getOptions('challenge') == 'pinNeeded' && (!isset($command['execution'][0]['challenge']) || !isset($command['execution'][0]['challenge']['pin']) ||  $device->getOptions('challenge_pin')  == '' || $device->getOptions('challenge_pin') != $command['execution'][0]['challenge']['pin'])){
+					}else if($device->getOptions('challenge') == 'pinNeeded' && !$device->noCodeOrChallenge($command['execution']) && (!isset($command['execution'][0]['challenge']) || !isset($command['execution'][0]['challenge']['pin']) ||  $device->getOptions('challenge_pin')  == '' || $device->getOptions('challenge_pin') != $command['execution'][0]['challenge']['pin'])){
 						if(isset($command['execution'][0]['challenge']) && $device->getOptions('challenge_pin') != $command['execution'][0]['challenge']['pin']){
 							$result = array_merge($result,array(
 								'status' => 'ERROR',
@@ -612,6 +612,24 @@ class gsh extends eqLogic {
 					}
 				}
 				
+				public function noCodeOrChallenge($_execution) {
+					$supportedType = gsh::getSupportedType();
+					if (!isset($supportedType[$this->getType()])) {
+						return false;
+					}
+					if(isset($supportedType[$this->getType()]['class'])){
+						$class = $supportedType[$this->getType()]['class'];
+						if (!class_exists($class)) {
+							return false;
+						}
+						if (!method_exists($class,'noCodeOrChallenge')) {
+							return false;
+						}
+						return $class::noCodeOrChallenge($this, $_execution);
+					}
+					return false;
+				}
+				
 				public function exec($_execution, $_infos) {
 					$supportedType = gsh::getSupportedType();
 					if (!isset($supportedType[$this->getType()])) {
@@ -622,8 +640,7 @@ class gsh extends eqLogic {
 						if (!class_exists($class)) {
 							return array();
 						}
-						$result = $class::exec($this, $_execution, $_infos);
-						return $result;
+						return = $class::exec($this, $_execution, $_infos);
 					}
 					if(isset($supportedType[$this->getType()]['traits'])){
 						$return = array();
