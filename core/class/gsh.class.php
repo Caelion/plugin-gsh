@@ -640,7 +640,7 @@ class gsh extends eqLogic {
 						if (!class_exists($class)) {
 							return array();
 						}
-						return = $class::exec($this, $_execution, $_infos);
+						return $class::exec($this, $_execution, $_infos);
 					}
 					if(isset($supportedType[$this->getType()]['traits'])){
 						$return = array();
