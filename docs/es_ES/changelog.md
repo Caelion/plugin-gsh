@@ -5,6 +5,8 @@
 >Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto
 
 
+- Posibilidad de no tener código al solicitar el desbloqueo de una cerradura
+
 # 05/04/2021 
 
 - Cambiando a nodejs 14

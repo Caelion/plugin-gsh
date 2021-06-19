@@ -5,6 +5,8 @@
 >As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text
 
 
+- Possibility of not having a code when requesting to unlock a lock
+
 # 04/05/2021 
 
 - Switching to nodejs 14

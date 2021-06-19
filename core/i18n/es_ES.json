@@ -205,7 +205,8 @@
         "On": "Uno",
         "Off": "Apagado",
         "Etat": "Estado",
-        "Inverser l\\'état": "Estado inverso"
+        "Inverser l\\'état": "Estado inverso",
+        "Ne pas demander de code\/confirmation pour la fermeture": "No pida código \/ confirmación para el cierre"
     },
     "plugins\/gsh\/core\/class\/gsh_SensorState.class.php": {
         "Fumée": "Humo",
