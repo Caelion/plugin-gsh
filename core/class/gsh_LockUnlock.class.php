@@ -62,6 +62,15 @@ class gsh_LockUnlock {
     );
   }
   
+  public static function noCodeOrChallenge($_device, $_executions){
+    foreach ($_executions as $execution) {
+      if($execution['command'] == 'action.devices.commands.LockUnlock' && $execution['params']['lock'] && $_device->getOptions('LockUnlock::noCodeForLock')){
+        return true;
+      }
+    }
+    return false;
+  }
+  
   public static function exec($_device, $_executions, $_infos){
     $return = array();
     foreach ($_executions as $execution) {
@@ -126,6 +135,12 @@ class gsh_LockUnlock {
     echo '<label class="col-sm-3 control-label">{{Inverser l\'état}}</label>';
     echo '<div class="col-sm-3">';
     echo '<input type="checkbox" class="deviceAttr" data-l1key="options" data-l2key="LockUnlock::invertGet"></input>';
+    echo '</div>';
+    echo '</div>';
+    echo '<div class="form-group">';
+    echo '<label class="col-sm-3 control-label">{{Ne pas demander de code/confirmation pour la fermeture}}</label>';
+    echo '<div class="col-sm-3">';
+    echo '<input type="checkbox" class="deviceAttr" data-l1key="options" data-l2key="LockUnlock::noCodeForLock"></input>';
     echo '</div>';
     echo '</div>';
   }

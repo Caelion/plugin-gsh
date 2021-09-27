@@ -1,9 +1,4 @@
-touch /tmp/dependancy_gsh_in_progress
-echo 0 > /tmp/dependancy_gsh_in_progress
-echo "********************************************************"
-echo "*             Installation des dépendances             *"
-echo "********************************************************"
-BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+#!/bin/bash
 
 installVer='14' 	#NodeJS major version to be installed
 minVer='14'	      #min NodeJS major version to be accepted
@@ -134,6 +129,10 @@ else
   fi
   
   npm config set prefix ${npmPrefix} &>/dev/null
+
+  if [ $(which node | wc -l) -ne 0 ] && [ $(which nodejs | wc -l) -eq 0 ]; then 
+    ln -s $(which node) $(which node)js
+  fi
   
   new=`nodejs -v`;
   echo -n "[Check Version NodeJS après install : ${new} : "
@@ -223,15 +222,3 @@ if [ "$toReAddRepo" -ne "0" ]; then
   sudo wget --quiet -O - http://repo.jeedom.com/odroid/conf/jeedom.gpg.key | sudo apt-key add - 
   sudo apt-add-repository "deb http://repo.jeedom.com/odroid/ stable main" &>/dev/null
 fi
-
-echo 45 > /tmp/dependancy_gsh_in_progress
-sudo apt-get -y install npm
-cd ${BASEDIR}/gshd
-sudo npm install
-echo 95 > /tmp/dependancy_gsh_in_progress
-
-echo 100 > /tmp/dependancy_gsh_in_progress
-echo "********************************************************"
-echo "*             Installation terminée                    *"
-echo "********************************************************"
-rm /tmp/dependancy_gsh_in_progress

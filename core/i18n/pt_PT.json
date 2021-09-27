@@ -16,6 +16,7 @@
         "Envoyer": "Enviar",
         "Activer l'éxecution local": "Ativar execução local",
         "Activer la rotation de la clef api": "Ative a rotação da chave API",
+        "Interdire toute requête si": "Proibir qualquer pedido se",
         "Oauth": "Oauth",
         "Cient ID": "ID Científico",
         "Cient Secret": "Cient Secret",
@@ -205,7 +206,8 @@
         "On": "Nós",
         "Off": "Fora",
         "Etat": "Estado",
-        "Inverser l\\'état": "Estado reverso"
+        "Inverser l\\'état": "Estado reverso",
+        "Ne pas demander de code\/confirmation pour la fermeture": "Não peça código \/ confirmação de fechamento"
     },
     "plugins\/gsh\/core\/class\/gsh_SensorState.class.php": {
         "Fumée": "Fumaça",
