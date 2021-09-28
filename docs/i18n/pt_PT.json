@@ -2,6 +2,8 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Changelog Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto",
+        "27\/09\/2021": "27\/09\/2021",
+        "Possibilité d'interdir toute requete de Google en fonction d'une condition": "Possibilidade de banir qualquer solicitação do Google com base em uma condição",
         "Possibilité de ne pas avoir de code lors d'une demande de déverouillage d'une serrure": "Possibilidade de não ter código ao solicitar o desbloqueio de uma fechadura",
         "05\/04\/2021": "05\/04\/2021",
         "Passage a nodejs 14": "Mudando para nodejs 14",
