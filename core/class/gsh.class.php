@@ -772,6 +772,10 @@ class gsh_devices {
 		}
 	}
 
+	public function getName() {
+		return $this->getType();
+	}
+
 	/*     * **********************Getteur Setteur*************************** */
 	public function getId() {
 		return $this->id;
