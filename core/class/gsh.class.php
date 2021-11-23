@@ -483,6 +483,12 @@ class gsh extends eqLogic {
 		if ($_type == 'cmd') {
 			return gsh_devices::searchByOptions('#' . $_id . '#');
 		}
+		if ($_type == 'eqLogic') {
+			return array_merge(gsh_devices::searchByOptions('#eqLogic' . $_id . '#'), gsh_devices::searchByOptions('"eqLogic":"' . $_id . '"'));
+		}
+		if ($_type == 'scenario') {
+			return array_merge(gsh_devices::searchByOptions('#scenario' . $_id . '#'), gsh_devices::searchByOptions('"scenario_id":"' . $_id . '"'));
+		}
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
@@ -578,7 +584,7 @@ class gsh_devices {
 			'height' => 40,
 			'texty' => -14,
 			'textx' => 0,
-			'title' => __('Google Smarthome', __FILE__),
+			'title' => $this->getType(),
 			'url' => 'index.php?v=d&p=gsh&m=gsh',
 		);
 	}
