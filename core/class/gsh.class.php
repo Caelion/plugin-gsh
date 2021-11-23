@@ -584,7 +584,7 @@ class gsh_devices {
 			'height' => 40,
 			'texty' => -14,
 			'textx' => 0,
-			'title' => $this->getType(),
+			'title' => $this->getName(),
 			'url' => 'index.php?v=d&p=gsh&m=gsh',
 		);
 	}
