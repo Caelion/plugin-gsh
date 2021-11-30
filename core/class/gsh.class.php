@@ -159,7 +159,7 @@ class gsh extends eqLogic {
 		if (exec('which npm | wc -l') == 0) {
 			$return['state'] = 'nok';
 		}
-		if (exec('which nodejs | wc -l') == 0) {
+		if (exec('which node | wc -l') == 0 && exec('which nodejs | wc -l') == 0) {
 			$return['state'] = 'nok';
 		}
 		return $return;
@@ -191,7 +191,7 @@ class gsh extends eqLogic {
 		if ($deamon_info['launchable'] != 'ok') {
 			throw new Exception(__('Veuillez vérifier la configuration', __FILE__));
 		}
-		$cmd = 'sudo nodejs ' . __DIR__ . '/../../resources/gshd/gshd.js';
+		$cmd = 'sudo node ' . __DIR__ . '/../../resources/gshd/gshd.js';
 		$cmd .= ' --udp_discovery_port 3311';
 		$cmd .= ' --udp_discovery_packet 4A6565646F6D';
 		$cmd .= ' --pid ' . jeedom::getTmpFolder('gsh') . '/deamon.pid';
