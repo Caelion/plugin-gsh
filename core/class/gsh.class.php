@@ -159,7 +159,7 @@ class gsh extends eqLogic {
 		if (exec('which npm | wc -l') == 0) {
 			$return['state'] = 'nok';
 		}
-		if (exec('which nodejs | wc -l') == 0) {
+		if (exec('which node | wc -l') == 0 && exec('which nodejs | wc -l') == 0) {
 			$return['state'] = 'nok';
 		}
 		return $return;
@@ -191,7 +191,7 @@ class gsh extends eqLogic {
 		if ($deamon_info['launchable'] != 'ok') {
 			throw new Exception(__('Veuillez vérifier la configuration', __FILE__));
 		}
-		$cmd = 'sudo nodejs ' . __DIR__ . '/../../resources/gshd/gshd.js';
+		$cmd = 'sudo node ' . __DIR__ . '/../../resources/gshd/gshd.js';
 		$cmd .= ' --udp_discovery_port 3311';
 		$cmd .= ' --udp_discovery_packet 4A6565646F6D';
 		$cmd .= ' --pid ' . jeedom::getTmpFolder('gsh') . '/deamon.pid';
@@ -479,6 +479,18 @@ class gsh extends eqLogic {
 		return $result['access_token'];
 	}
 
+	public static function customUsedBy($_type, $_id) {
+		if ($_type == 'cmd') {
+			return gsh_devices::searchByOptions('#' . $_id . '#');
+		}
+		if ($_type == 'eqLogic') {
+			return array_merge(gsh_devices::searchByOptions('#eqLogic' . $_id . '#'), gsh_devices::searchByOptions('"eqLogic":"' . $_id . '"'));
+		}
+		if ($_type == 'scenario') {
+			return array_merge(gsh_devices::searchByOptions('#scenario' . $_id . '#'), gsh_devices::searchByOptions('"scenario_id":"' . $_id . '"'));
+		}
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
 
 	/*     * **********************Getteur Setteur*************************** */
@@ -541,7 +553,41 @@ class gsh_devices {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	public static function searchByOptions($_search) {
+		$value = array(
+			'search' => '%' . $_search . '%',
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM gsh_devices
+		WHERE options LIKE :search';
+		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+
 	/*     * *********************Methode d'instance************************* */
+
+	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+		if (isset($_data['node']['gsh' . $this->getId()])) {
+			return;
+		}
+		$_level++;
+		if ($_level > $_drill) {
+			return $_data;
+		}
+		$_data['node']['gsh' . $this->getId()] = array(
+			'id' => 'gsh' . $this->getId(),
+			'type' => __('Google Smarthome', __FILE__),
+			'name' => __('Google Smarthome', __FILE__),
+			'image' => 'plugins/gsh/plugin_info/gsh_icon.png',
+			'fontsize' => '1.5em',
+			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
+			'width' => 40,
+			'height' => 40,
+			'texty' => -14,
+			'textx' => 0,
+			'title' => $this->getName(),
+			'url' => 'index.php?v=d&p=gsh&m=gsh',
+		);
+	}
 
 	public function preSave() {
 		if ($this->getEnable() == 0) {
@@ -730,6 +776,10 @@ class gsh_devices {
 		if (is_object($listener)) {
 			$listener->remove();
 		}
+	}
+
+	public function getName() {
+		return $this->getType();
 	}
 
 	/*     * **********************Getteur Setteur*************************** */

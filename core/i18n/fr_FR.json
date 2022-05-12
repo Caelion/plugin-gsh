@@ -190,7 +190,8 @@
         "Veuillez vérifier la configuration": "Veuillez vérifier la configuration",
         "Erreur sur la demande de synchronisation :": "Erreur sur la demande de synchronisation :",
         "Erreur sur la demande de remonté d\\'état :": "Erreur sur la demande de remonté d\\'état :",
-        "JWT aucun token : ": "JWT aucun token : "
+        "JWT aucun token : ": "JWT aucun token : ",
+        "Google Smarthome": "Google Smarthome"
     },
     "plugins\/gsh\/core\/class\/gsh_Rotation.class.php": {
         "Rotation": "Rotation"

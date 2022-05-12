@@ -2,6 +2,7 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Changelog Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text",
+        "27\/09\/2021": "09\/27\/2021",
         "Possibilité d'interdir toute requete de Google en fonction d'une condition": "Possibility to ban any request from Google based on a condition",
         "Possibilité de ne pas avoir de code lors d'une demande de déverouillage d'une serrure": "Possibility of not having a code when requesting to unlock a lock",
         "05\/04\/2021": "04\/05\/2021",
