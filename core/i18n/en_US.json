@@ -191,7 +191,7 @@
         "Erreur sur la demande de synchronisation :": "Error on synchronization request:",
         "Erreur sur la demande de remonté d\\'état :": "Error on the status request:",
         "JWT aucun token : ": "JWT no token:",
-        "Google Smarthome": "Google Smarthome"
+        "Google Smarthome": "Google Smart Home"
     },
     "plugins\/gsh\/core\/class\/gsh_Rotation.class.php": {
         "Rotation": "Rotation"
