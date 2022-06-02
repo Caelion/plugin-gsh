@@ -141,13 +141,18 @@ class gsh extends eqLogic {
 	}
 
 	public static function rotateApiKey($_option = array()) {
-		config::save('api', config::genKey(), 'gsh');
-		self::sendJeedomConfig();
-		if (config::byKey('gshs::allowLocalApi', 'gsh') == 1) {
-			try {
-				self::sendDevices();
-			} catch (\Exception $e) {
+		$oldapikey = jeedom::getApiKey('gsh');
+		try {
+			config::save('api', config::genKey(), 'gsh');
+			self::sendJeedomConfig();
+			if (config::byKey('gshs::allowLocalApi', 'gsh') == 1) {
+				try {
+					self::sendDevices();
+				} catch (\Exception $e) {
+				}
 			}
+		} catch (\Exception $e) {
+			config::save('api', $oldapikey, 'gsh');
 		}
 	}
 
