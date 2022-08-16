@@ -4,6 +4,19 @@
 >
 >Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto
 
+# 06/02/2022
+
+- Optimización del proceso de rotación de claves api
+
+# 17/05/2022
+
+- Actualizando el documento
+
+# 12/05/2022
+
+- Mejor gestión de gráficos de enlaces cuando se utiliza un equipo/comando/escenario en Google Smarthome
+- Actualizando el documento
+
 # 27/09/2021
 
 - Posibilidad de prohibir cualquier solicitud de Google basada en una condición
