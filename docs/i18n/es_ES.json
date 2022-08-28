@@ -2,6 +2,7 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Registro de cambios de Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto",
+        "Correction d'un bug sur le retour d'information des Sensors (attention toujours pas d'affichage dans Google Home ou de retour vocal, il faut attendre que Google finisse l'implementation": "Se corrigió un error en los comentarios de los sensores (tenga cuidado de que aún no se muestre en Google Home ni de los comentarios de voz, debe esperar a que Google termine la implementación)",
         "02\/06\/2022": "06\/02\/2022",
         "Optimisation du processus de rotation de la clef api": "Optimización del proceso de rotación de claves api",
         "17\/05\/2022": "17\/05\/2022",
