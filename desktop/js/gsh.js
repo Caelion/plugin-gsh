@@ -17,32 +17,32 @@
 
 actionOptions = []
 
-$('.deviceAttr[data-l1key=options][data-l2key=challenge]').on('change',function(){
+$('.deviceAttr[data-l1key=options][data-l2key=challenge]').off('change').on('change',function(){
   $(this).closest('tr').find('.challenge').hide();
   if(+$(this).value() != ''){
     $(this).closest('tr').find('.challenge.'+$(this).value()).show();
   }
 });
 
-$('.nav-tabs li a').on('click',function(){
+$('.nav-tabs li a').off('click').on('click',function(){
   setTimeout(function(){
     taAutosize();
   }, 50);
 })
 
-$('#div_modes').on('click','.panel-heading',function(){
+$('#div_modes').off('click','.panel-heading').on('click','.panel-heading',function(){
   setTimeout(function(){
     taAutosize();
   }, 50);
 })
 
-$('.bt_configureEqLogic').on('click',function(){
+$('.bt_configureEqLogic').off('click').on('click',function(){
   $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"})
   .load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).attr('data-id')).dialog('open');
 });
 
 
-$('.bt_advanceConfigureEqLogic').on('click',function(){
+$('.bt_advanceConfigureEqLogic').off('click').on('click',function(){
   $('#md_modal').dialog({title: "{{Configuration avancée}}"})
   .load('index.php?v=d&plugin=gsh&modal=advanceConfig&eqLogic_id=' + $(this).attr('data-id')).dialog('open');
 });
@@ -52,7 +52,7 @@ $('#div_configuration').off('click','.bt_needGenericType').on('click','.bt_needG
   .load('index.php?v=d&plugin=gsh&modal=showNeedGenericType&eqLogic_id=' + $(this).closest('tr').attr('data-link_id')).dialog('open');
 });
 
-$('#bt_saveConfiguration').on('click',function(){
+$('#bt_saveConfiguration').off('click').on('click',function(){
   var devices = $('#div_configuration .device[data-link_type=eqLogic]').getValues('.deviceAttr');
   $('#div_scenes .scene').each(function () {
     var scene = $(this).getValues('.sceneAttr')[0];
@@ -155,13 +155,13 @@ function loadData(){
 
 loadData();
 
-$('#bt_displayDevice').on('click',function(){
+$('#bt_displayDevice').off('click').on('click',function(){
   $('#md_modal').dialog({title: "{{Configuration péripheriques}}"});
   $('#md_modal').load('index.php?v=d&plugin=gsh&modal=showDevicesConf').dialog('open');
 });
 
 
-$('#bt_addScene').on('click', function () {
+$('#bt_addScene').off('click').on('click', function () {
   bootbox.prompt("{{Nom de la scene ?}}", function (result) {
     if (result !== null && result != '') {
       addScene({options : {name: result}});
@@ -169,18 +169,17 @@ $('#bt_addScene').on('click', function () {
   });
 });
 
-$('body').delegate('.rename', 'click', function () {
+$('body').off('click', '.rename').on('click', '.rename', function () {
   var el = $(this);
   bootbox.prompt("{{Nouveau nom ?}}", function (result) {
     if (result !== null && result != '') {
-      var previousName = el.text();
       el.text(result);
       el.closest('.panel.panel-default').find('span.name').text(result);
     }
   });
 });
 
-$("body").delegate(".listCmdAction", 'click', function () {
+$("body").off('click','.listCmdAction').on('click','.listCmdAction',  function () {
   var type = $(this).attr('data-type');
   var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
   jeedom.cmd.getSelectModal({cmd: {type: 'action'}}, function (result) {
@@ -192,7 +191,7 @@ $("body").delegate(".listCmdAction", 'click', function () {
   });
 });
 
-$("body").delegate(".listAction", 'click', function () {
+$("body").off('click','.listAction').on('click','.listAction',  function () {
   var type = $(this).attr('data-type');
   var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
   jeedom.getSelectActionModal({}, function (result) {
@@ -204,20 +203,20 @@ $("body").delegate(".listAction", 'click', function () {
   });
 });
 
-$("body").delegate('.bt_removeAction', 'click', function () {
+$("body").off( 'click','.bt_removeAction').on('click','.bt_removeAction', function () {
   var type = $(this).attr('data-type');
   $(this).closest('.' + type).remove();
 });
 
-$("#div_scenes").delegate('.bt_addInAction', 'click', function () {
+$("#div_scenes").off('click','.bt_addInAction').on('click','.bt_addInAction', function () {
   addAction({}, 'inAction', '{{Action d\'entrée}}', $(this).closest('.scene'));
 });
 
-$("#div_scenes").delegate('.bt_addOutAction', 'click', function () {
+$("#div_scenes").off( 'click','.bt_addOutAction').on( 'click','.bt_addOutAction', function () {
   addAction({}, 'outAction', '{{Action de sortie}}', $(this).closest('.scene'));
 });
 
-$('body').delegate('.cmdAction.expressionAttr[data-l1key=cmd]', 'focusout', function (event) {
+$('body').off( 'focusout','.cmdAction.expressionAttr[data-l1key=cmd]').on( 'focusout','.cmdAction.expressionAttr[data-l1key=cmd]', function (event) {
   var type = $(this).attr('data-type')
   var expression = $(this).closest('.' + type).getValues('.expressionAttr');
   var el = $(this);
@@ -227,7 +226,7 @@ $('body').delegate('.cmdAction.expressionAttr[data-l1key=cmd]', 'focusout', func
   })
 });
 
-$("#div_scenes").delegate('.bt_removeScene', 'click', function () {
+$("#div_scenes").off( 'click','.bt_removeScene').on( 'click','.bt_removeScene', function () {
   $(this).closest('.scene').remove();
 });
 
