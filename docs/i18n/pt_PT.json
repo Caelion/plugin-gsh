@@ -2,7 +2,9 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Changelog Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto",
+        "12\/09\/2022": "12\/09\/2022",
         "Correction d'un bug sur le retour d'information des Sensors (attention toujours pas d'affichage dans Google Home ou de retour vocal, il faut attendre que Google finisse l'implementation": "Corrigido um bug no feedback dos Sensores (cuidado ainda sem exibição no Google Home ou feedback de voz, você tem que esperar o Google terminar a implementação",
+        "Ajout du gestion du mode Eco pour les thermostat, merci @Corentin3011": "Adição do gerenciamento do modo Eco para termostatos, obrigado @Corentin3011",
         "02\/06\/2022": "02\/06\/2022",
         "Optimisation du processus de rotation de la clef api": "Otimização do processo de rotação de chaves de API",
         "17\/05\/2022": "17\/05\/2022",
