@@ -234,6 +234,9 @@ class gsh_TemperatureSetting {
           case __('Climatisation', __FILE__);
           $return['thermostatMode'] = 'cool';
           break;
+          case __('Eco', __FILE__);
+          $return['thermostatMode'] = 'eco';
+          break;
           case __('Suspendu', __FILE__):
           #$return['thermostatMode'] = 'auto';
           break;

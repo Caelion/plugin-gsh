@@ -20,19 +20,19 @@
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 class gsh_SensorState {
-	
+
 	/*     * *************************Attributs****************************** */
-	
+
 	private static $_SMOKE = array('SMOKE');
 	private static $_WATER_LEAK = array('WATER_LEAK');
 	private static $_AIR_QUALITY = array('AIR_QUALITY');
 	private static $_FILTER_CLEANLINESS = array('FILTER_CLEAN_STATE');
-	
-	
+
+
 	/*     * ***********************Methode static*************************** */
-	
-	public static function discover($_device,$_eqLogic) {
-		$return = array('traits' => array(),'customData' => array(),'attributes' => array());
+
+	public static function discover($_device, $_eqLogic) {
+		$return = array('traits' => array(), 'customData' => array(), 'attributes' => array());
 		$return['attributes']['dataTypesSupported'] = array();
 		foreach ($_eqLogic->getCmd() as $cmd) {
 			if (in_array($cmd->getGeneric_type(), self::$_SMOKE)) {
@@ -42,7 +42,7 @@ class gsh_SensorState {
 					$return['attributes']['sensorStatesSupported'][] = array(
 						'name' => 'SmokeLevel',
 						'descriptiveCapabilities' => array(
-							'availableStates' => array('smoke detected','no smoke detected')
+							'availableStates' => array('smoke detected', 'no smoke detected')
 						)
 					);
 				}
@@ -54,7 +54,7 @@ class gsh_SensorState {
 					$return['attributes']['sensorStatesSupported'][] = array(
 						'name' => 'WaterLeak',
 						'descriptiveCapabilities' => array(
-							'availableStates' => array('leak','no leak')
+							'availableStates' => array('leak', 'no leak')
 						)
 					);
 				}
@@ -66,7 +66,7 @@ class gsh_SensorState {
 					$return['attributes']['sensorStatesSupported'][] = array(
 						'name' => 'AirQuality',
 						'descriptiveCapabilities' => array(
-							'availableStates' => array('healthy','moderate','unhealthy','very unhealthy')
+							'availableStates' => array('healthy', 'moderate', 'unhealthy', 'very unhealthy')
 						)
 					);
 				}
@@ -78,7 +78,7 @@ class gsh_SensorState {
 					$return['attributes']['sensorStatesSupported'][] = array(
 						'name' => 'FilterCleanliness',
 						'descriptiveCapabilities' => array(
-							'availableStates' => array('clean','dirty')
+							'availableStates' => array('clean', 'dirty')
 						)
 					);
 				}
@@ -86,68 +86,67 @@ class gsh_SensorState {
 		}
 		return $return;
 	}
-	
-	public static function needGenericType(){
+
+	public static function needGenericType() {
 		return array(
-			__('Fumée',__FILE__) => self::$_SMOKE,
-			__('Fuite d\'eau',__FILE__) => self::$_WATER_LEAK,
-			__('Qualité d\'air',__FILE__) => self::$_AIR_QUALITY,
-			__('Etat du filtre',__FILE__) => self::$_FILTER_CLEANLINESS
+			__('Fumée', __FILE__) => self::$_SMOKE,
+			__('Fuite d\'eau', __FILE__) => self::$_WATER_LEAK,
+			__('Qualité d\'air', __FILE__) => self::$_AIR_QUALITY,
+			__('Etat du filtre', __FILE__) => self::$_FILTER_CLEANLINESS
 		);
 	}
-	
+
 	public static function exec($_device, $_executions, $_infos) {
 		$return = array('status' => 'ERROR');
 		return $return;
 	}
-	
+
 	public static function query($_device, $_infos) {
 		$return = array();
 		$return['online'] = true;
 		$return['on'] = true;
 		$eqLogic = $_device->getLink();
 		$return['currentSensorStateData'] = array();
-		
+
 		foreach ($_infos['customData'] as $key => $cmd_id) {
 			$cmd = cmd::byId($cmd_id);
-			if(!is_object($cmd)){
+			if (!is_object($cmd)) {
 				continue;
 			}
-			$type = strtolower(str_replace('SensorState_cmdGet','',$key));
+			$type = str_replace('SensorState_cmdGet', '', $key);
 			$value = $cmd->execCmd();
 			switch ($type) {
 				case 'SmokeLevel':
-				$value = ($value == 1) ? 'smoke detected'  : 'no smoke detected';
-				break;
+					$value = ($value == 1) ? 'smoke detected'  : 'no smoke detected';
+					break;
 				case 'WaterLeak':
-				$value = ($value == 1) ? 'leak'  : 'no leak';
-				break;
+					$value = ($value == 1) ? 'leak'  : 'no leak';
+					break;
 				case 'AirQuality':
-				if($value > 75){
-					$value = 'very unhealthy';
-				}elseif($value > 50){
-					$value = 'unhealthy';
-				}elseif($value > 25){
-					$value = 'moderate';
-				}else{
-					$value = 'healthy';
-				}
-				break;
+					if ($value > 75) {
+						$value = 'very unhealthy';
+					} elseif ($value > 50) {
+						$value = 'unhealthy';
+					} elseif ($value > 25) {
+						$value = 'moderate';
+					} else {
+						$value = 'healthy';
+					}
+					break;
 				case 'FilterCleanliness':
-				$value = ($value == 1) ? 'dirty'  : 'clean';
-				break;
+					$value = ($value == 1) ? 'dirty'  : 'clean';
+					break;
 			}
-			
+
 			$return['currentSensorStateData'][] = array(
-				'name' => $key,
+				'name' => $type,
 				'currentSensorState' =>  $value
 			);
 		}
 		return $return;
 	}
-	
+
 	/*     * *********************Méthodes d'instance************************* */
-	
+
 	/*     * **********************Getteur Setteur*************************** */
-	
 }
