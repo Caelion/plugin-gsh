@@ -66,7 +66,7 @@ $('#bt_saveConfiguration').off('click').on('click',function(){
     url: "plugins/gsh/core/ajax/gsh.ajax.php",
     data: {
       action: "saveDevices",
-      devices : json_encode(devices),
+      devices : JSON.stringify(devices),
     },
     dataType: 'json',
     error: function (request, status, error) {
