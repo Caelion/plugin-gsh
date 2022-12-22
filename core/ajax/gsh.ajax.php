@@ -19,18 +19,18 @@
 try {
 	require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
-	
+
 	if (!isConnect('admin')) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
-	
+
 	ajax::init();
-	
+
 	if (init('action') == 'sendDevices') {
 		gsh::sendDevices();
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'saveDevices') {
 		$devices = json_decode(init('devices'), true);
 		foreach ($devices as $device_json) {
@@ -41,7 +41,7 @@ try {
 			if (!is_object($device)) {
 				$device = new gsh_devices();
 			}
-			utils::a2o($device,jeedom::fromHumanReadable($device_json));
+			utils::a2o($device, jeedom::fromHumanReadable($device_json));
 			$device->save();
 			$enableList[$device->getId()] = true;
 		}
@@ -54,7 +54,7 @@ try {
 		gsh::sync();
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'saveDevice') {
 		$device_ajax = json_decode(init('device'), true);
 		$device = gsh_devices::byId($device_ajax['id']);
@@ -65,18 +65,18 @@ try {
 		$device->save();
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'allDevices') {
 		ajax::success(jeedom::toHumanReadable(utils::o2a(gsh_devices::all())));
 	}
-	
+
 	if (init('action') == 'sendConfig') {
 		gsh::sendJeedomConfig();
 		ajax::success();
 	}
-	
+
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
-	ajax::error(displayExeption($e), $e->getCode());
+	ajax::error(displayException($e), $e->getCode());
 }
