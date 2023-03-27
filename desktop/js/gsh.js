@@ -306,9 +306,9 @@ function addScene(_scene) {
   div += '<div class="col-sm-12">';
   div += '<div class="input-group pull-right" style="display:inline-flex">';
   div += '<span class="input-group-btn">';
-  div += '<a class="btn btn-sm bt_removeScene btn-primary roundedLeft"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>';
-  div += '<a class="btn btn-sm bt_addInAction btn-success"><i class="fas fa-plus-circle"></i> {{Action d\'entrée}}</a>';
-  div += '<a class="btn btn-danger btn-sm bt_addOutAction roundedRight"><i class="fas fa-plus-circle"></i> {{Action de sortie}}</a>';
+  div += '<a class="btn btn-sm bt_addInAction btn-primary roundedLeft"><i class="fas fa-plus-circle"></i> {{Action d\'entrée}}</a>';
+  div += '<a class="btn btn-warning btn-sm bt_addOutAction"><i class="fas fa-plus-circle"></i> {{Action de sortie}}</a>';
+  div += '<a class="btn btn-sm bt_removeScene btn-danger roundedRight"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>';
   div += '</span>';
   div += '</div>';
   div += '</div>';
