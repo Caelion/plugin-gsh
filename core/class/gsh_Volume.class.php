@@ -29,19 +29,21 @@ class gsh_Volume {
   /*     * ***********************Methode static*************************** */
   
   public static function discover($_device,$_eqLogic){
-    $return = array('traits' => array(),'customData' => array());
+    $return = array('traits' => array(),'customData' => array(),'attributes' => array());
     foreach ($_eqLogic->getCmd() as $cmd) {
       if (in_array($cmd->getGeneric_type(), self::$_VOLUME)) {
         if (!in_array('action.devices.traits.Volume', $return['traits'])) {
           $return['traits'][] = 'action.devices.traits.Volume';
         }
         $return['customData']['Volume_cmdGetVolume'] = $cmd->getId();
+        $return['attributes']['volumeMaxLevel'] = intval($cmd->getConfiguration('maxValue',100));
       }
       if (in_array($cmd->getGeneric_type(), self::$_SET_VOLUME)) {
         if (!in_array('action.devices.traits.Volume', $return['traits'])) {
           $return['traits'][] = 'action.devices.traits.Volume';
         }
         $return['customData']['Volume_cmdSetVolume'] = $cmd->getId();
+        $return['attributes']['volumeMaxLevel'] = intval($cmd->getConfiguration('maxValue',100));
       }
     }
     return $return;
