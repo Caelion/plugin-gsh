@@ -241,8 +241,8 @@ function addAction(_action, _type, _name, _el) {
   var input = '';
   var button = 'btn-default';
   if (_type == 'outAction') {
-    input = 'has-error';
-    button = 'btn-danger';
+    input = 'has-warning';
+    button = 'btn-warning';
   }
   if (_type == 'inAction') {
     input = 'has-success';
@@ -306,7 +306,7 @@ function addScene(_scene) {
   div += '<div class="col-sm-12">';
   div += '<div class="input-group pull-right" style="display:inline-flex">';
   div += '<span class="input-group-btn">';
-  div += '<a class="btn btn-sm bt_addInAction btn-primary roundedLeft"><i class="fas fa-plus-circle"></i> {{Action d\'entrée}}</a>';
+  div += '<a class="btn btn-sm bt_addInAction btn-succes roundedLeft"><i class="fas fa-plus-circle"></i> {{Action d\'entrée}}</a>';
   div += '<a class="btn btn-warning btn-sm bt_addOutAction"><i class="fas fa-plus-circle"></i> {{Action de sortie}}</a>';
   div += '<a class="btn btn-sm bt_removeScene btn-danger roundedRight"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>';
   div += '</span>';
