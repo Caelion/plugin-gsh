@@ -52,8 +52,8 @@ class gsh_ColorSetting {
           $return['attributes'] = array();
         }
         $return['attributes']['colorTemperatureRange'] = array(
-          'temperatureMinK' => $cmd->getConfiguration('minValue'),
-          'temperatureMaxK' => $cmd->getConfiguration('maxValue')
+          'temperatureMinK' => intval($cmd->getConfiguration('minValue')),
+          'temperatureMaxK' => intval($cmd->getConfiguration('maxValue'))
         );
       }
       if (in_array($cmd->getGeneric_type(), self::$_COLOR_STATE)) {
@@ -96,6 +96,13 @@ class gsh_ColorSetting {
             }
           }
           $return = array('status' => 'SUCCESS');
+          if(isset($_infos['customData']['OnOff_cmdGetState'])){
+            $state = cmd::byId($_infos['customData']['OnOff_cmdGetState']);
+            if(is_object()){
+               sleep(1);
+               $return['on'] = boolval($state->execCmd());
+            }
+          }
           break;
         }
       } catch (Exception $e) {
