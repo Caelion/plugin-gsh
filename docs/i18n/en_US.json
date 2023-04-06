@@ -2,6 +2,8 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Changelog Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text",
+        "Correction d'un bug sur l'authentification en mode standalone (merci @bad": "Fixed a bug on authentication in standalone mode (thanks @bad",
+        "Amélioration de la gestion des température de couleur (merci @apern": "Improved color temperature management (thanks @apern",
         "12\/09\/2022": "09\/12\/2022",
         "Correction d'un bug sur le retour d'information des Sensors (attention toujours pas d'affichage dans Google Home ou de retour vocal, il faut attendre que Google finisse l'implementation": "Fixed a bug on the feedback from the Sensors (be careful still no display in Google Home or voice feedback, you have to wait for Google to finish the implementation",
         "Ajout du gestion du mode Eco pour les thermostat, merci @Corentin3011": "Addition of Eco mode management for thermostats, thanks @Corentin3011",

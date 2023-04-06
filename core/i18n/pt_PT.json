@@ -100,6 +100,16 @@
         "Vous n\\'etes pas autorisé à effectuer cette action. Clef API invalide. Merci de corriger la clef API sur votre page profils du market et d\\'attendre 24h avant de réessayer.": "Você não está autorizado a executar esta ação. Chave de API inválida. Corrija a chave da API na sua página de perfil de mercado e aguarde 24 horas antes de tentar novamente",
         "Configuration OK": "Configuração OK"
     },
+    "plugins\/gsh\/core\/php\/jeeGshOauth.php": {
+        "Merci de fournir un Token 2FA": "Forneça um token 2FA",
+        "Mot de passe ou nom d'utilisateur incorrect": "Senha ou nome de usuário inválido",
+        "Merci de vous connecter avec un compte Admin": "Por favor, faça o login com uma conta de administrador",
+        "Merci de vous connecter à votre Jeedom pour configurer la connexion avec Google": "Conecte-se ao seu Jeedom para configurar a conexão com o Google",
+        "Nom d'utilisateur": "Nome de usuário",
+        "Mot de passe": "Senha",
+        "Authentification à 2 facteurs": "Autenticação de 2 fatores",
+        "Valider": "Para validar"
+    },
     "plugins\/gsh\/core\/ajax\/gsh.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Device non trouvé : ": "Dispositivo não encontrado:",
