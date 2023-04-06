@@ -42,8 +42,8 @@ class gsh_HumiditySetting {
         $return['customData']['HumiditySetting_cmdSetSetpoint'] = $cmd->getId();
         $return['attributes']['queryOnlyHumiditySetting'] = false;
         $return['attributes']['humiditySetpointRange'] = array(
-          'minPercent' => $cmd->getConfiguration('minValue'),
-          'maxPercent' => $cmd->getConfiguration('maxValue')
+          'minPercent' => intval($cmd->getConfiguration('minValue',0)),
+          'maxPercent' => intval($cmd->getConfiguration('maxValue',100))
         );
       }
       if (in_array($cmd->getGeneric_type(), self::$_SETPOINT)) {
