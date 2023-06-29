@@ -239,6 +239,9 @@
         "Off": "Off",
         "Etat": "State"
     },
+    "plugins\/gsh\/core\/class\/gsh_OccupancySensing.class.php": {
+        "Présence": "Presence"
+    },
     "plugins\/gsh\/core\/class\/gsh_HumiditySetting.class.php": {
         "Contrôle humidité": "Humidity control",
         "Etat contrôle humidité": "Humidity control status",

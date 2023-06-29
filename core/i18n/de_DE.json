@@ -239,6 +239,9 @@
         "Off": "Aus",
         "Etat": "Zustand"
     },
+    "plugins\/gsh\/core\/class\/gsh_OccupancySensing.class.php": {
+        "Présence": "Gegenwart"
+    },
     "plugins\/gsh\/core\/class\/gsh_HumiditySetting.class.php": {
         "Contrôle humidité": "Feuchtigkeitskontrolle",
         "Etat contrôle humidité": "Feuchtigkeitskontrollstatus",
