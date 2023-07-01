@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-<?php
 require_once __DIR__ . '/../../../../core/php/core.inc.php';
 
 if (init('response_type') == 'code') {
