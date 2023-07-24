@@ -53,7 +53,7 @@ class gsh extends eqLogic {
 		return array(
 			'action.devices.types.AUDIO_VIDEO_RECEIVER' => array('name' => __('Ampli AV', __FILE__), 'traits' => array('OnOff', 'MediaState', 'InputSelector', 'AppSelector', 'TransportControl', 'Volume', 'Modes')),
 			'action.devices.types.LIGHT' => array('name' => __('Lumière', __FILE__), 'traits' => array('Brightness', 'ColorSetting', 'OnOff')),
-			'action.devices.types.THERMOSTAT' => array('name' => __('Thermostat', __FILE__), 'traits' => array('TemperatureSetting')),
+			'action.devices.types.THERMOSTAT' => array('name' => __('Thermostat', __FILE__), 'traits' => array('TemperatureSetting', 'Modes')),
 			'action.devices.types.OUTLET' => array('name' => __('Prise', __FILE__), 'traits' => array('OnOff')),
 			'action.devices.types.SWITCH' => array('name' => __('Interrupteur', __FILE__), 'traits' => array('OnOff')),
 			'action.devices.types.CAMERA' => array('name' => __('Caméra', __FILE__), 'class' => 'gsh_camera'),
