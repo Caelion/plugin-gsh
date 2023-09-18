@@ -17,11 +17,6 @@
 require_once __DIR__ . '/../../../../core/php/core.inc.php';
 
 if (init('response_type') == 'code') {
-	// Allow access from local network only
-	if (network::getUserLocation() != 'internal'){
-		echo 'You are no comming from internal address';
-		die();
-	}
 	include_file('core', 'authentification', 'php');
 	// Check for a logged in user
 	if (!isConnect()) {
