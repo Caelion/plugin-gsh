@@ -471,11 +471,11 @@ class gsh extends eqLogic {
 			'exp' => $now + 3600,
 			'scope' => 'https://www.googleapis.com/auth/homegraph',
 			'iss' => config::byKey('gshs::jwtclientmail', 'gsh'),
-			'aud' => 'https://accounts.google.com/o/oauth2/token',
+			'aud' => 'https://oauth2.googleapis.com/token',
 		);
 		$jwt = JWT::encode($token, str_replace('\n', "\n", config::byKey('gshs::jwtprivkey', 'gsh')), 'RS256');
-		$request_http = new com_http('https://accounts.google.com/o/oauth2/token');
-		$request_http->setHeader(array('content-type : application/x-www-form-urlencoded'));
+		$request_http = new com_http('https://oauth2.googleapis.com/token');
+		//$request_http->setHeader(array('content-type : application/x-www-form-urlencoded'));
 		$request_http->setPost('grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=' . $jwt);
 		$result = is_json($request_http->exec(30), array());
 		if (!isset($result['access_token'])) {
