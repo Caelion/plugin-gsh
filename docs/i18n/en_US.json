@@ -2,6 +2,8 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Changelog Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text",
+        "14\/10\/2023": "14\/10\/2023",
+        "Ajout du type Barre de son": "Added Soundbar type",
         "Correction d'un bug sur l'authentification en mode standalone (merci @bad": "Fixed a bug on authentication in standalone mode (thanks @bad",
         "Amélioration de la gestion des température de couleur (merci @apern": "Improved color temperature management (thanks @apern",
         "Correction de bugs": "Bugfix",
