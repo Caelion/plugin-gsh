@@ -2,6 +2,7 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Registro de cambios de Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto",
+        "Amélioration du support des lumieres": "Soporte de luz mejorado",
         "14\/10\/2023": "14\/10\/2023",
         "Ajout du type Barre de son": "Tipo de barra de sonido agregado",
         "Correction d'un bug sur l'authentification en mode standalone (merci @bad": "Se corrigió un error en la autenticación en modo independiente (gracias @bad",
