@@ -28,9 +28,10 @@ class gsh_scene {
 	public static function buildDevice($_device) {
 		$return = array();
 		$return['id'] = 'scene::' . $_device->getId();
-		$return['roomHint'] = $_device->getOptions('piece');
+		//$return['roomHint'] = $_device->getOptions('piece');
 		$return['type'] = $_device->getType();
-		$return['name'] = array('name' => $_device->getOptions('name'), 'defaultNames' => array(), 'nicknames' => array($_device->getOptions('pseudo')));
+		//$return['name'] = array('name' => $_device->getOptions('name'), 'defaultNames' => array(), 'nicknames' => array($_device->getOptions('pseudo')));
+		$return['name'] = array('name' => $_device->getOptions('name'));
 		$return['traits'] = array('action.devices.traits.Scene');
 		$return['willReportState'] = false;
 		$return['attributes'] = array('sceneReversible' => (count($_device->getOptions('outAction')) > 0));

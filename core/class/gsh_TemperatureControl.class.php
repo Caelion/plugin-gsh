@@ -43,8 +43,8 @@ class gsh_TemperatureControl {
         $return['customData']['TemperatureControl_cmdSetSetpoint'] = $cmd->getId();
         $return['attributes']['queryOnlyTemperatureControl'] = false;
         $return['attributes']['temperatureRange'] = array(
-          'minThresholdCelsius' => $cmd->getConfiguration('minValue'),
-          'maxThresholdCelsius' => $cmd->getConfiguration('maxValue')
+          'minThresholdCelsius' => intval($cmd->getConfiguration('minValue',0)),
+          'maxThresholdCelsius' => intval($cmd->getConfiguration('maxValue',40))
         );
       }
       if (in_array($cmd->getGeneric_type(), self::$_SETPOINT)) {

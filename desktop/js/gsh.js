@@ -26,13 +26,13 @@ $('.deviceAttr[data-l1key=options][data-l2key=challenge]').off('change').on('cha
 
 $('.nav-tabs li a').off('click').on('click',function(){
   setTimeout(function(){
-    taAutosize();
+    jeedomUtils.taAutosize();
   }, 50);
 })
 
 $('#div_modes').off('click','.panel-heading').on('click','.panel-heading',function(){
   setTimeout(function(){
-    taAutosize();
+    jeedomUtils.taAutosize();
   }, 50);
 })
 
@@ -66,7 +66,7 @@ $('#bt_saveConfiguration').off('click').on('click',function(){
     url: "plugins/gsh/core/ajax/gsh.ajax.php",
     data: {
       action: "saveDevices",
-      devices : json_encode(devices),
+      devices : JSON.stringify(devices),
     },
     dataType: 'json',
     error: function (request, status, error) {
@@ -146,7 +146,7 @@ function loadData(){
           for(var i in data){
             $('#'+data[i].id).append(data[i].html.html);
           }
-          taAutosize();
+          jeedomUtils.taAutosize();
         }
       });
     },
@@ -186,7 +186,7 @@ $("body").off('click','.listCmdAction').on('click','.listCmdAction',  function (
     el.value(result.human);
     jeedom.cmd.displayActionOption(el.value(), '', function (html) {
       el.closest('.' + type).find('.actionOptions').html(html);
-      taAutosize();
+      jeedomUtils.taAutosize();
     });
   });
 });
@@ -198,7 +198,7 @@ $("body").off('click','.listAction').on('click','.listAction',  function () {
     el.value(result.human);
     jeedom.cmd.displayActionOption(el.value(), '', function (html) {
       el.closest('.' + type).find('.actionOptions').html(html);
-      taAutosize();
+      jeedomUtils.taAutosize();
     });
   });
 });
@@ -222,7 +222,7 @@ $('body').off( 'focusout','.cmdAction.expressionAttr[data-l1key=cmd]').on( 'focu
   var el = $(this);
   jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function (html) {
     el.closest('.' + type).find('.actionOptions').html(html);
-    taAutosize();
+    jeedomUtils.taAutosize();
   })
 });
 
@@ -241,8 +241,8 @@ function addAction(_action, _type, _name, _el) {
   var input = '';
   var button = 'btn-default';
   if (_type == 'outAction') {
-    input = 'has-error';
-    button = 'btn-danger';
+    input = 'has-warning';
+    button = 'btn-warning';
   }
   if (_type == 'inAction') {
     input = 'has-success';
@@ -267,7 +267,7 @@ function addAction(_action, _type, _name, _el) {
   div += '</span>';
   div += '</div>';
   div += '</div>';
-  var actionOption_id = uniqId();
+  var actionOption_id = jeedomUtils.uniqId();
   div += '<div class="col-sm-5 actionOptions" id="'+actionOption_id+'">';
   div += '</div>';
   div += '</div>';
@@ -306,9 +306,9 @@ function addScene(_scene) {
   div += '<div class="col-sm-12">';
   div += '<div class="input-group pull-right" style="display:inline-flex">';
   div += '<span class="input-group-btn">';
-  div += '<a class="btn btn-sm bt_removeScene btn-primary roundedLeft"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>';
-  div += '<a class="btn btn-sm bt_addInAction btn-success"><i class="fas fa-plus-circle"></i> {{Action d\'entrée}}</a>';
-  div += '<a class="btn btn-danger btn-sm bt_addOutAction roundedRight"><i class="fas fa-plus-circle"></i> {{Action de sortie}}</a>';
+  div += '<a class="btn btn-sm bt_addInAction btn-succes roundedLeft"><i class="fas fa-plus-circle"></i> {{Action d\'entrée}}</a>';
+  div += '<a class="btn btn-warning btn-sm bt_addOutAction"><i class="fas fa-plus-circle"></i> {{Action de sortie}}</a>';
+  div += '<a class="btn btn-sm bt_removeScene btn-danger roundedRight"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>';
   div += '</span>';
   div += '</div>';
   div += '</div>';

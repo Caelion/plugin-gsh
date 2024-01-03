@@ -27,6 +27,7 @@ class gsh_OpenClose {
   private static $_ON = array('FLAP_BSO_UP', 'FLAP_UP','GB_OPEN');
   private static $_OFF = array('FLAP_BSO_DOWN', 'FLAP_DOWN','GB_CLOSE');
   private static $_STATE = array('FLAP_STATE', 'FLAP_BSO_STATE','GARAGE_STATE','BARRIER_STATE','OPENING', 'OPENING_WINDOW');
+  private static $_STOP = array('FLAP_STOP');
   
   /*     * ***********************Methode static*************************** */
   
@@ -63,6 +64,15 @@ class gsh_OpenClose {
         $return['customData']['OpenClose_cmdSetSlider'] = $cmd->getId();
         $return['attributes']['queryOnlyOpenClose'] = false;
         $return['attributes']['discreteOnlyOpenClose'] = false;
+      }
+      
+      if ($_device->getOptions('OpenClose::pausableSet', 0) == 1) {        
+        if (in_array($cmd->getGeneric_type(), self::$_STOP)) {
+          if (!in_array('action.devices.traits.StartStop', $return['traits'])) {
+            $return['traits'][] = 'action.devices.traits.StartStop';
+          }
+          $return['customData']['OpenClose_cmdSetStop'] = $cmd->getId();
+        }      
       }
     }
     return $return;
@@ -110,6 +120,23 @@ class gsh_OpenClose {
           $cmd->execCmd();
           $return = array('status' => 'SUCCESS');
           break;
+            
+            
+          case 'action.devices.commands.StartStop':
+            if($_device->getOptions('OpenClose::pausableSet',0) == 1){
+              if($execution['params']['start'] == false){
+                if (isset($_infos['customData']['OpenClose_cmdSetStop'])) {
+                  $cmd = cmd::byId($_infos['customData']['OpenClose_cmdSetStop']);
+                  if (!is_object($cmd)) {
+                    break;
+                  }
+                  $cmd->execCmd();
+                  $return = array('status' => 'SUCCESS');
+                  break;
+                }
+              }
+            }
+            break;
         }
       } catch (Exception $e) {
         log::add('gsh', 'error', $e->getMessage());
@@ -122,6 +149,9 @@ class gsh_OpenClose {
   public static function query($_device, $_infos){
     $return = array();
     $cmd = null;
+    if ($_device->getOptions('OpenClose::pausableSet', 0) == 1) {        
+    	$return['isRunning'] = true;
+    }
     if (isset($_infos['customData']['OpenClose_cmdGetState'])) {
       $cmd = cmd::byId($_infos['customData']['OpenClose_cmdGetState']);
     }
@@ -147,6 +177,12 @@ class gsh_OpenClose {
   }
   
   public static function getHtmlConfiguration($_eqLogic){
+    echo '<div class="form-group">';
+    echo '<label class="col-sm-3 control-label">{{Afficher le bouton Arrêter}}</label>';
+    echo '<div class="col-sm-3">';
+    echo '<input type="checkbox" class="deviceAttr" data-l1key="options" data-l2key="OpenClose::pausableSet"></input>';
+    echo '</div>';
+    echo '</div>';
     echo '<div class="form-group">';
     echo '<label class="col-sm-3 control-label">{{Inverser l\'action}}</label>';
     echo '<div class="col-sm-3">';

@@ -16,16 +16,88 @@
  */
 require_once __DIR__ . '/../../../../core/php/core.inc.php';
 
-if (isset($_GET['response_type'])) {
+if (init('response_type') == 'code') {
 	include_file('core', 'authentification', 'php');
-	if (!isConnect('admin')) {
-		echo 'Merci de vous connecter à Jeedom avant de configurer la connexion avec Google';
+	// Check for a logged in user
+	if (!isConnect()) {
+		// If login and password supplied, try to login the user
+		if (init('username', '') != '' || init('password', '') != '') {
+			$user = user::connect(init('username'), init('password'));
+			if (is_object($user)
+					&& network::getUserLocation() != 'internal'
+					&& $user->getOptions('twoFactorAuthentification', 0) == 1
+					&& $user->getOptions('twoFactorAuthentificationSecret') != ''
+					&& init('twoFactorCode') == '') {
+				$error = __("Merci de fournir un Token 2FA", __FILE__);
+				$mfa = true;
+
+			} elseif (!login(init('username'), init('password'), init('twoFactorCode'))) {
+				$error = __("Mot de passe ou nom d'utilisateur incorrect", __FILE__);
+			}
+		} else {
+			$error = '';
+		}
+	}
+
+	// Check if user is an Admin
+	if (!isConnect('admin') && !isset($error)) {
+		$error = __('Merci de vous connecter avec un compte Admin', __FILE__);
+	}
+
+	// If something failed prompt a login page
+	if (isset($error)) {
+		?>
+		<html>
+		<head>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+			<title>Jeedom</title>
+			<link rel="icon" href="/core/img/logo-jeedom-petit-nom-couleur-128x128.png">
+			<meta name="theme-color" content="#3f51b5">
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		</head>
+		<body>
+			<br/>
+			<center>
+				<img src='/core/img/logo-jeedom-petit-nom-couleur-128x128.png' /><br/><br/>
+				<?php
+				if ($error != ''){
+					echo '<div class="alert alert-danger" role="alert" style="margin:10px">' . $error . '</div>';
+				}
+				?>
+				<h2 id="welcome_message">{{Merci de vous connecter à votre Jeedom pour configurer la connexion avec Google}}</h2>
+				<form method='post' action='<?php echo $_SERVER["PHP_SELF"]; ?>' style="margin:10px">
+					<div class="form-group row"><div class="col-sm-4 col-md-4 col-lg-2 offset-md-4 offset-lg-5">
+						<input class="form-control" name="username" placeholder="{{Nom d'utilisateur}}">
+					</div></div>
+					<div class="form-group row"><div class="col-sm-4 col-md-4 col-lg-2 offset-md-4 offset-lg-5">
+						<input type="password" class="form-control" name="password" placeholder="{{Mot de passe}}">
+					</div></div>
+					<?php if ($mfa) { ?>
+					<div class="form-group row"><div class="col-sm-4 col-md-4 col-lg-2 offset-md-4 offset-lg-5">
+						<input class="form-control" name="twoFactorCode" placeholder="{{Authentification à 2 facteurs}}">
+					</div></div>
+					<?php 
+					}
+					foreach(array('response_type', 'client_id', 'redirect_uri', 'state') as $param) {
+						$value = init($param);
+						if($value != '')
+							echo '			<input type="hidden" name="'. htmlspecialchars($param) .'" value="'. htmlspecialchars($value) .'" />';
+					}
+					?>
+					<button type="submit" class="btn btn-primary mb-2">{{Valider}}</button>
+				</form>
+			</center>
+			<pre><?php print_r($_REQUEST); ?></pre>
+		</body>
+		</html>
+		<?php
 		die();
 	}
-	if ($_GET['client_id'] == config::byKey('gshs::clientId', 'gsh') && $_GET['response_type'] == 'code') {
+	if (init('client_id') == config::byKey('gshs::clientId', 'gsh')) {
 		$authorization_code = config::genKey();
 		config::save('OAuthAuthorizationCode', $authorization_code, 'gsh');
-		header('Location: ' . $_GET['redirect_uri'] . '?code=' . $authorization_code . '&state=' . $_GET['state']);
+		header('Location: ' . init('redirect_uri') . '?code=' . $authorization_code . '&state=' . init('state'));
 	}
 } else if ($_POST['client_id'] == config::byKey('gshs::clientId', 'gsh') && $_POST['client_secret'] == config::byKey('gshs::clientSecret', 'gsh')) {
 	if (!in_array(init('type', 'sh'), array('df', 'sh'))) {

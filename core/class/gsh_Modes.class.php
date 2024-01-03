@@ -66,7 +66,9 @@ class gsh_Modes {
         'name' => 'mode',
         'name_values' => array(array('name_synonym' => array_values(array_filter($names)),'lang' => substr(config::byKey('language'),0,2))),
         'settings'  => $settings,
-        'ordered'=> true
+        'ordered'=> true,
+        'commandOnlyModes' => (!isset($return['customData']['Modes_cmdGetMode'])),
+        'commandOnlyModes' => (count($settings) == 0) 
       ));
     }
     return $return;
