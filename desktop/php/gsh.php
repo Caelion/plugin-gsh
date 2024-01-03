@@ -37,7 +37,7 @@ uasort($supportedType, function ($a, $b) {
 					</thead>
 					<tbody>
 						<?php
-						foreach (eqLogic::all() as $eqLogic) {
+						foreach (eqLogic::all(true) as $eqLogic) {
 							echo '<tr class="device" data-link_id="' . $eqLogic->getId() . '" data-link_type="eqLogic">';
 							echo '<td style="width:250px;">' . $eqLogic->getHumanName(true) . '</td>';
 							echo '<td>' . $eqLogic->getEqType_name() . '</td>';

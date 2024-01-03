@@ -9,6 +9,7 @@
 - Préparation pour jeedom 4.4
 - Amélioration du support des lumieres
 - Correction de bugs
+- Affichage des équipements actifs seulement
 
 # 14/10/2023
 
