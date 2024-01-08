@@ -110,7 +110,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 </div>
 
 <script>
-initTooltips($("#div_advanceConfigForm"))
+jeedomUtils.initTooltips($("#div_advanceConfigForm"))
 $('#div_advanceConfigForm').setValues(device, '.deviceAttr');
 $('.bt_advanceConfigSaveDevice').on('click',function(){
 	var device = $('#div_advanceConfigForm').getValues('.deviceAttr')[0];
