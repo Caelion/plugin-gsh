@@ -94,7 +94,7 @@ function sendDevices(){
       handleAjaxError(request, status, error);
     },
     success: function (data) {
-      $('#div_alert').showAlert({message: '{{Synchronisation réussie. Pour voir le status des equipements à jour, merci de rafraichir la page (F5)}}', level: 'success'});
+      $('#div_alert').showAlert({message: '{{Synchronisation réussie. Pour voir le status des équipements à jour, merci de rafraîchir la page (F5)}}', level: 'success'});
     },
   });
 }
@@ -162,7 +162,7 @@ $('#bt_displayDevice').off('click').on('click',function(){
 
 
 $('#bt_addScene').off('click').on('click', function () {
-  bootbox.prompt("{{Nom de la scene ?}}", function (result) {
+  bootbox.prompt("{{Nom de la scène ?}}", function (result) {
     if (result !== null && result != '') {
       addScene({options : {name: result}});
     }
@@ -252,8 +252,8 @@ function addAction(_action, _type, _name, _el) {
   div += '<div class="form-group ">';
   div += '<label class="col-sm-2 control-label">' + _name + '</label>';
   div += '<div class="col-sm-1  ' + input + '">';
-  div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour desactiver l\'action}}" />';
-  div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" title="{{Cocher pour que la commande s\'éxecute en parrallele des autres actions}}" />';
+  div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'action}}" />';
+  div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" title="{{Cocher pour que la commande s\'éxecute en parrallèle des autres actions}}" />';
   div += '</div>';
   div += '<div class="col-sm-4 ' + input + '">';
   div += '<div class="input-group">';
