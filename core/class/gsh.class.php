@@ -60,7 +60,7 @@ class gsh extends eqLogic {
 			'action.devices.types.BATHTUB ' => array('name' => __('Baignoire', __FILE__), 'traits' => array('OnOff', 'Fill')),
 			'action.devices.types.BLENDER' => array('name' => __('Mixeur', __FILE__), 'traits' => array('Cook', 'Timer', 'OnOff', 'StartStop')),
 			'action.devices.types.BLINDS' => array('name' => __('Store', __FILE__), 'traits' => array('Modes', 'OpenClose')),
-			'action.devices.types.BOILER' => array('name' => __('Chaudiere', __FILE__), 'traits' => array('Modes', 'TemperatureControl', 'OnOff', 'Toggles')),
+			'action.devices.types.BOILER' => array('name' => __('Chaudière', __FILE__), 'traits' => array('Modes', 'TemperatureControl', 'OnOff', 'Toggles')),
 			'action.devices.types.CAMERA' => array('name' => __('Caméra', __FILE__), 'class' => 'gsh_camera'),
 			'action.devices.types.CARBON_MONOXIDE_DETECTOR' => array('name' => __('Detecteur de CO', __FILE__), 'traits' => array('SensorState')),
 			'action.devices.types.CLOSET' => array('name' => __('Placard', __FILE__), 'traits' => array('OpenClose')),
@@ -98,8 +98,8 @@ class gsh extends eqLogic {
 			'action.devices.types.RADIATOR' => array('name' => __('Radiateur', __FILE__), 'traits' => array('Modes', 'Toggles', 'OnOff')),
 			'action.devices.types.REFRIGERATOR' => array('name' => __('Frigo', __FILE__), 'traits' => array('Modes', 'Toggles', 'OnOff', 'TemperatureControl')),
 			'action.devices.types.REMOTECONTROL' => array('name' => __('Télécommande', __FILE__), 'traits' => array('OnOff', 'MediaState', 'InputSelector', 'AppSelector', 'TransportControl', 'Volume')),
-			'action.devices.types.ROUTER' => array('name' => __('Router', __FILE__), 'traits' => array('Modes', 'Toggles', 'Reboot', 'SoftwareUpdate', 'NetworkControl')),
-			'action.devices.types.SCENE' => array('name' => __('Scene', __FILE__), 'class' => 'gsh_scene'),
+			'action.devices.types.ROUTER' => array('name' => __('Routeur', __FILE__), 'traits' => array('Modes', 'Toggles', 'Reboot', 'SoftwareUpdate', 'NetworkControl')),
+			'action.devices.types.SCENE' => array('name' => __('Scène', __FILE__), 'class' => 'gsh_scene'),
 			'action.devices.types.SECURITYSYSTEM' => array('name' => __('Alarme', __FILE__), 'traits' => array('ArmDisarm', 'StatusReport', 'Modes')),
 			'action.devices.types.SENSOR' => array('name' => __('Capteur', __FILE__), 'traits' => array('OnOff', 'SensorState', 'TemperatureControl', 'Brightness', 'HumiditySetting', 'OccupancySensing')),
 			'action.devices.types.SHOWER' => array('name' => __('Douche', __FILE__), 'traits' => array('Modes', 'Toggles', 'OnOff', 'TemperatureControl')),
@@ -118,7 +118,7 @@ class gsh extends eqLogic {
 			'action.devices.types.WATERPURIFIER' => array('name' => __("Purificateur d'eau", __FILE__), 'traits' => array('Modes', 'Toggles', 'OnOff', 'TemperatureControl')),
 			'action.devices.types.WATERSOFTENER' => array('name' => __("Adoucisseur d'eau", __FILE__), 'traits' => array('Modes', 'Toggles', 'OnOff', 'SensorState')),
 			'action.devices.types.WINDOW' => array('name' => __('Fenêtre', __FILE__), 'traits' => array('OpenClose')),
-			'action.devices.types.YOGURTMAKER' => array('name' => __('Yaourtiere', __FILE__), 'traits' => array('Cook', 'Timer', 'OnOff', 'StartStop')),
+			'action.devices.types.YOGURTMAKER' => array('name' => __('Yaourtière', __FILE__), 'traits' => array('Cook', 'Timer', 'OnOff', 'StartStop')),
 		);
 	}
 
