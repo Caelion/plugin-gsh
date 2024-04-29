@@ -2,6 +2,9 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Registro de cambios de Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto",
+        "Correction d'un bug avec Jeedom 4.4": "Se corrigió un error con Jeedom 4.4",
+        "Version uniquement compatible avec Jeedom 4": "Versión sólo compatible con Jeedom 4",
+        "4 ou plus": "4 o más",
         "03\/01\/2024": "01\/03\/2024",
         "Préparation pour jeedom 4.4": "Preparándose para el apuro 4.4",
         "Amélioration du support des lumieres": "Soporte de luz mejorado",
