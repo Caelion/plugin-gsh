@@ -109,7 +109,7 @@ class gsh_Rotation {
     if (isset($_infos['customData']['Rotation_cmdGet'])) {
       $cmd = cmd::byId($_infos['customData']['Rotation_cmdGet']);
       if (is_object($cmd)) {
-        if ($this->getUnite() == '%') {
+        if ($cmd->getUnite() == '%') {
           $return['rotationPercent'] = $cmd->execCmd();
         } else {
           $return['rotationDegrees'] = $cmd->execCmd();
