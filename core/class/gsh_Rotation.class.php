@@ -20,20 +20,20 @@
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 class gsh_Rotation {
-  
+
   /*     * *************************Attributs****************************** */
-  
+
   private static $_ROTATION = array('ROTATION');
   private static $_ROTATION_STATE = array('ROTATION_STATE');
-  
+
   /*     * ***********************Methode static*************************** */
-  
-  public static function discover($_device,$_eqLogic){
-    $return = array('traits' => array(),'customData' => array(),'attributes' => array(
+
+  public static function discover($_device, $_eqLogic) {
+    $return = array('traits' => array(), 'customData' => array(), 'attributes' => array(
       'commandOnlyRotation' => false,
       'supportsContinuousRotation' => true,
-      'supportsDegrees'=>true,
-      'supportsPercent'=> true,
+      'supportsDegrees' => true,
+      'supportsPercent' => true,
       'rotationDegreesRange' => array(
         'rotationDegreesMin' => 0,
         'rotationDegreesMax' => 360,
@@ -45,18 +45,18 @@ class gsh_Rotation {
           $return['traits'][] = 'action.devices.traits.Rotation';
         }
         $return['customData']['Rotation_cmdSet'] = $cmd->getId();
-        if(isset($return['attributes']['rotationDegreesRange'])){
-          $return['attributes']['rotationDegreesRange']['rotationDegreesMin'] = $cmd->getConfiguration('minValue',0);
-          $return['attributes']['rotationDegreesRange']['rotationDegreesMax'] = $cmd->getConfiguration('maxValue',360);
+        if (isset($return['attributes']['rotationDegreesRange'])) {
+          $return['attributes']['rotationDegreesRange']['rotationDegreesMin'] = $cmd->getConfiguration('minValue', 0);
+          $return['attributes']['rotationDegreesRange']['rotationDegreesMax'] = $cmd->getConfiguration('maxValue', 360);
         }
       }
       if (in_array($cmd->getGeneric_type(), self::$_ROTATION_STATE)) {
         $return['customData']['Rotation_cmdGet'] = $cmd->getId();
         $return['attributes']['commandOnlyRotation'] = true;
-        if($cmd->getUnite() == '%'){
+        if ($cmd->getUnite() == '%') {
           $return['attributes']['supportsDegrees'] = false;
           $return['attributes']['supportsPercent'] = true;
-          if(isset($return['attributes']['rotationDegreesRange'])){
+          if (isset($return['attributes']['rotationDegreesRange'])) {
             unset($return['attributes']['rotationDegreesRange']);
           }
         }
@@ -64,36 +64,36 @@ class gsh_Rotation {
     }
     return $return;
   }
-  
-  public static function needGenericType(){
+
+  public static function needGenericType() {
     return array(
-      __('Rotation',__FILE__) => self::$_ROTATION
+      __('Rotation', __FILE__) => self::$_ROTATION
     );
   }
-  
-  public static function exec($_device, $_executions, $_infos){
+
+  public static function exec($_device, $_executions, $_infos) {
     $return = array();
     foreach ($_executions as $execution) {
       try {
         switch ($execution['command']) {
           case 'action.devices.commands.RotateAbsolute':
-          if (isset($_infos['customData']['Rotation_cmdSet'])) {
-            $cmd = cmd::byId($_infos['customData']['Rotation_cmdSet']);
-          }
-          if (!is_object($cmd)) {
+            if (isset($_infos['customData']['Rotation_cmdSet'])) {
+              $cmd = cmd::byId($_infos['customData']['Rotation_cmdSet']);
+            }
+            if (!is_object($cmd)) {
+              break;
+            }
+            $value == null;
+            if (isset($execution['params']['rotationPercent'])) {
+              $value = $execution['params']['rotationPercent'];
+            } else if (isset($execution['params']['rotationDegrees'])) {
+              $value = $execution['params']['rotationDegrees'];
+            }
+            if ($value == null) {
+              return;
+            }
+            $cmd->execCmd(array('slider' => $value));
             break;
-          }
-          $value == null;
-          if(isset($execution['params']['rotationPercent'])){
-            $value = $execution['params']['rotationPercent'];
-          }else if(isset($execution['params']['rotationDegrees'])){
-            $value = $execution['params']['rotationDegrees'];
-          }
-          if($value == null){
-            return;
-          }
-          $cmd->execCmd(array('slider' => $value));
-          break;
         }
       } catch (Exception $e) {
         log::add('gsh', 'error', $e->getMessage());
@@ -102,21 +102,20 @@ class gsh_Rotation {
     }
     return $return;
   }
-  
-  public static function query($_device, $_infos){
+
+  public static function query($_device, $_infos) {
     $return = array();
     $cmd = null;
     if (isset($_infos['customData']['Rotation_cmdGet'])) {
       $cmd = cmd::byId($_infos['customData']['Rotation_cmdGet']);
       if (is_object($cmd)) {
-        if($this->getUnite() == '%'){
+        if ($this->getUnite() == '%') {
           $return['rotationPercent'] = $cmd->execCmd();
-        }else{
+        } else {
           $return['rotationDegrees'] = $cmd->execCmd();
         }
       }
     }
     return $return;
   }
-  
 }
