@@ -20,18 +20,18 @@
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 class gsh_ColorSetting {
-  
+
   /*     * *************************Attributs****************************** */
-  
+
   private static $_COLOR = array('LIGHT_SET_COLOR');
   private static $_COLOR_STATE = array('LIGHT_COLOR');
   private static $_COLOR_TEMP = array('LIGHT_SET_COLOR_TEMP');
   private static $_COLOR_TEMP_STATE = array('LIGHT_COLOR_TEMP');
-  
+
   /*     * ***********************Methode static*************************** */
-  
-  public static function discover($_device,$_eqLogic){
-    $return = array('traits' => array(),'customData' => array());
+
+  public static function discover($_device, $_eqLogic) {
+    $return = array('traits' => array(), 'customData' => array());
     foreach ($_eqLogic->getCmd() as $cmd) {
       if (in_array($cmd->getGeneric_type(), self::$_COLOR)) {
         if (!in_array('action.devices.traits.ColorSetting', $return['traits'])) {
@@ -43,7 +43,7 @@ class gsh_ColorSetting {
         }
         $return['attributes']['colorModel'] = 'rgb';
       }
-      if (in_array($cmd->getGeneric_type(),self::$_COLOR_TEMP)) {
+      if (in_array($cmd->getGeneric_type(), self::$_COLOR_TEMP)) {
         if (!in_array('action.devices.traits.ColorSetting', $return['traits'])) {
           $return['traits'][] = 'action.devices.traits.ColorSetting';
         }
@@ -65,45 +65,45 @@ class gsh_ColorSetting {
     }
     return $return;
   }
-  
-  public static function needGenericType(){
+
+  public static function needGenericType() {
     return array(
-      __('Couleur',__FILE__) => self::$_COLOR,
-      __('Etat couleur',__FILE__) => self::$_COLOR_STATE,
+      __('Couleur', __FILE__) => self::$_COLOR,
+      __('Etat couleur', __FILE__) => self::$_COLOR_STATE,
     );
   }
-  
-  public static function exec($_device, $_executions, $_infos){
+
+  public static function exec($_device, $_executions, $_infos) {
     $return = array();
     foreach ($_executions as $execution) {
       try {
         switch ($execution['command']) {
           case 'action.devices.commands.ColorAbsolute':
-          if (isset($execution['params']['color']['spectrumRGB'])) {
-            if (isset($_infos['customData']['ColorSetting_cmdSetColor'])) {
-              $cmd = cmd::byId($_infos['customData']['ColorSetting_cmdSetColor']);
+            if (isset($execution['params']['color']['spectrumRGB'])) {
+              if (isset($_infos['customData']['ColorSetting_cmdSetColor'])) {
+                $cmd = cmd::byId($_infos['customData']['ColorSetting_cmdSetColor']);
+              }
+              if (is_object($cmd)) {
+                $cmd->execCmd(array('color' => '#' . str_pad(dechex($execution['params']['color']['spectrumRGB']), 6, '0', STR_PAD_LEFT)));
+              }
             }
-            if(is_object($cmd)){
-              $cmd->execCmd(array('color' => '#' . str_pad(dechex($execution['params']['color']['spectrumRGB']), 6, '0', STR_PAD_LEFT)));
+            if (isset($execution['params']['color']['temperature'])) {
+              if (isset($_infos['customData']['ColorSetting_cmdSetTempColor'])) {
+                $cmd = cmd::byId($_infos['customData']['ColorSetting_cmdSetTempColor']);
+              }
+              if (is_object($cmd)) {
+                $cmd->execCmd(array('slider' => $execution['params']['color']['temperature']));
+              }
             }
-          }
-          if (isset($execution['params']['color']['temperature'])) {
-            if (isset($_infos['customData']['ColorSetting_cmdSetTempColor'])) {
-              $cmd = cmd::byId($_infos['customData']['ColorSetting_cmdSetTempColor']);
+            $return = array('status' => 'SUCCESS');
+            if (isset($_infos['customData']['OnOff_cmdGetState'])) {
+              $state = cmd::byId($_infos['customData']['OnOff_cmdGetState']);
+              if (is_object()) {
+                sleep(1);
+                $return['on'] = boolval($state->execCmd());
+              }
             }
-            if(is_object($cmd)){
-              $cmd->execCmd(array('slider' => $execution['params']['color']['temperature']));
-            }
-          }
-          $return = array('status' => 'SUCCESS');
-          if(isset($_infos['customData']['OnOff_cmdGetState'])){
-            $state = cmd::byId($_infos['customData']['OnOff_cmdGetState']);
-            if(is_object()){
-               sleep(1);
-               $return['on'] = boolval($state->execCmd());
-            }
-          }
-          break;
+            break;
         }
       } catch (Exception $e) {
         log::add('gsh', 'error', $e->getMessage());
@@ -112,25 +112,24 @@ class gsh_ColorSetting {
     }
     return $return;
   }
-  
-  public static function query($_device, $_infos){
+
+  public static function query($_device, $_infos) {
     $return = array();
     $cmd = null;
     if (isset($_infos['customData']['ColorSetting_cmdGetColor'])) {
       $cmd = cmd::byId($_infos['customData']['ColorSetting_cmdGetColor']);
-      if(!isset($return['color'])){
+      if (!isset($return['color'])) {
         $return['color'] = array();
       }
       $return['color']['spectrumRGB'] = hexdec(str_replace('#', '', $cmd->execCmd()));
     }
     if (isset($_infos['customData']['ColorSetting_cmdGetTempColor'])) {
       $cmd = cmd::byId($_infos['customData']['ColorSetting_cmdGetTempColor']);
-      if(!isset($return['color'])){
+      if (!isset($return['color'])) {
         $return['color'] = array();
       }
       $return['color']['temperatureK'] = $cmd->execCmd();
     }
     return $return;
   }
-  
 }
