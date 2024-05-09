@@ -98,7 +98,7 @@ class gsh_ColorSetting {
             $return = array('status' => 'SUCCESS');
             if (isset($_infos['customData']['OnOff_cmdGetState'])) {
               $state = cmd::byId($_infos['customData']['OnOff_cmdGetState']);
-              if (is_object()) {
+              if (is_object($state)) {
                 sleep(1);
                 $return['on'] = boolval($state->execCmd());
               }
