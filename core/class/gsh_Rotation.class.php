@@ -83,7 +83,7 @@ class gsh_Rotation {
             if (!is_object($cmd)) {
               break;
             }
-            $value == null;
+            $value = null;
             if (isset($execution['params']['rotationPercent'])) {
               $value = $execution['params']['rotationPercent'];
             } else if (isset($execution['params']['rotationDegrees'])) {
