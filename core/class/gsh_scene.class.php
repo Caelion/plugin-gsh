@@ -20,11 +20,11 @@
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 class gsh_scene {
-	
+
 	/*     * *************************Attributs****************************** */
-	
+
 	/*     * ***********************Methode static*************************** */
-	
+
 	public static function buildDevice($_device) {
 		$return = array();
 		$return['id'] = 'scene::' . $_device->getId();
@@ -37,24 +37,24 @@ class gsh_scene {
 		$return['attributes'] = array('sceneReversible' => (count($_device->getOptions('outAction')) > 0));
 		return $return;
 	}
-	
+
 	public static function query($_device, $_infos) {
 		return self::getState($_device, $_infos);
 	}
-	
+
 	public static function exec($_device, $_executions, $_infos) {
 		$return = array('status' => 'ERROR');
 		foreach ($_executions as $execution) {
 			try {
 				switch ($execution['command']) {
 					case 'action.devices.commands.ActivateScene':
-					if ($execution['params']['deactivate']) {
-						self::doAction($_device, 'outAction');
-					} else {
-						self::doAction($_device, 'inAction');
-					}
-					$return = array('status' => 'SUCCESS');
-					break;
+						if ($execution['params']['deactivate']) {
+							self::doAction($_device, 'outAction');
+						} else {
+							self::doAction($_device, 'inAction');
+						}
+						$return = array('status' => 'SUCCESS');
+						break;
 				}
 			} catch (Exception $e) {
 				$return = array('status' => 'ERROR');
@@ -63,12 +63,12 @@ class gsh_scene {
 		$return['states'] = new stdClass();
 		return $return;
 	}
-	
+
 	public static function getState($_device, $_infos) {
 		return array('online' => true);
 	}
-	
-	public function doAction($_device, $_action) {
+
+	public static function doAction($_device, $_action) {
 		if (!is_array($_device->getOptions($_action))) {
 			return;
 		}
@@ -84,9 +84,8 @@ class gsh_scene {
 			}
 		}
 	}
-	
+
 	/*     * *********************Méthodes d'instance************************* */
-	
+
 	/*     * **********************Getteur Setteur*************************** */
-	
 }
