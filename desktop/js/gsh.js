@@ -17,6 +17,8 @@
 
 actionOptions = []
 
+jeedomUtils.initDataTables('#eqlogictab', false, true)
+
 $('.deviceAttr[data-l1key=options][data-l2key=challenge]').off('change').on('change',function(){
   $(this).closest('tr').find('.challenge').hide();
   if(+$(this).value() != ''){
