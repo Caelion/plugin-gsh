@@ -31,6 +31,7 @@ include_file('core', 'gsh_ColorSetting', 'class', 'gsh');
 include_file('core', 'gsh_LockUnlock', 'class', 'gsh');
 include_file('core', 'gsh_MediaState', 'class', 'gsh');
 include_file('core', 'gsh_Modes', 'class', 'gsh');
+include_file('core', 'gsh_Toggle', 'class', 'gsh');
 include_file('core', 'gsh_OnOff', 'class', 'gsh');
 include_file('core', 'gsh_OpenClose', 'class', 'gsh');
 include_file('core', 'gsh_SensorState', 'class', 'gsh');
@@ -51,22 +52,22 @@ class gsh extends eqLogic {
 
 	public static function getSupportedType() {
 		return array(
-			'action.devices.types.AC_UNIT' => array('name' => __('Climatiseur', __FILE__), 'traits' => array('FanSpeed', 'TemperatureSetting', 'OnOff')),
-			'action.devices.types.AIRCOOLER' => array('name' => __("Refroidisseur d'air", __FILE__), 'traits' => array('FanSpeed', 'TemperatureSetting', 'OnOff', 'HumiditySetting')),
+			'action.devices.types.AC_UNIT' => array('name' => __('Climatiseur', __FILE__), 'traits' => array('FanSpeed', 'TemperatureSetting', 'OnOff','Toggle')),
+			'action.devices.types.AIRCOOLER' => array('name' => __("Refroidisseur d'air", __FILE__), 'traits' => array('FanSpeed', 'TemperatureSetting', 'OnOff', 'HumiditySetting','Toggle')),
 			'action.devices.types.AIRFRESHENER' => array('name' => __('Désodorisant', __FILE__), 'traits' => array('Modes', 'Toggles', 'OnOff')),
 			'action.devices.types.AIRPURIFIER' => array('name' => __('Purificateur d\'air', __FILE__), 'traits' => array('FanSpeed', 'Modes', 'OnOff', 'SensorState', 'Toggles')),
-			'action.devices.types.AUDIO_VIDEO_RECEIVER' => array('name' => __('Ampli AV', __FILE__), 'traits' => array('OnOff', 'MediaState', 'InputSelector', 'AppSelector', 'TransportControl', 'Volume', 'Modes')),
+			'action.devices.types.AUDIO_VIDEO_RECEIVER' => array('name' => __('Ampli AV', __FILE__), 'traits' => array('OnOff', 'MediaState', 'InputSelector', 'AppSelector', 'TransportControl', 'Volume', 'Modes','Toggle')),
 			'action.devices.types.AWNING' => array('name' => __('Banne', __FILE__), 'traits' => array('Modes', 'OpenClose')),
 			'action.devices.types.BATHTUB ' => array('name' => __('Baignoire', __FILE__), 'traits' => array('OnOff', 'Fill')),
-			'action.devices.types.BLENDER' => array('name' => __('Mixeur', __FILE__), 'traits' => array('Cook', 'Timer', 'OnOff', 'StartStop')),
-			'action.devices.types.BLINDS' => array('name' => __('Store', __FILE__), 'traits' => array('Modes', 'OpenClose')),
+			'action.devices.types.BLENDER' => array('name' => __('Mixeur', __FILE__), 'traits' => array('Cook', 'Timer', 'OnOff', 'StartStop','Toggle')),
+			'action.devices.types.BLINDS' => array('name' => __('Store', __FILE__), 'traits' => array('Modes', 'OpenClose','Toggle')),
 			'action.devices.types.BOILER' => array('name' => __('Chaudière', __FILE__), 'traits' => array('Modes', 'TemperatureControl', 'OnOff', 'Toggles')),
 			'action.devices.types.CAMERA' => array('name' => __('Caméra', __FILE__), 'class' => 'gsh_camera'),
 			'action.devices.types.CARBON_MONOXIDE_DETECTOR' => array('name' => __('Detecteur de CO', __FILE__), 'traits' => array('SensorState')),
 			'action.devices.types.CLOSET' => array('name' => __('Placard', __FILE__), 'traits' => array('OpenClose')),
-			'action.devices.types.COFFEE_MAKER' => array('name' => __('Machine à café', __FILE__), 'traits' => array('Cook', 'OnOff', 'TemperatureControl')),
-			'action.devices.types.COOKTOP' => array('name' => __('Cuisine', __FILE__), 'traits' => array('Cook', 'Timer', 'OnOff', 'StartStop')),
-			'action.devices.types.CURTAIN' => array('name' => __('Rideaux', __FILE__), 'traits' => array('OpenClose')),
+			'action.devices.types.COFFEE_MAKER' => array('name' => __('Machine à café', __FILE__), 'traits' => array('Cook', 'OnOff', 'TemperatureControl','Toggle')),
+			'action.devices.types.COOKTOP' => array('name' => __('Cuisine', __FILE__), 'traits' => array('Cook', 'Timer', 'OnOff', 'StartStop','Toggle')),
+			'action.devices.types.CURTAIN' => array('name' => __('Rideaux', __FILE__), 'traits' => array('OpenClose','Toggle')),
 			'action.devices.types.DEHUMIDIFIER' => array('name' => __('Déshumidificateur', __FILE__), 'traits' => array('FanSpeed', 'HumiditySetting', 'OnOff', 'Modes', 'RunCycle', 'StartStop', 'Toggles')),
 			'action.devices.types.DEHYDRATOR' => array('name' => __('Déshydrateur', __FILE__), 'traits' => array('Cook', 'Timer', 'OnOff', 'Modes', 'Toggles', 'StartStop')),
 			'action.devices.types.DISHWASHER' => array('name' => __('Lave-vaiselle', __FILE__), 'traits' => array('OnOff', 'StartStop', 'Modes', 'Toggles', 'RunCycle')),
