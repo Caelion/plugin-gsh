@@ -69,7 +69,7 @@ class gsh_Toggle {
         switch ($execution['command']) {
           case 'action.devices.commands.SetToggles':
           foreach ($execution['params']['updateToggleSettings'] as $key => $value) {
-            $cmd = cmd::byId($value);
+            $cmd = cmd::byId($key);
             if (!is_object($cmd)) {
               continue;
             }
