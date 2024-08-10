@@ -297,6 +297,11 @@
         "Erreur lors de l\\'éxecution de ": "Erreur lors de l\\'éxecution de",
         ". Détails : ": "Détails :"
     },
+    "plugins\/gsh\/core\/class\/gsh_Toggle.class.php": {
+        "Toggle": "Toggle",
+        "Nom du toggle": "Nom du toggle",
+        "Nom du toggle pour la commande": "Nom du toggle pour la commande"
+    },
     "plugins\/gsh\/core\/class\/gsh_OpenClose.class.php": {
         "Position": "位置",
         "On": "On",

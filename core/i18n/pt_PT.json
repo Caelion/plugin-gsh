@@ -297,6 +297,11 @@
         "Erreur lors de l\\'éxecution de ": "Erro ao executar",
         ". Détails : ": "Detalhes:"
     },
+    "plugins\/gsh\/core\/class\/gsh_Toggle.class.php": {
+        "Toggle": "Alternar",
+        "Nom du toggle": "Alternar nome",
+        "Nom du toggle pour la commande": "Alternar nome do comando"
+    },
     "plugins\/gsh\/core\/class\/gsh_OpenClose.class.php": {
         "Position": "Posição",
         "On": "Nós",

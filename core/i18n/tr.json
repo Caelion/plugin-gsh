@@ -297,6 +297,11 @@
         "Erreur lors de l\\'éxecution de ": "Yürütülürken hata oluştu",
         ". Détails : ": "Detaylar:"
     },
+    "plugins\/gsh\/core\/class\/gsh_Toggle.class.php": {
+        "Toggle": "Toggle",
+        "Nom du toggle": "Nom du toggle",
+        "Nom du toggle pour la commande": "Nom du toggle pour la commande"
+    },
     "plugins\/gsh\/core\/class\/gsh_OpenClose.class.php": {
         "Position": "Pozisyon",
         "On": "On",

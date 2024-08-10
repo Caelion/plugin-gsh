@@ -297,6 +297,11 @@
         "Erreur lors de l\\'éxecution de ": "Fehler beim Ausführen",
         ". Détails : ": "Details:"
     },
+    "plugins\/gsh\/core\/class\/gsh_Toggle.class.php": {
+        "Toggle": "Umschalten",
+        "Nom du toggle": "Namen umschalten",
+        "Nom du toggle pour la commande": "Namen für Befehl umschalten"
+    },
     "plugins\/gsh\/core\/class\/gsh_OpenClose.class.php": {
         "Position": "Position",
         "On": "Ein",
