@@ -82,14 +82,14 @@
         "Configuration de l'équipement": "Configuration de l'équipement",
         "Configuration avancée": "Configuration avancée",
         "Information type générique": "Information type générique",
-        "Synchronisation réussie. Pour voir le status des equipements à jour, merci de rafraichir la page (F5)": "Synchronisation réussie. Pour voir le status des equipements à jour, merci de rafraichir la page (F5)",
+        "Synchronisation réussie. Pour voir le status des équipements à jour, merci de rafraîchir la page (F5)": "Synchronisation réussie. Pour voir le status des équipements à jour, merci de rafraîchir la page (F5)",
         "Configuration péripheriques": "Configuration péripheriques",
-        "Nom de la scene ?": "Nom de la scene ?",
+        "Nom de la scène ?": "Nom de la scène ?",
         "Nouveau nom ?": "Nouveau nom ?",
         "Action d\\'entrée": "Action d\\'entrée",
         "Action de sortie": "Action de sortie",
-        "Décocher pour desactiver l\\'action": "Décocher pour desactiver l\\'action",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxecute en parrallele des autres actions",
+        "Décocher pour désactiver l\\'action": "Décocher pour désactiver l\\'action",
+        "Cocher pour que la commande s\\'éxecute en parrallèle des autres actions": "Cocher pour que la commande s\\'éxecute en parrallèle des autres actions",
         "Sélectionner un mot-clé": "Sélectionner un mot-clé",
         "Supprimer": "Supprimer",
         "Nom de la scène": "Nom de la scène",
@@ -97,7 +97,7 @@
         "Pseudo": "Pseudo"
     },
     "plugins\/gsh\/core\/php\/jeeGsh.php": {
-        "Vous n\\'etes pas autorisé à effectuer cette action. Clef API invalide. Merci de corriger la clef API sur votre page profils du market et d\\'attendre 24h avant de réessayer.": "Vous n\\'etes pas autorisé à effectuer cette action. Clef API invalide. Merci de corriger la clef API sur votre page profils du market et d\\'attendre 24h avant de réessayer.",
+        "Vous n\\'etes pas autorisé à effectuer cette action. Clef API invalide. Merci de corriger la clef API sur votre page profil du market et d\\'attendre 24h avant de réessayer.": "Vous n\\'etes pas autorisé à effectuer cette action. Clef API invalide. Merci de corriger la clef API sur votre page profil du market et d\\'attendre 24h avant de réessayer.",
         "Configuration OK": "Configuration OK"
     },
     "plugins\/gsh\/core\/php\/jeeGshOauth.php": {
@@ -140,7 +140,7 @@
         "Baignoire": "Baignoire",
         "Mixeur": "Mixeur",
         "Store": "Store",
-        "Chaudiere": "Chaudiere",
+        "Chaudière": "Chaudière",
         "Caméra": "Caméra",
         "Detecteur de CO": "Detecteur de CO",
         "Placard": "Placard",
@@ -178,8 +178,8 @@
         "Radiateur": "Radiateur",
         "Frigo": "Frigo",
         "Télécommande": "Télécommande",
-        "Router": "Router",
-        "Scene": "Scene",
+        "Routeur": "Routeur",
+        "Scène": "Scène",
         "Alarme": "Alarme",
         "Capteur": "Capteur",
         "Douche": "Douche",
@@ -198,7 +198,7 @@
         "Purificateur d'eau": "Purificateur d'eau",
         "Adoucisseur d'eau": "Adoucisseur d'eau",
         "Fenêtre": "Fenêtre",
-        "Yaourtiere": "Yaourtiere",
+        "Yaourtière": "Yaourtière",
         "Veuillez vérifier la configuration": "Veuillez vérifier la configuration",
         "Erreur sur la demande de synchronisation :": "Erreur sur la demande de synchronisation :",
         "Erreur sur la demande de remonté d\\'état :": "Erreur sur la demande de remonté d\\'état :",
@@ -296,6 +296,11 @@
     "plugins\/gsh\/core\/class\/gsh_scene.class.php": {
         "Erreur lors de l\\'éxecution de ": "Erreur lors de l\\'éxecution de ",
         ". Détails : ": ". Détails : "
+    },
+    "plugins\/gsh\/core\/class\/gsh_Toggle.class.php": {
+        "Toggle": "Toggle",
+        "Nom du toggle": "Nom du toggle",
+        "Nom du toggle pour la commande": "Nom du toggle pour la commande"
     },
     "plugins\/gsh\/core\/class\/gsh_OpenClose.class.php": {
         "Position": "Position",

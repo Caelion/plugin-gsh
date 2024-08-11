@@ -110,7 +110,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 </div>
 
 <script>
-initTooltips($("#div_advanceConfigForm"))
+jeedomUtils.initTooltips($("#div_advanceConfigForm"))
 $('#div_advanceConfigForm').setValues(device, '.deviceAttr');
 $('.bt_advanceConfigSaveDevice').on('click',function(){
 	var device = $('#div_advanceConfigForm').getValues('.deviceAttr')[0];
@@ -136,7 +136,11 @@ $('.bt_advanceConfigSaveDevice').on('click',function(){
 });
 
 $('#table_advanceConfigGsh .bt_cmdConfiguration').off('click').on('click', function() {
-	$('#md_modal2').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open')
+	jeeDialog.dialog({
+          id: 'jee_modal2',
+          title: '{{Configuration de la commande}}',
+          contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')
+    })
 })
 
 </script>
