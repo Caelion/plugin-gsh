@@ -78,7 +78,7 @@ class gsh extends eqLogic {
 			'action.devices.types.FIREPLACE' => array('name' => __('Cheminée', __FILE__), 'traits' => array('OnOff', 'Modes', 'Toggles')),
 			'action.devices.types.FREEZER' => array('name' => __('Congélateur', __FILE__), 'traits' => array('OnOff', 'Modes', 'Toggles', 'TemperatureControl')),
 			'action.devices.types.FRYER' => array('name' => __('Friteuse', __FILE__), 'traits' => array('Cook', 'Timer', 'OnOff', 'StartStop')),
-			'action.devices.types.GARAGE' => array('name' => __('Porte Garage', __FILE__), 'traits' => array('OpenClose')),
+			'action.devices.types.GARAGE' => array('name' => __('Porte Garage', __FILE__), 'traits' => array('OpenClose','Toggle')),
 			'action.devices.types.GATE' => array('name' => __('Portail', __FILE__), 'traits' => array('OpenClose')),
 			'action.devices.types.GRILL' => array('name' => __('Grill', __FILE__), 'traits' => array('Cook', 'Timer', 'OnOff', 'StartStop')),
 			'action.devices.types.HEATER' => array('name' => __('Chauffe-eau', __FILE__), 'traits' => array('FanSpeed', 'TemperatureSetting', 'OnOff')),
