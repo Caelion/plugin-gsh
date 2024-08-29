@@ -28,7 +28,7 @@ class gsh_Modes {
   
   /*     * ***********************Methode static*************************** */
   
-  public function buildSetting($_name,$_synonyms,$_lang = 'fr'){
+  public static function buildSetting($_name,$_synonyms,$_lang = 'fr'){
     return array(
       'setting_name'=> $_name,
       'setting_values' => array(array('setting_synonym'=> array_values(array_filter($_synonyms)),'lang'=> $_lang))
