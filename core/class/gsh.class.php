@@ -111,7 +111,7 @@ class gsh extends eqLogic {
 			'action.devices.types.SPRINKLER' => array('name' => __('Arrosage', __FILE__), 'traits' => array('StartStop')),
 			'action.devices.types.STANDMIXER' => array('name' => __('Mélangeur sur socle', __FILE__), 'traits' => array('Cook', 'OnOff', 'StartStop')),
 			'action.devices.types.SWITCH' => array('name' => __('Interrupteur', __FILE__), 'traits' => array('OnOff')),
-			'action.devices.types.THERMOSTAT' => array('name' => __('Thermostat', __FILE__), 'traits' => array('TemperatureSetting', 'Modes')),
+			'action.devices.types.THERMOSTAT' => array('name' => __('Thermostat', __FILE__), 'traits' => array('TemperatureSetting')),
 			'action.devices.types.TV' => array('name' => __('TV', __FILE__), 'traits' => array('OnOff', 'MediaState', 'InputSelector', 'AppSelector', 'TransportControl', 'Volume', 'Modes', 'Channel')),
 			'action.devices.types.VACUUM' => array('name' => __('Aspirateur', __FILE__), 'traits' => array('Dock', 'Locator', 'Modes', 'OnOff', 'StartStop', 'Toggles', 'RunCycle')),
 			'action.devices.types.VALVE' => array('name' => __('Vanne', __FILE__), 'traits' => array('OpenClose')),

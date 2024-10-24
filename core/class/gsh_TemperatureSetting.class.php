@@ -27,7 +27,7 @@ class gsh_TemperatureSetting {
   
   public static function discover($_device,$_eqLogic){
     $return = array('traits' => array(),'customData' => array(),'attributes' => array());
-    $modes = 'auto,';
+    $modes = '';
     if ($_device->getOptions('TemperatureSetting::heat') != '') {
       $modes .= 'heat,';
     }
@@ -39,9 +39,6 @@ class gsh_TemperatureSetting {
     }
     if ($_device->getOptions('TemperatureSetting::eco') != '') {
       $modes .= 'eco,';
-    }
-    if ($_device->getOptions('TemperatureSetting::auto') != '') {
-      #$modes .= 'auto,';
     }
     if ($_device->getOptions('TemperatureSetting::heatcool') != '') {
       $modes .= 'heatcool,';
@@ -158,8 +155,6 @@ class gsh_TemperatureSetting {
             $cmd = cmd::byId($_device->getOptions('TemperatureSetting::cool'));
           } elseif ($execution['params']['thermostatMode'] == 'eco') {
             $cmd = cmd::byId($_device->getOptions('TemperatureSetting::eco'));
-          } elseif ($execution['params']['thermostatMode'] == 'auto') {
-            $cmd = cmd::byId($_device->getOptions('TemperatureSetting::auto'));
           } elseif ($execution['params']['thermostatMode'] == 'heatcool') {
             $cmd = cmd::byId($_device->getOptions('TemperatureSetting::heatcool'));
           }
@@ -207,10 +202,7 @@ class gsh_TemperatureSetting {
               break;
               case $_device->getOptions('TemperatureSetting::eco'):
               $return['thermostatMode'] = 'eco';
-              break;
-              case $_device->getOptions('TemperatureSetting::auto'):
-              $return['thermostatMode'] = 'auto';
-              break;
+              break;;
               case $_device->getOptions('TemperatureSetting::heatcool'):
               $return['thermostatMode'] = 'heatcool';
               break;
@@ -236,12 +228,6 @@ class gsh_TemperatureSetting {
           break;
           case __('Eco', __FILE__);
           $return['thermostatMode'] = 'eco';
-          break;
-          case __('Suspendu', __FILE__):
-          #$return['thermostatMode'] = 'auto';
-          break;
-          case __('Arrêté', __FILE__):
-          #$return['thermostatMode'] = 'auto';
           break;
           case __('Off', __FILE__):
           $return['thermostatMode'] = 'off';
@@ -346,17 +332,6 @@ class gsh_TemperatureSetting {
     echo '<label class="col-sm-3 control-label">{{Action pour le mode Eco}}</label>';
     echo '<div class="col-sm-3">';
     echo '<select class="form-control deviceAttr" data-l1key="options" data-l2key="TemperatureSetting::eco">';
-    echo '<option value="">{{Aucun}}</option>';
-    foreach ($_eqLogic->getCmd('action', null, null, true) as $cmd) {
-      echo '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
-    }
-    echo '</select>';
-    echo '</div>';
-    echo '</div>';
-    echo '<div class="form-group">';
-    echo '<label class="col-sm-3 control-label">{{Action pour le mode Autre (non sélectionnable)}}</label>';
-    echo '<div class="col-sm-3">';
-    echo '<select class="form-control deviceAttr" data-l1key="options" data-l2key="TemperatureSetting::auto">';
     echo '<option value="">{{Aucun}}</option>';
     foreach ($_eqLogic->getCmd('action', null, null, true) as $cmd) {
       echo '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
