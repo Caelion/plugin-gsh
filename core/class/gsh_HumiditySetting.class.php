@@ -104,7 +104,8 @@ class gsh_HumiditySetting {
     }
     if (isset($_infos['customData']['HumiditySetting_cmdGetHumidity'])) {
       $cmd = cmd::byId($_infos['customData']['HumiditySetting_cmdGetHumidity']);
-      $return['humidityAmbientPercent'] = $cmd->execCmd();
+	  // GH only allow int value for humidity
+      $return['humidityAmbientPercent'] = round($cmd->execCmd());
     }
     return $return;
   }
