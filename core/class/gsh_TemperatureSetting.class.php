@@ -54,6 +54,10 @@ class gsh_TemperatureSetting {
         $return['attributes']['availableThermostatModes'] = 'heat';
         $return['attributes']['thermostatTemperatureUnit'] = 'C';
         $return['customData']['TemperatureSetting_cmdSetThermostat'] = $cmd->getId();
+        $return['attributes']['thermostatTemperatureRange'] = array(
+          'minThresholdCelsius' => intval($cmd->getConfiguration('minValue',0)),
+          'maxThresholdCelsius' => intval($cmd->getConfiguration('maxValue',40))
+        );
       }
       if (in_array($cmd->getGeneric_type(), array('THERMOSTAT_STATE_NAME'))) {
         $return['customData']['TemperatureSetting_cmdGetState'] = $cmd->getId();
