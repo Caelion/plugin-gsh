@@ -86,7 +86,7 @@ class gsh_Brightness {
     }
     $value = $cmd->execCmd();
     if ($cmd->getSubtype() == 'numeric') {
-      $return['brightness'] = round($value / $cmd->getConfiguration('maxValue', 100) * 100);
+      $return['brightness'] = round(intval($value) / intval($cmd->getConfiguration('maxValue', 100)) * 100);
     }
     return $return;
   }

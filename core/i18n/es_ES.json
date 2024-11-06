@@ -261,16 +261,13 @@
         "Chauffage": "Calefacción",
         "Climatisation": "Climatización",
         "Eco": "Respetuoso del medio ambiente",
-        "Suspendu": "Suspendido",
-        "Arrêté": "Detenido",
         "Off": "Apagado",
         "Action pour le mode chaud": "Acción para modo calefacción",
         "Aucun": "Ninguna",
         "Action pour le mode froid": "Acción para el modo frío",
         "Action pour le mode off": "Acción para el modo apagado",
         "Action pour le mode Auto(chaud et froid)": "Acción para el modo automático (frío y calor)",
-        "Action pour le mode Eco": "Acción para el modo Eco",
-        "Action pour le mode Autre (non sélectionnable)": "Acción para otro modo (no seleccionable)"
+        "Action pour le mode Eco": "Acción para el modo Eco"
     },
     "plugins\/gsh\/core\/class\/gsh_Dock.class.php": {
         "Retour sur sa base": "De regreso a la base",

@@ -261,16 +261,13 @@
         "Chauffage": "Riscaldamento",
         "Climatisation": "Climatisation",
         "Eco": "Eco",
-        "Suspendu": "Suspendu",
-        "Arrêté": "Smettere",
         "Off": "Off",
         "Action pour le mode chaud": "Action pour le mode chaud",
         "Aucun": "Nessuno",
         "Action pour le mode froid": "Action pour le mode froid",
         "Action pour le mode off": "Action pour le mode off",
         "Action pour le mode Auto(chaud et froid)": "Action pour le mode Auto(chaud et froid)",
-        "Action pour le mode Eco": "Action pour le mode Eco",
-        "Action pour le mode Autre (non sélectionnable)": "Action pour le mode Autre (non sélectionnable)"
+        "Action pour le mode Eco": "Action pour le mode Eco"
     },
     "plugins\/gsh\/core\/class\/gsh_Dock.class.php": {
         "Retour sur sa base": "Retour sur sa base",

@@ -2,6 +2,11 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Registro de cambios de Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto",
+        "24\/10\/2024": "24\/10\/2024",
+        "Correction d'un bug sur les équipements de type mode": "Se corrigió un error en el equipo de tipo moda",
+        "Correction sur les équipements de type Thermostat": "Corrección en equipos tipo Termostato",
+        "Correction d'un bug sur la remonté de valeur d'humidité": "Se corrigió un error en el informe del valor de humedad",
+        "11\/08\/2024": "11\/08\/2024",
         "Support des toggles": "Alternar soporte",
         "09\/05\/2024": "09\/05\/2024",
         "Correction de bugs": "Correcciones de errores",

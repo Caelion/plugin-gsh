@@ -261,16 +261,13 @@
         "Chauffage": "Heating",
         "Climatisation": "Air conditioning",
         "Eco": "Eco-friendly",
-        "Suspendu": "Suspended",
-        "Arrêté": "Stopped",
         "Off": "Off",
         "Action pour le mode chaud": "Action for heating mode",
         "Aucun": "None",
         "Action pour le mode froid": "Action for cold mode",
         "Action pour le mode off": "Action for off mode",
         "Action pour le mode Auto(chaud et froid)": "Action for Auto mode (hot and cold)",
-        "Action pour le mode Eco": "Action for Eco mode",
-        "Action pour le mode Autre (non sélectionnable)": "Action for Other mode (not selectable)"
+        "Action pour le mode Eco": "Action for Eco mode"
     },
     "plugins\/gsh\/core\/class\/gsh_Dock.class.php": {
         "Retour sur sa base": "Back to base",
