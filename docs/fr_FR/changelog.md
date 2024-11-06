@@ -7,6 +7,7 @@
 # 06/11/2024
 
 -  Correction de bug pour PHP8
+-  Meilleure gestion des modes
 
 # 24/10/2024
 
