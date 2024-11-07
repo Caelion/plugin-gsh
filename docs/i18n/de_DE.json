@@ -2,6 +2,9 @@
     "changelog.md": {
         "Changelog Google Smarthome": "Changelog Google Smarthome",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Zur Erinnerung: Wenn keine Informationen zum Update vorhanden sind, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt",
+        "06\/11\/2024": "11.06.2024",
+        "Correction de bug pour PHP8": "Fehlerbehebung für PHP8",
+        "Meilleure gestion des modes": "Bessere Modusverwaltung",
         "24\/10\/2024": "24.10.2024",
         "Correction d'un bug sur les équipements de type mode": "Ein Fehler bei Modeausrüstung wurde behoben",
         "Correction sur les équipements de type Thermostat": "Korrektur bei Geräten vom Typ Thermostat",
