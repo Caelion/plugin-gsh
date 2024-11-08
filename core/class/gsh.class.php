@@ -103,6 +103,7 @@ class gsh extends eqLogic {
 			'action.devices.types.SCENE' => array('name' => __('Scène', __FILE__), 'class' => 'gsh_scene'),
 			'action.devices.types.SECURITYSYSTEM' => array('name' => __('Alarme', __FILE__), 'traits' => array('ArmDisarm', 'StatusReport', 'Modes')),
 			'action.devices.types.SENSOR' => array('name' => __('Capteur', __FILE__), 'traits' => array('OnOff', 'SensorState', 'TemperatureControl', 'Brightness', 'HumiditySetting', 'OccupancySensing')),
+			'action.devices.types.SETTOP' => array('name' => __('Décodeur', __FILE__), 'traits' => array('AppSelector', 'InputSelector', 'MediaState', 'OnOff', 'TransportControl', 'Volume', 'Channel')),
 			'action.devices.types.SHOWER' => array('name' => __('Douche', __FILE__), 'traits' => array('Modes', 'Toggles', 'OnOff', 'TemperatureControl')),
 			'action.devices.types.SHUTTER' => array('name' => __('Volet', __FILE__), 'traits' => array('Modes', 'OpenClose', 'Rotation')),
 			'action.devices.types.SMOKE_DETECTOR' => array('name' => __('Détecteur de fumée', __FILE__), 'traits' => array('SensorState')),
