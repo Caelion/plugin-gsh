@@ -277,7 +277,13 @@ class gsh_TemperatureSetting {
       $return['thermostatTemperatureSetpoint'] = 0;
     }
     if (!isset($return['thermostatMode'])) {
-      $return['thermostatMode'] = ($_device->getOptions('TemperatureSetting::heat') == '') ? 'cool' : 'heat';
+      $cmd = cmd::byId($_infos['customData']['TemperatureSetting_cmdGetMode']);//Récupération du mode actuel
+      if (is_object($cmd)) {
+        $mode = $cmd->execCmd();
+      } else {// Mode par défaut si non spécifié dans les generics
+        $mode = 'heat';
+      }
+      $return['thermostatMode'] = $mode;
     }
     $return['activeThermostatMode'] = $return['thermostatMode'];
     if($return['activeThermostatMode'] == 'off'){
